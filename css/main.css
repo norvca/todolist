@@ -1,0 +1,82 @@
+html,body,div,nav,main,ul,li {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 16px;
+  font-family: "Arial", serif;
+  color: #444;
+}
+
+ul,li {
+  list-style: none;
+}
+
+.layout {
+  background: rgba(152,205,156,1);
+  background: linear-gradient(to bottom, rgba(152,205,156,1) 0%, rgba(249,204,159,1) 100%);
+  width: 400px;
+  margin: 3% auto;
+  border-radius: 10px;
+  box-shadow: 0px 3px 8px 2px #ccc;
+}
+
+nav {
+  position: relative;
+  margin-top: 10px;
+}
+nav span {
+  top: 5px;
+  right: 22px;
+  position: absolute;
+  font-size: 30px;
+  cursor: pointer;
+  color: #777;
+}
+nav input {
+  text-align: center;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  outline: none;
+  padding: 10px;
+  color: #666;
+  font-size: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+nav input::placeholder {
+  color: #ccc;
+  transition: all .2s;
+}
+
+.error::placeholder{
+  color: #d78;
+}
+
+main ul {
+  padding: 10px;
+}
+main ul li {
+  border: none;
+  border-bottom: 1px solid #aaa;
+  padding: 20px 15px 5px 10px;
+}
+main ul li input {
+  margin-right: 5px;
+  outline: none;
+  zoom: 150%;
+  vertical-align: middle;
+  opacity: .8;
+}
+main ul li span {
+  float: right;
+  color: #d78;
+  font-size: 24px;
+  cursor: pointer;
+  line-height: 16px;
+}
+main {
+  min-height: 300px;
+}
