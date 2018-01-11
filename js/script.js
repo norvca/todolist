@@ -66,8 +66,8 @@
 			var cursor = e.target.result;
 			if(cursor){
 				output += '<li dataID='+ cursor.value.id +' id=todo' + cursor.value.id + '>';
-				output += '<input type="checkbox" name="todo">';
-				output += '<label>'+ cursor.value.thing +'</label>';
+				output += '<input id=ipt'+cursor.value.id+' type="checkbox" dataID='+ cursor.value.id +'>';
+				output += '<label dataID='+ cursor.value.id +' contenteditable="true">'+ cursor.value.thing +'</label>';
 				// 直接在这里点击调用 deleteThings() 会说is not defined，为什么？
 				output += '<span>&times;</span>';
 				output += '</li>';
@@ -94,13 +94,56 @@
 		ele.parentNode.removeChild(ele);
 	}
 
+	// 修改数据库中的数据
+	function modifyThings(id, newText){
+		var transaction = db.transaction(['todoStore'], 'readwrite');
+		var store = transaction.objectStore('todoStore');
+		var request  = store.get(id);
+
+		request.onsuccess = function(){
+			var data = request.result;
+			data.thing = newText;
+
+			store.put(data);
+		};
+	}
+
+	// 在数据库中显示是否完成任务
+	// function finishThings(id){
+	// 	var transaction = db.transaction(['todoStore'], 'readwrite');
+	// 	var store = transaction.objectStore('todoStore');
+	// 	var request  = store.get(id);
+
+	// 	request.onsuccess = function(){
+	// 		var data = request.result;
+	// 		data.isFinished === false ? (data.isFinished = true) : (data.isFinished = false);
+	// 		store.put(data);
+	// 		data.isFinished === false ? (showFinish(id, false)) : (showFinish(id, true));
+	// 	};
+	// }
+
+	// 浏览器中显示是否完成任务
+	// function showFinish(id, bool){
+	// 	var iptID = "#ipt" + id;
+	// 	var ele = document.querySelector(iptID);
+
+	// 	if(bool === true){
+	// 		ele.setAttribute("checked", true);
+	// 	}else {
+	// 		ele.removeAttribute("checked");
+	// 	}
+	// 	console.log(ele);
+	// }
+
 	// 开启事件
 	function addEvents(){
 		initDB();
 
 		// 添加事件
 		document.querySelector('#nav span').addEventListener('click', function(){
-			if(document.querySelector('#nav input').value) {
+			if(!document.querySelector('#nav input').value) {
+				this.parentNode.children[1].classList.toggle('error');
+			}else {
 				addThings();
 				showThings();
 			}
@@ -116,6 +159,25 @@
 				deleteThings(num);
 			}
 		});
+
+		// 修改事件
+		document.querySelector('#list').addEventListener('focusout', function(e){
+			if(e.target.tagName.toUpperCase() === 'LABEL'){
+				var id = parseInt( e.target.getAttribute('dataID') );
+				var newText = e.target.innerText;
+
+				modifyThings(id, newText);
+			}
+		});
+
+		// 是否完成事件
+		// document.querySelector('#list').addEventListener('click', function(e){
+		// 	if(e.target.tagName.toUpperCase() === 'INPUT'){
+		// 		var id = parseInt( e.target.getAttribute('dataID') );
+
+		// 		finishThings(id);
+		// 	}
+		// });
 	}
 
 	addEvents();

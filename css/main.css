@@ -63,7 +63,7 @@ main ul {
 }
 
 main ul li {
-  font-weight: bold;                    
+  font-weight: bold;
   border: none;
   border-bottom: 1px solid #aaa;
   padding: 20px 15px 5px 10px;
@@ -75,6 +75,16 @@ main ul li input {
   zoom: 150%;
   vertical-align: middle;
   opacity: .8;
+}
+
+main ul li label {
+  outline: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+main ul li label:focus {
+  background-color: rgba(255, 255, 255, .3);
 }
 
 main ul li span {
