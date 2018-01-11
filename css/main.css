@@ -26,6 +26,7 @@ nav {
   position: relative;
   margin-top: 10px;
 }
+
 nav span {
   top: 5px;
   right: 22px;
@@ -34,7 +35,9 @@ nav span {
   cursor: pointer;
   color: #777;
 }
+
 nav input {
+  border-radius: 10px 10px 0 0;
   text-align: center;
   border: none;
   border-bottom: 1px solid #ccc;
@@ -58,11 +61,14 @@ nav input::placeholder {
 main ul {
   padding: 10px;
 }
+
 main ul li {
+  font-weight: bold;                    
   border: none;
   border-bottom: 1px solid #aaa;
   padding: 20px 15px 5px 10px;
 }
+
 main ul li input {
   margin-right: 5px;
   outline: none;
@@ -70,6 +76,7 @@ main ul li input {
   vertical-align: middle;
   opacity: .8;
 }
+
 main ul li span {
   float: right;
   color: #d78;
@@ -77,6 +84,7 @@ main ul li span {
   cursor: pointer;
   line-height: 16px;
 }
+
 main {
   min-height: 300px;
 }
