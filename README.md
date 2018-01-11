@@ -29,7 +29,7 @@ https://norvca.github.io/ToDoList/
 
 - [x] 改
 
-- [ ] 查
+- [x] 查
 
       ​
 
