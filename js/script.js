@@ -1,222 +1,217 @@
+// todo APP
 (function(){
-  // 准备工作
-  var db;
+	// 准备工作
+	var db,
+		list = document.querySelector('#list'),
+		addBtn = document.querySelector('#nav #add'),
+		searchBtn = document.querySelector('#search'),
+		refreshBtn = document.querySelector('#refresh');
 
-  // 初始化数据库
-  function initDB(){
-    var request = window.indexedDB.open('todoDB',1);
+	// 初始化数据库
+	function initDB(){
+		var request = window.indexedDB.open('todoDB',1);
 
-    // 成功与失败
-    request.onsuccess = function(){
-      db = this.result;
-      // console.log('开启数据库成功！');
-      showThings();
-    };
-    request.onerror = function(){
-      // console.log('开启数据库失败:');
-    };
+		// 成功与失败
+		request.onsuccess = function(){
+			db = this.result;
+			// console.log('开启数据库成功！');
+			showThings();
+		};
+		request.onerror = function(){
+			// console.log('开启数据库失败:');
+		};
 
-    // 建立事件库与索引
-    request.onupgradeneeded = function(){
-      db = this.result;
-      // 建立对象仓库
-      if(!db.objectStoreNames.contains('todoDB')){
-        // 创建对象
-        var store = db.createObjectStore('todoStore',{keyPath: 'id', autoIncrement: true});
-        // 指定可索引字段
-        store.createIndex('thing', 'thing', {unique: false});
-      }
-    };
-  }
+		// 建立事件库与索引
+		request.onupgradeneeded = function(){
+			db = this.result;
+			// 建立对象仓库
+			if(!db.objectStoreNames.contains('todoDB')){
+				// 创建对象
+				var store = db.createObjectStore('todoStore',{keyPath: 'id', autoIncrement: true});
+				// 指定可索引字段
+				store.createIndex('thing', 'thing', {unique: false});
+			}
+		};
+	}
 
-  // 添加数据到数据库
-  function addThings(){
-    var thing = document.querySelector('#nav input').value;
-    var transaction = db.transaction(['todoStore'], 'readwrite');
-    var store = transaction.objectStore('todoStore');
+	// 添加数据到数据库
+	function addThings(){
+		var thing = document.querySelector('#nav input').value;
+		var transaction = db.transaction(['todoStore'], 'readwrite');
+		var store = transaction.objectStore('todoStore');
 
-    // 定义 todoStore
-    var todos = {
-      thing: thing,
-      isFinished: false
-    };
+		// 定义 todoStore
+		var todos = {
+			thing: thing,
+			isFinished: false
+		};
 
-    // 添加事件
-    var request = store.add(todos);
+		// 添加事件
+		var request = store.add(todos);
 
-    // 添加成功与失败
-    request.onsuccess = function(){
-      // console.log('事件添加到数据库成功!');
-    };
+		// 添加成功与失败
+		request.onsuccess = function(){
+			// console.log('事件添加到数据库成功!');
+		};
 
-    request.error = function(){
-      // console.log('事件添加到数据库失败!');
-    };
-  }
+		request.error = function(){
+			// console.log('事件添加到数据库失败!');
+		};
+	}
 
-  // 展示数据到页面
-  // caution！这段写的有问题导致添加的事件不能按顺序排列
-  function showThings(){
-    var transaction = db.transaction(['todoStore'], 'readwrite');
-    var store = transaction.objectStore('todoStore');
-    var index = store.index('thing');
+	// 游标遍历数据库数据并打印到页面
+	// caution！这段写的有问题导致添加的事件不能按顺序排列
+	function cursorState(index, range){
+		var output = '';
+		index.openCursor(range).onsuccess = function(e){
+			var cursor = e.target.result;
+			if(!cursor){
+				return;
+			}else{
+				output += '<li dataID='+ cursor.value.id +' id=todo' + cursor.value.id + '>';
+				output += '<input id=ipt'+cursor.value.id+' type="checkbox" dataID='+ cursor.value.id +'>';
+				output += '<label dataID='+ cursor.value.id +' contenteditable="true">'+ cursor.value.thing +'</label>';
+				// 直接在这里点击调用 deleteThings() 会说is not defined，为什么？
+				output += '<span>&times;</span>';
+				output += '</li>';
+				// 这句什么意思？
+				cursor.continue();
+			}
+			list.innerHTML = output;
+		};
+	}
 
-    var output = '';
-    index.openCursor().onsuccess = function(e){
-      var cursor = e.target.result;
-      if(cursor){
-        output += '<li dataID='+ cursor.value.id +' id=todo' + cursor.value.id + '>';
-        output += '<input id=ipt'+cursor.value.id+' type="checkbox" dataID='+ cursor.value.id +'>';
-        output += '<label dataID='+ cursor.value.id +' contenteditable="true">'+ cursor.value.thing +'</label>';
-        // 直接在这里点击调用 deleteThings() 会说is not defined，为什么？
-        output += '<span>&times;</span>';
-        output += '</li>';
-        // 这句什么意思？
-        cursor.continue();
-      }
-      document.querySelector('main #list').innerHTML = output;
-    };
-  }
+	// 展示数据到页面
+	function showThings(){
+		var transaction = db.transaction(['todoStore'], 'readwrite');
+		var store = transaction.objectStore('todoStore');
+		var index = store.index('thing');
 
-  // 删除数据库中数据
-  function deleteThings(id){
-    // 删除数据库中数据
-    var transaction = db.transaction(['todoStore'], 'readwrite');
-    var store = transaction.objectStore('todoStore');
-    var request  = store.delete(id);
-    request.onsuccess = function(){
-      // console.log('删除数据: '+ id +' 成功!');
-    };
+		cursorState(index);
+	}
 
-    // 删除页面元素
-    var eleID = '#todo'+id;
-    var ele = document.querySelector(eleID);
-    ele.parentNode.removeChild(ele);
-  }
+	// 删除数据库中数据
+	function deleteThings(id){
+		// 删除数据库中数据
+		var transaction = db.transaction(['todoStore'], 'readwrite');
+		var store = transaction.objectStore('todoStore');
+		var request  = store.delete(id);
+		request.onsuccess = function(){
+			// console.log('删除数据: '+ id +' 成功!');
+		};
 
-  // 修改数据库中的数据
-  function modifyThings(id, newText){
-    var transaction = db.transaction(['todoStore'], 'readwrite');
-    var store = transaction.objectStore('todoStore');
-    var request  = store.get(id);
+		// 删除页面元素
+		var eleID = '#todo'+id;
+		var ele = document.querySelector(eleID);
+		ele.parentNode.removeChild(ele);
+	}
 
-    request.onsuccess = function(){
-      var data = request.result;
-      data.thing = newText;
+	// 修改数据库中的数据
+	function modifyThings(id, newText){
+		var transaction = db.transaction(['todoStore'], 'readwrite');
+		var store = transaction.objectStore('todoStore');
+		var request  = store.get(id);
 
-      store.put(data);
-    };
-  }
+		request.onsuccess = function(){
+			var data = request.result;
+			data.thing = newText;
 
-  // 查找数据库中的数据
-  function searchThings(){
-    var curThing = document.querySelector("nav input").value;
-    var transaction = db.transaction(['todoStore'], 'readonly');
-    var store = transaction.objectStore('todoStore');
-    var boundKeyRange = IDBKeyRange.only(curThing);
-    var index = store.index('thing');
-    var output = '';
-    index.openCursor(boundKeyRange).onsuccess = function(e){
-      var cursor = e.target.result;
-      if(!cursor){
-        // 这句就算有 cursor 是也会执行出来，为什么？
-        // document.querySelector("nav input").value = "没有找到！";
-        return;
-      }else {
-        output += '<li dataID='+ cursor.value.id +' id=todo' + cursor.value.id + '>';
-        output += '<input id=ipt'+cursor.value.id+' type="checkbox" dataID='+ cursor.value.id +'>';
-        output += '<label dataID='+ cursor.value.id +' contenteditable="true">'+ cursor.value.thing +'</label>';
-        // 直接在这里点击调用 deleteThings() 会说is not defined，为什么？
-        output += '<span>&times;</span>';
-        output += '</li>';
-        // 这句什么意思？
-        cursor.continue();
-      }
-      document.querySelector('main #list').innerHTML = output;
-    };
-  }
+			store.put(data);
+		};
+	}
 
-  // 在数据库中显示是否完成任务
-  // function finishThings(id){
-  //  var transaction = db.transaction(['todoStore'], 'readwrite');
-  //  var store = transaction.objectStore('todoStore');
-  //  var request  = store.get(id);
+	// 查找数据库中的数据
+	function searchThings(){
+		var curThing = document.querySelector('nav input').value;
+		var transaction = db.transaction(['todoStore'], 'readonly');
+		var store = transaction.objectStore('todoStore');
+		var boundKeyRange = IDBKeyRange.only(curThing);
+		var index = store.index('thing');
 
-  //  request.onsuccess = function(){
-  //    var data = request.result;
-  //    data.isFinished === false ? (data.isFinished = true) : (data.isFinished = false);
-  //    store.put(data);
-  //    data.isFinished === false ? (showFinish(id, false)) : (showFinish(id, true));
-  //  };
-  // }
+		cursorState(index, boundKeyRange);
+	}
 
-  // 浏览器中显示是否完成任务
-  // function showFinish(id, bool){
-  //  var iptID = "#ipt" + id;
-  //  var ele = document.querySelector(iptID);
+	// 在数据库中显示是否完成任务
+	// function finishThings(id){
+	//  var transaction = db.transaction(['todoStore'], 'readwrite');
+	//  var store = transaction.objectStore('todoStore');
+	//  var request  = store.get(id);
 
-  //  if(bool === true){
-  //    ele.setAttribute("checked", true);
-  //  }else {
-  //    ele.removeAttribute("checked");
-  //  }
-  //  console.log(ele);
-  // }
+	//  request.onsuccess = function(){
+	//    var data = request.result;
+	//    data.isFinished === false ? (data.isFinished = true) : (data.isFinished = false);
+	//    store.put(data);
+	//    data.isFinished === false ? (showFinish(id, false)) : (showFinish(id, true));
+	//  };
+	// }
 
-  // 开启事件
-  function addEvents(){
-    initDB();
+	// 浏览器中显示是否完成任务
+	// function showFinish(id, bool){
+	//  var iptID = "#ipt" + id;
+	//  var ele = document.querySelector(iptID);
 
-    // 添加事件
-    document.querySelector('#nav #add').addEventListener('click', function(){
-      if(!document.querySelector('#nav input').value) {
-        this.parentNode.children[1].classList.toggle('error');
-      }else {
-        addThings();
-        showThings();
-      }
-    });
+	//  if(bool === true){
+	//    ele.setAttribute("checked", true);
+	//  }else {
+	//    ele.removeAttribute("checked");
+	//  }
+	//  console.log(ele);
+	// }
 
-    // 删除事件
-    document.querySelector('#list').addEventListener('click', function(e){
-      if(e.target.tagName.toUpperCase() === 'SPAN'){
-        var parentEle = e.target.parentNode;
-        var dataID = parentEle.getAttribute('dataID');
-        var num = parseInt(dataID);
+	// 开启事件
+	function addEvents(){
+		initDB();
 
-        deleteThings(num);
-      }
-    });
+		// 添加事件
+		addBtn.addEventListener('click', function(){
+			if(!document.querySelector('#nav input').value) {
+				this.parentNode.children[1].classList.toggle('error');
+			}else {
+				addThings();
+				showThings();
+			}
+		});
 
-    // 修改事件
-    document.querySelector('#list').addEventListener('focusout', function(e){
-      if(e.target.tagName.toUpperCase() === 'LABEL'){
-        var id = parseInt( e.target.getAttribute('dataID') );
-        var newText = e.target.innerText;
+		// 删除事件
+		list.addEventListener('click', function(e){
+			if(e.target.tagName.toUpperCase() === 'SPAN'){
+				var parentEle = e.target.parentNode;
+				var dataID = parentEle.getAttribute('dataID');
+				var num = parseInt(dataID);
 
-        modifyThings(id, newText);
-      }
-    });
+				deleteThings(num);
+			}
+		});
 
-    // 查询功能
-    document.querySelector('#search').addEventListener('click', function(){
-      searchThings();
-    });
+		// 修改事件
+		list.addEventListener('focusout', function(e){
+			if(e.target.tagName.toUpperCase() === 'LABEL'){
+				var id = parseInt( e.target.getAttribute('dataID') );
+				var newText = e.target.innerText;
 
-    // 刷新页面
-    document.querySelector('#refresh').addEventListener('click', function(){
-      window.location.href="index.html";
-    });
+				modifyThings(id, newText);
+			}
+		});
 
-    // 是否完成事件
-    // document.querySelector('#list').addEventListener('click', function(e){
-    //  if(e.target.tagName.toUpperCase() === 'INPUT'){
-    //    var id = parseInt( e.target.getAttribute('dataID') );
+		// 查询功能
+		searchBtn.addEventListener('click', function(){
+			searchThings();
+		});
 
-    //    finishThings(id);
-    //  }
-    // });
-  }
+		// 刷新页面
+		refreshBtn.addEventListener('click', function(){
+			window.location.href='index.html';
+		});
 
-  addEvents();
+		// 是否完成事件
+		// document.querySelector('#list').addEventListener('click', function(e){
+		//  if(e.target.tagName.toUpperCase() === 'INPUT'){
+		//    var id = parseInt( e.target.getAttribute('dataID') );
+
+		//    finishThings(id);
+		//  }
+		// });
+	}
+
+	addEvents();
 })();
