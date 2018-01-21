@@ -1,0 +1,19 @@
+html,body,ul,li,h1,h2,h3,p,div,main,figure,footer {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font: 5vh Helvetica;
+  color: #555;
+}
+
+a {
+	text-decoration: none;
+	color: #666;
+}
+
+ul,li {
+	list-style: none;
+}
