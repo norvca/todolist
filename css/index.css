@@ -7,18 +7,19 @@ html,body {
    fill: currentColor;
    overflow: hidden;
    cursor: pointer;
+   transition: all .3s;
 }
 
- .color-light {
+ .level-light {
   color: #58b4ab;
 }
 
-.color-common {
+.level-common {
   color: #66638b;
 }
 
-.color-heavy {
-  color: #486b8a;
+.level-heavy {
+  color: #DA635D;
 }
 
 .bgc-light {
@@ -28,7 +29,7 @@ html,body {
   background-color: #66638b;
 }
 .bgc-heavy {
-  background-color: #486b8a;
+  background-color: #DA635D;
 }
 
 body {
@@ -93,6 +94,7 @@ header {
   flex: 1 0 auto;
   outline: none;
   color: #555;
+  letter-spacing: .3vh;
 }
 
 .search-add-box input::placeholder{
@@ -163,9 +165,18 @@ section{
   flex-grow: 2;
 }
 
+section .todo-title span {
+  word-break: break-all;
+}
+
+.todo-each-day {
+  margin-bottom: 2vh;
+}
+
 .todo-time {
   display: flex;
   flex-direction: column;
+  margin-left: -2vh;
 }
 
 .todo-week {
@@ -178,6 +189,7 @@ section{
   display: flex;
   width: 18vh;
   text-align: center;
+  font-size: 3.2vh;
   justify-content: center;
 }
 
@@ -189,6 +201,7 @@ section{
 .todo-list {
   margin: 2vh 4vh;
 }
+
 
 .todo-box {
   display: flex;
@@ -221,10 +234,12 @@ textarea {
   font: 3.5vh Helvetica;
   outline: none;
   border: none;
+  letter-spacing: .1vh;
 }
 
 textarea::placeholder {
   color: #ccc;
+  letter-spacing: .2vh;
 }
 
 /* 响应式处理 */

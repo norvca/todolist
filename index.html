@@ -5,6 +5,7 @@
   <link rel="stylesheet" type="text/css" href="./css/common.css">
   <link rel="stylesheet" type="text/css" href="./css/index.css">
   <script src="//at.alicdn.com/t/font_548784_nsx529zfu7bvs4i.js"></script>
+<!--   <script type="text/javascript" async="true" data-main="js/app/index.js" src="js/lib/require.js"></script> -->
   <title>Document</title>
 </head>
 <body>
@@ -26,9 +27,9 @@
         <svg class="icon icon-search" aria-hidden="true" name="search">
             <use xlink:href="#icon-search"></use>
         </svg>
-        <input type="text" name="search" placeholder="待添加事物...">
+        <input id="serach-input" type="text" name="search" placeholder="待添加事物...">
         <!-- 任务等级图标 -->
-        <svg class="icon icon-style color-light" aria-hidden="true">
+        <svg class="icon icon-level level-light" level="bgc-light" aria-hidden="true">
           <use xlink:href="#icon-circle"></use>
        </svg>
        <!-- 添加图标 -->
@@ -53,7 +54,7 @@
             <li><a href="javascript:;">娱乐</a></li>
             <li><a href="javascript:;">其他</a></li>
             <li>
-              <a class="things-state color-light active" href="javascript:;">LIGHT</a>
+              <a class="things-state level-light active" href="javascript:;">LIGHT</a>
               <a class="things-state" href="javascript:;">COMMON</a>
               <a class="things-state" href="javascript:;">HEAVY</a>
             </li>
@@ -65,22 +66,18 @@
           </ul>
         </div>
       </aside>
+
+
       <!-- 任务展示区 -->
       <section>
-        <div class="todo-each-day">
+        <!-- 测试任务用 -->
+<!--         <div class="todo-each-day" tasktime="2018/1/2">
           <div class="todo-time">
             <span class="todo-week">SUN</span>
-            <div class="todo-date">
-              <span class ="day">21</span>
-              <span>/</span>
-              <span class ="mon">01</span>
-              <span>/</span>
-              <span class ="year">17</span>
-            </div>
+            <span class="todo-date">2018/1/2</span>
           </div>
           <ul class="todo-list">
 
-            <!-- 测试任务用 -->
             <li class="todo-box bgc-light">
               <div class="todo-title">
                 <span>熟读唐诗三百首。</span>
@@ -120,81 +117,17 @@
                 </svg>
               </div>
             </li>
-            <li class="todo-box bgc-heavy">
-              <div class="todo-title">
-                <span>熟读唐诗三百首。</span>
-              </div>
-              <div class="todo-icon">
-                <svg class="icon icon-nofinish" aria-hidden="true" name="search">
-                    <use xlink:href="#icon-finish-copy"></use>
-                </svg>
-                <svg class="icon icon-delete" aria-hidden="true" name="search">
-                    <use xlink:href="#icon-delete"></use>
-                </svg>
-              </div>
-            </li>
-            <li class="todo-box bgc-light">
-              <div class="todo-title">
-                <span>熟读唐诗三百首。</span>
-              </div>
-              <div class="todo-icon">
-                <svg class="icon icon-nofinish" aria-hidden="true" name="search">
-                    <use xlink:href="#icon-finish-copy"></use>
-                </svg>
-                <svg class="icon icon-delete" aria-hidden="true" name="search">
-                    <use xlink:href="#icon-delete"></use>
-                </svg>
-              </div>
-            </li>
-            <li class="todo-box bgc-light">
-              <div class="todo-title">
-                <span>熟读唐诗三百首。</span>
-              </div>
-              <div class="todo-icon">
-                <svg class="icon icon-nofinish" aria-hidden="true" name="search">
-                    <use xlink:href="#icon-finish-copy"></use>
-                </svg>
-                <svg class="icon icon-delete" aria-hidden="true" name="search">
-                    <use xlink:href="#icon-delete"></use>
-                </svg>
-              </div>
-            </li>
-            <li class="todo-box bgc-light">
-              <div class="todo-title">
-                <span>熟读唐诗三百首。</span>
-              </div>
-              <div class="todo-icon">
-                <svg class="icon icon-nofinish" aria-hidden="true" name="search">
-                    <use xlink:href="#icon-finish-copy"></use>
-                </svg>
-                <svg class="icon icon-delete" aria-hidden="true" name="search">
-                    <use xlink:href="#icon-delete"></use>
-                </svg>
-              </div>
-            </li>
-            <li class="todo-box bgc-light">
-              <div class="todo-title">
-                <span>熟读唐诗三百首。</span>
-              </div>
-              <div class="todo-icon">
-                <svg class="icon icon-nofinish" aria-hidden="true" name="search">
-                    <use xlink:href="#icon-finish-copy"></use>
-                </svg>
-                <svg class="icon icon-delete" aria-hidden="true" name="search">
-                    <use xlink:href="#icon-delete"></use>
-                </svg>
-              </div>
-            </li>
-            <!-- 测试任务用 -->
-
           </ul>
-        </div>
+        </div> -->
+        <!-- 测试任务用 -->
       </section>
+
 
       <!-- 右侧详细内容区域 -->
       <article>
         <textarea placeholder="添加任务详情..."></textarea>
       </article>
     </main>
+    <script type="text/javascript" src="js/app/fake.js"></script>
 </body>
 </html>
