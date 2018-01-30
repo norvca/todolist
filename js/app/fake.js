@@ -15,7 +15,7 @@ var todoAPP = (function(){
     request.onsuccess = function(){
       console.log('开启数据库成功！');
       db = this.result;
-      showThings();
+      showTypeThings('work');
     };
 
     // 失败
@@ -34,6 +34,7 @@ var todoAPP = (function(){
         // 创建索引
         store.createIndex('id', 'id', {unique: true});
         store.createIndex('title', 'title', {unique: false});
+        store.createIndex('taskType', 'taskType', {unique: false});
       }
     };
   }
@@ -60,6 +61,7 @@ var todoAPP = (function(){
     var title = input.value;
     var taskLevel = level.getAttribute('level');
     var taskTime = new Date().toLocaleDateString();
+    var taskType = document.querySelector('.act-type').getAttribute('taskType');
 
     var transaction = db.transaction(['todoStore'], 'readwrite');
     // 请求数据对象
@@ -70,7 +72,8 @@ var todoAPP = (function(){
       title: title,
       detail: null,
       level: taskLevel,
-      taskTime: taskTime
+      taskTime: taskTime,
+      taskType: taskType
     };
 
     // 添加事件
@@ -86,18 +89,16 @@ var todoAPP = (function(){
     };
   }
 
-  // 在页面展示数据
-  function showThings(){
-    var transaction = db.transaction(['todoStore'], 'readwrite');
-
-    var toDay = new Date().toLocaleDateString();
-
-    // 请求数据对象
+  // 展示不同类型的数据
+  function showTypeThings(type){
+    var transaction = db.transaction(['todoStore'], 'readonly');
     var store = transaction.objectStore('todoStore');
-    var taskid = store.index('id');
+    var taskType = store.index('taskType');
+    var boundKeyRange = IDBKeyRange.only(type);
+    var toDay = new Date().toLocaleDateString();
     var eachDay = document.querySelector('.todo-each-day');
-    var output = '';
 
+    var output = '';
     // 查询今天是否为最新日期
     // Caution! 只能一打开页面就立马显示最新日期，暂时不能根据点击情况添加最新日期
     if ( (!eachDay) || !(eachDay.getAttribute('tasktime') == toDay) ) {
@@ -121,9 +122,9 @@ var todoAPP = (function(){
       }
     }
 
-    // 遍历游标 刷新任务到页面
-    taskid.openCursor(IDBKeyRange.upper, 'prev').onsuccess = function(e){
 
+
+    taskType.openCursor(boundKeyRange, 'prev').onsuccess = function(e){
       var cursor = e.target.result;
       if(cursor){
         output += '<li id="things_'+ cursor.value.id +'" class="todo-box '+ cursor.value.level +'">';
@@ -214,26 +215,32 @@ var todoAPP = (function(){
 
   // 事件处理程序
   // 添加任务
-  addBtn.onclick = function(){
+  addBtn.addEventListener('click', function(){
+  // 获取左侧栏目对应事件类型
+    var taskType = document.querySelector('.act-type').getAttribute('taskType');
     if( !input.value ){
       return;
     } else {
       addThings();
-      showThings();
+      showTypeThings(taskType);
       input.value = '';
     }
-  };
+  });
 
   // 回车添加任务
   document.onkeyup = function(e) {
     // 兼容FF和IE和Opera
     var event = e || window.event;
     var key = event.which || event.keyCode || event.charCode;
+    // 获取左侧栏目对应事件类型
+    var taskType = document.querySelector('.act-type').getAttribute('taskType');
+
+
     // 焦点在搜索栏并按回车
     if(document.activeElement.value) {
       if (key == 13 && document.activeElement.tagName.toUpperCase() === 'INPUT') {
         addThings();
-        showThings();
+        showTypeThings(taskType);
         input.value = '';
       }
     }
@@ -265,13 +272,16 @@ var todoAPP = (function(){
 
   // 开启查找功能
   searchbox.addEventListener('click', function(e) {
+    // 获取左侧栏目对应事件类型
+    var taskType = document.querySelector('.act-type').getAttribute('taskType');
+
     if(e.target.classList.contains('icon-search')) {
       e.target.classList.toggle('act-color');
       input.classList.toggle('act-color');
       searchbox.classList.toggle('act-color');
       input.focus();
       input.value = '';
-      showThings();
+      showTypeThings(taskType);
     }
   });
 
@@ -280,6 +290,24 @@ var todoAPP = (function(){
     if( e.target.classList.contains('act-color') ){
       searchThings(this.value);
     }
+  });
+
+  // 左侧任务类别选择
+  document.querySelector('.things').addEventListener('click', function(e){
+    var lis = document.querySelectorAll('.type');
+    var target = e.target;
+
+    if( target.classList.contains('type')) {
+      lis.forEach(function(ele){
+        ele.classList.remove('act-type');
+      });
+      target.classList.add('act-type');
+
+      // 展示不同类型任务到页面
+      var taskType = target.getAttribute('taskType');
+      showTypeThings(taskType);
+    }
+
   });
 
 })();

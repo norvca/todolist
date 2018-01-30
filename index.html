@@ -50,19 +50,19 @@
       <aside>
         <div class="things">
           <ul class="things-todo">
-            <li><a href="javascript:;">工作</a></li>
-            <li><a href="javascript:;">娱乐</a></li>
-            <li><a href="javascript:;">其他</a></li>
+            <li class="type act-type" taskType="work"><a href="javascript:;">工作</a></li>
+            <li class="type" taskType="play"><a href="javascript:;">娱乐</a></li>
+            <li class="type" taskType="other"><a href="javascript:;">其他</a></li>
             <li>
               <a class="things-state level-light active" href="javascript:;">LIGHT</a>
-              <a class="things-state" href="javascript:;">COMMON</a>
-              <a class="things-state" href="javascript:;">HEAVY</a>
+              <a class="things-state level-common" href="javascript:;">COMMON</a>
+              <a class="things-state level-heavy" href="javascript:;">HEAVY</a>
             </li>
           </ul>
           <ul class="things-done">
-            <li><a href="javascript:;">已完成</a></li>
-            <li><a href="javascript:;">垃圾箱</a></li>
-            <li><a href="javascript:;" class="delete">DELETE</a></li>
+            <li class="type" taskType="finish"><a href="javascript:;">已完成</a></li>
+            <li class="type" taskType="bin"><a href="javascript:;">垃圾箱</a></li>
+            <li class="deleteLi"><a href="javascript:;" class="delete">DELETE</a></li>
           </ul>
         </div>
       </aside>
