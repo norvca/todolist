@@ -38,6 +38,7 @@ https://norvca.github.io/ToDoList/
 - [ ] 清除当前页面任务
 - [ ] 随机事件发生器
 - [ ] 登陆功能（游客登录与邮箱注册）
+- [ ] 实现中文模糊搜索功能
 
 
 ## 已知问题
@@ -47,4 +48,5 @@ https://norvca.github.io/ToDoList/
 
 - 元素 contenteditable 属性可供点选的范围会超过元素本身。
 - 任务已完成功能不知道如何做
+- SVG 图标内有多个元素, 点击冒泡导致有时点击不到。
 

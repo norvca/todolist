@@ -42,6 +42,7 @@ header {
   flex: 0 0 12vh;
   background-color: #fff;
   box-shadow:  0px 2px 11px 0px #ccc;
+  color: #777;
 }
 
 .shoot {
@@ -68,6 +69,14 @@ header {
   display: block;
 }
 
+.act-color {
+  color: #58b4ab;
+  border-color: #58b4ab !important;
+}
+.act-type {
+  background-color: #eee;
+}
+
 .search-add {
   flex: 1 0 auto;
   display: flex;
@@ -80,13 +89,14 @@ header {
   border: 2px solid #ccc;
   flex: 1 0 auto;
   align-items: center;
+  transition: all .3s;
 }
 
 .icon-search {
   padding: 0 1vh;
 }
 
-.search-add-box input{
+input{
   border: none;
   font-size: 3.5vh;
   height: 7vh;
@@ -104,6 +114,7 @@ header {
 
 .icon-add {
   padding: 1vh;
+  color: #777;
 }
 
 .theme {
@@ -167,6 +178,11 @@ section{
 
 section .todo-title span {
   word-break: break-all;
+}
+
+section .todo-title span:focus {
+  background-color: rgba(255,255,255,.8);
+  color: #666;
 }
 
 .todo-each-day {
