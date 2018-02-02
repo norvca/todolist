@@ -102,6 +102,15 @@ header {
   padding: 0 1vh;
 }
 
+.icon-finish {
+  display: none;
+}
+
+.icon-nofinish:hover .icon-finish{
+  display: block;
+  transition: all 1s;
+}
+
 input{
   border: none;
   font-size: 3.5vh;

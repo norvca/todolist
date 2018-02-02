@@ -7,6 +7,7 @@
     section = document.querySelector('section'),
     input = document.querySelector('#serach-input'),
     searchbox = document.querySelector('.search-add-box'),
+    nav = document.querySelector('.nav'),
     // 菜单栏类别切换
     levelBox = [0,1,2];
 
@@ -125,8 +126,6 @@
       }
     }
 
-
-
     taskType.openCursor(boundKeyRange, 'prev').onsuccess = function(e){
       var cursor = e.target.result;
       if(cursor){
@@ -134,7 +133,8 @@
         output +='<div class="todo-title"><span contenteditable="true" id-num='+cursor.value.id +'>'+ cursor.value.title +'</span></div>';
         // console.log(output)
         output += '<div class="todo-icon">';
-        output += '  <svg class="icon icon-nofinish" aria-hidden="true" name="search">';
+        output += '  <svg class="icon icon-nofinish" aria-hidden="true" name="search" id-num='+cursor.value.id +'>';
+        output += '    <use class="icon-finish" xlink:href="#icon-eglass-finish1"></use>';
         output += '    <use xlink:href="#icon-eglass-finish"></use>';
         output += '  </svg>';
         output += '  <svg class="icon icon-delete" aria-hidden="true" name="search" id-num='+cursor.value.id +'>';
@@ -162,14 +162,14 @@
   }
 
   // 修改数据库中的数据
-  function modifyThings(id, newText){
+  function modifyThings(id, type, newText){
     var transaction = db.transaction(['todoStore'], 'readwrite');
     var store = transaction.objectStore('todoStore');
     var request  = store.get(id);
 
     request.onsuccess = function(){
       var data = request.result;
-      data.title = newText;
+      data[type] = newText;
 
       store.put(data);
     };
@@ -199,7 +199,8 @@
         output +='<div class="todo-title"><span contenteditable="true" id-num='+cursor.value.id +'>'+ cursor.value.title +'</span></div>';
         // console.log(output)
         output += '<div class="todo-icon">';
-        output += '  <svg class="icon icon-nofinish" aria-hidden="true" name="search">';
+        output += '  <svg class="icon icon-nofinish" aria-hidden="true" name="search" id-num='+cursor.value.id +'>';
+        output += '    <use class="icon-finish" xlink:href="#icon-eglass-finish1"></use>';
         output += '    <use xlink:href="#icon-eglass-finish"></use>';
         output += '  </svg>';
         output += '  <svg class="icon icon-delete" aria-hidden="true" name="search" id-num='+cursor.value.id +'>';
@@ -249,14 +250,6 @@
     }
   };
 
-  // 删除任务
-  section.onclick = function(e){
-    if(e.target.classList.contains('icon-delete')){
-      var idNum = parseInt( e.target.getAttribute('id-num') );
-      deleteThings(idNum);
-    }
-  };
-
   // 任务等级切换
   level.onclick = function(){
     taskToggle();
@@ -269,7 +262,31 @@
       var idNum = parseInt( e.target.getAttribute('id-num') );
       var newText = e.target.innerText;
 
-      modifyThings(idNum, newText);
+      modifyThings(idNum, 'title', newText);
+    }
+  });
+
+  // 数据已完成
+  section.addEventListener('click', function(e){
+    if( e.target.classList.contains('icon-nofinish')){
+      var idNum = parseInt( e.target.getAttribute('id-num') );
+      modifyThings(idNum, 'taskType', 'finish');
+
+      // 删除页面上的数据
+      var ele = document.querySelector('#things_'+ idNum);
+      ele.parentNode.removeChild(ele);
+    }
+  });
+
+  // 把数据放入垃圾桶
+  section.addEventListener('click', function(e){
+    if(e.target.classList.contains('icon-delete')){
+      var idNum = parseInt( e.target.getAttribute('id-num') );
+      modifyThings(idNum, 'taskType', 'bin');
+
+      // 删除页面上的数据
+      var ele = document.querySelector('#things_'+ idNum);
+      ele.parentNode.removeChild(ele);
     }
   });
 
@@ -296,7 +313,7 @@
   });
 
   // 左侧任务栏类别、等级、删除功能
-  document.querySelector('.nav').addEventListener('click', function(e){
+  nav.addEventListener('click', function(e){
     var lis = document.querySelectorAll('.nav-type');
     var target = e.target;
 
@@ -326,9 +343,6 @@
       thisLevel.classList.add('active');
       showTypeThings('level', levelValue);
     }
-
-
-
   });
 
 })();
