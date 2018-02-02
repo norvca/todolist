@@ -19,7 +19,7 @@ html,body {
   color: #58b4ab;
 }
 
-.level-common {
+.level-usual {
   color: #66638b;
 }
 
@@ -30,7 +30,7 @@ html,body {
 .bgc-light {
   background-color: #58b4ab;
 }
-.bgc-common {
+.bgc-usual {
   background-color: #66638b;
 }
 .bgc-heavy {
@@ -141,7 +141,7 @@ aside {
   display: flex;
 }
 
-.things {
+.nav {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -149,7 +149,12 @@ aside {
   user-select: none;
 }
 
-.things li > a {
+.nav .nav-todo {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav li > a {
   pointer-events: none;
 }
 
@@ -161,17 +166,17 @@ aside {
   background-color: inherit;
 }
 
-.things ul li:hover {
+.nav ul li:hover {
   cursor: pointer;
 }
 
-.things ul li:hover a {
+.nav ul li:hover a {
   border-bottom: 3px solid #99cccc;
   padding-bottom: .5vh;
   transition: all .3s;
 }
 
-.things ul{
+.nav ul{
   margin-top: .5vh;
   display: flex;
   flex-direction: column;
@@ -179,11 +184,20 @@ aside {
   text-align: center;
 }
 
-.things ul li {
+.nav ul li {
   flex: 1 0 10vh;
 }
 
-.things ul li a{
+/*让 nav-level 元素排序最末又使其可以控制兄弟元素*/
+.nav-level {
+  order: 1;
+}
+
+.nav-level:hover ~li a {
+  border: none;
+}
+
+.nav ul li a{
   line-height: 10vh
 }
 

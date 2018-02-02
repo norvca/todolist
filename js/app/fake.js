@@ -1,4 +1,4 @@
-var todoAPP = (function(){
+  var todoAPP = (function(){
   var db,
     addBtn = document.querySelector('.icon-add'),
     level = document.querySelector('.icon-level'),
@@ -6,7 +6,9 @@ var todoAPP = (function(){
     thisWeek = toDayString.slice.call(toDayString, 0, 3).toUpperCase(),
     section = document.querySelector('section'),
     input = document.querySelector('#serach-input'),
-    searchbox = document.querySelector('.search-add-box');
+    searchbox = document.querySelector('.search-add-box'),
+    // 菜单栏类别切换
+    levelBox = [0,1,2];
 
   function initDB(){
     // 打开数据库
@@ -15,7 +17,7 @@ var todoAPP = (function(){
     request.onsuccess = function(){
       console.log('开启数据库成功！');
       db = this.result;
-      showTypeThings('work');
+      showTypeThings('taskType', 'work');
     };
 
     // 失败
@@ -35,6 +37,7 @@ var todoAPP = (function(){
         store.createIndex('id', 'id', {unique: true});
         store.createIndex('title', 'title', {unique: false});
         store.createIndex('taskType', 'taskType', {unique: false});
+        store.createIndex('level', 'level', {unique: false});
       }
     };
   }
@@ -43,10 +46,10 @@ var todoAPP = (function(){
   function taskToggle(){
     if( level.classList.contains('level-light') ) {
       level.classList.remove('level-light');
-      level.classList.add('level-common');
-      level.setAttribute('level', 'bgc-common');
-    } else if ( level.classList.contains('level-common') ) {
-      level.classList.remove('level-common');
+      level.classList.add('level-usual');
+      level.setAttribute('level', 'bgc-usual');
+    } else if ( level.classList.contains('level-usual') ) {
+      level.classList.remove('level-usual');
       level.classList.add('level-heavy');
       level.setAttribute('level', 'bgc-heavy');
     } else {
@@ -90,10 +93,10 @@ var todoAPP = (function(){
   }
 
   // 展示不同类型的数据
-  function showTypeThings(type){
+  function showTypeThings(indexType, type){
     var transaction = db.transaction(['todoStore'], 'readonly');
     var store = transaction.objectStore('todoStore');
-    var taskType = store.index('taskType');
+    var taskType = store.index(indexType);
     var boundKeyRange = IDBKeyRange.only(type);
     var toDay = new Date().toLocaleDateString();
     var eachDay = document.querySelector('.todo-each-day');
@@ -217,12 +220,12 @@ var todoAPP = (function(){
   // 添加任务
   addBtn.addEventListener('click', function(){
   // 获取左侧栏目对应事件类型
-    var taskType = document.querySelector('.act-type').getAttribute('taskType');
+    var typeValue = document.querySelector('.act-type').getAttribute('taskType');
     if( !input.value ){
       return;
     } else {
       addThings();
-      showTypeThings(taskType);
+      showTypeThings('taskType', typeValue);
       input.value = '';
     }
   });
@@ -233,14 +236,14 @@ var todoAPP = (function(){
     var event = e || window.event;
     var key = event.which || event.keyCode || event.charCode;
     // 获取左侧栏目对应事件类型
-    var taskType = document.querySelector('.act-type').getAttribute('taskType');
+    var typeValue = document.querySelector('.act-type').getAttribute('taskType');
 
 
     // 焦点在搜索栏并按回车
     if(document.activeElement.value) {
       if (key == 13 && document.activeElement.tagName.toUpperCase() === 'INPUT') {
         addThings();
-        showTypeThings(taskType);
+        showTypeThings('taskType', typeValue);
         input.value = '';
       }
     }
@@ -273,7 +276,7 @@ var todoAPP = (function(){
   // 开启查找功能
   searchbox.addEventListener('click', function(e) {
     // 获取左侧栏目对应事件类型
-    var taskType = document.querySelector('.act-type').getAttribute('taskType');
+    var typeValue = document.querySelector('.act-type').getAttribute('taskType');
 
     if(e.target.classList.contains('icon-search')) {
       e.target.classList.toggle('act-color');
@@ -281,7 +284,7 @@ var todoAPP = (function(){
       searchbox.classList.toggle('act-color');
       input.focus();
       input.value = '';
-      showTypeThings(taskType);
+      showTypeThings('taskType', typeValue);
     }
   });
 
@@ -292,21 +295,39 @@ var todoAPP = (function(){
     }
   });
 
-  // 左侧任务类别选择
-  document.querySelector('.things').addEventListener('click', function(e){
-    var lis = document.querySelectorAll('.type');
+  // 左侧任务栏类别、等级、删除功能
+  document.querySelector('.nav').addEventListener('click', function(e){
+    var lis = document.querySelectorAll('.nav-type');
     var target = e.target;
 
-    if( target.classList.contains('type')) {
+    // 点击到了任务类别的话
+    if( target.classList.contains('nav-type')) {
       lis.forEach(function(ele){
         ele.classList.remove('act-type');
       });
       target.classList.add('act-type');
 
       // 展示不同类型任务到页面
-      var taskType = target.getAttribute('taskType');
-      showTypeThings(taskType);
+      var typeValue = target.getAttribute('taskType');
+      showTypeThings('taskType', typeValue);
     }
+    // 点击到了任务等级的话
+    else if (target.classList.contains('nav-level')) {
+      levelBox.push(levelBox.shift());
+      var levels = target.children;
+      var thisLevel = levels[levelBox[0]];
+      var levelValue = thisLevel.getAttribute('level');
+
+      // 去除 active 类名
+      Array.prototype.forEach.call(levels, function(e){
+        e.classList.remove('active');
+      });
+      // 给当前任务等级添加 active
+      thisLevel.classList.add('active');
+      showTypeThings('level', levelValue);
+    }
+
+
 
   });
 

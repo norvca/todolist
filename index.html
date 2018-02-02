@@ -48,20 +48,21 @@
     <main>
       <!-- 菜单栏 -->
       <aside>
-        <div class="things">
-          <ul class="things-todo">
-            <li class="type act-type" taskType="work"><a href="javascript:;">工作</a></li>
-            <li class="type" taskType="play"><a href="javascript:;">娱乐</a></li>
-            <li class="type" taskType="other"><a href="javascript:;">其他</a></li>
-            <li>
-              <a class="things-state level-light active" href="javascript:;">LIGHT</a>
-              <a class="things-state level-common" href="javascript:;">COMMON</a>
-              <a class="things-state level-heavy" href="javascript:;">HEAVY</a>
+        <div class="nav">
+          <ul class="nav-todo">
+            <li class="nav-level">
+              <a class="things-state level-light active" level="bgc-light" href="javascript:;">LIGHT</a>
+              <a class="things-state level-usual" level="bgc-usual" href="javascript:;">USUAL</a>
+              <a class="things-state level-heavy" level="bgc-heavy" href="javascript:;">HEAVY</a>
             </li>
+            <li class="nav-type act-type" taskType="work"><a href="javascript:;">工作</a></li>
+            <li class="nav-type" taskType="play"><a href="javascript:;">娱乐</a></li>
+            <li class="nav-type" taskType="other"><a href="javascript:;">其他</a></li>
+
           </ul>
           <ul class="things-done">
-            <li class="type" taskType="finish"><a href="javascript:;">已完成</a></li>
-            <li class="type" taskType="bin"><a href="javascript:;">垃圾箱</a></li>
+            <li class="nav-type" taskType="finish"><a href="javascript:;">已完成</a></li>
+            <li class="nav-type" taskType="bin"><a href="javascript:;">垃圾箱</a></li>
             <li class="deleteLi"><a href="javascript:;" class="delete">DELETE</a></li>
           </ul>
         </div>
@@ -104,7 +105,7 @@
                 </svg>
               </div>
             </li>
-            <li class="todo-box bgc-common">
+            <li class="todo-box bgc-usual">
               <div class="todo-title">
                 <span>熟读唐诗三百首。</span>
               </div>
