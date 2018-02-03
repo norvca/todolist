@@ -2,6 +2,14 @@ html,body {
   height: 100%;
 }
 
+h4 {
+  margin: 2vh 0 0 2vh;
+  width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .icon {
    width: 5vh; height: 5vh;
    fill: currentColor;
@@ -260,6 +268,19 @@ section .todo-title span:focus {
   margin: 2vh 4vh;
 }
 
+.todo-list li {
+  transition: all .1s;
+  cursor: pointer;
+}
+
+.todo-list li:hover {
+  box-shadow: 2px 2px 5px 1px #888;
+}
+
+.todo-focus {
+  margin-left: -4vh;
+  box-shadow: 2px 2px 5px 1px #888;
+}
 
 .todo-box {
   display: flex;
@@ -286,9 +307,9 @@ article {
 }
 
 textarea {
-  margin: 2vh;
+  margin: 0 2vh 2vh 2vh;
   color: #666;
-  height: 92%;
+  height: 90%;
   font: 3.5vh Helvetica;
   outline: none;
   border: none;
