@@ -10,6 +10,8 @@ var todoAPP = (function(){
     nav = document.querySelector('.nav'),
     detail = document.querySelector('textarea'),
     themeBtn = document.querySelector('.theme-btn'),
+    deleteData = document.querySelector('.deleteLi'),
+    modal = document.querySelector('.modal'),
     // 菜单栏类别切换
     levelBox = [0,1,2],
     theme = ['', 'theme-green', 'theme-purple', 'theme-gradual'],
@@ -239,6 +241,12 @@ var todoAPP = (function(){
     };
   }
 
+  // 删除全部数据
+  function deleteAllThings(){
+    indexedDB.deleteDatabase('todoAPP');
+    window.location.href = 'index.html';
+  }
+
   initDB();
 
   // 事件处理程序
@@ -419,5 +427,19 @@ var todoAPP = (function(){
     // 应用主题
     this.parentNode.setAttribute('class', theme[0]);
     themeIcon.setAttribute('xlink:href', themeIconName[0]);
+  });
+
+  // 显示隐藏删库模态框
+  deleteData.addEventListener('click', function(){
+    modal.classList.add('active');
+  });
+
+  modal.addEventListener('click', function(e){
+    if( e.target.classList.contains('btn-yes') ) {
+      this.classList.remove('active');
+      deleteAllThings();
+    } else if ( e.target.classList.contains('btn-no') ) {
+      this.classList.remove('active');
+    }
   });
 })();

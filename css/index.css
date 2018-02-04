@@ -98,9 +98,6 @@ header {
   font-size: 3.5vh;
   cursor: pointer;
 }
-.active {
-  display: inline;
-}
 
 .act-color {
   color: #58b4ab !important;;
@@ -341,6 +338,78 @@ textarea {
 textarea::placeholder {
   color: #ccc;
   letter-spacing: .2vh;
+}
+
+
+/* 模态框 */
+.modal {
+  display: none;
+}
+
+.modal-cover {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(50, 50, 50, .6);
+}
+
+.modal-box {
+  text-align: center;
+  position: fixed;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(244, 244, 244);
+  width: 40vw;
+  height: 30vh;
+  border-radius: 7px;
+}
+
+.modal-box p {
+  font-weight: bold;
+  margin-top: 4vh;
+  letter-spacing: .5vh;
+}
+
+.delete-all-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.modal-box a {
+  margin: 0 .5vh;
+  border-radius: 4px;
+  margin-top: 9vh;
+  width: 13vh;
+  padding: 1vh 0;
+  color: #fff;
+  font-size: 3vh;
+  cursor: pointer;
+  transition: all .3s;
+}
+
+.modal-box .btn-no {
+  background-color: #8FB4AA;
+}
+
+.modal-box .btn-no:hover {
+  background-color: #58b4ab;
+}
+
+.modal-box .btn-yes {
+  background-color: #DA9798;
+}
+.modal-box .btn-yes:hover {
+  background-color: #DA635D;
+}
+
+
+
+/*添加效果*/
+.active {
+  display: inline;
 }
 
 /* 响应式处理 */
