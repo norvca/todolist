@@ -9,8 +9,12 @@ var todoAPP = (function(){
     searchbox = document.querySelector('.search-add-box'),
     nav = document.querySelector('.nav'),
     detail = document.querySelector('textarea'),
+    themeBtn = document.querySelector('.theme-btn'),
     // 菜单栏类别切换
-    levelBox = [0,1,2];
+    levelBox = [0,1,2],
+    theme = ['', 'theme-green', 'theme-purple', 'theme-gradual'],
+    themeIconName = ['#icon-theme', '#icon-theme1', '#icon-theme2', '#icon-theme3'];
+
 
   function initDB(){
     // 打开数据库
@@ -404,5 +408,16 @@ var todoAPP = (function(){
     var detailContent = this.value;
     var type = 'detail';
     updateDetail(detailID, type, detailContent);
+  });
+
+  // 主题切换
+  themeBtn.addEventListener('click', function(){
+    var themeIcon = this.children[0].children[0];
+    // 切换主题数组
+    theme.push(theme.shift());
+    themeIconName.push(themeIconName.shift());
+    // 应用主题
+    this.parentNode.setAttribute('class', theme[0]);
+    themeIcon.setAttribute('xlink:href', themeIconName[0]);
   });
 })();
