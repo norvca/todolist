@@ -94,6 +94,10 @@ header {
   cursor: pointer;
 }
 
+.shot:hover {
+  color: #58b4ab;
+}
+
 .shot-state {
   font-size: 3.5vh;
   cursor: pointer;
@@ -247,6 +251,7 @@ section{
 
 section .todo-title span {
   word-break: break-all;
+  display: block;
 }
 
 section .todo-title span:focus {

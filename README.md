@@ -45,10 +45,10 @@ https://norvca.github.io/ToDoList/
 
 - [ ] 日期功能有问题，新的日期栏会覆盖旧的日期栏
 
-- [ ] 元素 contenteditable 属性可供点选的范围会超过元素本身。
+- [x] ~~元素 contenteditable 属性可供点选的范围会超过元素本身。~~
+      使元素变成块级元素可解决该 BUG
 
 - [x] ~~SVG 图标内有多个元素, 点击冒泡导致有时点击不到。~~
-
       给图标里内容添加 pointer-events: none; 属性
 
 - [ ] 点击左侧菜单栏时右侧任务详情更新不及时

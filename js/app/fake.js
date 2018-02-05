@@ -12,11 +12,13 @@ var todoAPP = (function(){
     themeBtn = document.querySelector('.theme-btn'),
     deleteData = document.querySelector('.deleteLi'),
     modal = document.querySelector('.modal'),
+    randomFire = document.querySelector('.shot'),
     // 菜单栏类别切换
     levelBox = [0,1,2],
     theme = ['', 'theme-green', 'theme-purple', 'theme-gradual'],
-    themeIconName = ['#icon-theme', '#icon-theme1', '#icon-theme2', '#icon-theme3'];
-
+    themeIconName = ['#icon-theme', '#icon-theme1', '#icon-theme2', '#icon-theme3'],
+    randomContentNow = ['读完那本英文原著', '中午去睡个好觉', '日语入门学习', '尝试做些家常菜', '了解一些设计常识'],
+    randomLevel = ['bgc-light', 'bgc-usual', 'bgc-heavy'];
 
   function initDB(){
     // 打开数据库
@@ -247,6 +249,37 @@ var todoAPP = (function(){
     window.location.href = 'index.html';
   }
 
+  function randomThingsNow(randomContent, ramdomLevel){
+    var title = randomContent;
+    var taskLevel = ramdomLevel;
+    var taskTime = new Date().toLocaleDateString();
+    var taskType = document.querySelector('.act-type').getAttribute('taskType');
+    var transaction = db.transaction(['todoStore'], 'readwrite');
+    // 请求数据对象
+    var store = transaction.objectStore('todoStore');
+
+    // 定义 todoStore
+    var todos = {
+      title: title,
+      detail: null,
+      level: taskLevel,
+      taskTime: taskTime,
+      taskType: taskType
+    };
+
+    // 添加事件
+    var request = store.add(todos);
+
+    // 添加成功与失败
+    request.onsuccess = function(){
+      console.log('事件添加到数据库成功!');
+    };
+
+    request.error = function(){
+      console.log('事件添加到数据库失败!');
+    };
+  }
+
   initDB();
 
   // 事件处理程序
@@ -441,5 +474,14 @@ var todoAPP = (function(){
     } else if ( e.target.classList.contains('btn-no') ) {
       this.classList.remove('active');
     }
+  });
+
+  // 随机事件-现在
+  randomFire.addEventListener('click', function(){
+    var ContentIndex = parseInt(Math.random()*randomContentNow.length);
+    var LevelIndex = parseInt(Math.random()*3);
+    var typeValue = document.querySelector('.act-type').getAttribute('taskType');
+    randomThingsNow(randomContentNow[ContentIndex], randomLevel[LevelIndex]);
+    showTypeThings('taskType', typeValue);
   });
 })();
