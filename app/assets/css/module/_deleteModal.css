@@ -1,0 +1,69 @@
+/* 模态框 */
+.modal {
+  display: none;
+
+  &__cover {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(50, 50, 50, .6);
+  }
+
+  &__box {
+    text-align: center;
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(244, 244, 244);
+    width: 40vw;
+    height: 30vh;
+    border-radius: 7px;
+  }
+
+  &__aware {
+    font-weight: bold;
+    margin-top: 4vh;
+    letter-spacing: .5vh;
+  }
+
+  &__delete {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__box a {
+    margin: 0 .5vh;
+    border-radius: 4px;
+    margin-top: 9vh;
+    width: 13vh;
+    padding: 1vh 0;
+    color: #fff;
+    font-size: 3vh;
+    cursor: pointer;
+    transition: all .3s;
+  }
+
+  &__btn-no {
+    background-color: #8FB4AA;
+  }
+
+  &__btn-no:hover {
+    background-color: $mainGreen;
+  }
+
+  &__btn-yes {
+    background-color: #DA9798;
+  }
+
+  &__btn-yes:hover {
+    background-color: $mainRed;
+  }
+}
+
+/* Caution! 样式控制，放在这里以后可能会有BUG */
+.active {
+  display: inline;
+}

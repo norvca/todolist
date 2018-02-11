@@ -1,0 +1,20 @@
+/* 右侧任务详细描述 */
+.detail {
+  flex: 0 0 41vh;
+  box-shadow:  0px 2px 11px 0px #ccc;
+
+  &__paragraph {
+    margin: 0 2vh 2vh 2vh;
+    color: #666;
+    height: 90%;
+    font: 3.5vh Helvetica;
+    outline: none;
+    border: none;
+    letter-spacing: .1vh;
+  }
+
+  &__paragraph::placeholder {
+    color: #ccc;
+    letter-spacing: .2vh;
+  }
+}

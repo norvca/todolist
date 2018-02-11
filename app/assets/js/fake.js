@@ -1,18 +1,18 @@
 var todoAPP = (function(){
   var db,
-    addBtn = document.querySelector('.icon-add'),
-    level = document.querySelector('.icon-level'),
+    addBtn = document.querySelector('.icon__add'),
+    level = document.querySelector('.icon__level'),
     toDayString = new Date().toString(),
     thisWeek = toDayString.slice.call(toDayString, 0, 3).toUpperCase(),
-    section = document.querySelector('section'),
-    input = document.querySelector('#serach-input'),
-    searchbox = document.querySelector('.search-add-box'),
+    section = document.querySelector('.todo'),
+    input = document.querySelector('.search-add__input'),
+    searchbox = document.querySelector('.search-add__content'),
     nav = document.querySelector('.nav'),
-    detail = document.querySelector('textarea'),
+    detail = document.querySelector('.detail__paragraph'),
     themeBtn = document.querySelector('.theme-btn'),
-    deleteData = document.querySelector('.deleteLi'),
+    deleteData = document.querySelector('.nav__delete'),
     modal = document.querySelector('.modal'),
-    randomFire = document.querySelector('.shot'),
+    randomFire = document.querySelector('.random-task__fire'),
     // 菜单栏类别切换
     levelBox = [0,1,2],
     theme = ['', 'theme-green', 'theme-purple', 'theme-gradual'],
@@ -74,7 +74,7 @@ var todoAPP = (function(){
     var title = input.value;
     var taskLevel = level.getAttribute('level');
     var taskTime = new Date().toLocaleDateString();
-    var taskType = document.querySelector('.act-type').getAttribute('taskType');
+    var taskType = document.querySelector('.nav__act').getAttribute('taskType');
 
     var transaction = db.transaction(['todoStore'], 'readwrite');
     // 请求数据对象
@@ -109,7 +109,7 @@ var todoAPP = (function(){
     var taskType = store.index(indexType);
     var boundKeyRange = IDBKeyRange.only(type);
     var toDay = new Date().toLocaleDateString();
-    var eachDay = document.querySelector('.todo-each-day');
+    var eachDay = document.querySelector('.todo__eachday');
     var todolist;
 
     var output = '';
@@ -118,13 +118,13 @@ var todoAPP = (function(){
     if ( (!eachDay) || (eachDay.getAttribute('tasktime') !== toDay) ) {
       var newDay = document.createElement('div');
       var ul = document.createElement('ul');
-      ul.classList.add('todo-list');
-      newDay.classList.add('todo-each-day');
+      ul.classList.add('todo__list');
+      newDay.classList.add('todo__eachday');
       newDay.setAttribute('tasktime', toDay);
 
-      newDay.innerHTML = '<div class="todo-time">' +
-                         '<span class="todo-week">'+ thisWeek +'</span>' +
-                         '<span class="todo-date">' + toDay + '</span>' +
+      newDay.innerHTML = '<div class="todo__time">' +
+                         '<span class="todo__week">'+ thisWeek +'</span>' +
+                         '<span class="todo__date">' + toDay + '</span>' +
                          '</div>';
       newDay.appendChild(ul);
 
@@ -139,15 +139,15 @@ var todoAPP = (function(){
     taskType.openCursor(boundKeyRange, 'prev').onsuccess = function(e){
       var cursor = e.target.result;
       if(cursor){
-        output += '<li id="things_'+ cursor.value.id +'" class="todo-box '+ cursor.value.level +'" id-num='+cursor.value.id +'>';
-        output +='<div class="todo-title"><span contenteditable="true" id-num='+cursor.value.id +'>'+ cursor.value.title +'</span></div>';
+        output += '<li id="things_'+ cursor.value.id +'" class="todo__content '+ cursor.value.level +'" id-num='+cursor.value.id +'>';
+        output +='<div><span class="todo__title" contenteditable="true" id-num='+cursor.value.id +'>'+ cursor.value.title +'</span></div>';
         // console.log(output)
-        output += '<div class="todo-icon">';
-        output += '  <svg class="icon icon-nofinish" aria-hidden="true" name="search" id-num='+cursor.value.id +'>';
-        output += '    <use class="icon-finish" xlink:href="#icon-eglass-finish1"></use>';
+        output += '<div class="icon__todo">';
+        output += '  <svg class="icon icon__nofinish" aria-hidden="true" name="search" id-num='+cursor.value.id +'>';
+        output += '    <use class="icon__finish" xlink:href="#icon-eglass-finish1"></use>';
         output += '    <use xlink:href="#icon-eglass-finish"></use>';
         output += '  </svg>';
-        output += '  <svg class="icon icon-delete" aria-hidden="true" name="search" id-num='+cursor.value.id +'>';
+        output += '  <svg class="icon icon__delete" aria-hidden="true" name="search" id-num='+cursor.value.id +'>';
         output += '   <use xlink:href="#icon-delete"></use>';
         output += '  </svg>';
         output += '</div>';
@@ -155,10 +155,10 @@ var todoAPP = (function(){
         cursor.continue();
       }
 
-      todolist = document.querySelector('.todo-list');
+      todolist = document.querySelector('.todo__list');
       todolist.innerHTML = output;
       if(todolist.firstChild) {
-        todolist.firstChild.classList.add('todo-focus');
+        todolist.firstChild.classList.add('todo__focus');
       }
     };
   }
@@ -197,22 +197,22 @@ var todoAPP = (function(){
     taskTitle.openCursor(boundKeyRange).onsuccess = function(e){
       var cursor = e.target.result;
       if(cursor){
-        output += '<li id="things_'+ cursor.value.id +'" class="todo-box '+ cursor.value.level +'" id-num='+cursor.value.id +'>';
-        output +='<div class="todo-title"><span contenteditable="true" id-num='+cursor.value.id +'>'+ cursor.value.title +'</span></div>';
+        output += '<li id="things_'+ cursor.value.id +'" class="todo__content '+ cursor.value.level +'" id-num='+cursor.value.id +'>';
+        output +='<div><span class="todo__title" contenteditable="true" id-num='+cursor.value.id +'>'+ cursor.value.title +'</span></div>';
         // console.log(output)
-        output += '<div class="todo-icon">';
-        output += '  <svg class="icon icon-nofinish" aria-hidden="true" name="search" id-num='+cursor.value.id +'>';
-        output += '    <use class="icon-finish" xlink:href="#icon-eglass-finish1"></use>';
+        output += '<div class="icon__todo">';
+        output += '  <svg class="icon icon__nofinish" aria-hidden="true" name="search" id-num='+cursor.value.id +'>';
+        output += '    <use class="icon__finish" xlink:href="#icon-eglass-finish1"></use>';
         output += '    <use xlink:href="#icon-eglass-finish"></use>';
         output += '  </svg>';
-        output += '  <svg class="icon icon-delete" aria-hidden="true" name="search" id-num='+cursor.value.id +'>';
+        output += '  <svg class="icon icon__delete" aria-hidden="true" name="search" id-num='+cursor.value.id +'>';
         output += '   <use xlink:href="#icon-delete"></use>';
         output += '  </svg>';
         output += '</div>';
         output += '</li>';
         cursor.continue();
       }
-      document.querySelector('.todo-list').innerHTML = output;
+      document.querySelector('.todo__list').innerHTML = output;
     };
   }
 
@@ -253,7 +253,7 @@ var todoAPP = (function(){
     var title = randomContent;
     var taskLevel = ramdomLevel;
     var taskTime = new Date().toLocaleDateString();
-    var taskType = document.querySelector('.act-type').getAttribute('taskType');
+    var taskType = document.querySelector('.nav__act').getAttribute('taskType');
     var transaction = db.transaction(['todoStore'], 'readwrite');
     // 请求数据对象
     var store = transaction.objectStore('todoStore');
@@ -286,7 +286,7 @@ var todoAPP = (function(){
   // 添加任务
   addBtn.addEventListener('click', function(){
   // 获取左侧栏目对应事件类型
-    var typeValue = document.querySelector('.act-type').getAttribute('taskType');
+    var typeValue = document.querySelector('.nav__act').getAttribute('taskType');
     if( !input.value ){
       return;
     } else {
@@ -302,7 +302,7 @@ var todoAPP = (function(){
     var event = e || window.event;
     var key = event.which || event.keyCode || event.charCode;
     // 获取左侧栏目对应事件类型
-    var typeValue = document.querySelector('.act-type').getAttribute('taskType');
+    var typeValue = document.querySelector('.nav__act').getAttribute('taskType');
 
 
     // 焦点在搜索栏并按回车
@@ -333,7 +333,7 @@ var todoAPP = (function(){
 
   // 数据已完成
   section.addEventListener('click', function(e){
-    if( e.target.classList.contains('icon-nofinish')){
+    if( e.target.classList.contains('icon__nofinish')){
       var idNum = parseInt( e.target.getAttribute('id-num') );
       modifyThings(idNum, 'taskType', 'finish');
 
@@ -345,7 +345,7 @@ var todoAPP = (function(){
 
   // 把数据放入垃圾桶
   section.addEventListener('click', function(e){
-    if(e.target.classList.contains('icon-delete')){
+    if(e.target.classList.contains('icon__delete')){
       var idNum = parseInt( e.target.getAttribute('id-num') );
       modifyThings(idNum, 'taskType', 'bin');
 
@@ -358,9 +358,9 @@ var todoAPP = (function(){
   // 开启查找功能
   searchbox.addEventListener('click', function(e) {
     // 获取左侧栏目对应事件类型
-    var typeValue = document.querySelector('.act-type').getAttribute('taskType');
+    var typeValue = document.querySelector('.nav__act').getAttribute('taskType');
 
-    if(e.target.classList.contains('icon-search')) {
+    if(e.target.classList.contains('icon__search')) {
       e.target.classList.toggle('act-color');
       input.classList.toggle('act-color');
       searchbox.classList.toggle('act-color');
@@ -383,27 +383,27 @@ var todoAPP = (function(){
       var childNodes = e.target.parentNode.childNodes;
       var taskID = parseInt( e.target.getAttribute('id-num') );
       childNodes.forEach(function(e){
-        e.classList.remove('todo-focus');
+        e.classList.remove('todo__focus');
       });
 
-      e.target.classList.add('todo-focus');
+      e.target.classList.add('todo__focus');
       showDetail(taskID);
     }
   });
 
   // 左侧任务栏类别、等级、删除功能
   nav.addEventListener('click', function(e){
-    var lis = document.querySelectorAll('.nav-type');
+    var lis = document.querySelectorAll('.nav__type');
     var target = e.target;
     var firstTask;
     var firstTaskID;
 
     // 点击到了任务类别的话
-    if( target.classList.contains('nav-type')) {
+    if( target.classList.contains('nav__type')) {
       lis.forEach(function(ele){
-        ele.classList.remove('act-type');
+        ele.classList.remove('nav__act');
       });
-      target.classList.add('act-type');
+      target.classList.add('nav__act');
 
       // 展示不同类型任务到页面
       var typeValue = target.getAttribute('taskType');
@@ -411,14 +411,14 @@ var todoAPP = (function(){
 
       // 更新右侧任务详情--错误代码
       // CAUTION！ 获取到的 firstTaskID 总是页面更新前的 firstTaskID，导致详情更新慢一步。
-      firstTask = document.querySelector('.todo-focus');
+      firstTask = document.querySelector('.todo__focus');
       if(firstTask){
         firstTaskID = parseInt( firstTask.getAttribute('id-num') );
         showDetail(firstTaskID);
       }
     }
     // 点击到了任务等级的话
-    else if (target.classList.contains('nav-level')) {
+    else if (target.classList.contains('nav__level')) {
       levelBox.push(levelBox.shift());
       var levels = target.children;
       var thisLevel = levels[levelBox[0]];
@@ -434,7 +434,7 @@ var todoAPP = (function(){
 
       // 更新右侧任务详情--错误代码
       // CAUTION！ 获取到的 firstTaskID 总是页面更新前的 firstTaskID，导致详情更新慢一步。
-      firstTask = document.querySelector('.todo-focus');
+      firstTask = document.querySelector('.todo__focus');
       if(firstTask){
         firstTaskID = parseInt( firstTask.getAttribute('id-num') );
         showDetail(firstTaskID);
@@ -444,7 +444,7 @@ var todoAPP = (function(){
 
   // 右侧任务详情更新
   detail.addEventListener('focusout', function(){
-    var focusTask = document.querySelector('.todo-focus');
+    var focusTask = document.querySelector('.todo__focus');
     var detailID = parseInt( focusTask.getAttribute('id-num') );
     var detailContent = this.value;
     var type = 'detail';
@@ -468,10 +468,10 @@ var todoAPP = (function(){
   });
 
   modal.addEventListener('click', function(e){
-    if( e.target.classList.contains('btn-yes') ) {
+    if( e.target.classList.contains('modal__btn-yes') ) {
       this.classList.remove('active');
       deleteAllThings();
-    } else if ( e.target.classList.contains('btn-no') ) {
+    } else if ( e.target.classList.contains('modal__btn-no') ) {
       this.classList.remove('active');
     }
   });
@@ -480,7 +480,7 @@ var todoAPP = (function(){
   randomFire.addEventListener('click', function(){
     var ContentIndex = parseInt(Math.random()*randomContentNow.length);
     var LevelIndex = parseInt(Math.random()*3);
-    var typeValue = document.querySelector('.act-type').getAttribute('taskType');
+    var typeValue = document.querySelector('.nav__act').getAttribute('taskType');
     randomThingsNow(randomContentNow[ContentIndex], randomLevel[LevelIndex]);
     showTypeThings('taskType', typeValue);
   });

@@ -1,0 +1,68 @@
+/* 主要任务区 */
+.todo {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 1.8vh 7vh;
+  flex-grow: 2;
+
+  &__eachday {
+    margin-bottom: 2vh;
+  }
+
+  &__time {
+    display: flex;
+    flex-direction: column;
+    margin-left: -2vh;
+  }
+
+  &__week {
+    text-align: center;
+    width: 18vh;
+    font-size: 8vh;
+  }
+
+  &__date {
+    display: flex;
+    width: 18vh;
+    text-align: center;
+    font-size: 3.2vh;
+    justify-content: center;
+  }
+
+  &__list {
+    margin: 2vh 4vh;
+  }
+
+  &__content {
+    transition: all .1s;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+    border-radius: 1.5vh;
+    margin-bottom: 2vh;
+    padding: 1vh 2vh;
+    align-items: center;
+    font-size: 4.5vh;
+  }
+
+  &__content:hover {
+    box-shadow: 2px 2px 5px 1px #888;
+  }
+
+  &__title {
+    word-break: break-all;
+    display: block;
+  }
+
+  &__title:focus {
+    background-color: rgba(255,255,255,.8);
+    color: #666;
+  }
+
+  &__focus {
+    margin-left: -4vh;
+    box-shadow: 2px 2px 5px 1px #888;
+  }
+}

@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="./css/common.css">
-  <link rel="stylesheet" type="text/css" href="./dist/index.css">
+  <link rel="stylesheet" type="text/css" href="./app/dist/styles/style.css">
   <script src="//at.alicdn.com/t/font_557952_ldkpr35umf2mx6r.js"></script>
 <!--   <script type="text/javascript" async="true" data-main="js/app/index.js" src="js/lib/require.js"></script> -->
   <title>Document</title>
@@ -11,80 +10,83 @@
 <body>
   <!-- 头部搜索添加 -->
   <header>
-    <div class="shoot">
-      <div class="fire now active">
-        <span class="shot">事件发生器</span
-          ><span class="shot-state">现在</span>
+    <div class="random-task">
+      <div class="hidden now active">
+        <span class="random-task__fire">事件发生器</span
+          ><span class="random-task__state">现在</span>
       </div>
-      <div class="fire futrue" >
-        <span class="shot">事件发生器</span
-          ><span class="shot-state">未来</span>
+      <div class="hidden futrue" >
+        <span class="random-task__fire">事件发生器</span
+          ><span class="random-task__state">未来</span>
       </div>
     </div>
+
     <div class="search-add" >
-      <div class="search-add-box">
+      <div class="search-add__content">
         <!-- 搜索图标 -->
-        <svg class="icon icon-search" aria-hidden="true" name="search">
+        <svg class="icon icon__search" aria-hidden="true" name="search">
             <use xlink:href="#icon-search"></use>
         </svg>
-        <input id="serach-input" type="text" name="search" placeholder="点击放大镜开启关闭搜索功能...">
+        <input class="search-add__input" type="text" name="search" placeholder="点击放大镜开启关闭搜索功能...">
         <!-- 任务等级图标 -->
-        <svg class="icon icon-level level-light" level="bgc-light" aria-hidden="true">
+        <svg class="icon icon__level level-light" level="bgc-light" aria-hidden="true">
           <use xlink:href="#icon-circle"></use>
        </svg>
        <!-- 添加图标 -->
-        <svg class="icon icon-add" aria-hidden="true">
+        <svg class="icon icon__add" aria-hidden="true">
           <use xlink:href="#icon-ADD"></use>
        </svg>
       </div>
     </div>
+
     <div class="theme-btn">
         <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-theme"></use>
         </svg>
     </div>
     </header>
+
     <!-- 主要区域 -->
     <main>
       <!-- 菜单栏 -->
       <aside>
         <div class="nav">
-          <ul class="nav-todo">
-            <li class="nav-level">
-              <a class="things-state level-light active" level="bgc-light" href="javascript:;">LIGHT</a>
-              <a class="things-state level-usual" level="bgc-usual" href="javascript:;">USUAL</a>
-              <a class="things-state level-heavy" level="bgc-heavy" href="javascript:;">HEAVY</a>
+          <ul class="nav__todo">
+            <li class="nav__level">
+              <a class="hidden level-light active" level="bgc-light" href="javascript:;">LIGHT</a>
+              <a class="hidden level-usual" level="bgc-usual" href="javascript:;">USUAL</a>
+              <a class="hidden level-heavy" level="bgc-heavy" href="javascript:;">HEAVY</a>
             </li>
-            <li class="nav-type act-type" taskType="work"><a href="javascript:;">工作</a></li>
-            <li class="nav-type" taskType="play"><a href="javascript:;">娱乐</a></li>
-            <li class="nav-type" taskType="other"><a href="javascript:;">其他</a></li>
-
+            <li class="nav__type nav__act" taskType="work"><a href="javascript:;">工作</a></li>
+            <li class="nav__type" taskType="play"><a href="javascript:;">娱乐</a></li>
+            <li class="nav__type" taskType="other"><a href="javascript:;">其他</a></li>
           </ul>
-          <ul class="things-done">
-            <li class="nav-type" taskType="finish"><a href="javascript:;">已完成</a></li>
-            <li class="nav-type" taskType="bin"><a href="javascript:;">垃圾箱</a></li>
-            <li class="deleteLi"><a href="javascript:;" class="delete">DELETE</a></li>
+
+          <ul>
+            <li class="nav__type" taskType="finish"><a href="javascript:;">已完成</a></li>
+            <li class="nav__type" taskType="bin"><a href="javascript:;">垃圾箱</a></li>
+            <li class="nav__delete"><a href="javascript:;" class="delete">DELETE</a></li>
           </ul>
         </div>
       </aside>
 
 
       <!-- 任务展示区 -->
-      <section>
+      <section class="todo">
         <!-- 测试任务用 -->
-<!--         <div class="todo-each-day" tasktime="2018/1/2">
+<!--    <div class="todo-each-day" tasktime="2018/1/2">
           <div class="todo-time">
-            <span class="todo-week">SUN</span>
-            <span class="todo-date">2018/1/2</span>
+            <span class="todo__week">SUN</span>
+            <span class="todo__date">2018/1/2</span>
           </div>
-          <ul class="todo-list">
 
-            <li class="todo-box bgc-light">
-              <div class="todo-title">
+          <ul class="todo-list">
+            <li class="todo__content bgc-light">
+              <div class="todo__title">
                 <span>熟读唐诗三百首。</span>
               </div>
               <div class="todo-icon">
-                <svg class="icon icon-nofinish" aria-hidden="true" name="search">
+                <svg class="icon icon__nofinish" aria-hidden="true" name="search">
                     <use xlink:href="#icon-finish-copy"></use>
                 </svg>
                 <svg class="icon icon-delete" aria-hidden="true" name="search">
@@ -125,25 +127,25 @@
 
 
       <!-- 右侧详细内容区域 -->
-      <article>
+      <article class="detail">
         <h4>123</h4>
-        <textarea placeholder="添加任务详情...">
+        <textarea class="detail__paragraph" placeholder="添加任务详情...">
         </textarea>
       </article>
     </main>
 
     <!-- 删除全部数据模态框 -->
       <div class="modal">
-        <div class="modal-cover"></div>
-        <div class="modal-box">
-          <p>删除全部数据</p>
-          <div class="delete-all-btn">
-            <a class="btn-yes">是的</a>
-            <a class="btn-no">再想想</a>
+        <div class="modal__cover"></div>
+        <div class="modal__box">
+          <p class="modal__aware">删除全部数据</p>
+          <div class="modal__delete">
+            <a class="modal__btn-yes">是的</a>
+            <a class="modal__btn-no">再想想</a>
           </div>
         </div>
       </div>
-    <script type="text/javascript" src="js/app/fake.js"></script>
+    <script type="text/javascript" src="./app/assets/js/fake.js"></script>
 </body>
 </html>
 

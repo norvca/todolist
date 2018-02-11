@@ -1,0 +1,39 @@
+.icon {
+  width: 5vh; height: 5vh;
+  fill: currentColor;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all .3s;
+
+  &__search {
+    padding: 0 1vh;
+    color: #777;
+  }
+
+  &__add {
+    padding: 1vh;
+    color: #777;
+  }
+
+  &__todo {
+    display: flex;
+  }
+
+  &__finish {
+    display: none;
+  }
+
+  &__nofinish:hover &__finish{
+    display: block;
+    transition: all 1s;
+  }
+
+  & *{
+    pointer-events: none;
+  }
+
+  &__delete {
+    margin-left: .3vh;
+  }
+}
+

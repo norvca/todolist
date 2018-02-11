@@ -1,0 +1,50 @@
+html,body,ul,li,h1,h2,h3,p,div,main,figure,footer {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html,body {
+  height: 100%;
+}
+
+body {
+	font: 5vh Helvetica;
+  color: #555;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+	text-decoration: none;
+	color: #666;
+}
+
+ul,li {
+	list-style: none;
+}
+
+h4 {
+  margin: 2vh 0 0 2vh;
+  width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hidden {
+  display: none;
+}
+
+.act-color {
+  color: $mainGreen !important;;
+  border-color: $mainGreen !important;
+}
+
+main {
+  display: flex;
+  overflow: hidden;
+}
+
+
+

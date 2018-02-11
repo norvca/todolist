@@ -1,0 +1,21 @@
+.level-light {
+  color: $mainGreen;
+}
+
+.level-usual {
+  color: $mainPurple;
+}
+
+.level-heavy {
+  color: $mainRed;
+}
+
+.bgc-light {
+  background-color: $mainGreen;
+}
+.bgc-usual {
+  background-color: $mainPurple;
+}
+.bgc-heavy {
+  background-color: $mainRed;
+}
