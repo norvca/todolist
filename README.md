@@ -17,7 +17,7 @@ ES5 + indexedDB + CSS3
 
 ## 预览地址
 
-https://norvca.github.io/ToDoList/
+https://norvca.github.io/ToDoList/app
 
 
 
@@ -36,7 +36,7 @@ https://norvca.github.io/ToDoList/
 - [x] 任务按重要程度搜索
 - [x] 已完成、垃圾箱功能
 - [x] 清除全部任务
-- [ ] 随机事件发生器
+- [x] 随机事件发生器（实现一半效果）
 - [ ] 登陆功能（游客登录与邮箱注册）
 - [ ] 实现中文模糊搜索功能
 
