@@ -469,7 +469,7 @@ main {
 
 /* 头部导航 */
 
-header {
+.site-header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -480,103 +480,110 @@ header {
   -webkit-box-shadow:  0px 2px 11px 0px #ccc;
           box-shadow:  0px 2px 11px 0px #ccc;
   color: #777;
+
 }
 
-.random-task {
-  text-align: center;
-  line-height: 12vh;
-  padding: 0 2vh;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
+/* 随机时间区域 */
 
-.random-task__fire {
-    letter-spacing: 1vh;
-    cursor: pointer;
+.site-header__random-task {
+    text-align: center;
+    line-height: 12vh;
+    padding: 0 2vh;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
   }
 
-.random-task__fire:hover {
-    color: #58b4ab;
-  }
+.site-header__random-task__fire {
+      letter-spacing: 1vh;
+      cursor: pointer;
+    }
 
-.random-task__state {
-    font-size: 3.5vh;
-    cursor: pointer;
-  }
+.site-header__random-task__fire:hover {
+      color: #58b4ab;
+    }
 
-.search-add {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 0 auto;
-          flex: 1 0 auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -ms-flex-item-align: center;
-      align-self: center;
-  background-color: #fff;
-}
+.site-header__random-task__state {
+      font-size: 3.5vh;
+      cursor: pointer;
+    }
 
-.search-add__content {
+/* 顶部搜索栏 */
+
+.site-header__search-box {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 0 auto;
+            flex: 1 0 auto;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    border: 2px solid #ccc;
-    -webkit-box-flex: 1;
-        -ms-flex: 1 0 auto;
-            flex: 1 0 auto;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-transition: all .3s;
-    transition: all .3s;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -ms-flex-item-align: center;
+        align-self: center;
+    background-color: #fff;
   }
 
-.search-add__input {
-    border: none;
-    font-size: 3.5vh;
-    height: 7vh;
-    padding-left: 1vh;
-    -webkit-box-flex: 1;
-        -ms-flex: 1 0 auto;
-            flex: 1 0 auto;
-    outline: none;
-    color: #555;
-    letter-spacing: .3vh;
-  }
+.site-header__search-box__content {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      border: 2px solid #ccc;
+      -webkit-box-flex: 1;
+          -ms-flex: 1 0 auto;
+              flex: 1 0 auto;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-transition: all .3s;
+      transition: all .3s;
+    }
 
-.search-add__input::-webkit-input-placeholder{
-    color: #ccc;
-    letter-spacing: .5vh;
-  }
+.site-header__search-box__input {
+      border: none;
+      font-size: 3.5vh;
+      height: 7vh;
+      padding-left: 1vh;
+      -webkit-box-flex: 1;
+          -ms-flex: 1 0 auto;
+              flex: 1 0 auto;
+      outline: none;
+      color: #555;
+      letter-spacing: .3vh;
+    }
 
-.search-add__input:-ms-input-placeholder{
-    color: #ccc;
-    letter-spacing: .5vh;
-  }
+.site-header__search-box__input::-webkit-input-placeholder{
+      color: #ccc;
+      letter-spacing: .5vh;
+    }
 
-.search-add__input::-ms-input-placeholder{
-    color: #ccc;
-    letter-spacing: .5vh;
-  }
+.site-header__search-box__input:-ms-input-placeholder{
+      color: #ccc;
+      letter-spacing: .5vh;
+    }
 
-.search-add__input::placeholder{
-    color: #ccc;
-    letter-spacing: .5vh;
-  }
+.site-header__search-box__input::-ms-input-placeholder{
+      color: #ccc;
+      letter-spacing: .5vh;
+    }
 
-.theme-btn {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-item-align: center;
-      align-self: center;
-  padding: 0 4vh;
-}
+.site-header__search-box__input::placeholder{
+      color: #ccc;
+      letter-spacing: .5vh;
+    }
+
+/* 主题切换 */
+
+.site-header__theme-btn {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-item-align: center;
+        align-self: center;
+    padding: 0 4vh;
+  }
 
 .theme-green {
   background-color: #58b4ab;

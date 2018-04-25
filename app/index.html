@@ -9,25 +9,25 @@
 </head>
 <body>
   <!-- 头部搜索添加 -->
-  <header>
-    <div class="random-task">
+  <header class="site-header">
+    <div class="site-header__random-task">
       <div class="hidden now active">
-        <span class="random-task__fire">事件发生器</span
-          ><span class="random-task__state">现在</span>
+        <span class="site-header__random-task__fire">事件发生器</span
+          ><span class="site-header__random-task__state">现在</span>
       </div>
       <div class="hidden futrue" >
-        <span class="random-task__fire">事件发生器</span
-          ><span class="random-task__state">未来</span>
+        <span class="site-header__random-task__fire">事件发生器</span
+          ><span class="site-header__random-task__state">未来</span>
       </div>
     </div>
 
-    <div class="search-add" >
-      <div class="search-add__content">
+    <div class="site-header__search-box" >
+      <div class="site-header__search-box__content">
         <!-- 搜索图标 -->
         <svg class="icon icon__search" aria-hidden="true" name="search">
             <use xlink:href="#icon-search"></use>
         </svg>
-        <input class="search-add__input" type="text" name="search" placeholder="点击放大镜开启关闭搜索功能...">
+        <input class="site-header__search-box__input" type="text" name="search" placeholder="点击放大镜开启关闭搜索功能...">
         <!-- 任务等级图标 -->
         <svg class="icon icon__level level-light" level="bgc-light" aria-hidden="true">
           <use xlink:href="#icon-circle"></use>
@@ -39,12 +39,12 @@
       </div>
     </div>
 
-    <div class="theme-btn">
+    <div class="site-header__theme-btn">
         <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-theme"></use>
         </svg>
     </div>
-    </header>
+  </header>
 
     <!-- 主要区域 -->
     <main>

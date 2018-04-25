@@ -1,18 +1,19 @@
 var todoAPP = (function(){
   var db,
+    siteHeader = document.querySelector('.site-header'),
     addBtn = document.querySelector('.icon__add'),
     level = document.querySelector('.icon__level'),
     toDayString = new Date().toString(),
     thisWeek = toDayString.slice.call(toDayString, 0, 3).toUpperCase(),
     section = document.querySelector('.todo'),
-    input = document.querySelector('.search-add__input'),
-    searchbox = document.querySelector('.search-add__content'),
+    input = document.querySelector('.site-header__search-box__input'),
+    searchbox = document.querySelector('.site-header__search-box__content'),
     nav = document.querySelector('.nav'),
     detail = document.querySelector('.detail__paragraph'),
-    themeBtn = document.querySelector('.theme-btn'),
+    themeBtn = document.querySelector('.site-header__theme-btn'),
     deleteData = document.querySelector('.nav__delete'),
     modal = document.querySelector('.modal'),
-    randomFire = document.querySelector('.random-task__fire'),
+    randomFire = document.querySelector('.site-header__random-task__fire'),
     // 菜单栏类别切换
     levelBox = [0,1,2],
     theme = ['', 'theme-green', 'theme-purple', 'theme-gradual'],
@@ -458,7 +459,7 @@ var todoAPP = (function(){
     theme.push(theme.shift());
     themeIconName.push(themeIconName.shift());
     // 应用主题
-    this.parentNode.setAttribute('class', theme[0]);
+    siteHeader.setAttribute('class', ("site-header "+ theme[0]));
     themeIcon.setAttribute('xlink:href', themeIconName[0]);
   });
 
