@@ -1,5 +1,6 @@
 @import "normalize.css";
 @import "base/_variables";
+@import "base/_mixins";
 @import "base/_global";
 @import "module/_icon";
 @import "module/_level";

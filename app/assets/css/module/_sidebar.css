@@ -1,72 +1,73 @@
 /* 左侧工具栏 */
-aside {
+.sidebar {
   flex: 0 0 41vh;
   height: 88vh;
   box-shadow: 2px 4px 6px 0px #ccc;
   display: flex;
-}
 
-.nav {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex: 1;
-  user-select: none;
+  /* 工具栏容器 */
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    user-select: none;
 
-  &__todo {
+    & ul{
+      margin-top: .5vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      text-align: center;
+    }
+
+    & ul li {
+      flex: 1 0 10vh;
+    }
+
+    & ul li:hover {
+      cursor: pointer;
+    }
+
+    & ul li:hover a {
+      border-bottom: 3px solid #99cccc;
+      padding-bottom: .5vh;
+      transition: all .3s;
+    }
+
+    & ul li a{
+      line-height: 10vh
+    }
+
+    & li > a {
+      pointer-events: none;
+    }
+  }
+
+  &__todo-list {
     display: flex;
     flex-direction: column;
   }
 
-  &__delete {
-    background-color: inherit;
-  }
-
-  /*让 nav-level 元素排序最末又使其可以控制兄弟元素*/
-  &__level {
+  /*让 sidebar-list-level 元素排序最末又使其可以控制兄弟元素*/
+  &__list-level {
     order: 1;
   }
 
-  &__level:hover ~li a {
+  &__list-level:hover ~li a {
     border: none;
+  }
+
+  &__delete {
+    background-color: inherit;
+
+    a {
+      color: #f55b5b;
+    }
   }
 
   &__act a {
     border-bottom: 3px solid $mainGreen;
     padding-bottom: .5vh;
   }
-}
-
-.nav ul{
-  margin-top: .5vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  text-align: center;
-}
-
-.nav ul li {
-  flex: 1 0 10vh;
-}
-
-.nav ul li:hover {
-  cursor: pointer;
-}
-
-.nav ul li:hover a {
-  border-bottom: 3px solid #99cccc;
-  padding-bottom: .5vh;
-  transition: all .3s;
-}
-
-.nav ul li a{
-  line-height: 10vh
-}
-
-.nav li > a {
-  pointer-events: none;
-}
-
-.delete {
-  color: #f55b5b;
 }

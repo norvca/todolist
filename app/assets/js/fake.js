@@ -8,10 +8,10 @@ var todoAPP = (function(){
     section = document.querySelector('.todo'),
     input = document.querySelector('.site-header__search-box__input'),
     searchbox = document.querySelector('.site-header__search-box__content'),
-    nav = document.querySelector('.nav'),
+    sidebarContent = document.querySelector('.sidebar__content'),
     detail = document.querySelector('.detail__paragraph'),
     themeBtn = document.querySelector('.site-header__theme-btn'),
-    deleteData = document.querySelector('.nav__delete'),
+    deleteData = document.querySelector('.sidebar__delete'),
     modal = document.querySelector('.modal'),
     randomFire = document.querySelector('.site-header__random-task__fire'),
     // 菜单栏类别切换
@@ -75,7 +75,7 @@ var todoAPP = (function(){
     var title = input.value;
     var taskLevel = level.getAttribute('level');
     var taskTime = new Date().toLocaleDateString();
-    var taskType = document.querySelector('.nav__act').getAttribute('taskType');
+    var taskType = document.querySelector('.sidebar__act').getAttribute('taskType');
 
     var transaction = db.transaction(['todoStore'], 'readwrite');
     // 请求数据对象
@@ -254,7 +254,7 @@ var todoAPP = (function(){
     var title = randomContent;
     var taskLevel = ramdomLevel;
     var taskTime = new Date().toLocaleDateString();
-    var taskType = document.querySelector('.nav__act').getAttribute('taskType');
+    var taskType = document.querySelector('.sidebar__act').getAttribute('taskType');
     var transaction = db.transaction(['todoStore'], 'readwrite');
     // 请求数据对象
     var store = transaction.objectStore('todoStore');
@@ -287,7 +287,7 @@ var todoAPP = (function(){
   // 添加任务
   addBtn.addEventListener('click', function(){
   // 获取左侧栏目对应事件类型
-    var typeValue = document.querySelector('.nav__act').getAttribute('taskType');
+    var typeValue = document.querySelector('.sidebar__act').getAttribute('taskType');
     if( !input.value ){
       return;
     } else {
@@ -303,7 +303,7 @@ var todoAPP = (function(){
     var event = e || window.event;
     var key = event.which || event.keyCode || event.charCode;
     // 获取左侧栏目对应事件类型
-    var typeValue = document.querySelector('.nav__act').getAttribute('taskType');
+    var typeValue = document.querySelector('.sidebar__act').getAttribute('taskType');
 
 
     // 焦点在搜索栏并按回车
@@ -359,7 +359,7 @@ var todoAPP = (function(){
   // 开启查找功能
   searchbox.addEventListener('click', function(e) {
     // 获取左侧栏目对应事件类型
-    var typeValue = document.querySelector('.nav__act').getAttribute('taskType');
+    var typeValue = document.querySelector('.sidebar__act').getAttribute('taskType');
 
     if(e.target.classList.contains('icon__search')) {
       e.target.classList.toggle('act-color');
@@ -393,18 +393,18 @@ var todoAPP = (function(){
   });
 
   // 左侧任务栏类别、等级、删除功能
-  nav.addEventListener('click', function(e){
-    var lis = document.querySelectorAll('.nav__type');
+  sidebarContent.addEventListener('click', function(e){
+    var lis = document.querySelectorAll('.sidebar__list-type');
     var target = e.target;
     var firstTask;
     var firstTaskID;
 
     // 点击到了任务类别的话
-    if( target.classList.contains('nav__type')) {
+    if( target.classList.contains('sidebar__list-type')) {
       lis.forEach(function(ele){
-        ele.classList.remove('nav__act');
+        ele.classList.remove('sidebar__act');
       });
-      target.classList.add('nav__act');
+      target.classList.add('sidebar__act');
 
       // 展示不同类型任务到页面
       var typeValue = target.getAttribute('taskType');
@@ -419,7 +419,7 @@ var todoAPP = (function(){
       }
     }
     // 点击到了任务等级的话
-    else if (target.classList.contains('nav__level')) {
+    else if (target.classList.contains('sidebar__list-level')) {
       levelBox.push(levelBox.shift());
       var levels = target.children;
       var thisLevel = levels[levelBox[0]];
@@ -481,7 +481,7 @@ var todoAPP = (function(){
   randomFire.addEventListener('click', function(){
     var ContentIndex = parseInt(Math.random()*randomContentNow.length);
     var LevelIndex = parseInt(Math.random()*3);
-    var typeValue = document.querySelector('.nav__act').getAttribute('taskType');
+    var typeValue = document.querySelector('.sidebar__act').getAttribute('taskType');
     randomThingsNow(randomContentNow[ContentIndex], randomLevel[LevelIndex]);
     showTypeThings('taskType', typeValue);
   });

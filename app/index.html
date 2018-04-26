@@ -49,23 +49,23 @@
     <!-- 主要区域 -->
     <main>
       <!-- 菜单栏 -->
-      <aside>
-        <div class="nav">
-          <ul class="nav__todo">
-            <li class="nav__level">
+      <aside class="sidebar">
+        <div class="sidebar__content">
+          <ul class="sidebar__todo-list">
+            <li class="sidebar__list-level">
               <a class="hidden level-light active" level="bgc-light" href="javascript:;">LIGHT</a>
               <a class="hidden level-usual" level="bgc-usual" href="javascript:;">USUAL</a>
               <a class="hidden level-heavy" level="bgc-heavy" href="javascript:;">HEAVY</a>
             </li>
-            <li class="nav__type nav__act" taskType="work"><a href="javascript:;">工作</a></li>
-            <li class="nav__type" taskType="play"><a href="javascript:;">娱乐</a></li>
-            <li class="nav__type" taskType="other"><a href="javascript:;">其他</a></li>
+            <li class="sidebar__list-type sidebar__act" taskType="work"><a href="javascript:;">工作</a></li>
+            <li class="sidebar__list-type" taskType="play"><a href="javascript:;">娱乐</a></li>
+            <li class="sidebar__list-type" taskType="other"><a href="javascript:;">其他</a></li>
           </ul>
 
           <ul>
-            <li class="nav__type" taskType="finish"><a href="javascript:;">已完成</a></li>
-            <li class="nav__type" taskType="bin"><a href="javascript:;">垃圾箱</a></li>
-            <li class="nav__delete"><a href="javascript:;" class="delete">DELETE</a></li>
+            <li class="sidebar__list-type" taskType="finish"><a href="javascript:;">已完成</a></li>
+            <li class="sidebar__list-type" taskType="bin"><a href="javascript:;">垃圾箱</a></li>
+            <li class="sidebar__delete"><a href="javascript:;">DELETE</a></li>
           </ul>
         </div>
       </aside>

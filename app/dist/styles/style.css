@@ -480,19 +480,36 @@ main {
   -webkit-box-shadow:  0px 2px 11px 0px #ccc;
           box-shadow:  0px 2px 11px 0px #ccc;
   color: #777;
+  padding: 0 1vh;
 
 }
+
+@media (min-width: 530px) {
+
+.site-header {
+    padding: 0
+
+}
+  }
 
 /* 随机时间区域 */
 
 .site-header__random-task {
-    text-align: center;
-    line-height: 12vh;
-    padding: 0 2vh;
-    -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
+    display: none;
+  }
+
+@media (min-width: 530px) {
+
+.site-header__random-task {
+      display: block;
+      text-align: center;
+      line-height: 12vh;
+      padding: 0 2vh;
+      -webkit-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none
+  }
   }
 
 .site-header__random-task__fire {
@@ -530,7 +547,7 @@ main {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
-      border: 2px solid #ccc;
+      border: 1.5px solid #ccc;
       -webkit-box-flex: 1;
           -ms-flex: 1 0 auto;
               flex: 1 0 auto;
@@ -542,9 +559,9 @@ main {
     }
 
 .site-header__search-box__input {
+      width: 0;
       border: none;
       font-size: 3.5vh;
-      height: 7vh;
       padding-left: 1vh;
       -webkit-box-flex: 1;
           -ms-flex: 1 0 auto;
@@ -577,12 +594,19 @@ main {
 /* 主题切换 */
 
 .site-header__theme-btn {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-item-align: center;
-        align-self: center;
-    padding: 0 4vh;
+    display: none;
+  }
+
+@media (min-width: 530px) {
+
+.site-header__theme-btn {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-item-align: center;
+          align-self: center;
+      padding: 0 4vh
+  }
   }
 
 .theme-green {
@@ -606,7 +630,7 @@ main {
 
 /* 左侧工具栏 */
 
-aside {
+.sidebar {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 41vh;
           flex: 0 0 41vh;
@@ -618,27 +642,68 @@ aside {
   display: flex;
 }
 
-.nav {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
+/* 工具栏容器 */
 
-.nav__todo {
+.sidebar__content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+  }
+
+.sidebar__content ul{
+      margin-top: .5vh;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
+      text-align: center;
+    }
+
+.sidebar__content ul li {
+      -webkit-box-flex: 1;
+          -ms-flex: 1 0 10vh;
+              flex: 1 0 10vh;
+    }
+
+.sidebar__content ul li:hover {
+      cursor: pointer;
+    }
+
+.sidebar__content ul li:hover a {
+      border-bottom: 3px solid #99cccc;
+      padding-bottom: .5vh;
+      -webkit-transition: all .3s;
+      transition: all .3s;
+    }
+
+.sidebar__content ul li a{
+      line-height: 10vh
+    }
+
+.sidebar__content li > a {
+      pointer-events: none;
+    }
+
+.sidebar__todo-list {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -648,69 +713,30 @@ aside {
             flex-direction: column;
   }
 
-.nav__delete {
-    background-color: inherit;
-  }
+/*让 sidebar-list-level 元素排序最末又使其可以控制兄弟元素*/
 
-/*让 nav-level 元素排序最末又使其可以控制兄弟元素*/
-
-.nav__level {
+.sidebar__list-level {
     -webkit-box-ordinal-group: 2;
         -ms-flex-order: 1;
             order: 1;
   }
 
-.nav__level:hover ~li a {
+.sidebar__list-level:hover ~li a {
     border: none;
   }
 
-.nav__act a {
+.sidebar__delete {
+    background-color: inherit;
+  }
+
+.sidebar__delete a {
+      color: #f55b5b;
+    }
+
+.sidebar__act a {
     border-bottom: 3px solid #58b4ab;
     padding-bottom: .5vh;
   }
-
-.nav ul{
-  margin-top: .5vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  text-align: center;
-}
-
-.nav ul li {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 0 10vh;
-          flex: 1 0 10vh;
-}
-
-.nav ul li:hover {
-  cursor: pointer;
-}
-
-.nav ul li:hover a {
-  border-bottom: 3px solid #99cccc;
-  padding-bottom: .5vh;
-  -webkit-transition: all .3s;
-  transition: all .3s;
-}
-
-.nav ul li a{
-  line-height: 10vh
-}
-
-.nav li > a {
-  pointer-events: none;
-}
-
-.delete {
-  color: #f55b5b;
-}
 
 /* 主要任务区 */
 

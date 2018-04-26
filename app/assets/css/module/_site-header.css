@@ -5,13 +5,23 @@
   background-color: #fff;
   box-shadow:  0px 2px 11px 0px #ccc;
   color: #777;
+  padding: 0 1vh;
+
+  @mixin atSmall {
+    padding: 0;
+  }
 
   /* 随机时间区域 */
   &__random-task {
-    text-align: center;
-    line-height: 12vh;
-    padding: 0 2vh;
-    user-select: none;
+    display: none;
+
+    @mixin atSmall {
+      display: block;
+      text-align: center;
+      line-height: 12vh;
+      padding: 0 2vh;
+      user-select: none;
+    }
 
     &__fire {
       letter-spacing: 1vh;
@@ -38,16 +48,16 @@
 
     &__content {
       display: flex;
-      border: 2px solid #ccc;
+      border: 1.5px solid #ccc;
       flex: 1 0 auto;
       align-items: center;
       transition: all .3s;
     }
 
     &__input {
+      width: 0;
       border: none;
       font-size: 3.5vh;
-      height: 7vh;
       padding-left: 1vh;
       flex: 1 0 auto;
       outline: none;
@@ -63,9 +73,13 @@
 
   /* 主题切换 */
   &__theme-btn {
-    display: flex;
-    align-self: center;
-    padding: 0 4vh;
+    display: none;
+
+    @mixin atSmall {
+      display: flex;
+      align-self: center;
+      padding: 0 4vh;
+    }
   }
 
 }
