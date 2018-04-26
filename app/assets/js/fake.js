@@ -5,7 +5,7 @@ var todoAPP = (function(){
     level = document.querySelector('.icon__level'),
     toDayString = new Date().toString(),
     thisWeek = toDayString.slice.call(toDayString, 0, 3).toUpperCase(),
-    section = document.querySelector('.todo'),
+    section = document.querySelector('.todolist'),
     input = document.querySelector('.site-header__search-box__input'),
     searchbox = document.querySelector('.site-header__search-box__content'),
     sidebarContent = document.querySelector('.sidebar__content'),
@@ -110,7 +110,7 @@ var todoAPP = (function(){
     var taskType = store.index(indexType);
     var boundKeyRange = IDBKeyRange.only(type);
     var toDay = new Date().toLocaleDateString();
-    var eachDay = document.querySelector('.todo__eachday');
+    var eachDay = document.querySelector('.todolist__eachday');
     var todolist;
 
     var output = '';
@@ -119,13 +119,13 @@ var todoAPP = (function(){
     if ( (!eachDay) || (eachDay.getAttribute('tasktime') !== toDay) ) {
       var newDay = document.createElement('div');
       var ul = document.createElement('ul');
-      ul.classList.add('todo__list');
-      newDay.classList.add('todo__eachday');
+      ul.classList.add('todolist__list');
+      newDay.classList.add('todolist__eachday');
       newDay.setAttribute('tasktime', toDay);
 
-      newDay.innerHTML = '<div class="todo__time">' +
-                         '<span class="todo__week">'+ thisWeek +'</span>' +
-                         '<span class="todo__date">' + toDay + '</span>' +
+      newDay.innerHTML = '<div class="todolist__time">' +
+                         '<span class="todolist__week">'+ thisWeek +'</span>' +
+                         '<span class="todolist__date">' + toDay + '</span>' +
                          '</div>';
       newDay.appendChild(ul);
 
@@ -140,8 +140,8 @@ var todoAPP = (function(){
     taskType.openCursor(boundKeyRange, 'prev').onsuccess = function(e){
       var cursor = e.target.result;
       if(cursor){
-        output += '<li id="things_'+ cursor.value.id +'" class="todo__content '+ cursor.value.level +'" id-num='+cursor.value.id +'>';
-        output +='<div><span class="todo__title" contenteditable="true" id-num='+cursor.value.id +'>'+ cursor.value.title +'</span></div>';
+        output += '<li id="things_'+ cursor.value.id +'" class="todolist__content '+ cursor.value.level +'" id-num='+cursor.value.id +'>';
+        output +='<div><span class="todolist__title" contenteditable="true" id-num='+cursor.value.id +'>'+ cursor.value.title +'</span></div>';
         // console.log(output)
         output += '<div class="icon__todo">';
         output += '  <svg class="icon icon__nofinish" aria-hidden="true" name="search" id-num='+cursor.value.id +'>';
@@ -156,10 +156,10 @@ var todoAPP = (function(){
         cursor.continue();
       }
 
-      todolist = document.querySelector('.todo__list');
+      todolist = document.querySelector('.todolist__list');
       todolist.innerHTML = output;
       if(todolist.firstChild) {
-        todolist.firstChild.classList.add('todo__focus');
+        todolist.firstChild.classList.add('todolist__focus');
       }
     };
   }
@@ -198,8 +198,8 @@ var todoAPP = (function(){
     taskTitle.openCursor(boundKeyRange).onsuccess = function(e){
       var cursor = e.target.result;
       if(cursor){
-        output += '<li id="things_'+ cursor.value.id +'" class="todo__content '+ cursor.value.level +'" id-num='+cursor.value.id +'>';
-        output +='<div><span class="todo__title" contenteditable="true" id-num='+cursor.value.id +'>'+ cursor.value.title +'</span></div>';
+        output += '<li id="things_'+ cursor.value.id +'" class="todolist__content '+ cursor.value.level +'" id-num='+cursor.value.id +'>';
+        output +='<div><span class="todolist__title" contenteditable="true" id-num='+cursor.value.id +'>'+ cursor.value.title +'</span></div>';
         // console.log(output)
         output += '<div class="icon__todo">';
         output += '  <svg class="icon icon__nofinish" aria-hidden="true" name="search" id-num='+cursor.value.id +'>';
@@ -213,7 +213,7 @@ var todoAPP = (function(){
         output += '</li>';
         cursor.continue();
       }
-      document.querySelector('.todo__list').innerHTML = output;
+      document.querySelector('.todolist__list').innerHTML = output;
     };
   }
 
@@ -384,10 +384,10 @@ var todoAPP = (function(){
       var childNodes = e.target.parentNode.childNodes;
       var taskID = parseInt( e.target.getAttribute('id-num') );
       childNodes.forEach(function(e){
-        e.classList.remove('todo__focus');
+        e.classList.remove('todolist__focus');
       });
 
-      e.target.classList.add('todo__focus');
+      e.target.classList.add('todolist__focus');
       showDetail(taskID);
     }
   });
@@ -412,7 +412,7 @@ var todoAPP = (function(){
 
       // 更新右侧任务详情--错误代码
       // CAUTION！ 获取到的 firstTaskID 总是页面更新前的 firstTaskID，导致详情更新慢一步。
-      firstTask = document.querySelector('.todo__focus');
+      firstTask = document.querySelector('.todolist__focus');
       if(firstTask){
         firstTaskID = parseInt( firstTask.getAttribute('id-num') );
         showDetail(firstTaskID);
@@ -435,7 +435,7 @@ var todoAPP = (function(){
 
       // 更新右侧任务详情--错误代码
       // CAUTION！ 获取到的 firstTaskID 总是页面更新前的 firstTaskID，导致详情更新慢一步。
-      firstTask = document.querySelector('.todo__focus');
+      firstTask = document.querySelector('.todolist__focus');
       if(firstTask){
         firstTaskID = parseInt( firstTask.getAttribute('id-num') );
         showDetail(firstTaskID);
@@ -445,7 +445,7 @@ var todoAPP = (function(){
 
   // 右侧任务详情更新
   detail.addEventListener('focusout', function(){
-    var focusTask = document.querySelector('.todo__focus');
+    var focusTask = document.querySelector('.todolist__focus');
     var detailID = parseInt( focusTask.getAttribute('id-num') );
     var detailContent = this.value;
     var type = 'detail';

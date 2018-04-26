@@ -740,7 +740,7 @@ main {
 
 /* 主要任务区 */
 
-.todo {
+.todolist {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -755,11 +755,11 @@ main {
           flex-grow: 2;
 }
 
-.todo__eachday {
+.todolist__eachday {
     margin-bottom: 2vh;
   }
 
-.todo__time {
+.todolist__time {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -770,13 +770,13 @@ main {
     margin-left: -2vh;
   }
 
-.todo__week {
+.todolist__week {
     text-align: center;
     width: 18vh;
     font-size: 8vh;
   }
 
-.todo__date {
+.todolist__date {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -788,11 +788,11 @@ main {
             justify-content: center;
   }
 
-.todo__list {
+.todolist__list {
     margin: 2vh 4vh;
   }
 
-.todo__content {
+.todolist__content {
     -webkit-transition: all .1s;
     transition: all .1s;
     cursor: pointer;
@@ -812,22 +812,22 @@ main {
     font-size: 4.5vh;
   }
 
-.todo__content:hover {
+.todolist__content:hover {
     -webkit-box-shadow: 2px 2px 5px 1px #888;
             box-shadow: 2px 2px 5px 1px #888;
   }
 
-.todo__title {
+.todolist__title {
     word-break: break-all;
     display: block;
   }
 
-.todo__title:focus {
+.todolist__title:focus {
     background-color: rgba(255,255,255,.8);
     color: #666;
   }
 
-.todo__focus {
+.todolist__focus {
     margin-left: -4vh;
     -webkit-box-shadow: 2px 2px 5px 1px #888;
             box-shadow: 2px 2px 5px 1px #888;
