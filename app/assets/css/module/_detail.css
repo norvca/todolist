@@ -1,7 +1,11 @@
 /* 右侧任务详细描述 */
 .detail {
-  flex: 0 0 41vh;
-  box-shadow:  0px 2px 11px 0px #ccc;
+    display: none;
+
+  @mixin atSmall {
+    display: block;
+    box-shadow:  0px 2px 11px 0px #ccc;
+  }
 
   &__paragraph {
     margin: 0 2vh 2vh 2vh;

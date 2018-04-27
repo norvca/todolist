@@ -356,7 +356,7 @@ html,body {
 }
 
 body {
-	font: 5vh Helvetica;
+	font: 1.875rem Helvetica;
   color: #555;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -417,6 +417,15 @@ main {
 .icon__add {
     padding: 1vh;
     color: #777;
+  }
+
+.icon__work,
+  .icon__play,
+  .icon__others,
+  .icon__finished,
+  .icon__bin
+   {
+    color: #999;
   }
 
 .icon__todo {
@@ -492,13 +501,13 @@ main {
 }
   }
 
-/* 随机时间区域 */
+/* 随机任务区域 */
 
 .site-header__random-task {
     display: none;
   }
 
-@media (min-width: 530px) {
+@media (min-width: 957px) {
 
 .site-header__random-task {
       display: block;
@@ -513,6 +522,7 @@ main {
   }
 
 .site-header__random-task__fire {
+      font-size: 2.2rem;
       letter-spacing: 1vh;
       cursor: pointer;
     }
@@ -628,19 +638,45 @@ main {
   color: #fff;
 }
 
+@media (max-width: 600px) {
+  .sidebar {
+    display: none;
+  }
+}
+
 /* 左侧工具栏 */
 
 .sidebar {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 41vh;
-          flex: 0 0 41vh;
-  height: 88vh;
-  -webkit-box-shadow: 2px 4px 6px 0px #ccc;
-          box-shadow: 2px 4px 6px 0px #ccc;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 10vh;
+            flex: 0 0 10vh;
+    height: 88vh;
+    -webkit-box-shadow: 2px 4px 6px 0px #ccc;
+            box-shadow: 2px 4px 6px 0px #ccc;
 }
+
+@media (min-width: 530px) {
+
+.sidebar {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 18vh;
+            flex: 0 0 18vh;
+    font-size: 1.5rem
+}
+  }
+
+@media (min-width: 957px) {
+
+.sidebar {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 31vh;
+            flex: 0 0 31vh;
+    font-size: 2rem
+}
+  }
 
 /* 工具栏容器 */
 
@@ -696,12 +732,31 @@ main {
     }
 
 .sidebar__content ul li a{
-      line-height: 10vh
+      pointer-events: none;
+      line-height: 10vh;
     }
 
-.sidebar__content li > a {
-      pointer-events: none;
+.sidebar__content .icon {
+      display: inline;
     }
+
+@media (min-width: 530px) {
+
+.sidebar__content .icon {
+        display: none
+    }
+  }
+
+.sidebar__content span {
+      display: none;
+    }
+
+@media (min-width: 530px) {
+
+.sidebar__content span {
+        display: inline
+    }
+  }
 
 .sidebar__todo-list {
     display: -webkit-box;
@@ -749,11 +804,20 @@ main {
       -ms-flex-direction: column;
           flex-direction: column;
   overflow-y: auto;
-  padding: 1.8vh 7vh;
-  -webkit-box-flex: 2;
-      -ms-flex-positive: 2;
-          flex-grow: 2;
+  padding: .4rem 1rem;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  min-width: 300px;
 }
+
+@media (min-width: 530px) {
+
+.todolist {
+    /*padding: 1.8vh 7vh;*/
+    padding: .7rem 2rem
+}
+  }
 
 .todolist__eachday {
     margin-bottom: 2vh;
@@ -773,7 +837,14 @@ main {
 .todolist__week {
     text-align: center;
     width: 18vh;
-    font-size: 8vh;
+    font-size: 2.5rem;
+  }
+
+@media (min-width: 530px) {
+
+.todolist__week {
+     font-size: 3.5rem
+  }
   }
 
 .todolist__date {
@@ -809,7 +880,14 @@ main {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    font-size: 4.5vh;
+    font-size: 3.5vh;
+  }
+
+@media (min-width: 957px) {
+
+.todolist__content {
+      font-size: 4.5vh
+  }
   }
 
 .todolist__content:hover {
@@ -836,12 +914,17 @@ main {
 /* 右侧任务详细描述 */
 
 .detail {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 41vh;
-          flex: 0 0 41vh;
-  -webkit-box-shadow:  0px 2px 11px 0px #ccc;
-          box-shadow:  0px 2px 11px 0px #ccc;
+    display: none;
 }
+
+@media (min-width: 530px) {
+
+.detail {
+    display: block;
+    -webkit-box-shadow:  0px 2px 11px 0px #ccc;
+            box-shadow:  0px 2px 11px 0px #ccc
+}
+  }
 
 .detail__paragraph {
     margin: 0 2vh 2vh 2vh;
@@ -896,15 +979,39 @@ main {
     -webkit-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
     background-color: rgb(244, 244, 244);
-    width: 40vw;
-    height: 30vh;
+    width: 13rem;
+    height: 10rem;
     border-radius: 7px;
+  }
+
+@media (min-width: 530px) {
+
+.modal__box {
+      width: 20rem;
+      height: 10rem
+  }
+  }
+
+@media (min-width: 957px) {
+
+.modal__box {
+      width: 30rem;
+      height: 13rem
+  }
   }
 
 .modal__aware {
     font-weight: bold;
     margin-top: 4vh;
     letter-spacing: .5vh;
+    font-size: 1.5rem;
+  }
+
+@media (min-width: 530px) {
+
+.modal__aware {
+      font-size: 2rem
+  }
   }
 
 .modal__delete {
@@ -919,7 +1026,6 @@ main {
 .modal__box a {
     margin: 0 .5vh;
     border-radius: 4px;
-    margin-top: 9vh;
     width: 13vh;
     padding: 1vh 0;
     color: #fff;
@@ -927,6 +1033,14 @@ main {
     cursor: pointer;
     -webkit-transition: all .3s;
     transition: all .3s;
+    margin-top: 3rem;
+  }
+
+@media (min-width: 957px) {
+
+.modal__box a {
+      margin-top: 5.5rem
+  }
   }
 
 .modal__btn-no {
@@ -949,26 +1063,4 @@ main {
 
 .active {
   display: inline;
-}
-
-/* 响应式处理 */
-
-@media screen and (max-width: 64em) {
-  article {
-    display: none;
-  }
-}
-
-@media screen and (max-width: 45em) {
-  aside, .random-task, .theme-btn {
-    display: none;
-  }
-
-  .search-add{
-    margin: 20px;
-  }
-
-  .todo {
-    padding: 20px;
-  }
 }

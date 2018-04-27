@@ -18,15 +18,30 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: rgb(244, 244, 244);
-    width: 40vw;
-    height: 30vh;
+    width: 13rem;
+    height: 10rem;
     border-radius: 7px;
+
+    @mixin atSmall {
+      width: 20rem;
+      height: 10rem;
+    }
+
+    @mixin atMedium {
+      width: 30rem;
+      height: 13rem;
+    }
   }
 
   &__aware {
     font-weight: bold;
     margin-top: 4vh;
     letter-spacing: .5vh;
+    font-size: 1.5rem;
+
+    @mixin atSmall {
+      font-size: 2rem;
+    }
   }
 
   &__delete {
@@ -37,13 +52,17 @@
   &__box a {
     margin: 0 .5vh;
     border-radius: 4px;
-    margin-top: 9vh;
     width: 13vh;
     padding: 1vh 0;
     color: #fff;
     font-size: 3vh;
     cursor: pointer;
     transition: all .3s;
+    margin-top: 3rem;
+
+    @mixin atMedium {
+      margin-top: 5.5rem;
+    }
   }
 
   &__btn-no {

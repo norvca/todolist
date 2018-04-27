@@ -3,8 +3,14 @@
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  padding: 1.8vh 7vh;
-  flex-grow: 2;
+  padding: .4rem 1rem;
+  flex-grow: 1;
+  min-width: 300px;
+
+  @mixin atSmall {
+    /*padding: 1.8vh 7vh;*/
+    padding: .7rem 2rem;
+  }
 
   &__eachday {
     margin-bottom: 2vh;
@@ -19,7 +25,11 @@
   &__week {
     text-align: center;
     width: 18vh;
-    font-size: 8vh;
+    font-size: 2.5rem;
+
+    @mixin atSmall {
+     font-size: 3.5rem;
+    }
   }
 
   &__date {
@@ -44,7 +54,11 @@
     margin-bottom: 2vh;
     padding: 1vh 2vh;
     align-items: center;
-    font-size: 4.5vh;
+    font-size: 3.5vh;
+
+    @mixin atMedium {
+      font-size: 4.5vh;
+    }
   }
 
   &__content:hover {

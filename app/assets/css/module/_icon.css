@@ -15,6 +15,15 @@
     color: #777;
   }
 
+  &__work,
+  &__play,
+  &__others,
+  &__finished,
+  &__bin
+   {
+    color: #999;
+  }
+
   &__todo {
     display: flex;
   }

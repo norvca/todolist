@@ -1,7 +1,7 @@
 @import "normalize.css";
 @import "base/_variables";
-@import "base/_mixins";
 @import "base/_global";
+@import "base/_mixins";
 @import "module/_icon";
 @import "module/_level";
 @import "module/_site-header";
@@ -9,4 +9,3 @@
 @import "module/_todolist";
 @import "module/_detail";
 @import "module/_deleteModal";
-@import "module/_responsive";

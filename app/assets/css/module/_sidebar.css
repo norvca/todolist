@@ -1,9 +1,27 @@
+@media (max-width: 600px) {
+  .sidebar {
+    display: none;
+  }
+}
+
 /* 左侧工具栏 */
 .sidebar {
-  flex: 0 0 41vh;
-  height: 88vh;
-  box-shadow: 2px 4px 6px 0px #ccc;
-  display: flex;
+    display: flex;
+    flex: 0 0 10vh;
+    height: 88vh;
+    box-shadow: 2px 4px 6px 0px #ccc;
+
+  @mixin atSmall {
+    flex: 0 0 18vh;
+    font-size: 1.5rem;
+  }
+
+  @mixin atMedium {
+    flex: 0 0 31vh;
+    font-size: 2rem;
+  }
+
+
 
   /* 工具栏容器 */
   &__content {
@@ -36,11 +54,24 @@
     }
 
     & ul li a{
-      line-height: 10vh
+      pointer-events: none;
+      line-height: 10vh;
     }
 
-    & li > a {
-      pointer-events: none;
+    & .icon {
+      display: inline;
+
+      @mixin atSmall {
+        display: none;
+      }
+    }
+
+    & span {
+      display: none;
+
+      @mixin atSmall {
+        display: inline;
+      }
     }
   }
 
