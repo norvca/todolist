@@ -15,7 +15,7 @@
   &__random-task {
     display: none;
 
-    @mixin atMedium {
+    @mixin atSmall {
       display: block;
       text-align: center;
       line-height: 12vh;
@@ -24,9 +24,13 @@
     }
 
     &__fire {
-      font-size: 2.2rem;
+      font-size: 1.7rem;
       letter-spacing: 1vh;
       cursor: pointer;
+
+      @mixin atMedium {
+        font-size: 2rem;
+      }
     }
 
     &__fire:hover {

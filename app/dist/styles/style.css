@@ -352,6 +352,7 @@ html,body,ul,li,h1,h2,h3,p,div,main,figure,footer {
 }
 
 html,body {
+  width: 100%;
   height: 100%;
 }
 
@@ -507,7 +508,7 @@ main {
     display: none;
   }
 
-@media (min-width: 957px) {
+@media (min-width: 530px) {
 
 .site-header__random-task {
       display: block;
@@ -522,10 +523,17 @@ main {
   }
 
 .site-header__random-task__fire {
-      font-size: 2.2rem;
+      font-size: 1.7rem;
       letter-spacing: 1vh;
       cursor: pointer;
     }
+
+@media (min-width: 957px) {
+
+.site-header__random-task__fire {
+        font-size: 2rem
+    }
+  }
 
 .site-header__random-task__fire:hover {
       color: #58b4ab;
@@ -638,12 +646,6 @@ main {
   color: #fff;
 }
 
-@media (max-width: 600px) {
-  .sidebar {
-    display: none;
-  }
-}
-
 /* 左侧工具栏 */
 
 .sidebar {
@@ -662,8 +664,8 @@ main {
 
 .sidebar {
     -webkit-box-flex: 0;
-        -ms-flex: 0 0 18vh;
-            flex: 0 0 18vh;
+        -ms-flex: 0 0 9rem;
+            flex: 0 0 9rem;
     font-size: 1.5rem
 }
   }
@@ -672,8 +674,8 @@ main {
 
 .sidebar {
     -webkit-box-flex: 0;
-        -ms-flex: 0 0 31vh;
-            flex: 0 0 31vh;
+        -ms-flex: 0 0 14rem;
+            flex: 0 0 14rem;
     font-size: 2rem
 }
   }
