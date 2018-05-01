@@ -37,6 +37,11 @@ h4 {
   display: none;
 }
 
+/* Caution! 样式控制，放在这里以后可能会有BUG */
+.active {
+  display: inline;
+}
+
 .act-color {
   color: $mainGreen !important;;
   border-color: $mainGreen !important;

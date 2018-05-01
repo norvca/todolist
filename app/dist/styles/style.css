@@ -389,6 +389,12 @@ h4 {
   display: none;
 }
 
+/* Caution! 样式控制，放在这里以后可能会有BUG */
+
+.active {
+  display: inline;
+}
+
 .act-color {
   color: #58b4ab !important;;
   border-color: #58b4ab !important;
@@ -961,17 +967,18 @@ main {
 /* 模态框 */
 
 .modal {
-  display: none;
-}
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(50, 50, 50, .6);
 
-.modal__cover {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: rgba(50, 50, 50, .6);
-  }
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: all .3s ease-out;
+  transition: all .3s ease-out;
+}
 
 .modal__box {
     text-align: center;
@@ -1061,8 +1068,9 @@ main {
     background-color: #da635d;
   }
 
-/* Caution! 样式控制，放在这里以后可能会有BUG */
-
-.active {
-  display: inline;
-}
+.modal--visible {
+    opacity: 1;
+    visibility: visible;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }

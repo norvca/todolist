@@ -19,6 +19,10 @@ ES5 + indexedDB + CSS3
 
 https://norvca.github.io/ToDoList/app
 
+### 基本功能演示
+
+![](http://g.recordit.co/he6TdesiVX.gif)
+
 
 
 ## 项目进度
@@ -39,7 +43,7 @@ https://norvca.github.io/ToDoList/app
 - [x] 随机事件发生器（实现一半效果）
 - [ ] 登陆功能（游客登录与邮箱注册）
 - [ ] 实现中文模糊搜索功能
-- [ ] 代码模块化
+- [x] 代码模块化
 - [ ] ES6重写
 - [ ] 运用设计模式
 

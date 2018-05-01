@@ -1,15 +1,15 @@
 /* 模态框 */
 .modal {
-  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(50, 50, 50, .6);
 
-  &__cover {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: rgba(50, 50, 50, .6);
-  }
+  opacity: 0;
+  visibility: hidden;
+  transition: all .3s ease-out;
 
   &__box {
     text-align: center;
@@ -80,9 +80,10 @@
   &__btn-yes:hover {
     background-color: $mainRed;
   }
-}
 
-/* Caution! 样式控制，放在这里以后可能会有BUG */
-.active {
-  display: inline;
+  &--visible {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+  }
 }
