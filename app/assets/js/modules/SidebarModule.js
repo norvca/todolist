@@ -1,14 +1,14 @@
-// 加载数据库模块
-var db = require('./DB');
-
-// 变量声明
-var levelBox = [0,1,2];
-var modal = document.querySelector('.modal');
-
-
 // 定义页面左侧导航处理程序模块
 var sidebarModule = (function() {
+  // 加载数据库模块
+  var db = require('./DB');
 
+  // 变量声明
+  var levelBox = [0,1,2];
+  var modal = document.querySelector('.modal');
+
+
+  // 模块内各功能
   // 左侧导航栏功能
   var navigation = function(e){
     var lis = document.querySelectorAll('.sidebar__list-type');

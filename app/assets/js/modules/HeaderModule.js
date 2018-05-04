@@ -1,20 +1,22 @@
-// 加载数据库模块
-var db = require('./DB');
-
-// 变量声明
-var randomContentNow = ['读完那本英文原著', '中午去睡个好觉', '日语入门学习', '尝试做些家常菜', '了解一些设计常识'];
-var randomLevel = ['bgc-light', 'bgc-usual', 'bgc-heavy'];
-var input = document.querySelector('.site-header__search-box__input');
-var searchbox = document.querySelector('.site-header__search-box__content');
-var level = document.querySelector('.icon__level');
-var theme = ['', 'theme-green', 'theme-purple', 'theme-gradual'];
-var themeIconName = ['#icon-theme', '#icon-theme1', '#icon-theme2', '#icon-theme3'];
-var siteHeader = document.querySelector('.site-header');
-
-
 // 定义页面头部处理程序模块
 var headerModule = (function() {
+  // 加载数据库模块
+  var db = require('./DB');
+  var helperFunction = require('./HelperFunction');
 
+
+  // 变量声明
+  var randomContentNow = ['读完那本英文原著', '中午去睡个好觉', '日语入门学习', '尝试做些家常菜', '了解一些设计常识'];
+  var randomLevel = ['bgc-light', 'bgc-usual', 'bgc-heavy'];
+  var input = document.querySelector('.site-header__search-box__input');
+  var searchbox = document.querySelector('.site-header__search-box__content');
+  var level = document.querySelector('.icon__level');
+  var theme = ['', 'theme-green', 'theme-purple', 'theme-gradual'];
+  var themeIconName = ['#icon-theme', '#icon-theme1', '#icon-theme2', '#icon-theme3'];
+  var siteHeader = document.querySelector('.site-header');
+
+
+  // 模块内各功能
   // 触发随机任务功能
   var randomTask = function(){
     var ContentIndex = parseInt(Math.random()*randomContentNow.length);

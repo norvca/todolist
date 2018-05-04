@@ -1,14 +1,13 @@
-// 变量声明
-var toDayString = new Date().toString();
-var thisWeek = toDayString.slice.call(toDayString, 0, 3).toUpperCase();
-var section = document.querySelector('.todolist');
-var input = document.querySelector('.site-header__search-box__input');
-var level = document.querySelector('.icon__level');
-var detail = document.querySelector('.detail__paragraph');
-
-
 // 数据库模块
 var DB = (function() {
+  // 变量声明
+  var toDayString = new Date().toString();
+  var thisWeek = toDayString.slice.call(toDayString, 0, 3).toUpperCase();
+  var section = document.querySelector('.todolist');
+  var input = document.querySelector('.site-header__search-box__input');
+  var level = document.querySelector('.icon__level');
+  var detail = document.querySelector('.detail__paragraph');
+
 
   // 初始化数据库
   var initDB = function(){
@@ -264,12 +263,9 @@ var DB = (function() {
   }
 
 
-  // 创建数据库
-  initDB();
-
-
   // 开放接口
   return {
+    initDB,
     addThings,
     showTypeThings,
     modifyThings,
