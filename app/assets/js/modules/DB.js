@@ -7,12 +7,13 @@ var DB = (function() {
   var input = document.querySelector('.site-header__search-box__input');
   var level = document.querySelector('.icon__level');
   var detail = document.querySelector('.detail__paragraph');
-
+  var db;
 
   // 初始化数据库
   var initDB = function(){
     // 打开数据库
     var request = window.indexedDB.open('todoAPP', 1);
+
     // 成功
     request.onsuccess = function(){
       console.log('开启数据库成功！');
@@ -71,7 +72,7 @@ var DB = (function() {
       console.log('事件添加到数据库成功!');
     };
 
-    request.error = function(){
+    request.onerror = function(){
       console.log('事件添加到数据库失败!');
     };
   }
@@ -159,34 +160,24 @@ var DB = (function() {
     var curThing = input.value;
     var transaction = db.transaction(['todoStore'], 'readonly');
     var store = transaction.objectStore('todoStore');
-    var taskTitle = store.index('title');
-
-    var reg = /[A-Za-z0-9]/;
-    var boundKeyRange;
-    if(reg.test(curThing)) {
-      // 匹配数字和字母
-      boundKeyRange = IDBKeyRange.bound(curThing, curThing+'z');
-    }else {
-      // 匹配中文汉字
-      boundKeyRange = IDBKeyRange.only(curThing);
-    }
     var output = '';
-    taskTitle.openCursor(boundKeyRange).onsuccess = function(e){
+    store.openCursor().onsuccess = function(e){
       var cursor = e.target.result;
       if(cursor){
-        output += '<li id="things_'+ cursor.value.id +'" class="todolist__content '+ cursor.value.level +'" id-num='+cursor.value.id +'>';
-        output +='<div><span class="todolist__title" contenteditable="true" id-num='+cursor.value.id +'>'+ cursor.value.title +'</span></div>';
-        // console.log(output)
-        output += '<div class="icon__todo">';
-        output += '  <svg class="icon icon__nofinish" aria-hidden="true" name="search" id-num='+cursor.value.id +'>';
-        output += '    <use class="icon__finish" xlink:href="#icon-eglass-finish1"></use>';
-        output += '    <use xlink:href="#icon-eglass-finish"></use>';
-        output += '  </svg>';
-        output += '  <svg class="icon icon__delete" aria-hidden="true" name="search" id-num='+cursor.value.id +'>';
-        output += '   <use xlink:href="#icon-delete"></use>';
-        output += '  </svg>';
-        output += '</div>';
-        output += '</li>';
+        if(cursor.value.title.indexOf(curThing) !== -1) {
+          output += '<li id="things_'+ cursor.value.id +'" class="todolist__content '+ cursor.value.level +'" id-num='+cursor.value.id +'>';
+          output +='<div><span class="todolist__title" contenteditable="true" id-num='+cursor.value.id +'>'+ cursor.value.title +'</span></div>';
+          output += '<div class="icon__todo">';
+          output += '  <svg class="icon icon__nofinish" aria-hidden="true" name="search" id-num='+cursor.value.id +'>';
+          output += '    <use class="icon__finish" xlink:href="#icon-eglass-finish1"></use>';
+          output += '    <use xlink:href="#icon-eglass-finish"></use>';
+          output += '  </svg>';
+          output += '  <svg class="icon icon__delete" aria-hidden="true" name="search" id-num='+cursor.value.id +'>';
+          output += '   <use xlink:href="#icon-delete"></use>';
+          output += '  </svg>';
+          output += '</div>';
+          output += '</li>';
+        }
         cursor.continue();
       }
       document.querySelector('.todolist__list').innerHTML = output;
@@ -257,7 +248,7 @@ var DB = (function() {
       console.log('事件添加到数据库成功!');
     };
 
-    request.error = function(){
+    request.onerror = function(){
       console.log('事件添加到数据库失败!');
     };
   }
