@@ -27,13 +27,13 @@ var sidebarModule = (function() {
       var typeValue = target.getAttribute('taskType');
       db.showTypeThings('taskType', typeValue);
 
-      // 更新右侧任务详情--错误代码
-      // CAUTION！ 获取到的 firstTaskID 总是页面更新前的 firstTaskID，导致详情更新慢一步。
-      firstTask = document.querySelector('.todolist__focus');
-      if(firstTask){
-        firstTaskID = parseInt( firstTask.getAttribute('id-num') );
-        db.showDetail(firstTaskID);
-      }
+      // 更新右侧任务详情，异步程序使用 promise
+      db.returnFocusId('taskType', typeValue)
+        .then(function(data) {
+        db.showDetail(data);
+       }).catch(function(err) {
+          console.log(err);
+       });
     }
     // 点击到了任务等级的话
     else if (target.classList.contains('sidebar__list-level')) {
@@ -50,13 +50,13 @@ var sidebarModule = (function() {
       thisLevel.classList.add('active');
       db.showTypeThings('level', levelValue);
 
-      // 更新右侧任务详情--错误代码
-      // CAUTION！ 获取到的 firstTaskID 总是页面更新前的 firstTaskID，导致详情更新慢一步。
-      firstTask = document.querySelector('.todolist__focus');
-      if(firstTask){
-        firstTaskID = parseInt( firstTask.getAttribute('id-num') );
-        db.showDetail(firstTaskID);
-      }
+      // 更新右侧任务详情，异步程序使用 promise
+      db.returnFocusId('level', levelValue)
+        .then(function(data) {
+        db.showDetail(data);
+       }).catch(function(err) {
+          console.log(err);
+       });
     }
   }
 

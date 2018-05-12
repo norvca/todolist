@@ -185,6 +185,28 @@ var DB = (function() {
   }
 
 
+  // 返回焦点任务的索引
+  // 数据库游标查询需要时间，是异步程序所以需要构建 promise
+  var returnFocusId = function(indexType, type) {
+    var promise = new Promise(function(resolve, reject) {
+      var transaction = db.transaction(['todoStore'], 'readonly');
+      var store = transaction.objectStore('todoStore');
+      var taskType = store.index(indexType);
+      var boundKeyRange = IDBKeyRange.only(type);
+
+      taskType.openCursor(boundKeyRange, 'prev').onsuccess = function(e){
+        var cursor = e.target.result;
+        if(cursor){
+          resolve(cursor.primaryKey);
+        } else {
+          reject("没有获取到焦点任务！");
+        }
+      };
+    });
+
+    return promise;
+  }
+
   // 更新右侧任务详情
   var updateDetail = function(id, type, detailContent){
     var transaction = db.transaction(['todoStore'], 'readwrite');
@@ -261,6 +283,7 @@ var DB = (function() {
     showTypeThings,
     modifyThings,
     searchThings,
+    returnFocusId,
     updateDetail,
     showDetail,
     deleteAllThings,
