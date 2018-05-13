@@ -30,9 +30,9 @@ var sidebarModule = (function() {
       // 更新右侧任务详情，异步程序使用 promise
       db.returnFocusId('taskType', typeValue)
         .then(function(data) {
-        db.showDetail(data);
+          db.showDetail(data);
        }).catch(function(err) {
-          console.log(err);
+          db.showDetail(err);
        });
     }
     // 点击到了任务等级的话
@@ -53,9 +53,9 @@ var sidebarModule = (function() {
       // 更新右侧任务详情，异步程序使用 promise
       db.returnFocusId('level', levelValue)
         .then(function(data) {
-        db.showDetail(data);
+          db.showDetail(data);
        }).catch(function(err) {
-          console.log(err);
+          db.showDetail(err);
        });
     }
   }

@@ -19,6 +19,14 @@ var DB = (function() {
       console.log('开启数据库成功！');
       db = this.result;
       showTypeThings('taskType', 'work');
+
+      // 更新右侧任务详情，异步程序使用 promise
+      returnFocusId('taskType', 'work')
+        .then(function(data) {
+          showDetail(data);
+        }).catch(function(err) {
+          console.log(err);
+        });
     };
 
     // 失败
@@ -39,6 +47,7 @@ var DB = (function() {
         store.createIndex('title', 'title', {unique: false});
         store.createIndex('taskType', 'taskType', {unique: false});
         store.createIndex('level', 'level', {unique: false});
+        store.createIndex('taskTime', 'taskTime', {unique: false});
       }
     };
   }
@@ -66,6 +75,14 @@ var DB = (function() {
 
     // 添加事件
     var request = store.add(todos);
+
+    // 更新右侧任务详情，异步程序使用 promise
+    returnFocusId('taskType', taskType)
+      .then(function(data) {
+        showDetail(data);
+      }).catch(function(err) {
+        console.log(err);
+      });
 
     // 添加成功与失败
     request.onsuccess = function(){
@@ -117,7 +134,6 @@ var DB = (function() {
       if(cursor){
         output += '<li id="things_'+ cursor.value.id +'" class="todolist__content '+ cursor.value.level +'" id-num='+cursor.value.id +'>';
         output +='<div><span class="todolist__title" contenteditable="true" id-num='+cursor.value.id +'>'+ cursor.value.title +'</span></div>';
-        // console.log(output)
         output += '<div class="icon__todo">';
         output += '  <svg class="icon icon__nofinish" aria-hidden="true" name="search" id-num='+cursor.value.id +'>';
         output += '    <use class="icon__finish" xlink:href="#icon-eglass-finish1"></use>';
@@ -199,13 +215,14 @@ var DB = (function() {
         if(cursor){
           resolve(cursor.primaryKey);
         } else {
-          reject("没有获取到焦点任务！");
+          reject("没有聚焦中的任务！");
         }
       };
     });
 
     return promise;
   }
+
 
   // 更新右侧任务详情
   var updateDetail = function(id, type, detailContent){
@@ -225,14 +242,21 @@ var DB = (function() {
   var showDetail = function(id){
     var transaction = db.transaction(['todoStore'], 'readwrite');
     var store = transaction.objectStore('todoStore');
-    var request  = store.get(id);
-    request.onsuccess = function(){
-      var data = request.result;
-      var text = data.title;
-      detail.previousElementSibling.innerText = text;
-      detail.value = data.detail;
-      console.log('显示任务详情成功！');
-    };
+    if(typeof id === "number") {
+      var request  = store.get(id);
+      request.onsuccess = function(){
+        var data = request.result;
+        var text = data.title;
+        detail.previousElementSibling.innerText = text;
+        detail.value = data.detail;
+        detail.placeholder = "添加任务详情...";
+        console.log('显示任务详情成功！');
+      };
+    } else {
+        detail.previousElementSibling.innerText = "";
+        detail.value = "";
+        detail.placeholder = "此分类目前没有任务哦~";
+    }
   }
 
 
@@ -264,6 +288,14 @@ var DB = (function() {
 
     // 添加事件
     var request = store.add(todos);
+
+    // 更新右侧任务详情，异步程序使用 promise
+    returnFocusId('taskType', taskType)
+      .then(function(data) {
+        showDetail(data);
+      }).catch(function(err) {
+        console.log(err);
+      });
 
     // 添加成功与失败
     request.onsuccess = function(){
