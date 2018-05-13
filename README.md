@@ -53,9 +53,11 @@ https://norvca.github.io/ToDoList/app
 - [ ] 日期功能有问题，新的日期栏会覆盖旧的日期栏
 
 - [x] ~~元素 contenteditable 属性可供点选的范围会超过元素本身。~~
+
       使元素变成块级元素可解决该 BUG
 
 - [x] ~~SVG 图标内有多个元素, 点击冒泡导致有时点击不到。~~
+
       给图标里内容添加 pointer-events: none; 属性
 
 - [x] ~~点击左侧菜单栏时右侧任务详情更新不及时~~
@@ -63,3 +65,5 @@ https://norvca.github.io/ToDoList/app
       因为涉及异步操作，引入 promise 解决
 
 - [x] ~~在中等宽度 (ipad) 页面显示不够好~~
+
+- [ ] 数据库中 `xxx.openCursor().onsuccess`  里的代码里的代码会执行多次

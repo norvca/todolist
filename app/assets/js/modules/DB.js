@@ -129,6 +129,7 @@ var DB = (function() {
       }
     }
 
+    // !!Caution!! 下面这段代码被执行了很多次，具体原因不知！
     taskType.openCursor(boundKeyRange, 'prev').onsuccess = function(e){
       var cursor = e.target.result;
       if(cursor){
@@ -177,7 +178,11 @@ var DB = (function() {
     var transaction = db.transaction(['todoStore'], 'readonly');
     var store = transaction.objectStore('todoStore');
     var output = '';
-    store.openCursor().onsuccess = function(e){
+    var todolist;
+    var key = 0;
+
+    // !!Caution!! 下面这段代码被执行了很多次，具体原因不知！
+    store.openCursor(null, 'prev').onsuccess = function(e){
       var cursor = e.target.result;
       if(cursor){
         if(cursor.value.title.indexOf(curThing) !== -1) {
@@ -193,10 +198,18 @@ var DB = (function() {
           output += '  </svg>';
           output += '</div>';
           output += '</li>';
+          (key < cursor.key) ? key = cursor.key : key;
         }
         cursor.continue();
       }
-      document.querySelector('.todolist__list').innerHTML = output;
+
+      // 更新右侧任务详情,首任务聚焦等
+      todolist = document.querySelector('.todolist__list');
+      todolist.innerHTML = output;
+      if(todolist.firstChild) {
+        todolist.firstChild.classList.add('todolist__focus');
+        showDetail(key);
+      }
     };
   }
 

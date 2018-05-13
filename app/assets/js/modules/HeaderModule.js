@@ -37,7 +37,18 @@ var headerModule = (function() {
       searchbox.classList.toggle('act-color');
       input.focus();
       input.value = '';
-      db.showTypeThings('taskType', typeValue);
+
+      if(!input.classList.contains('act-color')) {
+        db.showTypeThings('taskType', typeValue);
+
+        // 更新右侧任务详情，异步程序使用 promise
+        db.returnFocusId('taskType', typeValue)
+          .then(function(data) {
+            db.showDetail(data);
+          }).catch(function(err) {
+            console.log(err);
+          });
+      }
     }
   }
 
