@@ -11,8 +11,6 @@ var handler = (function() {
   // 变量声明
   var randomFire = document.querySelector(".site-header__random-task__fire");
   var searchbox = document.querySelector(".site-header__search-box__content");
-  // var input = document.querySelector('.site-header__search-box__input');
-  // var level = document.querySelector('.icon__level');
   var addBtn = document.querySelector(".icon__add");
   var themeBtn = document.querySelector(".site-header__theme-btn");
   var sidebarContent = document.querySelector(".sidebar__content");

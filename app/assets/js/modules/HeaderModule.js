@@ -2,14 +2,14 @@
 var headerModule = (function() {
   // 加载数据库模块
   var db = require("./DB");
+  var HF = require("./HelperFunction");
 
 
   // 变量声明
   var randomContentNow = ["读完那本英文原著", "中午去睡个好觉", "日语入门学习", "尝试做些家常菜", "了解一些设计常识"];
   var randomLevel = ["bgc-light", "bgc-usual", "bgc-heavy"];
-  var input = document.querySelector(".site-header__search-box__input");
   var searchbox = document.querySelector(".site-header__search-box__content");
-  var level = document.querySelector(".icon__level");
+  // var level = document.querySelector(".icon__level");
   var theme = ["", "theme-green", "theme-purple", "theme-gradual"];
   var themeIconName = ["#icon-theme", "#icon-theme1", "#icon-theme2", "#icon-theme3"];
   var siteHeader = document.querySelector(".site-header");
@@ -31,13 +31,13 @@ var headerModule = (function() {
     var typeValue = document.querySelector(".sidebar__act").getAttribute("taskType");
 
     if(e.target.classList.contains("icon__search")) {
-      e.target.classList.toggle("act-color");
-      input.classList.toggle("act-color");
-      searchbox.classList.toggle("act-color");
-      input.focus();
-      input.value = "";
+      HF.inActColor(e.target);
+      HF.inActColor(HF.get_input());
+      HF.inActColor(searchbox);
+      HF.get_input().focus();
+      HF.get_input().value = "";
 
-      if(!input.classList.contains("act-color")) {
+      if(!HF.get_input().classList.contains("act-color")) {
         db.showTypeThings("taskType", typeValue);
 
         // 更新右侧任务详情，异步程序使用 promise
@@ -63,24 +63,20 @@ var headerModule = (function() {
   // 任务等级切换功能
   var changeLevel = function(){
     taskToggle();
-    input.focus();
+    HF.get_input().focus();
   };
 
 
   // 等级切换函数
   function taskToggle(){
-    if( level.classList.contains("level-light") ) {
-      level.classList.remove("level-light");
-      level.classList.add("level-usual");
-      level.setAttribute("level", "bgc-usual");
-    } else if ( level.classList.contains("level-usual") ) {
-      level.classList.remove("level-usual");
-      level.classList.add("level-heavy");
-      level.setAttribute("level", "bgc-heavy");
+    if( HF.get_level().classList.contains("level-light") ) {
+      HF.toggleLevel("level-light", "level-usual", "level", "bgc-usual");
+
+    } else if ( HF.get_level().classList.contains("level-usual") ) {
+      HF.toggleLevel("level-usual", "level-heavy", "level", "bgc-heavy");
+
     } else {
-      level.classList.remove("level-heavy");
-      level.classList.add("level-light");
-      level.setAttribute("level", "bgc-light");
+      HF.toggleLevel("level-heavy", "level-light", "level", "bgc-light");
     }
   }
 
@@ -89,12 +85,12 @@ var headerModule = (function() {
   var addTask1 = function(){
     // 获取左侧栏目对应事件类型
     var typeValue = document.querySelector(".sidebar__act").getAttribute("taskType");
-    if( !input.value ){
+    if( !HF.get_input().value ){
       return;
     } else {
       db.addThings();
       db.showTypeThings("taskType", typeValue);
-      input.value = "";
+      HF.get_input().value = "";
     }
   };
 
@@ -112,7 +108,7 @@ var headerModule = (function() {
       if (key == 13 && document.activeElement.tagName.toUpperCase() === "INPUT") {
         db.addThings();
         db.showTypeThings("taskType", typeValue);
-        input.value = "";
+        HF.get_input().value = "";
       }
     }
   };
