@@ -46,7 +46,7 @@ var headerModule = (function() {
           .then(function(data) {
             db.showDetail(data);
           }).catch(function(err) {
-            console.log(err);
+            db.showDetail(err);
           });
       }
     }

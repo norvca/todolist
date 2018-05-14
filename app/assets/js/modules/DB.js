@@ -25,7 +25,7 @@ var DB = (function() {
         .then(function(data) {
           showDetail(data);
         }).catch(function(err) {
-          console.log(err);
+          showDetail(err);
         });
     };
 
@@ -81,7 +81,7 @@ var DB = (function() {
       .then(function(data) {
         showDetail(data);
       }).catch(function(err) {
-        console.log(err);
+        showDetail(err);
       });
 
     // 添加成功与失败
@@ -307,7 +307,7 @@ var DB = (function() {
       .then(function(data) {
         showDetail(data);
       }).catch(function(err) {
-        console.log(err);
+        showDetail(err);
       });
 
     // 添加成功与失败

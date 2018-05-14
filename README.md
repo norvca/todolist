@@ -11,7 +11,7 @@
 
 ## 技术栈
 
-ES5 + indexedDB + CSS3
+ES5 + indexedDB + CSS3 
 
 
 
@@ -21,7 +21,7 @@ https://norvca.github.io/ToDoList/app
 
 ### 基本功能演示
 
-![](http://g.recordit.co/he6TdesiVX.gif)
+![](http://g.recordit.co/xDpJkWav81.gif)
 
 
 
@@ -66,4 +66,4 @@ https://norvca.github.io/ToDoList/app
 
 - [x] ~~在中等宽度 (ipad) 页面显示不够好~~
 
-- [ ] 数据库中 `xxx.openCursor().onsuccess`  里的代码里的代码会执行多次
+- [ ] 数据库中 [xxx.openCursor().onsuccess](https://github.com/norvca/ToDoList/blob/1935a84e905c1bcc7dcb5afc021bc6603b771977/app/assets/js/modules/DB.js#L132)  里的代码里的代码会执行多次
