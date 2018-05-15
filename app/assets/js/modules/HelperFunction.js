@@ -5,12 +5,12 @@ var helperFunction = (function() {
 
   // sideHeader 区域
   // 获取页面头部 input 引用
-  var get_input = function() {
+  var get_input_element = function() {
     return document.querySelector(".site-header__search-box__input");
   };
 
   // 获取页面头部 level 图标引用
-  var get_level = function() {
+  var get_level_element = function() {
     return document.querySelector(".icon__level");
   };
 
@@ -20,15 +20,15 @@ var helperFunction = (function() {
   }
 
   // 任务等级小圆点颜色、属性的切换
-  var toggleLevel = function(level1, level2, attr, value) {
-    get_level().classList.remove(level1);
-    get_level().classList.add(level2);
-    get_level().setAttribute(attr, value);
+  var toggleLevel = function(level1, level2, value) {
+    get_level_element().classList.remove(level1);
+    get_level_element().classList.add(level2);
+    get_level_element().setAttribute("level", value);
   }
 
   return {
-    get_input,
-    get_level,
+    get_input_element,
+    get_level_element,
     inActColor,
     toggleLevel
   };

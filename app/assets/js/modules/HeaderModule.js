@@ -2,17 +2,20 @@
 var headerModule = (function() {
   // 加载数据库模块
   var db = require("./DB");
-  var HF = require("./HelperFunction");
+  var helperFunction = require("./HelperFunction");
 
 
   // 变量声明
   var randomContentNow = ["读完那本英文原著", "中午去睡个好觉", "日语入门学习", "尝试做些家常菜", "了解一些设计常识"];
   var randomLevel = ["bgc-light", "bgc-usual", "bgc-heavy"];
   var searchbox = document.querySelector(".site-header__search-box__content");
-  // var level = document.querySelector(".icon__level");
   var theme = ["", "theme-green", "theme-purple", "theme-gradual"];
   var themeIconName = ["#icon-theme", "#icon-theme1", "#icon-theme2", "#icon-theme3"];
   var siteHeader = document.querySelector(".site-header");
+  var input = helperFunction.get_input_element();
+  var level = helperFunction.get_level_element();
+  var inActColor = helperFunction.inActColor;
+  var toggleLevel = helperFunction.toggleLevel;
 
 
   // 模块内各功能
@@ -31,13 +34,13 @@ var headerModule = (function() {
     var typeValue = document.querySelector(".sidebar__act").getAttribute("taskType");
 
     if(e.target.classList.contains("icon__search")) {
-      HF.inActColor(e.target);
-      HF.inActColor(HF.get_input());
-      HF.inActColor(searchbox);
-      HF.get_input().focus();
-      HF.get_input().value = "";
+      inActColor(e.target);
+      inActColor(input);
+      inActColor(searchbox);
+      input.focus();
+      input.value = "";
 
-      if(!HF.get_input().classList.contains("act-color")) {
+      if(!input.classList.contains("act-color")) {
         db.showTypeThings("taskType", typeValue);
 
         // 更新右侧任务详情，异步程序使用 promise
@@ -63,20 +66,21 @@ var headerModule = (function() {
   // 任务等级切换功能
   var changeLevel = function(){
     taskToggle();
-    HF.get_input().focus();
+    input.focus();
   };
 
 
   // 等级切换函数
+  // !!Caution!! 这里应该会有更好的解决办法！
   function taskToggle(){
-    if( HF.get_level().classList.contains("level-light") ) {
-      HF.toggleLevel("level-light", "level-usual", "level", "bgc-usual");
+    if( level.classList.contains("level-light") ) {
+      toggleLevel("level-light", "level-usual", "bgc-usual");
 
-    } else if ( HF.get_level().classList.contains("level-usual") ) {
-      HF.toggleLevel("level-usual", "level-heavy", "level", "bgc-heavy");
+    } else if ( level.classList.contains("level-usual") ) {
+      toggleLevel("level-usual", "level-heavy", "bgc-heavy");
 
     } else {
-      HF.toggleLevel("level-heavy", "level-light", "level", "bgc-light");
+      toggleLevel("level-heavy", "level-light", "bgc-light");
     }
   }
 
@@ -85,12 +89,12 @@ var headerModule = (function() {
   var addTask1 = function(){
     // 获取左侧栏目对应事件类型
     var typeValue = document.querySelector(".sidebar__act").getAttribute("taskType");
-    if( !HF.get_input().value ){
+    if( !input.value ){
       return;
     } else {
       db.addThings();
       db.showTypeThings("taskType", typeValue);
-      HF.get_input().value = "";
+      input.value = "";
     }
   };
 
@@ -108,7 +112,7 @@ var headerModule = (function() {
       if (key == 13 && document.activeElement.tagName.toUpperCase() === "INPUT") {
         db.addThings();
         db.showTypeThings("taskType", typeValue);
-        HF.get_input().value = "";
+        input.value = "";
       }
     }
   };

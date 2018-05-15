@@ -18,6 +18,8 @@ var handler = (function() {
   var section = document.querySelector(".todolist");
   var detail = document.querySelector(".detail__paragraph");
   var modal = document.querySelector(".modal");
+  var input = helperFunction.get_input_element();
+  var level = helperFunction.get_level_element();
 
   // site-header 区域
   // 点击触发随机事件
@@ -27,10 +29,10 @@ var handler = (function() {
   searchbox.addEventListener("click", headerModule.openSearchTask);
 
   // 输入框输入数据查找
-  helperFunction.get_input().addEventListener("keyup", headerModule.searchTask);
+  input.addEventListener("keyup", headerModule.searchTask);
 
   // 任务等级切换
-  helperFunction.get_level().onclick = headerModule.changeLevel;
+  level.onclick = headerModule.changeLevel;
 
   // 添加任务
   addBtn.addEventListener("click", headerModule.addTask1);
