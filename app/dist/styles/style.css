@@ -855,10 +855,6 @@ main {
 }
   }
 
-.todolist__eachday {
-    margin-bottom: 2vh;
-  }
-
 .todolist__time {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -867,7 +863,11 @@ main {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    margin-left: -2vh;
+    margin: 7vh 0 1vh -6vh;
+  }
+
+.todolist__time:first-of-type {
+    margin: -2vh 0 1vh -6vh;
   }
 
 .todolist__week {

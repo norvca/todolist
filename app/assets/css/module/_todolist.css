@@ -10,14 +10,14 @@
     padding: .7rem 2rem;
   }
 
-  &__eachday {
-    margin-bottom: 2vh;
-  }
-
   &__time {
     display: flex;
     flex-direction: column;
-    margin-left: -2vh;
+    margin: 7vh 0 1vh -6vh;
+  }
+
+  &__time:first-of-type {
+    margin: -2vh 0 1vh -6vh;
   }
 
   &__week {

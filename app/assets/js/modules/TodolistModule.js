@@ -43,7 +43,7 @@ var todolistModule = (function() {
 
   // 显示任务详情功能
   var showTaskDetail = function(e){
-    if(e.target.tagName.toUpperCase() === "LI"){
+    if(e.target.classList.contains("todolist__content")){
       var childNodes = e.target.parentNode.childNodes;
       var taskID = parseInt( e.target.getAttribute("id-num") );
       childNodes.forEach(function(e){

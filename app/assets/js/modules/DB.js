@@ -2,7 +2,6 @@
 var DB = (function() {
   // 变量声明
   var toDayString = new Date().toString();
-  var thisWeek = toDayString.slice.call(toDayString, 0, 3).toUpperCase();
   var section = document.querySelector(".todolist");
   var input = document.querySelector(".site-header__search-box__input");
   var level = document.querySelector(".icon__level");
@@ -48,6 +47,7 @@ var DB = (function() {
         store.createIndex("taskType", "taskType", {unique: false});
         store.createIndex("level", "level", {unique: false});
         store.createIndex("taskTime", "taskTime", {unique: false});
+        store.createIndex("taskWeek", "taskWeek", {unique: false});
       }
     };
   };
@@ -58,8 +58,9 @@ var DB = (function() {
     var title = input.value;
     var taskLevel = level.getAttribute("level");
     var taskTime = new Date().toLocaleDateString();
+    var taskWeek = toDayString.slice.call(toDayString, 0, 3).toUpperCase();
     var taskType = document.querySelector(".sidebar__act").getAttribute("taskType");
-
+    console.log(taskWeek)
     var transaction = db.transaction(["todoStore"], "readwrite");
     // 请求数据对象
     var store = transaction.objectStore("todoStore");
@@ -70,7 +71,8 @@ var DB = (function() {
       detail: null,
       level: taskLevel,
       taskTime: taskTime,
-      taskType: taskType
+      taskType: taskType,
+      taskWeek: taskWeek
     };
 
     // 添加事件
@@ -103,55 +105,54 @@ var DB = (function() {
     var boundKeyRange = IDBKeyRange.only(type);
     var toDay = new Date().toLocaleDateString();
     var eachDay = document.querySelector(".todolist__eachday");
-    var todolist;
-
-    var output = "";
-    // 查询今天是否为最新日期
-    // Caution! 只能一打开页面就立马显示最新日期，暂时不能根据点击情况添加最新日期
-    if ( (!eachDay) || (eachDay.getAttribute("tasktime") !== toDay) ) {
-      var newDay = document.createElement("div");
-      var ul = document.createElement("ul");
-      ul.classList.add("todolist__list");
-      newDay.classList.add("todolist__eachday");
-      newDay.setAttribute("tasktime", toDay);
-
-      newDay.innerHTML = "<div class=\"todolist__time\">" +
-                         "<span class=\"todolist__week\">"+ thisWeek +"</span>" +
-                         "<span class=\"todolist__date\">" + toDay + "</span>" +
-                         "</div>";
-      newDay.appendChild(ul);
-
-      // 如果有以前的日期了则插入最新日期到顶部
-      if(eachDay) {
-        section.insertBefore(newDay, section.firstChild);
-      } else {
-        section.appendChild(newDay);
-      }
-    }
+    var indexTime = "";
+    var taskList = document.createElement("ul");
+    taskList.classList.add("todolist__list");
 
     // !!Caution!! 下面这段代码被执行了很多次，具体原因不知！
     taskType.openCursor(boundKeyRange, "prev").onsuccess = function(e){
       var cursor = e.target.result;
       if(cursor){
-        output += "<li id=\"things_"+ cursor.value.id +"\" class=\"todolist__content "+ cursor.value.level +"\" id-num="+cursor.value.id +">";
-        output +="<div><span class=\"todolist__title\" contenteditable=\"true\" id-num="+cursor.value.id +">"+ cursor.value.title +"</span></div>";
-        output += "<div class=\"icon__todo\">";
-        output += "  <svg class=\"icon icon__nofinish\" aria-hidden=\"true\" name=\"search\" id-num="+cursor.value.id +">";
-        output += "    <use class=\"icon__finish\" xlink:href=\"#icon-eglass-finish1\"></use>";
-        output += "    <use xlink:href=\"#icon-eglass-finish\"></use>";
-        output += "  </svg>";
-        output += "  <svg class=\"icon icon__delete\" aria-hidden=\"true\" name=\"search\" id-num="+cursor.value.id +">";
-        output += "   <use xlink:href=\"#icon-delete\"></use>";
-        output += "  </svg>";
-        output += "</div>";
-        output += "</li>";
+        var taskTime = cursor.value.taskTime;
+        var taskWeek = cursor.value.taskWeek;
+
+        var perTask = document.createElement("li");
+
+        var timeStamp = document.createElement("li");
+        timeStamp.classList.add("todolist__time");
+
+        timeStamp.innerHTML = "<span class='todolist__week'>"+ taskWeek +"</span>" +
+                              "<span class='todolist__date'>" + taskTime + "</span>"
+
+        perTask.setAttribute("id", "things_"+ cursor.value.id);
+        perTask.setAttribute("class", "todolist__content "+ cursor.value.level);
+        perTask.setAttribute("id-num", cursor.value.id);
+        perTask.innerHTML = "<div><span class='todolist__title' contenteditable='true' id-num="+cursor.value.id +">"+ cursor.value.title +"</span></div>"
+               + "<div class='icon__todo'>"
+               + "  <svg class='icon icon__nofinish' aria-hidden='true' name='search' id-num="+cursor.value.id +">"
+               + "    <use class='icon__finish' xlink:href='#icon-eglass-finish1'></use>"
+               + "    <use xlink:href='#icon-eglass-finish'></use>"
+               + "  </svg>"
+               + "  <svg class='icon icon__delete' aria-hidden='true' name='search' id-num="+cursor.value.id +">"
+               + "   <use xlink:href='#icon-delete'></use>"
+               + "  </svg>"
+               + "</div>";
+
+        if(indexTime !== cursor.value.taskTime) {
+          indexTime = cursor.value.taskTime;
+          taskList.appendChild(timeStamp);
+          console.log(taskTime);
+        }
+
+        taskList.appendChild(perTask);
         cursor.continue();
       }
 
-      todolist = document.querySelector(".todolist__list");
-      todolist.innerHTML = output;
-      if(todolist.firstChild) {
-        todolist.firstChild.classList.add("todolist__focus");
+      section.innerHTML = "";
+      section.appendChild(taskList);
+
+      if(taskList.firstChild) {
+        taskList.firstChild.nextSibling.classList.add("todolist__focus");
       }
     };
   };
@@ -177,37 +178,56 @@ var DB = (function() {
     var curThing = input.value;
     var transaction = db.transaction(["todoStore"], "readonly");
     var store = transaction.objectStore("todoStore");
-    var output = "";
-    var todolist;
+    var indexTime = "";
+    var taskList = document.createElement("ul");
     var key = 0;
 
-    // !!Caution!! 下面这段代码被执行了很多次，具体原因不知！
     store.openCursor(null, "prev").onsuccess = function(e){
       var cursor = e.target.result;
       if(cursor){
         if(cursor.value.title.indexOf(curThing) !== -1) {
-          output += "<li id=\"things_"+ cursor.value.id +"\" class=\"todolist__content "+ cursor.value.level +"\" id-num="+cursor.value.id +">";
-          output +="<div><span class=\"todolist__title\" contenteditable=\"true\" id-num="+cursor.value.id +">"+ cursor.value.title +"</span></div>";
-          output += "<div class=\"icon__todo\">";
-          output += "  <svg class=\"icon icon__nofinish\" aria-hidden=\"true\" name=\"search\" id-num="+cursor.value.id +">";
-          output += "    <use class=\"icon__finish\" xlink:href=\"#icon-eglass-finish1\"></use>";
-          output += "    <use xlink:href=\"#icon-eglass-finish\"></use>";
-          output += "  </svg>";
-          output += "  <svg class=\"icon icon__delete\" aria-hidden=\"true\" name=\"search\" id-num="+cursor.value.id +">";
-          output += "   <use xlink:href=\"#icon-delete\"></use>";
-          output += "  </svg>";
-          output += "</div>";
-          output += "</li>";
+          var taskTime = cursor.value.taskTime;
+          var taskWeek = cursor.value.taskWeek;
+
+          var perTask = document.createElement("li");
+
+          var timeStamp = document.createElement("li");
+          timeStamp.classList.add("todolist__time");
+
+          timeStamp.innerHTML = "<span class='todolist__week'>"+ taskWeek +"</span>" +
+                                "<span class='todolist__date'>" + taskTime + "</span>"
+
+          perTask.setAttribute("id", "things_"+ cursor.value.id);
+          perTask.setAttribute("class", "todolist__content "+ cursor.value.level);
+          perTask.setAttribute("id-num", cursor.value.id);
+          perTask.innerHTML = "<div><span class='todolist__title' contenteditable='true' id-num="+cursor.value.id +">"+ cursor.value.title +"</span></div>"
+                 + "<div class='icon__todo'>"
+                 + "  <svg class='icon icon__nofinish' aria-hidden='true' name='search' id-num="+cursor.value.id +">"
+                 + "    <use class='icon__finish' xlink:href='#icon-eglass-finish1'></use>"
+                 + "    <use xlink:href='#icon-eglass-finish'></use>"
+                 + "  </svg>"
+                 + "  <svg class='icon icon__delete' aria-hidden='true' name='search' id-num="+cursor.value.id +">"
+                 + "   <use xlink:href='#icon-delete'></use>"
+                 + "  </svg>"
+                 + "</div>";
+
+          if(indexTime !== cursor.value.taskTime) {
+            indexTime = cursor.value.taskTime;
+            taskList.appendChild(timeStamp);
+            console.log(taskTime);
+          }
+
+          taskList.appendChild(perTask);
           (key < cursor.key) ? key = cursor.key : key;
         }
         cursor.continue();
       }
 
-      // 更新右侧任务详情,首任务聚焦等
-      todolist = document.querySelector(".todolist__list");
-      todolist.innerHTML = output;
-      if(todolist.firstChild) {
-        todolist.firstChild.classList.add("todolist__focus");
+      section.innerHTML = "";
+      section.appendChild(taskList);
+
+      if(taskList.firstChild) {
+        taskList.firstChild.nextSibling.classList.add("todolist__focus");
         showDetail(key);
       }
     };
@@ -285,6 +305,7 @@ var DB = (function() {
     var title = randomContent;
     var taskLevel = ramdomLevel;
     var taskTime = new Date().toLocaleDateString();
+    var taskWeek = toDayString.slice.call(toDayString, 0, 3).toUpperCase();
     var taskType = document.querySelector(".sidebar__act").getAttribute("taskType");
     var transaction = db.transaction(["todoStore"], "readwrite");
     // 请求数据对象
@@ -296,7 +317,8 @@ var DB = (function() {
       detail: null,
       level: taskLevel,
       taskTime: taskTime,
-      taskType: taskType
+      taskType: taskType,
+      taskWeek: taskWeek
     };
 
     // 添加事件
