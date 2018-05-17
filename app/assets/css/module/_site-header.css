@@ -19,17 +19,23 @@
       display: block;
       text-align: center;
       line-height: 12vh;
-      padding: 0 2vh;
+      padding: 0 1vh;
       user-select: none;
     }
 
+    @mixin atMedium {
+      padding: 0 2vh;
+    }
+
     &__fire {
-      font-size: 1.7rem;
-      letter-spacing: 1vh;
+      font-size: 1.5rem;
+      padding-right: .3rem;
       cursor: pointer;
 
       @mixin atMedium {
+        padding-right: 0;
         font-size: 2rem;
+        letter-spacing: 1vh;
       }
     }
 
@@ -38,8 +44,12 @@
     }
 
     &__state {
-      font-size: 3.5vh;
       cursor: pointer;
+      font-size: 1rem;
+
+      @mixin atMedium {
+        font-size: 1.5rem;
+      }
     }
   }
 
@@ -83,6 +93,10 @@
     @mixin atSmall {
       display: flex;
       align-self: center;
+      padding: 0 2vh;
+    }
+
+    @mixin atMedium {
       padding: 0 4vh;
     }
   }

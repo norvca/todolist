@@ -1,20 +1,33 @@
 /* 右侧任务详细描述 */
 .detail {
-    display: none;
+  display: none;
 
   @mixin atSmall {
     display: block;
     box-shadow:  0px 2px 11px 0px #ccc;
+    width: 220px;
+  }
+
+  @mixin atMedium {
+    min-width: 300px;
   }
 
   &__paragraph {
-    margin: 0 2vh 2vh 2vh;
+    margin: 0 1rem 1rem 1rem;
     color: #666;
     height: 90%;
-    font: 3.5vh Helvetica;
+    font: 1.3rem Helvetica;
     outline: none;
-    border: none;
     letter-spacing: .1vh;
+    border: none;
+
+    @mixin atSmall {
+      width: 70%;
+    }
+
+    @mixin atMedium {
+      width: 85%;
+    }
   }
 
   &__paragraph::placeholder {

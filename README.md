@@ -56,4 +56,4 @@ https://norvca.github.io/ToDoList/app
 - [x] ~~SVG 图标内有多个元素, 点击冒泡导致有时点击不到。~~
       给图标里内容添加 pointer-events: none; 属性
 - [ ] 点击左侧菜单栏时右侧任务详情更新不及时
-- [ ] 在中等宽度 (ipad) 页面显示不够好
+- [x] ~~在中等宽度 (ipad) 页面显示不够好~~
