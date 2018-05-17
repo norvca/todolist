@@ -24,7 +24,7 @@ https://norvca.github.io/ToDoList/app
 
 ### 基本功能演示
 
-![](http://g.recordit.co/xDpJkWav81.gif)
+![](http://g.recordit.co/Mk7Wi0lryD.gif)
 
 
 
@@ -53,9 +53,9 @@ https://norvca.github.io/ToDoList/app
 
 ## 已知问题
 
-- [x] ~~日期功能有问题，新的日期栏会覆盖旧的日期栏~~
+- [x] ~~时间戳功能有问题，新的时间戳栏会覆盖旧的日期栏~~
 
-      把日期放入 indexedDB 的 openCursor 游标里来进行判断是否添加
+      通过 indexedDB 的 openCursor 游标里各项任务的时间属性 来判断是否添加新的时间戳
 
 - [x] ~~元素 contenteditable 属性可供点选的范围会超过元素本身。~~
 
@@ -71,4 +71,4 @@ https://norvca.github.io/ToDoList/app
 
 - [x] ~~在中等宽度 (ipad) 页面显示不够好~~
 
-- [x] 数据库中 [xxx.openCursor().onsuccess](https://github.com/norvca/ToDoList/blob/1935a84e905c1bcc7dcb5afc021bc6603b771977/app/assets/js/modules/DB.js#L132)  里的代码里的代码会执行多次
+- [ ] ~~数据库中  [xxx.openCursor().onsuccess](https://github.com/norvca/ToDoList/blob/1935a84e905c1bcc7dcb5afc021bc6603b771977/app/assets/js/modules/DB.js#L132)   里的代码里的代码会多执行一次~~

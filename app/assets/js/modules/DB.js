@@ -60,7 +60,6 @@ var DB = (function() {
     var taskTime = new Date().toLocaleDateString();
     var taskWeek = toDayString.slice.call(toDayString, 0, 3).toUpperCase();
     var taskType = document.querySelector(".sidebar__act").getAttribute("taskType");
-    console.log(taskWeek)
     var transaction = db.transaction(["todoStore"], "readwrite");
     // 请求数据对象
     var store = transaction.objectStore("todoStore");
@@ -109,21 +108,21 @@ var DB = (function() {
     var taskList = document.createElement("ul");
     taskList.classList.add("todolist__list");
 
-    // !!Caution!! 下面这段代码被执行了很多次，具体原因不知！
+    // 用游标来搜索与展示每一条任务
     taskType.openCursor(boundKeyRange, "prev").onsuccess = function(e){
       var cursor = e.target.result;
       if(cursor){
         var taskTime = cursor.value.taskTime;
         var taskWeek = cursor.value.taskWeek;
-
         var perTask = document.createElement("li");
-
         var timeStamp = document.createElement("li");
-        timeStamp.classList.add("todolist__time");
 
+        // 创建时间戳
+        timeStamp.classList.add("todolist__time");
         timeStamp.innerHTML = "<span class='todolist__week'>"+ taskWeek +"</span>" +
                               "<span class='todolist__date'>" + taskTime + "</span>"
 
+        // 单项任务的属性设计
         perTask.setAttribute("id", "things_"+ cursor.value.id);
         perTask.setAttribute("class", "todolist__content "+ cursor.value.level);
         perTask.setAttribute("id-num", cursor.value.id);
@@ -138,21 +137,25 @@ var DB = (function() {
                + "  </svg>"
                + "</div>";
 
+        // 如果时间戳不等于任务的时间戳，那就添加新的时间戳
         if(indexTime !== cursor.value.taskTime) {
           indexTime = cursor.value.taskTime;
           taskList.appendChild(timeStamp);
-          console.log(taskTime);
         }
 
         taskList.appendChild(perTask);
         cursor.continue();
-      }
 
-      section.innerHTML = "";
-      section.appendChild(taskList);
+      } else {
+        // 符合条件的数据遍历完后
+        // 页面展示任务
+        section.innerHTML = "";
+        section.appendChild(taskList);
 
-      if(taskList.firstChild) {
-        taskList.firstChild.nextSibling.classList.add("todolist__focus");
+        // 首任务聚焦
+        if(taskList.firstChild) {
+          taskList.firstChild.nextSibling.classList.add("todolist__focus");
+        }
       }
     };
   };
@@ -167,7 +170,6 @@ var DB = (function() {
     request.onsuccess = function(){
       var data = request.result;
       data[type] = newText;
-
       store.put(data);
     };
   };
@@ -181,6 +183,7 @@ var DB = (function() {
     var indexTime = "";
     var taskList = document.createElement("ul");
     var key = 0;
+    taskList.classList.add("todolist__list");
 
     store.openCursor(null, "prev").onsuccess = function(e){
       var cursor = e.target.result;
@@ -188,15 +191,15 @@ var DB = (function() {
         if(cursor.value.title.indexOf(curThing) !== -1) {
           var taskTime = cursor.value.taskTime;
           var taskWeek = cursor.value.taskWeek;
-
           var perTask = document.createElement("li");
-
           var timeStamp = document.createElement("li");
-          timeStamp.classList.add("todolist__time");
 
+          // 创建时间戳
+          timeStamp.classList.add("todolist__time");
           timeStamp.innerHTML = "<span class='todolist__week'>"+ taskWeek +"</span>" +
                                 "<span class='todolist__date'>" + taskTime + "</span>"
 
+          // 单项任务的属性设计
           perTask.setAttribute("id", "things_"+ cursor.value.id);
           perTask.setAttribute("class", "todolist__content "+ cursor.value.level);
           perTask.setAttribute("id-num", cursor.value.id);
@@ -211,24 +214,27 @@ var DB = (function() {
                  + "  </svg>"
                  + "</div>";
 
+          // 如果时间戳不等于任务的时间戳，那就添加新的时间戳
           if(indexTime !== cursor.value.taskTime) {
             indexTime = cursor.value.taskTime;
             taskList.appendChild(timeStamp);
-            console.log(taskTime);
           }
 
           taskList.appendChild(perTask);
           (key < cursor.key) ? key = cursor.key : key;
         }
         cursor.continue();
-      }
+      } else {
+        // 符合条件的数据遍历完后
+        // 页面展示任务
+        section.innerHTML = "";
+        section.appendChild(taskList);
 
-      section.innerHTML = "";
-      section.appendChild(taskList);
-
-      if(taskList.firstChild) {
-        taskList.firstChild.nextSibling.classList.add("todolist__focus");
-        showDetail(key);
+        // 首任务聚焦
+        if(taskList.firstChild) {
+          taskList.firstChild.nextSibling.classList.add("todolist__focus");
+          showDetail(key);
+        }
       }
     };
   };
