@@ -24,7 +24,7 @@ https://norvca.github.io/ToDoList/app
 
 ### 基本功能演示
 
-![](http://g.recordit.co/Mk7Wi0lryD.gif)
+![](http://g.recordit.co/0hhMlzvanm.gif)
 
 
 
