@@ -17,13 +17,29 @@ var todolistModule = (function() {
 
   // 任务已完成功能
   var finishTask = function(e){
-    if( e.target.classList.contains("icon__nofinish")){
+    var taskList = document.querySelector('.todolist__list');
+
+    if(e.target.classList.contains("icon__nofinish")){
       var idNum = parseInt( e.target.getAttribute("id-num") );
       db.modifyThings(idNum, "taskType", "finish");
 
       // 删除页面上的数据
       var ele = document.querySelector("#things_"+ idNum);
+      var hasPrevTask = ele.previousSibling.classList.contains('todolist__content');
+      var NextTask = ele.nextSibling;
+
+      // 判断是否需要删除时间戳
+      if( (!hasPrevTask && NextTask == null) || (!hasPrevTask && !NextTask.classList.contains('todolist__content')) ) {
+        ele.parentNode.removeChild(ele.previousSibling);
+      }
+
+      // 删除页面任务
       ele.parentNode.removeChild(ele);
+
+      // 首任务聚焦
+      if(taskList.firstChild) {
+        taskList.firstChild.nextSibling.classList.add("todolist__focus");
+      }
     }
   };
 
