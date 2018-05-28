@@ -1,7 +1,7 @@
 // 定义页面头部处理程序模块
 var headerModule = (function() {
   // 加载数据库模块
-  var db = require("./DB");
+  var db = require("./BackendDB");
   var helperFunction = require("./HelperFunction");
 
 
@@ -24,8 +24,8 @@ var headerModule = (function() {
     var ContentIndex = parseInt(Math.random()*randomContentNow.length);
     var LevelIndex = parseInt(Math.random()*3);
     var typeValue = document.querySelector(".sidebar__act").getAttribute("taskType");
-    db.randomThingsNow(randomContentNow[ContentIndex], randomLevel[LevelIndex]);
-    db.showTypeThings("taskType", typeValue);
+    db.addRandomTask(randomContentNow[ContentIndex], randomLevel[LevelIndex]);
+    db.showTask("taskType", typeValue);
   };
 
   // 开启查找任务功能

@@ -18,6 +18,8 @@
     "webpack": "^4.6.0"
   },
   "dependencies": {
-    "normalize.css": "^8.0.0"
+    "normalize.css": "^8.0.0",
+    "pouchdb": "^6.4.3",
+    "pouchdb-find": "^6.4.3"
   }
 }

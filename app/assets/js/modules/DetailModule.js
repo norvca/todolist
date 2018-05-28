@@ -1,7 +1,7 @@
 // 定义右侧详情模块
 var detailModule = (function(){
   // 加载数据库模块
-  var db = require("./DB");
+  // var db = require("./DB");
 
 
   // 更新任务详情功能

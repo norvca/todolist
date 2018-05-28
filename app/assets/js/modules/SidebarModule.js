@@ -1,7 +1,7 @@
 // 定义页面左侧导航处理程序模块
 var sidebarModule = (function() {
   // 加载数据库模块
-  var db = require("./DB");
+  var db = require("./BackendDB");
 
   // 变量声明
   var levelBox = [0,1,2];
@@ -23,15 +23,7 @@ var sidebarModule = (function() {
 
       // 展示不同类型任务到页面
       var typeValue = target.getAttribute("taskType");
-      db.showTypeThings("taskType", typeValue);
-
-      // 更新右侧任务详情，异步程序使用 promise
-      db.returnFocusId("taskType", typeValue)
-        .then(function(data) {
-          db.showDetail(data);
-        }).catch(function(err) {
-          db.showDetail(err);
-        });
+      db.showTask("taskType", typeValue);
     }
     // 点击到了任务等级的话
     else if (target.classList.contains("sidebar__list-level")) {
@@ -47,14 +39,6 @@ var sidebarModule = (function() {
       // 给当前任务等级添加 active
       thisLevel.classList.add("active");
       db.showTypeThings("level", levelValue);
-
-      // 更新右侧任务详情，异步程序使用 promise
-      db.returnFocusId("level", levelValue)
-        .then(function(data) {
-          db.showDetail(data);
-        }).catch(function(err) {
-          db.showDetail(err);
-        });
     }
   };
 

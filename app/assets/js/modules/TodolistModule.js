@@ -1,7 +1,7 @@
 // 定义主任务界面模块
 var todolistModule = (function() {
   // 加载数据库模块
-  var db = require("./DB");
+  // var db = require("./DB");
 
 
   // 修改任务标题功能
