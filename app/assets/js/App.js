@@ -1,4 +1,4 @@
 require("./modules/Handler");
+var db = require("./modules/BackendDB")
 
-// 打开数据库
-// db.initDB();
+db.initDB();

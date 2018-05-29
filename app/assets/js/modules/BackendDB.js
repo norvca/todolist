@@ -64,7 +64,7 @@ var backendDB = (function() {
 
   // 从数据库中读取数据然后渲染到页面
   var showTask = function(indexType, value) {
-    db.createIndex({
+    return db.createIndex({
       index: {fields: [indexType]}
     }).then(function() {
 
@@ -225,37 +225,30 @@ var backendDB = (function() {
 
   // 删除全部数据
   var deleteAllThings = function(){
-    db.destroy().then(function() {
+    db.allDocs().then(function (result) {
+      return Promise.all(result.rows.map(function (row) {
+        return db.remove(row.id, row.value.rev);
+      }));
+    }).then(function () {
       window.location.href = "index.html";
-    }).catch(function(err) {
+    }).catch(function (err) {
       console.log(err + "删除数据库失败！");
     });
   };
 
-
-  // // 同步数据库
-  // var sync = function() {
-  //   var opts = {live: true};
-  //   db.sync(remoteDB, opts, syncError);
-  // };
-
-  // var syncError = function() {
-  //   console.log("there is a error in sync");
-  // };
-
-  // 检测数据库数据有变化就同步到远程
-  // db.changes({
-  //   since: 'now',
-  //   live: true,
-  //   include_docs: true
-  // }).on('change', sync);
-
-  // if(remoteDB) {
-  //   sync();
-  // }
-
   // 第一次载入页面就显示任务条
-  showTask("taskType", "work");
+  var initDB = function() {
+    var promise = showTask("taskType", "work");
+
+    // 同步至本地couchDB
+    promise.then(function() {
+      db.sync("http://norvca:098098098@127.0.0.1:5984/todolist", {
+        live:true,
+        retry: true
+      });
+    });
+  }
+
 
   return {
     addRandomTask,
@@ -263,7 +256,8 @@ var backendDB = (function() {
     searchTask,
     modifyTask,
     showDetail,
-    deleteAllThings
+    deleteAllThings,
+    initDB
   };
 })();
 

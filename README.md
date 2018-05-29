@@ -8,13 +8,13 @@
 
 ## 项目特点
 
-用 js 配合 indexedDB 实现 的 ToDoList 
+用 js 配合 CouchDB实现 的 ToDoList 
 
 
 
 ## 技术栈
 
-ES5 + indexedDB + CSS3 
+ES5 +  CSS3 + CouchDB
 
 
 
