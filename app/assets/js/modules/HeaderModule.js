@@ -41,15 +41,7 @@ var headerModule = (function() {
       input.value = "";
 
       if(!input.classList.contains("act-color")) {
-        db.showTypeThings("taskType", typeValue);
-
-        // 更新右侧任务详情，异步程序使用 promise
-        db.returnFocusId("taskType", typeValue)
-          .then(function(data) {
-            db.showDetail(data);
-          }).catch(function(err) {
-            db.showDetail(err);
-          });
+        db.showTask("taskType", typeValue);
       }
     }
   };
@@ -58,7 +50,7 @@ var headerModule = (function() {
   // 查找任务功能
   var searchTask = function(e){
     if( e.target.classList.contains("act-color") ){
-      db.searchThings(this.value);
+      db.searchTask(this.value);
     }
   };
 
@@ -92,8 +84,8 @@ var headerModule = (function() {
     if( !input.value ){
       return;
     } else {
-      db.addThings();
-      db.showTypeThings("taskType", typeValue);
+      db.addRandomTask();
+      db.showTask("taskType", typeValue);
       input.value = "";
     }
   };
@@ -110,8 +102,8 @@ var headerModule = (function() {
     // 焦点在搜索栏并按回车
     if(document.activeElement.value) {
       if (key == 13 && document.activeElement.tagName.toUpperCase() === "INPUT") {
-        db.addThings();
-        db.showTypeThings("taskType", typeValue);
+        db.addRandomTask();
+        db.showTask("taskType", typeValue);
         input.value = "";
       }
     }

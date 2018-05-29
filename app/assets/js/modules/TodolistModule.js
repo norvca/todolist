@@ -1,44 +1,51 @@
 // 定义主任务界面模块
 var todolistModule = (function() {
   // 加载数据库模块
-  // var db = require("./DB");
+  var db = require("./BackendDB");
+
+  // 定义变量
 
 
   // 修改任务标题功能
   var changeTaskTitle = function(e){
     if(e.target.tagName.toUpperCase() === "SPAN"){
-      var idNum = parseInt( e.target.getAttribute("id-num") );
-      var newText = e.target.innerText;
+      var idNum = e.target.getAttribute("idnum");
+      var newTitle = e.target.innerText;
 
-      db.modifyThings(idNum, "title", newText);
+      db.modifyTask(idNum, "title", newTitle);
     }
   };
 
 
   // 任务已完成功能
   var finishTask = function(e){
-    var taskList = document.querySelector('.todolist__list');
-
+    var taskList = document.querySelector(".todolist__list");
+    var focusedTask = document.querySelector(".todolist__focus");
     if(e.target.classList.contains("icon__nofinish")){
-      var idNum = parseInt( e.target.getAttribute("id-num") );
-      db.modifyThings(idNum, "taskType", "finish");
-
+      var idNum = e.target.getAttribute("idnum");
+      db.modifyTask(idNum, "taskType", "finish");
       // 删除页面上的数据
-      var ele = document.querySelector("#things_"+ idNum);
-      var hasPrevTask = ele.previousSibling.classList.contains('todolist__content');
+      var ele = e.target.parentNode.parentNode;
+      var hasPrevTask = ele.previousSibling.classList.contains("todolist__content");
       var NextTask = ele.nextSibling;
 
       // 判断是否需要删除时间戳
-      if( (!hasPrevTask && NextTask == null) || (!hasPrevTask && !NextTask.classList.contains('todolist__content')) ) {
+      if( (!hasPrevTask && NextTask == null) || (!hasPrevTask && !NextTask.classList.contains("todolist__content")) ) {
         ele.parentNode.removeChild(ele.previousSibling);
       }
 
       // 删除页面任务
       ele.parentNode.removeChild(ele);
-
       // 首任务聚焦
       if(taskList.firstChild) {
-        taskList.firstChild.nextSibling.classList.add("todolist__focus");
+        // 删除的正好是焦点任务就重新聚焦
+        if(ele === focusedTask) {
+          var firstTask = taskList.firstChild.nextSibling;
+          firstTask.classList.add("todolist__focus");
+          db.showDetail(firstTask.getAttribute("idnum"));
+        }
+      } else {
+        db.showDetail();
       }
     }
   };
@@ -46,28 +53,34 @@ var todolistModule = (function() {
 
   // 任务删除功能
   var deleteTask = function(e){
-    var taskList = document.querySelector('.todolist__list');
-
+    var taskList = document.querySelector(".todolist__list");
+    var focusedTask = document.querySelector(".todolist__focus");
     if(e.target.classList.contains("icon__delete")){
-      var idNum = parseInt( e.target.getAttribute("id-num") );
-      db.modifyThings(idNum, "taskType", "bin");
+      var idNum = e.target.getAttribute("idnum");
+      db.modifyTask(idNum, "taskType", "bin");
 
       // 删除页面上的数据
-      var ele = document.querySelector("#things_"+ idNum);
-      var hasPrevTask = ele.previousSibling.classList.contains('todolist__content');
+      var ele = e.target.parentNode.parentNode;
+      var hasPrevTask = ele.previousSibling.classList.contains("todolist__content");
       var NextTask = ele.nextSibling;
 
       // 判断是否需要删除时间戳
-      if( (!hasPrevTask && NextTask == null) || (!hasPrevTask && !NextTask.classList.contains('todolist__content')) ) {
+      if( (!hasPrevTask && NextTask == null) || (!hasPrevTask && !NextTask.classList.contains("todolist__content")) ) {
         ele.parentNode.removeChild(ele.previousSibling);
       }
 
       // 删除页面任务
       ele.parentNode.removeChild(ele);
-
       // 首任务聚焦
       if(taskList.firstChild) {
-        taskList.firstChild.nextSibling.classList.add("todolist__focus");
+        // 删除的正好是焦点任务就重新聚焦
+        if(ele === focusedTask) {
+          var firstTask = taskList.firstChild.nextSibling;
+          firstTask.classList.add("todolist__focus");
+          db.showDetail(firstTask.getAttribute("idnum"));
+        }
+      } else {
+        db.showDetail();
       }
     }
   };
@@ -77,7 +90,7 @@ var todolistModule = (function() {
   var showTaskDetail = function(e){
     if(e.target.classList.contains("todolist__content")){
       var childNodes = e.target.parentNode.childNodes;
-      var taskID = parseInt( e.target.getAttribute("id-num") );
+      var taskID = e.target.getAttribute("idnum");
       childNodes.forEach(function(e){
         e.classList.remove("todolist__focus");
       });

@@ -17,14 +17,14 @@ var helperFunction = (function() {
   // 搜索激活状态时给搜索栏上色
   var inActColor = function(ele) {
     return ele.classList.toggle("act-color");
-  }
+  };
 
   // 任务等级小圆点颜色、属性的切换
   var toggleLevel = function(level1, level2, value) {
     get_level_element().classList.remove(level1);
     get_level_element().classList.add(level2);
     get_level_element().setAttribute("level", value);
-  }
+  };
 
   return {
     get_input_element,

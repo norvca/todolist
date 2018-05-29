@@ -38,7 +38,7 @@ var sidebarModule = (function() {
       });
       // 给当前任务等级添加 active
       thisLevel.classList.add("active");
-      db.showTypeThings("level", levelValue);
+      db.showTask("level", levelValue);
     }
   };
 
