@@ -19,7 +19,19 @@ var backendDB = (function() {
 
   // 创建数据库
   var db = new PouchDB("todolist");
-  // var remoteDB = "http://norvca:098098098@127.0.0.1:5984/todolist";
+
+  // 第一次载入页面就显示任务条
+  var initDB = function() {
+    var promise = showTask("taskType", "work");
+
+    // 同步至本地couchDB
+    promise.then(function() {
+      db.sync("http://norvca:098098098@127.0.0.1:5984/todolist", {
+        live:true,
+        retry: true
+      });
+    });
+  }
 
   // 添加数据到数据库
   var addRandomTask = function(randomContent, ramdomLevel) {
@@ -235,19 +247,6 @@ var backendDB = (function() {
       console.log(err + "删除数据库失败！");
     });
   };
-
-  // 第一次载入页面就显示任务条
-  var initDB = function() {
-    var promise = showTask("taskType", "work");
-
-    // 同步至本地couchDB
-    promise.then(function() {
-      db.sync("http://norvca:098098098@127.0.0.1:5984/todolist", {
-        live:true,
-        retry: true
-      });
-    });
-  }
 
 
   return {
