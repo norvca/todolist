@@ -26,7 +26,7 @@ var backendDB = (function() {
 
     // 同步至本地couchDB
     promise.then(function() {
-      db.sync("http://norvca:098098098@127.0.0.1:5984/todolist", {
+      db.sync("https://a98401d4-bcd9-49e8-a062-249b780de5d4-bluemix:786692f7bb9a7e66433a5744d6328e6aef80f7acf3aaff322dca60e938a20328@a98401d4-bcd9-49e8-a062-249b780de5d4-bluemix.cloudant.com/todolist", {
         live:true,
         retry: true
       });
@@ -34,7 +34,7 @@ var backendDB = (function() {
   }
 
   // 添加数据到数据库
-  var addRandomTask = function(randomContent, ramdomLevel) {
+  var addTask = function(randomContent, ramdomLevel) {
     var title = input.value;
     var taskLevel = level.getAttribute("level");
     var taskTime = new Date().toLocaleDateString();
@@ -250,7 +250,7 @@ var backendDB = (function() {
 
 
   return {
-    addRandomTask,
+    addTask,
     showTask,
     searchTask,
     modifyTask,

@@ -24,7 +24,7 @@ var headerModule = (function() {
     var ContentIndex = parseInt(Math.random()*randomContentNow.length);
     var LevelIndex = parseInt(Math.random()*3);
     var typeValue = document.querySelector(".sidebar__act").getAttribute("taskType");
-    db.addRandomTask(randomContentNow[ContentIndex], randomLevel[LevelIndex]);
+    db.addTask(randomContentNow[ContentIndex], randomLevel[LevelIndex]);
     db.showTask("taskType", typeValue);
   };
 
@@ -84,7 +84,7 @@ var headerModule = (function() {
     if( !input.value ){
       return;
     } else {
-      db.addRandomTask();
+      db.addTask();
       db.showTask("taskType", typeValue);
       input.value = "";
     }
@@ -102,7 +102,7 @@ var headerModule = (function() {
     // 焦点在搜索栏并按回车
     if(document.activeElement.value) {
       if (key == 13 && document.activeElement.tagName.toUpperCase() === "INPUT") {
-        db.addRandomTask();
+        db.addTask();
         db.showTask("taskType", typeValue);
         input.value = "";
       }
