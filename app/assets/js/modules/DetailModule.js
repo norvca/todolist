@@ -3,7 +3,6 @@ var detailModule = (function(){
   // 加载数据库模块
   var db = require("./BackendDB");
 
-
   // 更新任务详情功能
   var refreshDetail = function(){
     var focusTask = document.querySelector(".todolist__focus");

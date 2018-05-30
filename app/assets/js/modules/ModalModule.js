@@ -6,7 +6,7 @@ var modalModule = (function() {
   var isDeleteDB = function(e){
     if( e.target.classList.contains("modal__btn-yes") ) {
       this.classList.remove("modal--visible");
-      db.deleteAllThings();
+      db.deleteAllTasks();
     } else if ( e.target.classList.contains("modal__btn-no") ) {
       this.classList.remove("modal--visible");
     }

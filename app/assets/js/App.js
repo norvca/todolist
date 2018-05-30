@@ -1,4 +1,6 @@
-require("./modules/Handler");
-var db = require("./modules/BackendDB")
+;(function(){
+  require("./modules/Handler");
+  require("./modules/BackendDB")
+})();
 
-db.initDB();
+
