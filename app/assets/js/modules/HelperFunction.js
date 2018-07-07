@@ -34,4 +34,4 @@ var helperFunction = (function() {
   };
 })();
 
-module.exports = helperFunction;
+export {helperFunction};

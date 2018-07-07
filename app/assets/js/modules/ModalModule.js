@@ -1,7 +1,7 @@
-var modalModule = (function() {
-  // 加载数据库模块
-  var db = require("./BackendDB");
+// 加载数据库模块
+import {backendDB as db} from "./BackendDB";
 
+var modalModule = (function() {
   // 是否清空数据库功能
   var isDeleteDB = function(e){
     if( e.target.classList.contains("modal__btn-yes") ) {
@@ -17,4 +17,4 @@ var modalModule = (function() {
   };
 })();
 
-module.exports = modalModule;
+export {modalModule};

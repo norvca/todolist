@@ -1,13 +1,12 @@
+// 模块加载
 import PouchDB from "pouchdb";
-PouchDB.plugin(require("pouchdb-find").default);
-// 官网介绍的引入方式是错的，下面同样可以实现
-// import PouchdbFind from "pouchdb-find";
-// PouchDB.plugin(PouchdbFind);
+import PouchdbFind from "pouchdb-find";
+import {helperFunction} from "./HelperFunction";
 
 // 数据库模块
-var pouchDB = (function() {
-  // 加载其他模块
-  var helperFunction = require("./HelperFunction");
+const pouchDB = (function() {
+  // 加载 PouchDB 插件
+  PouchDB.plugin(PouchdbFind);
 
   // 定义变量
   var toDayString = new Date().toString();
@@ -19,9 +18,6 @@ var pouchDB = (function() {
 
   // 创建数据库
   var db = new PouchDB("todolist");
-
-  // 第一次载入页面就显示任务条
-  // var promise = showTask("taskType", "work");
 
   // // 同步至本地couchDB
   // promise.then(function() {
@@ -246,6 +242,8 @@ var pouchDB = (function() {
     });
   };
 
+  // 第一次载入页面就显示任务条
+  var promise = showTask("taskType", "work");
 
   return {
     addTask,
@@ -257,4 +255,4 @@ var pouchDB = (function() {
   };
 })();
 
-module.exports = pouchDB;
+export {pouchDB};

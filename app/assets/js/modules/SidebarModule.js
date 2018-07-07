@@ -1,8 +1,8 @@
+// 加载中间件模块
+import {backendDB as db} from "./BackendDB";
+
 // 定义页面左侧导航处理程序模块
 var sidebarModule = (function() {
-  // 加载数据库模块
-  var db = require("./BackendDB");
-
   // 变量声明
   var levelBox = [0,1,2];
   var modal = document.querySelector(".modal");
@@ -55,5 +55,5 @@ var sidebarModule = (function() {
 
 })();
 
-module.exports = sidebarModule;
+export {sidebarModule};
 

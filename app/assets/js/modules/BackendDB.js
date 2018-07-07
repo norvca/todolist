@@ -1,9 +1,8 @@
-// 定义接口
-var backendDB = (function() {
-  // 加载数据库模块
-  var db = require("./PouchDB");
-  // 或者 var db = require("./IndexedDB");
+// 加载数据库模块
+import {pouchDB as db} from "./PouchDB";
 
+// 定义接口
+const backendDB = (function() {
   // 添加任务
   var addTask = function(randomContent, ramdomLevel) {
     db.addTask(randomContent, ramdomLevel);
@@ -44,4 +43,4 @@ var backendDB = (function() {
   }
 })();
 
-module.exports = backendDB;
+export {backendDB};

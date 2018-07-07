@@ -1,13 +1,13 @@
+// 加载各模块
+import {headerModule} from "./HeaderModule";
+import {sidebarModule} from "./SidebarModule";
+import {todolistModule} from "./TodolistModule";
+import {detailModule} from "./DetailModule";
+import {modalModule} from "./ModalModule";
+import {helperFunction} from "./HelperFunction";
+
 // 定义事件处理函数
 var handler = (function() {
-  // 加载各模块
-  var headerModule = require("./HeaderModule");
-  var sidebarModule = require("./SidebarModule");
-  var todolistModule = require("./TodolistModule");
-  var detailModule = require("./DetailModule");
-  var modalModule = require("./ModalModule");
-  var helperFunction = require("./HelperFunction");
-
   // 变量声明
   var randomFire = document.querySelector(".site-header__random-task__fire");
   var searchbox = document.querySelector(".site-header__search-box__content");
@@ -75,4 +75,4 @@ var handler = (function() {
   modal.addEventListener("click", modalModule.isDeleteDB);
 })();
 
-module.exports = handler;
+export {handler};

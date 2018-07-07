@@ -1,10 +1,9 @@
+// 加载中间件模块
+import {backendDB as db} from "./BackendDB";
+import {helperFunction} from "./HelperFunction";
+
 // 定义页面头部处理程序模块
 var headerModule = (function() {
-  // 加载数据库模块
-  var db = require("./BackendDB");
-  var helperFunction = require("./HelperFunction");
-
-
   // 变量声明
   var randomContentNow = ["读完那本英文原著", "中午去睡个好觉", "日语入门学习", "尝试做些家常菜", "了解一些设计常识"];
   var randomLevel = ["bgc-light", "bgc-usual", "bgc-heavy"];
@@ -133,4 +132,4 @@ var headerModule = (function() {
 
 })();
 
-module.exports = headerModule;
+export {headerModule};

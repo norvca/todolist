@@ -1,11 +1,8 @@
+// 加载中间件模块
+import {backendDB as db} from "./BackendDB";
+
 // 定义主任务界面模块
 var todolistModule = (function() {
-  // 加载数据库模块
-  var db = require("./BackendDB");
-
-  // 定义变量
-
-
   // 修改任务标题功能
   var changeTaskTitle = function(e){
     if(e.target.tagName.toUpperCase() === "SPAN"){
@@ -109,5 +106,5 @@ var todolistModule = (function() {
 
 })();
 
-module.exports = todolistModule;
+export {todolistModule};
 
