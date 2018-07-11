@@ -89,9 +89,7 @@ const headerModule = {
 
 
   // 按回车键添加任务功能
-  addTask2(e) {
-    // 兼容FF和IE和Opera
-    const event = e || window.event;
+  addTask2(event = window.event) {
     const key = event.which || event.keyCode || event.charCode;
     // 获取左侧栏目对应事件类型
     const typeValue = document.querySelector(".sidebar__act").getAttribute("taskType");

@@ -6,22 +6,21 @@ import {detailModule} from "./DetailModule";
 import {modalModule} from "./ModalModule";
 import {helperFunction} from "./HelperFunction";
 
+// 变量声明
+const randomFire = document.querySelector(".site-header__random-task__fire");
+const searchbox = document.querySelector(".site-header__search-box__content");
+const addBtn = document.querySelector(".icon__add");
+const themeBtn = document.querySelector(".site-header__theme-btn");
+const sidebarContent = document.querySelector(".sidebar__content");
+const deleteData = document.querySelector(".sidebar__delete");
+const section = document.querySelector(".todolist");
+const detail = document.querySelector(".detail__paragraph");
+const modal = document.querySelector(".modal");
+const input = helperFunction.get_input_element();
+const level = helperFunction.get_level_element();
 
 // 定义事件处理函数
 const handler = (function() {
-  // 变量声明
-  const randomFire = document.querySelector(".site-header__random-task__fire");
-  const searchbox = document.querySelector(".site-header__search-box__content");
-  const addBtn = document.querySelector(".icon__add");
-  const themeBtn = document.querySelector(".site-header__theme-btn");
-  const sidebarContent = document.querySelector(".sidebar__content");
-  const deleteData = document.querySelector(".sidebar__delete");
-  const section = document.querySelector(".todolist");
-  const detail = document.querySelector(".detail__paragraph");
-  const modal = document.querySelector(".modal");
-  const input = helperFunction.get_input_element();
-  const level = helperFunction.get_level_element();
-
   // site-header 区域
   // 点击触发随机事件
   randomFire.addEventListener("click", headerModule.randomTask);

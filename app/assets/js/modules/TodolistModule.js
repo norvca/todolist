@@ -88,7 +88,7 @@ const todolistModule = {
     if(e.target.classList.contains("todolist__content")){
       const childNodes = e.target.parentNode.childNodes;
       const taskID = e.target.getAttribute("idnum");
-      childNodes.forEach(function(e){
+      childNodes.forEach(e => {
         e.classList.remove("todolist__focus");
       });
 

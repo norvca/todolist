@@ -59,11 +59,9 @@ const pouchDB = {
     }
 
 
-    db.put(todo).then(function() {
+    db.put(todo).then(() => {
       console.log("添加到数据库成功！");
-    }).catch(function(err) {
-      console.log(err);
-    });
+    }).catch(err => {console.log(err)});
   },
 
 
@@ -71,7 +69,7 @@ const pouchDB = {
   showTask(indexType, value) {
     return db.createIndex({
       index: {fields: [indexType]}
-    }).then(function() {
+    }).then(() => {
 
       // 按照任务类别来显示
       if(indexType === "taskType") {
@@ -80,9 +78,7 @@ const pouchDB = {
             taskType: value
           },
           sort: [{taskType: "desc"}]
-        }).then(function(result) {
-          pouchDB.redrawTasksUI(result.docs);
-        });
+        }).then(result => {pouchDB.redrawTasksUI(result.docs)});
 
       // 按照任务等级来显示
       } else {
@@ -91,9 +87,7 @@ const pouchDB = {
             level: value
           },
           sort: [{level: "desc"}]
-        }).then(function(result) {
-          pouchDB.redrawTasksUI(result.docs);
-        });
+        }).then(result => {pouchDB.redrawTasksUI(result.docs)});
       }
     });
   },
@@ -103,7 +97,7 @@ const pouchDB = {
     let indexTime = "";
     const taskList = document.createElement("ul");
     taskList.classList.add("todolist__list");
-    tasks.forEach(function(element) {
+    tasks.forEach(element => {
 
       // 如果时间戳不等于任务的时间戳，那就添加时间戳
       if (indexTime !== element.taskTime) {
@@ -171,8 +165,9 @@ const pouchDB = {
     db.allDocs({
       include_docs: true,
       descending: true
-    }).then(function(result) {
-      result.rows.forEach(function(element) {
+    }).then(result => {
+      result.rows.forEach(element => {
+
         element = element.doc;
         if( element.title && element.title.indexOf(value) !== -1 ) {
 
@@ -204,17 +199,17 @@ const pouchDB = {
 
   // 修改任务数据
   modifyTask(idNum , attr, value) {
-    db.get(idNum).then(function(doc) {
+    db.get(idNum).then( doc => {
       doc[attr] = value;
       db.put(doc);
-    });
+    })
   },
 
 
   // 显示右侧任务详情
   showDetail(id){
     if(id) {
-      db.get(id).then(function(doc) {
+      db.get(id).then( doc => {
         const title = doc.title;
         const text = doc.detail;
         detail.previousElementSibling.innerText = title;
@@ -230,13 +225,13 @@ const pouchDB = {
 
   // 删除全部数据
   deleteAllTasks(){
-    db.allDocs().then(function (result) {
-      return Promise.all(result.rows.map(function (row) {
+    db.allDocs().then( result => {
+      return Promise.all(result.rows.map( row => {
         return db.remove(row.id, row.value.rev);
       }));
-    }).then(function () {
+    }).then( () => {
       window.location.href = "index.html";
-    }).catch(function (err) {
+    }).catch( err => {
       console.log(err + "删除数据库失败！");
     });
   }

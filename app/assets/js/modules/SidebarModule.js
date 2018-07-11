@@ -15,7 +15,7 @@ const sidebarModule = {
 
     // 点击到了任务类别的话
     if( target.classList.contains("sidebar__list-type")) {
-      lis.forEach(function(ele){
+      lis.forEach(ele => {
         ele.classList.remove("sidebar__act");
       });
       target.classList.add("sidebar__act");
@@ -32,7 +32,7 @@ const sidebarModule = {
       const levelValue = thisLevel.getAttribute("level");
 
       // 去除 active 类名
-      Array.prototype.forEach.call(levels, function(e){
+      Array.prototype.forEach.call(levels, e => {
         e.classList.remove("active");
       });
       // 给当前任务等级添加 active

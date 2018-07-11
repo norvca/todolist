@@ -5,10 +5,10 @@ import {backendDB as db} from "./BackendDB";
 const detailModule = {
   // 更新任务详情功能
   refreshDetail(){
-    var focusTask = document.querySelector(".todolist__focus");
-    var idNum = focusTask.getAttribute("idnum");
-    var detailContent = this.value;
-    var type = "detail";
+    const focusTask = document.querySelector(".todolist__focus");
+    const idNum = focusTask.getAttribute("idnum");
+    const detailContent = this.value;
+    const type = "detail";
     db.modifyTask(idNum, type, detailContent);
   }
 };

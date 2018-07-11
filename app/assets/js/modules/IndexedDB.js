@@ -14,27 +14,27 @@ const DB = {
     const request = window.indexedDB.open("todoAPP", 1);
 
     // 成功
-    request.onsuccess = function(){
+    request.onsuccess = () => {
       console.log("开启数据库成功！");
       db = this.result;
       showTypeThings("taskType", "work");
 
       // 更新右侧任务详情，异步程序使用 promise
       returnFocusId("taskType", "work")
-        .then(function(data) {
+        .then( data => {
           showDetail(data);
-        }).catch(function(err) {
+        }).catch( err => {
           showDetail(err);
         });
     };
 
     // 失败
-    request.onoerror = function(){
+    request.onoerror = () => {
       console.log("ERROR: 开启数据库失败！");
     };
 
     // 建立事件库与索引
-    request.onupgradeneeded = function(){
+    request.onupgradeneeded = () => {
       db = this.result;
 
       // 建立事件仓库
@@ -79,18 +79,18 @@ const DB = {
 
     // 更新右侧任务详情，异步程序使用 promise
     returnFocusId("taskType", taskType)
-      .then(function(data) {
+      .then(data => {
         showDetail(data);
-      }).catch(function(err) {
+      }).catch(err => {
         showDetail(err);
       });
 
     // 添加成功与失败
-    request.onsuccess = function(){
+    request.onsuccess = () => {
       console.log("事件添加到数据库成功!");
     };
 
-    request.onerror = function(){
+    request.onerror = () => {
       console.log("事件添加到数据库失败!");
     };
   },
@@ -109,7 +109,7 @@ const DB = {
     taskList.classList.add("todolist__list");
 
     // 用游标来搜索与展示每一条任务
-    taskType.openCursor(boundKeyRange, "prev").onsuccess = function(e){
+    taskType.openCursor(boundKeyRange, "prev").onsuccess = e = >{
       const cursor = e.target.result;
       if(cursor){
         const taskTime = cursor.value.taskTime;
@@ -167,7 +167,7 @@ const DB = {
     const store = transaction.objectStore("todoStore");
     const request  = store.get(id);
 
-    request.onsuccess = function(){
+    request.onsuccess = () => {
       const data = request.result;
       data[type] = newText;
       store.put(data);
@@ -185,7 +185,7 @@ const DB = {
     const key = 0;
     taskList.classList.add("todolist__list");
 
-    store.openCursor(null, "prev").onsuccess = function(e){
+    store.openCursor(null, "prev").onsuccess = (e) => {
       const cursor = e.target.result;
       if(cursor){
         if(cursor.value.title.indexOf(curThing) !== -1) {
@@ -243,13 +243,13 @@ const DB = {
   // 返回焦点任务的索引
   // 数据库游标查询需要时间，是异步程序所以需要构建 promise
   returnFocusId(indexType, type) {
-    const promise = new Promise(function(resolve, reject) {
+    const promise = new Promise((resolve, reject) => {
       const transaction = db.transaction(["todoStore"], "readonly");
       const store = transaction.objectStore("todoStore");
       const taskType = store.index(indexType);
       const boundKeyRange = IDBKeyRange.only(type);
 
-      taskType.openCursor(boundKeyRange, "prev").onsuccess = function(e){
+      taskType.openCursor(boundKeyRange, "prev").onsuccess = e => {
         const cursor = e.target.result;
         if(cursor){
           resolve(cursor.primaryKey);
@@ -268,7 +268,7 @@ const DB = {
     const transaction = db.transaction(["todoStore"], "readwrite");
     const store = transaction.objectStore("todoStore");
     const request  = store.get(id);
-    request.onsuccess = function(){
+    request.onsuccess = () => {
       const data = request.result;
       data[type] = detailContent;
       store.put(data);
@@ -283,7 +283,7 @@ const DB = {
     const store = transaction.objectStore("todoStore");
     if(typeof id === "number") {
       const request  = store.get(id);
-      request.onsuccess = function(){
+      request.onsuccess = () => {
         const data = request.result;
         const text = data.title;
         detail.previousElementSibling.innerText = text;
@@ -332,21 +332,20 @@ const DB = {
 
     // 更新右侧任务详情，异步程序使用 promise
     returnFocusId("taskType", taskType)
-      .then(function(data) {
+      .then(data => {
         showDetail(data);
-      }).catch(function(err) {
+      }).catch(err => {
         showDetail(err);
       });
 
     // 添加成功与失败
-    request.onsuccess = function(){
+    request.onsuccess = () => {
       console.log("事件添加到数据库成功!");
     };
 
-    request.onerror = function(){
+    request.onerror = () => {
       console.log("事件添加到数据库失败!");
     };
   }
-};
 
 export {DB};
