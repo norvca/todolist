@@ -1,17 +1,17 @@
-// 数据库模块
-var DB = (function() {
-  // 变量声明
-  var toDayString = new Date().toString();
-  var section = document.querySelector(".todolist");
-  var input = document.querySelector(".site-header__search-box__input");
-  var level = document.querySelector(".icon__level");
-  var detail = document.querySelector(".detail__paragraph");
-  var db;
+// 变量声明
+const toDayString = new Date().toString();
+const section = document.querySelector(".todolist");
+const input = document.querySelector(".site-header__search-box__input");
+const level = document.querySelector(".icon__level");
+const detail = document.querySelector(".detail__paragraph");
+const db;
 
+// 数据库模块
+const DB = {
   // 初始化数据库
-  var initDB = function(){
+  initDB(){
     // 打开数据库
-    var request = window.indexedDB.open("todoAPP", 1);
+    const request = window.indexedDB.open("todoAPP", 1);
 
     // 成功
     request.onsuccess = function(){
@@ -40,7 +40,7 @@ var DB = (function() {
       // 建立事件仓库
       if(!db.objectStoreNames.contains("todoDB")) {
         // 创建对象
-        var store = db.createObjectStore("todoStore", {keyPath: "id", autoIncrement: true});
+        const store = db.createObjectStore("todoStore", {keyPath: "id", autoIncrement: true});
         // 创建索引
         store.createIndex("id", "id", {unique: true});
         store.createIndex("title", "title", {unique: false});
@@ -50,22 +50,22 @@ var DB = (function() {
         store.createIndex("taskWeek", "taskWeek", {unique: false});
       }
     };
-  };
+  },
 
 
   // 添加数据到数据库
-  var addThings = function(){
-    var title = input.value;
-    var taskLevel = level.getAttribute("level");
-    var taskTime = new Date().toLocaleDateString();
-    var taskWeek = toDayString.slice.call(toDayString, 0, 3).toUpperCase();
-    var taskType = document.querySelector(".sidebar__act").getAttribute("taskType");
-    var transaction = db.transaction(["todoStore"], "readwrite");
+  addThings(){
+    const title = input.value;
+    const taskLevel = level.getAttribute("level");
+    const taskTime = new Date().toLocaleDateString();
+    const taskWeek = toDayString.slice.call(toDayString, 0, 3).toUpperCase();
+    const taskType = document.querySelector(".sidebar__act").getAttribute("taskType");
+    const transaction = db.transaction(["todoStore"], "readwrite");
     // 请求数据对象
-    var store = transaction.objectStore("todoStore");
+    const store = transaction.objectStore("todoStore");
 
     // 定义 todoStore
-    var todos = {
+    const todos = {
       title: title,
       detail: null,
       level: taskLevel,
@@ -75,7 +75,7 @@ var DB = (function() {
     };
 
     // 添加事件
-    var request = store.add(todos);
+    const request = store.add(todos);
 
     // 更新右侧任务详情，异步程序使用 promise
     returnFocusId("taskType", taskType)
@@ -93,29 +93,29 @@ var DB = (function() {
     request.onerror = function(){
       console.log("事件添加到数据库失败!");
     };
-  };
+  },
 
 
   // 展示不同类型的数据
-  var showTypeThings = function(indexType, type){
-    var transaction = db.transaction(["todoStore"], "readonly");
-    var store = transaction.objectStore("todoStore");
-    var taskType = store.index(indexType);
-    var boundKeyRange = IDBKeyRange.only(type);
-    var toDay = new Date().toLocaleDateString();
-    var eachDay = document.querySelector(".todolist__eachday");
-    var indexTime = "";
-    var taskList = document.createElement("ul");
+  showTypeThings(indexType, type){
+    const transaction = db.transaction(["todoStore"], "readonly");
+    const store = transaction.objectStore("todoStore");
+    const taskType = store.index(indexType);
+    const boundKeyRange = IDBKeyRange.only(type);
+    const toDay = new Date().toLocaleDateString();
+    const eachDay = document.querySelector(".todolist__eachday");
+    const indexTime = "";
+    const taskList = document.createElement("ul");
     taskList.classList.add("todolist__list");
 
     // 用游标来搜索与展示每一条任务
     taskType.openCursor(boundKeyRange, "prev").onsuccess = function(e){
-      var cursor = e.target.result;
+      const cursor = e.target.result;
       if(cursor){
-        var taskTime = cursor.value.taskTime;
-        var taskWeek = cursor.value.taskWeek;
-        var perTask = document.createElement("li");
-        var timeStamp = document.createElement("li");
+        const taskTime = cursor.value.taskTime;
+        const taskWeek = cursor.value.taskWeek;
+        const perTask = document.createElement("li");
+        const timeStamp = document.createElement("li");
 
         // 创建时间戳
         timeStamp.classList.add("todolist__time");
@@ -158,41 +158,41 @@ var DB = (function() {
         }
       }
     };
-  };
+  },
 
 
   // 修改数据库中的数据
-  var modifyThings =  function(id, type, newText){
-    var transaction = db.transaction(["todoStore"], "readwrite");
-    var store = transaction.objectStore("todoStore");
-    var request  = store.get(id);
+  modifyThings(id, type, newText){
+    const transaction = db.transaction(["todoStore"], "readwrite");
+    const store = transaction.objectStore("todoStore");
+    const request  = store.get(id);
 
     request.onsuccess = function(){
-      var data = request.result;
+      const data = request.result;
       data[type] = newText;
       store.put(data);
     };
-  };
+  }
 
 
   // 搜索数据库中的数据
-  var searchThings = function(){
-    var curThing = input.value;
-    var transaction = db.transaction(["todoStore"], "readonly");
-    var store = transaction.objectStore("todoStore");
-    var indexTime = "";
-    var taskList = document.createElement("ul");
-    var key = 0;
+  searchThings(){
+    const curThing = input.value;
+    const transaction = db.transaction(["todoStore"], "readonly");
+    const store = transaction.objectStore("todoStore");
+    const indexTime = "";
+    const taskList = document.createElement("ul");
+    const key = 0;
     taskList.classList.add("todolist__list");
 
     store.openCursor(null, "prev").onsuccess = function(e){
-      var cursor = e.target.result;
+      const cursor = e.target.result;
       if(cursor){
         if(cursor.value.title.indexOf(curThing) !== -1) {
-          var taskTime = cursor.value.taskTime;
-          var taskWeek = cursor.value.taskWeek;
-          var perTask = document.createElement("li");
-          var timeStamp = document.createElement("li");
+          const taskTime = cursor.value.taskTime;
+          const taskWeek = cursor.value.taskWeek;
+          const perTask = document.createElement("li");
+          const timeStamp = document.createElement("li");
 
           // 创建时间戳
           timeStamp.classList.add("todolist__time");
@@ -237,20 +237,20 @@ var DB = (function() {
         }
       }
     };
-  };
+  },
 
 
   // 返回焦点任务的索引
   // 数据库游标查询需要时间，是异步程序所以需要构建 promise
-  var returnFocusId = function(indexType, type) {
-    var promise = new Promise(function(resolve, reject) {
-      var transaction = db.transaction(["todoStore"], "readonly");
-      var store = transaction.objectStore("todoStore");
-      var taskType = store.index(indexType);
-      var boundKeyRange = IDBKeyRange.only(type);
+  returnFocusId(indexType, type) {
+    const promise = new Promise(function(resolve, reject) {
+      const transaction = db.transaction(["todoStore"], "readonly");
+      const store = transaction.objectStore("todoStore");
+      const taskType = store.index(indexType);
+      const boundKeyRange = IDBKeyRange.only(type);
 
       taskType.openCursor(boundKeyRange, "prev").onsuccess = function(e){
-        var cursor = e.target.result;
+        const cursor = e.target.result;
         if(cursor){
           resolve(cursor.primaryKey);
         } else {
@@ -260,32 +260,32 @@ var DB = (function() {
     });
 
     return promise;
-  };
+  },
 
 
   // 更新右侧任务详情
-  var updateDetail = function(id, type, detailContent){
-    var transaction = db.transaction(["todoStore"], "readwrite");
-    var store = transaction.objectStore("todoStore");
-    var request  = store.get(id);
+  updateDetail(id, type, detailContent){
+    const transaction = db.transaction(["todoStore"], "readwrite");
+    const store = transaction.objectStore("todoStore");
+    const request  = store.get(id);
     request.onsuccess = function(){
-      var data = request.result;
+      const data = request.result;
       data[type] = detailContent;
       store.put(data);
       console.log("更新任务详情成功！");
     };
-  };
+  },
 
 
   // 显示右侧任务详情
-  var showDetail = function(id){
-    var transaction = db.transaction(["todoStore"], "readwrite");
-    var store = transaction.objectStore("todoStore");
+  showDetail(id){
+    const transaction = db.transaction(["todoStore"], "readwrite");
+    const store = transaction.objectStore("todoStore");
     if(typeof id === "number") {
-      var request  = store.get(id);
+      const request  = store.get(id);
       request.onsuccess = function(){
-        var data = request.result;
-        var text = data.title;
+        const data = request.result;
+        const text = data.title;
         detail.previousElementSibling.innerText = text;
         detail.value = data.detail;
         detail.placeholder = "添加任务详情...";
@@ -296,29 +296,29 @@ var DB = (function() {
       detail.value = "";
       detail.placeholder = "此分类目前没有任务哦~";
     }
-  };
+  },
 
 
   // 删除全部数据
-  var deleteAllThings = function(){
+  deleteAllThings(){
     indexedDB.deleteDatabase("todoAPP");
     window.location.href = "index.html";
-  };
+  },
 
 
   // 随机展示数据
-  var randomThingsNow = function(randomContent, ramdomLevel){
-    var title = randomContent;
-    var taskLevel = ramdomLevel;
-    var taskTime = new Date().toLocaleDateString();
-    var taskWeek = toDayString.slice.call(toDayString, 0, 3).toUpperCase();
-    var taskType = document.querySelector(".sidebar__act").getAttribute("taskType");
-    var transaction = db.transaction(["todoStore"], "readwrite");
+  randomThingsNow(randomContent, ramdomLevel){
+    const title = randomContent;
+    const taskLevel = ramdomLevel;
+    const taskTime = new Date().toLocaleDateString();
+    const taskWeek = toDayString.slice.call(toDayString, 0, 3).toUpperCase();
+    const taskType = document.querySelector(".sidebar__act").getAttribute("taskType");
+    const transaction = db.transaction(["todoStore"], "readwrite");
     // 请求数据对象
-    var store = transaction.objectStore("todoStore");
+    const store = transaction.objectStore("todoStore");
 
     // 定义 todoStore
-    var todos = {
+    const todos = {
       title: title,
       detail: null,
       level: taskLevel,
@@ -328,7 +328,7 @@ var DB = (function() {
     };
 
     // 添加事件
-    var request = store.add(todos);
+    const request = store.add(todos);
 
     // 更新右侧任务详情，异步程序使用 promise
     returnFocusId("taskType", taskType)
@@ -346,23 +346,7 @@ var DB = (function() {
     request.onerror = function(){
       console.log("事件添加到数据库失败!");
     };
-  };
-
-
-  // 开放接口
-  return {
-    initDB,
-    addThings,
-    showTypeThings,
-    modifyThings,
-    searchThings,
-    returnFocusId,
-    updateDetail,
-    showDetail,
-    deleteAllThings,
-    randomThingsNow
-  };
-
-})();
+  }
+};
 
 export {DB};

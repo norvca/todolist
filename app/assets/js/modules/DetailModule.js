@@ -2,19 +2,15 @@
 import {backendDB as db} from "./BackendDB";
 
 // 定义右侧详情模块
-var detailModule = (function(){
+const detailModule = {
   // 更新任务详情功能
-  var refreshDetail = function(){
+  refreshDetail(){
     var focusTask = document.querySelector(".todolist__focus");
     var idNum = focusTask.getAttribute("idnum");
     var detailContent = this.value;
     var type = "detail";
     db.modifyTask(idNum, type, detailContent);
-  };
-
-  return {
-    refreshDetail
-  };
-})();
+  }
+};
 
 export {detailModule};

@@ -3,23 +3,22 @@ import PouchDB from "pouchdb";
 import PouchdbFind from "pouchdb-find";
 import {helperFunction} from "./HelperFunction";
 
+// 加载 PouchDB 插件
+PouchDB.plugin(PouchdbFind);
+
+// 定义变量
+const toDayString = new Date().toString();
+const input = helperFunction.get_input_element();
+const level = helperFunction.get_level_element();
+const section = document.querySelector(".todolist");
+const detail = document.querySelector(".detail__paragraph");
+
+// 创建数据库
+const db = new PouchDB("todolist");
+
 // 数据库模块
-const pouchDB = (function() {
-  // 加载 PouchDB 插件
-  PouchDB.plugin(PouchdbFind);
-
-  // 定义变量
-  var toDayString = new Date().toString();
-  var input = helperFunction.get_input_element();
-  var level = helperFunction.get_level_element();
-  var section = document.querySelector(".todolist");
-  var detail = document.querySelector(".detail__paragraph");
-
-
-  // 创建数据库
-  var db = new PouchDB("todolist");
-
-  // // 同步至本地couchDB
+const pouchDB = {
+  // // 同步至远程couchDB
   // promise.then(function() {
   //   db.sync("https://a98401d4-bcd9-49e8-a062-249b780de5d4-bluemix:786692f7bb9a7e66433a5744d6328e6aef80f7acf3aaff322dca60e938a20328@a98401d4-bcd9-49e8-a062-249b780de5d4-bluemix.cloudant.com/todolist", {
   //     live:true,
@@ -28,13 +27,13 @@ const pouchDB = (function() {
   // });
 
   // 添加数据到数据库
-  var addTask = function(randomContent, ramdomLevel) {
-    var title = input.value;
-    var taskLevel = level.getAttribute("level");
-    var taskTime = new Date().toLocaleDateString();
-    var taskType = document.querySelector(".sidebar__act").getAttribute("taskType");
-    var taskWeek = toDayString.slice.call(toDayString, 0, 3).toUpperCase();
-    var todo;
+  addTask(randomContent, ramdomLevel) {
+    const title = input.value;
+    const taskLevel = level.getAttribute("level");
+    const taskTime = new Date().toLocaleDateString();
+    const taskType = document.querySelector(".sidebar__act").getAttribute("taskType");
+    const taskWeek = toDayString.slice.call(toDayString, 0, 3).toUpperCase();
+    let todo;
     // 有标题等参数即添加随机任务
     if(arguments[0]) {
       todo = {
@@ -65,11 +64,11 @@ const pouchDB = (function() {
     }).catch(function(err) {
       console.log(err);
     });
-  };
+  },
 
 
   // 从数据库中读取数据然后渲染到页面
-  var showTask = function(indexType, value) {
+  showTask(indexType, value) {
     return db.createIndex({
       index: {fields: [indexType]}
     }).then(function() {
@@ -82,7 +81,7 @@ const pouchDB = (function() {
           },
           sort: [{taskType: "desc"}]
         }).then(function(result) {
-          redrawTasksUI(result.docs);
+          pouchDB.redrawTasksUI(result.docs);
         });
 
       // 按照任务等级来显示
@@ -93,26 +92,26 @@ const pouchDB = (function() {
           },
           sort: [{level: "desc"}]
         }).then(function(result) {
-          redrawTasksUI(result.docs);
+          pouchDB.redrawTasksUI(result.docs);
         });
       }
     });
-  };
+  },
 
   // 把任务条渲染到页面
-  var redrawTasksUI = function(tasks) {
-    var indexTime = "";
-    var taskList = document.createElement("ul");
+  redrawTasksUI(tasks) {
+    let indexTime = "";
+    const taskList = document.createElement("ul");
     taskList.classList.add("todolist__list");
     tasks.forEach(function(element) {
 
       // 如果时间戳不等于任务的时间戳，那就添加时间戳
       if (indexTime !== element.taskTime) {
         indexTime = element.taskTime;
-        taskList.appendChild(createTimeStamp(element));
+        taskList.appendChild(pouchDB.createTimeStamp(element));
       }
       // 添加任务条
-      taskList.appendChild(createTaskItem(element));
+      taskList.appendChild(pouchDB.createTaskItem(element));
     });
 
     section.innerHTML = "";
@@ -122,16 +121,16 @@ const pouchDB = (function() {
     if(taskList.firstChild) {
       taskList.firstChild.nextSibling.classList.add("todolist__focus");
       // 默认展示最新一项任务的详情
-      showDetail(tasks[length]._id);
+      pouchDB.showDetail(tasks[length]._id);
     } else {
-      showDetail();
+      pouchDB.showDetail();
     }
-  };
+  },
 
   // 组装任务条
-  var createTaskItem = function(element) {
+  createTaskItem(element) {
     // 单项任务的属性设计
-    var perTask = document.createElement("li");
+    const perTask = document.createElement("li");
     perTask.setAttribute("id", "things_"+ element._id);
     perTask.setAttribute("class", "todolist__content "+ element.level);
     perTask.setAttribute("idnum", element._id);
@@ -147,26 +146,26 @@ const pouchDB = (function() {
            + "</div>";
 
     return perTask;
-  };
+  },
 
   // 组装时间戳
-  var createTimeStamp = function(element) {
+  createTimeStamp(element) {
     // 创建时间戳
-    var taskTime = element.taskTime;
-    var taskWeek = element.taskWeek;
-    var timeStamp = document.createElement("li");
+    const taskTime = element.taskTime;
+    const taskWeek = element.taskWeek;
+    const timeStamp = document.createElement("li");
     timeStamp.classList.add("todolist__time");
     timeStamp.innerHTML = "<span class='todolist__week'>"+ taskWeek +"</span>" +
                           "<span class='todolist__date'>" + taskTime + "</span>";
 
     return timeStamp;
-  };
+  },
 
 
   // 搜索数据库中的数据然后展示到页面
-  var searchTask = function(value) {
-    var indexTime;
-    var taskList = document.createElement("ul");
+  searchTask(value) {
+    let indexTime;
+    const taskList = document.createElement("ul");
     taskList.classList.add("todolist__list");
 
     db.allDocs({
@@ -180,11 +179,11 @@ const pouchDB = (function() {
           // 如果时间戳不等于任务的时间戳，那就添加时间戳
           if (indexTime !== element.taskTime) {
             indexTime = element.taskTime;
-            taskList.appendChild(createTimeStamp(element));
+            taskList.appendChild(pouchDB.createTimeStamp(element));
           }
 
           // 添加任务条
-          taskList.appendChild(createTaskItem(element));
+          taskList.appendChild(pouchDB.createTaskItem(element));
         }
       });
 
@@ -193,31 +192,31 @@ const pouchDB = (function() {
 
       // 首任务聚焦
       if(taskList.firstChild) {
-        var firstTask = taskList.firstChild.nextSibling;
+        const firstTask = taskList.firstChild.nextSibling;
         firstTask.classList.add("todolist__focus");
-        showDetail(firstTask.getAttribute("idnum"));
+        pouchDB.showDetail(firstTask.getAttribute("idnum"));
       } else {
-        showDetail();
+        pouchDB.showDetail();
       }
     });
-  };
+  },
 
 
   // 修改任务数据
-  var modifyTask = function(idNum , attr, value) {
+  modifyTask(idNum , attr, value) {
     db.get(idNum).then(function(doc) {
       doc[attr] = value;
       db.put(doc);
     });
-  };
+  },
 
 
   // 显示右侧任务详情
-  var showDetail = function(id){
+  showDetail(id){
     if(id) {
       db.get(id).then(function(doc) {
-        var title = doc.title;
-        var text = doc.detail;
+        const title = doc.title;
+        const text = doc.detail;
         detail.previousElementSibling.innerText = title;
         detail.value = text;
         detail.placeholder = "添加任务详情...";
@@ -227,10 +226,10 @@ const pouchDB = (function() {
       detail.value = "";
       detail.placeholder = "此分类目前没有任务哦~";
     }
-  };
+  },
 
   // 删除全部数据
-  var deleteAllTasks = function(){
+  deleteAllTasks(){
     db.allDocs().then(function (result) {
       return Promise.all(result.rows.map(function (row) {
         return db.remove(row.id, row.value.rev);
@@ -240,19 +239,11 @@ const pouchDB = (function() {
     }).catch(function (err) {
       console.log(err + "删除数据库失败！");
     });
-  };
+  }
+};
 
-  // 第一次载入页面就显示任务条
-  var promise = showTask("taskType", "work");
 
-  return {
-    addTask,
-    showTask,
-    searchTask,
-    modifyTask,
-    showDetail,
-    deleteAllTasks
-  };
-})();
+// 第一次载入页面就显示任务条
+const promise = pouchDB.showTask("taskType", "work");
 
 export {pouchDB};

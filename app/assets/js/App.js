@@ -1,6 +1,2 @@
-;(function(){
-  require("./modules/Handler");
-  require("./modules/BackendDB")
-})();
-
-
+import "./modules/Handler";
+import "./modules/BackendDB";
