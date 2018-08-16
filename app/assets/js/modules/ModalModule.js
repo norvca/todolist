@@ -35,9 +35,8 @@ const modalModule = {
     // 创建单例模态框
     createSingleDeleteModal() {
       var createSingleModal = modalModule.getSingle(modalModule.createDeleteModal);
-      var a  = createSingleModal()
-      var b  = createSingleModal()
-      console.log(a===b)
+      var singleModal = createSingleModal()
+      console.log(singleModal)
 
       // 让模态框可见
       let modal = document.querySelector('.modal');
@@ -58,6 +57,7 @@ const modalModule = {
     regretDeleteTasks() {
       // 隐藏模态框
       let modal = document.querySelector('.modal');
+      console.log(modal)
       modal.classList.remove('modal--visible');
     }
 };
