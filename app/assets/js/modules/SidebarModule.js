@@ -3,7 +3,6 @@ import {backendDB as db} from "./BackendDB";
 
 // 变量声明
 const levelBox = [0,1,2];
-const modal = document.querySelector(".modal");
 
 // 定义页面左侧导航处理程序模块
 const sidebarModule = {
@@ -39,12 +38,6 @@ const sidebarModule = {
             thisLevel.classList.add("active");
             db.showTask("level", levelValue);
         }
-    },
-
-
-    // 显示删库模态框功能
-    showModalBox(){
-        modal.classList.add("modal--visible");
     }
 };
 
