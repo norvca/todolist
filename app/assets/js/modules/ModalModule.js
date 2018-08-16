@@ -24,10 +24,8 @@ const modalModule = {
       var instance
       return function() {
         if(!instance) {
-          console.log(1)
           return instance = fn.apply(this, arguments);
         }
-        console.log(2)
         return instance;
       }
     },
