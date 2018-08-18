@@ -230,7 +230,8 @@ const pouchDB = {
                 return db.remove(row.id, row.value.rev);
             }));
         }).then( () => {
-            window.location.href = "index.html";
+            // window.location.href = "index.html";
+            section.innerHTML = "";
         }).catch( err => {
             console.log(err + "删除数据库失败！");
         });

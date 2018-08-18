@@ -3,7 +3,7 @@ import {headerModule} from "./HeaderModule";
 import {sidebarModule} from "./SidebarModule";
 import {todolistModule} from "./TodolistModule";
 import {detailModule} from "./DetailModule";
-import {modalModule} from "./ModalModule";
+import {createSingleDeleteModal, deleteAllTasks, regretDeleteTasks} from "./ModalModule";
 import {helperFunction} from "./HelperFunction";
 
 // 变量声明
@@ -48,7 +48,7 @@ const handler = (function() {
     sidebarContent.addEventListener("click", sidebarModule.navigation);
 
     // 显示删库模态框
-    deleteData.addEventListener("click", modalModule.createSingleDeleteModal);
+    deleteData.addEventListener("click", createSingleDeleteModal);
 
 
     // todolist 区域
@@ -76,11 +76,11 @@ const handler = (function() {
 
       // 删除数据库数据
       if (target.classList.contains('modal__btn-yes')) {
-        modalModule.deleteAllTasks();
+        deleteAllTasks();
         return;
       // 返回
       } else if (target.classList.contains('modal__btn-no')) {
-        modalModule.regretDeleteTasks();
+        regretDeleteTasks();
       }
     });
 })();
