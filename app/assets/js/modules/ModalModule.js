@@ -21,7 +21,7 @@ const createDeleteModal = () => {
 
 // 单例函数
 const getSingle = function(fn) {
-  var instance
+  let instance
   return function() {
     return instance || (instance = fn());
   }
@@ -33,7 +33,7 @@ const createSingleModal = getSingle(createDeleteModal);
 // 创建单例模态框
 const createSingleDeleteModal = () => {
   // 生成模态框的实例
-  var singleModal = createSingleModal();
+  const singleModal = createSingleModal();
 
 
   // 让模态框可见
@@ -46,14 +46,14 @@ const deleteAllTasks = () => {
   db.deleteAllTasks();
 
   // 隐藏模态框
-  let modal = document.querySelector('.modal');
+  const modal = document.querySelector('.modal');
   modal.classList.remove('modal--visible');
 };
 
 // 不清除数据库
 const regretDeleteTasks = () => {
   // 隐藏模态框
-  let modal = document.querySelector('.modal');
+  const modal = document.querySelector('.modal');
   modal.classList.remove('modal--visible');
 }
 
