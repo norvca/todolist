@@ -30,9 +30,6 @@ const handler = (function() {
     // 输入框输入数据查找
     input.addEventListener("keyup", headerModule.searchTask);
 
-    // 任务等级切换
-    level.onclick = headerModule.changeLevel;
-
     // 添加任务
     addBtn.addEventListener("click", headerModule.addTask1);
 

@@ -21,6 +21,7 @@ const helperFunction = {
         helperFunction.get_level_element().classList.remove(level1);
         helperFunction.get_level_element().classList.add(level2);
         helperFunction.get_level_element().setAttribute("level", value);
+        helperFunction.get_input_element().focus();
     }
 };
 

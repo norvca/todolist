@@ -53,27 +53,6 @@ const headerModule = {
         }
     },
 
-    // 等级切换函数
-    // !!Caution!! 这里应该会有更好的解决办法！
-    taskToggle(){
-        if( level.classList.contains("level-light") ) {
-            toggleLevel("level-light", "level-usual", "bgc-usual");
-
-        } else if ( level.classList.contains("level-usual") ) {
-            toggleLevel("level-usual", "level-heavy", "bgc-heavy");
-
-        } else {
-            toggleLevel("level-heavy", "level-light", "bgc-light");
-        }
-    },
-
-    // 任务等级切换功能
-    changeLevel(){
-        headerModule.taskToggle();
-        input.focus();
-    },
-
-
     // 添加任务功能
     addTask1(){
     // 获取左侧栏目对应事件类型
@@ -116,5 +95,46 @@ const headerModule = {
         themeIcon.setAttribute("xlink:href", themeIconName[0]);
     }
 };
+
+
+// 控制不同等级的小圆点
+class LevelDot {
+    constructor() {
+        this.state = FSM.green;
+        this.button = level;
+    }
+
+    init() {
+        this.button.addEventListener("click", () => {
+            this.state.buttonPressed.call(this);
+        });
+    }
+}
+
+// 有限状态机
+const FSM = {
+    green: {
+        buttonPressed: function() {
+            toggleLevel("level-light", "level-usual", "bgc-usual");
+            this.state = FSM.purple;
+        }
+    },
+    purple: {
+        buttonPressed: function() {
+            toggleLevel("level-usual", "level-heavy", "bgc-heavy");
+            this.state = FSM.red;
+        }
+    },
+    red: {
+        buttonPressed: function() {
+            toggleLevel("level-heavy", "level-light", "bgc-light");
+            this.state = FSM.green;
+        }
+    }
+}
+
+const levelDot = new LevelDot();
+levelDot.init();
+
 
 export {headerModule};

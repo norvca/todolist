@@ -47,7 +47,7 @@ https://norvca.github.io/ToDoList/app
 - [ ] 登陆功能（游客登录与邮箱注册）
 - [x] 实现中文模糊搜索功能
 - [x] 代码模块化
-- [ ] ES6重写
+- [x] ES6重写
 - [ ] 运用设计模式
 
 
