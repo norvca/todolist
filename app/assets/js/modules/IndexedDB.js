@@ -119,23 +119,23 @@ const DB = {
 
         // 创建时间戳
         timeStamp.classList.add("todolist__time");
-        timeStamp.innerHTML = "<span class='todolist__week'>"+ taskWeek +"</span>" +
-                              "<span class='todolist__date'>" + taskTime + "</span>"
+        timeStamp.innerHTML = `<span class='todolist__week'> ${taskWeek} </span>
+                               <span class='todolist__date'> ${taskTime} </span>`
 
         // 单项任务的属性设计
-        perTask.setAttribute("id", "things_"+ cursor.value.id);
-        perTask.setAttribute("class", "todolist__content "+ cursor.value.level);
+        perTask.setAttribute("id", `things_${cursor.value.id}`);
+        perTask.setAttribute("class", `todolist__content ${cursor.value.level}`);
         perTask.setAttribute("id-num", cursor.value.id);
-        perTask.innerHTML = "<div><span class='todolist__title' contenteditable='true' id-num="+cursor.value.id +">"+ cursor.value.title +"</span></div>"
-               + "<div class='icon__todo'>"
-               + "  <svg class='icon icon__nofinish' aria-hidden='true' name='search' id-num="+cursor.value.id +">"
-               + "    <use class='icon__finish' xlink:href='#icon-eglass-finish1'></use>"
-               + "    <use xlink:href='#icon-eglass-finish'></use>"
-               + "  </svg>"
-               + "  <svg class='icon icon__delete' aria-hidden='true' name='search' id-num="+cursor.value.id +">"
-               + "   <use xlink:href='#icon-delete'></use>"
-               + "  </svg>"
-               + "</div>";
+        perTask.innerHTML = `<div><span class='todolist__title' contenteditable='true' id-num=${cursor.value.id}> ${cursor.value.title} </span></div>
+                              <div class='icon__todo'>
+                                <svg class='icon icon__nofinish' aria-hidden='true' name='search' id-num=${cursor.value.id}>
+                                  <use class='icon__finish' xlink:href='#icon-eglass-finish1'></use>
+                                  <use xlink:href='#icon-eglass-finish'></use>
+                                </svg>
+                                <svg class='icon icon__delete' aria-hidden='true' name='search' id-num=${cursor.value.id}>
+                                 <use xlink:href='#icon-delete'></use>
+                                </svg>
+                              </div>`;
 
         // 如果时间戳不等于任务的时间戳，那就添加新的时间戳
         if(indexTime !== cursor.value.taskTime) {
@@ -196,23 +196,23 @@ const DB = {
 
           // 创建时间戳
           timeStamp.classList.add("todolist__time");
-          timeStamp.innerHTML = "<span class='todolist__week'>"+ taskWeek +"</span>" +
-                                "<span class='todolist__date'>" + taskTime + "</span>"
+          timeStamp.innerHTML = `<span class='todolist__week'> ${taskWeek} </span>
+                                 <span class='todolist__date'> ${taskTime} </span>`
 
           // 单项任务的属性设计
-          perTask.setAttribute("id", "things_"+ cursor.value.id);
-          perTask.setAttribute("class", "todolist__content "+ cursor.value.level);
+          perTask.setAttribute("id", `things_${cursor.value.id}`);
+          perTask.setAttribute("class", `todolist__content ${cursor.value.level}`);
           perTask.setAttribute("id-num", cursor.value.id);
-          perTask.innerHTML = "<div><span class='todolist__title' contenteditable='true' id-num="+cursor.value.id +">"+ cursor.value.title +"</span></div>"
-                 + "<div class='icon__todo'>"
-                 + "  <svg class='icon icon__nofinish' aria-hidden='true' name='search' id-num="+cursor.value.id +">"
-                 + "    <use class='icon__finish' xlink:href='#icon-eglass-finish1'></use>"
-                 + "    <use xlink:href='#icon-eglass-finish'></use>"
-                 + "  </svg>"
-                 + "  <svg class='icon icon__delete' aria-hidden='true' name='search' id-num="+cursor.value.id +">"
-                 + "   <use xlink:href='#icon-delete'></use>"
-                 + "  </svg>"
-                 + "</div>";
+          perTask.innerHTML = `<div><span class='todolist__title' contenteditable='true' id-num=${cursor.value.id}> ${cursor.value.title} </span></div>
+                                <div class='icon__todo'>
+                                  <svg class='icon icon__nofinish' aria-hidden='true' name='search' id-num=${cursor.value.id}>
+                                    <use class='icon__finish' xlink:href='#icon-eglass-finish1'></use>
+                                    <use xlink:href='#icon-eglass-finish'></use>
+                                  </svg>
+                                  <svg class='icon icon__delete' aria-hidden='true' name='search' id-num=${cursor.value.id}>
+                                   <use xlink:href='#icon-delete'></use>
+                                  </svg>
+                                </div>`;
 
           // 如果时间戳不等于任务的时间戳，那就添加新的时间戳
           if(indexTime !== cursor.value.taskTime) {

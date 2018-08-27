@@ -6,14 +6,14 @@ import {backendDB as db} from "./BackendDB";
 const createDeleteModal = () => {
   // 创建模态框
   const deleteModal = document.createElement('div');
-  deleteModal.classList.add('modal');
-  deleteModal.innerHTML = "<div class='modal__box'>"
-                        +   "<p class='modal__aware'>删除全部数据</p>"
-                        +   "<div class='modal__delete'>"
-                        +     "<a class='modal__btn-yes'>是的</a>"
-                        +     "<a class='modal__btn-no'>再想想</a>"
-                        +   "</div>"
-                        + "</div>";
+  deleteModal.classList.add('modal', 'fade');
+  deleteModal.innerHTML = `<div class='modal__box'>
+                             <p class='modal__aware'>删除全部数据</p>
+                             <div class='modal__delete'>
+                               <a class='modal__btn-yes'>是的</a>
+                               <a class='modal__btn-no'>再想想</a>
+                             </div>
+                           </div>`;
   // 添加到 DOM 结构里
   document.body.appendChild(deleteModal);
   return deleteModal;

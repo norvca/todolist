@@ -9,5 +9,3 @@ new RandomTask();
 new SearchBar();
 new LevelDot();
 new ChangeTheme();
-
-// deleteDataButton.addEventListener("click", ModalModule.getSingleModule);

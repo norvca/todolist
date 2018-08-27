@@ -125,19 +125,19 @@ const pouchDB = {
     createTaskItem(element) {
     // 单项任务的属性设计
         const perTask = document.createElement("li");
-        perTask.setAttribute("id", "things_"+ element._id);
-        perTask.setAttribute("class", "todolist__content "+ element.level);
+        perTask.setAttribute("id", `things_${element._id}`);
+        perTask.setAttribute("class", `todolist__content ${element.level}`);
         perTask.setAttribute("idnum", element._id);
-        perTask.innerHTML = "<div><span class='todolist__title' contenteditable='true' idnum="+element._id +">"+ element.title +"</span></div>"
-           + "<div class='icon__todo'>"
-           + "  <svg class='icon icon__nofinish' aria-hidden='true' name='search' idnum="+element._id +">"
-           + "    <use class='icon__finish' xlink:href='#icon-eglass-finish1'></use>"
-           + "    <use xlink:href='#icon-eglass-finish'></use>"
-           + "  </svg>"
-           + "  <svg class='icon icon__delete' aria-hidden='true' name='search' idnum="+element._id +">"
-           + "   <use xlink:href='#icon-delete'></use>"
-           + "  </svg>"
-           + "</div>";
+        perTask.innerHTML = `<div><span class='todolist__title' contenteditable='true' idnum=${element._id}> ${element.title} </span></div>
+            <div class='icon__todo'>
+              <svg class='icon icon__nofinish' aria-hidden='true' name='search' idnum=${element._id}>
+                <use class='icon__finish' xlink:href='#icon-eglass-finish1'></use>
+                <use xlink:href='#icon-eglass-finish'></use>
+              </svg>
+              <svg class='icon icon__delete' aria-hidden='true' name='search' idnum=${element._id}>
+                <use xlink:href='#icon-delete'></use>
+              </svg>
+            </div>`;
 
         return perTask;
     },

@@ -1122,3 +1122,28 @@ main {
     opacity: 1;
     visibility: visible;
   }
+
+.modal.fade {
+    -webkit-animation: fade .3s;
+            animation: fade .3s;
+  }
+
+@-webkit-keyframes fade {
+  from {
+    opacity: 0;
+    visibility: hidden;
+  } to  {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    visibility: hidden;
+  } to  {
+    opacity: 1;
+    visibility: visible;
+  }
+}
