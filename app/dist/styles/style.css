@@ -1121,6 +1121,4 @@ main {
 .modal--visible {
     opacity: 1;
     visibility: visible;
-    -webkit-transform: scale(1);
-            transform: scale(1);
   }

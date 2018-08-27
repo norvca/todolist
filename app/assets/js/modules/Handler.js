@@ -2,7 +2,7 @@
 import {sidebarModule} from "./SidebarModule";
 import {todolistModule} from "./TodolistModule";
 import {detailModule} from "./DetailModule";
-import {createSingleDeleteModal, deleteAllTasks, regretDeleteTasks} from "./ModalModule";
+import {modalModule} from "./ModalModule";
 import {helperFunction} from "./HelperFunction";
 
 
@@ -20,7 +20,7 @@ const handler = (function() {
     sidebarContent.addEventListener("click", sidebarModule.navigation);
 
     // 显示删库模态框
-    // deleteData.addEventListener("click", createSingleDeleteModal);
+    deleteData.addEventListener("click", modalModule.createSingleDeleteModal);
 
 
     // todolist 区域
@@ -42,7 +42,19 @@ const handler = (function() {
 
 
     // 模态框区域
+    // 是否清空数据库
+    document.body.addEventListener("click", function(e) {
+      let target = e.target;
 
+      // 删除数据库数据
+      if (target.classList.contains('modal__btn-yes')) {
+        modalModule.deleteAllTasks();
+        return;
+      // 返回
+      } else if (target.classList.contains('modal__btn-no')) {
+        modalModule.regretDeleteTasks();
+      }
+    });
 })();
 
 export {handler};

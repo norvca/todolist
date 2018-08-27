@@ -84,6 +84,5 @@
   &--visible {
     opacity: 1;
     visibility: visible;
-    transform: scale(1);
   }
 }
