@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="./dist/styles/style.css">
-  <script src="//at.alicdn.com/t/font_557952_ydz5dtq8uepfd2t9.js"></script>
+  <script src="//at.alicdn.com/t/font_557952_xf0v6n8nxz.js"></script>
 <!--   <script type="text/javascript" async="true" data-main="js/app/index.js" src="js/lib/require.js"></script> -->
   <title>pure Todo</title>
 </head>
@@ -15,7 +15,13 @@
         <span class="site-header__random-task__fire">PureTodo</span>
     </div>
 
-    <div class="site-header__login">|<span class="site-header__loginButton">注册</span></div>
+    <div class="site-header__login">
+      <span class="site-header__splitLine">|</span>
+      <span class="site-header__loginButton">注册</span>
+      <svg class="icon site-header__loginIcon" aria-hidden="true" name="search">
+        <use xlink:href="#icon-user"></use>
+      </svg>
+    </div>
 
     <div class="site-header__search-box" >
       <div class="site-header__search-box__content">

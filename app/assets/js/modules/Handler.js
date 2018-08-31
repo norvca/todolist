@@ -11,6 +11,7 @@ import {helperFunction} from "./HelperFunction";
 const handler = (function() {
     // 变量声明
     const loginButton = document.querySelector(".site-header__loginButton");
+    const loginIcon = document.querySelector(".site-header__loginIcon");
     const sidebarContent = document.querySelector(".sidebar__content");
     const deleteData = document.querySelector(".sidebar__delete");
     const section = document.querySelector(".todolist");
@@ -20,6 +21,7 @@ const handler = (function() {
     // header 区域
     // 显示登陆注册功能模态框
     loginButton.addEventListener("click", login.createSingleLoginModal);
+    loginIcon.addEventListener("click", login.createSingleLoginModal);
 
     // 登陆注册栏切换
     document.body.addEventListener("click", login.changeState);

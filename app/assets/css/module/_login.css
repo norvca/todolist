@@ -19,36 +19,23 @@
     transform: translate(-50%, -50%);
     background-color: rgb(244, 244, 244);
     border-radius: 7px;
+    padding: 1rem 2rem;
 
     @mixin atSmall {
       padding: 1rem 6rem;
-    }
-
-    @mixin atMedium {
-
     }
   }
 
   /* 登陆框 */
   &__signin {
-      /*width: 200px;*/
-
-    @mixin atSmall {
-      /*width: 200px;*/
-    }
-
     @mixin atMedium {
       width: 320px;
     }
 
     &__welcome {
       letter-spacing: .5vh;
-      font-size: 1rem;
+      font-size: 1.3rem;
       margin-bottom: 1.5rem;
-
-      @mixin atSmall {
-        font-size: 1.3rem;
-      }
 
       @mixin atMedium {
         font-size: 1.7rem;
@@ -110,24 +97,14 @@
 
   /* 注册框 */
   &__signup {
-      /*width: 200px;*/
-
-    @mixin atSmall {
-      /*width: 200px;*/
-    }
-
     @mixin atMedium {
       width: 320px;
     }
 
     &__welcome {
       letter-spacing: .5vh;
-      font-size: 1rem;
+      font-size: 1.3rem;
       margin-bottom: 1.5rem;
-
-      @mixin atSmall {
-        font-size: 1.3rem;
-      }
 
       @mixin atMedium {
         font-size: 1.7rem;

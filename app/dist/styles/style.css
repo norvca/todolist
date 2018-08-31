@@ -439,6 +439,7 @@ main {
             transform: translate(-50%, -50%);
     background-color: rgb(244, 244, 244);
     border-radius: 7px;
+    padding: 1rem 2rem;
   }
 
 @media (min-width: 530px) {
@@ -448,19 +449,7 @@ main {
   }
   }
 
-@media (min-width: 957px) {
-  }
-
 /* 登陆框 */
-
-/*width: 200px;*/
-
-@media (min-width: 530px) {
-
-.login__signin {
-      /*width: 200px;*/
-  }
-  }
 
 @media (min-width: 957px) {
 
@@ -471,16 +460,9 @@ main {
 
 .login__signin__welcome {
       letter-spacing: .5vh;
-      font-size: 1rem;
+      font-size: 1.3rem;
       margin-bottom: 1.5rem;
     }
-
-@media (min-width: 530px) {
-
-.login__signin__welcome {
-        font-size: 1.3rem
-    }
-  }
 
 @media (min-width: 957px) {
 
@@ -569,15 +551,6 @@ main {
 
 /* 注册框 */
 
-/*width: 200px;*/
-
-@media (min-width: 530px) {
-
-.login__signup {
-      /*width: 200px;*/
-  }
-  }
-
 @media (min-width: 957px) {
 
 .login__signup {
@@ -587,16 +560,9 @@ main {
 
 .login__signup__welcome {
       letter-spacing: .5vh;
-      font-size: 1rem;
+      font-size: 1.3rem;
       margin-bottom: 1.5rem;
     }
-
-@media (min-width: 530px) {
-
-.login__signup__welcome {
-        font-size: 1.3rem
-    }
-  }
 
 @media (min-width: 957px) {
 
@@ -832,7 +798,6 @@ main {
   -webkit-box-shadow:  0px 2px 11px 0px #ccc;
           box-shadow:  0px 2px 11px 0px #ccc;
   color: #777;
-  padding: 0 1vh;
 }
 
 @media (min-width: 530px) {
@@ -895,12 +860,53 @@ main {
   }
   }
 
-.site-header__login span {
-      vertical-align: middle;
-      padding: 0 1.1rem 0 .5rem;
-    }
+.site-header__splitLine {
+    display: none;
+  }
+
+@media (min-width: 530px) {
+
+.site-header__splitLine {
+      display: inline
+  }
+  }
+
+.site-header__loginButton {
+    vertical-align: middle;
+    display: none;
+  }
+
+@media (min-width: 530px) {
+
+.site-header__loginButton {
+      display: inline;
+      padding: 0 .7rem 0 .3rem
+  }
+  }
+
+@media (min-width: 957px) {
+
+.site-header__loginButton {
+      padding: 0 1.1rem 0 .5rem
+  }
+  }
 
 .site-header__loginButton:hover {
+    color: #58b4ab;
+  }
+
+.site-header__loginIcon {
+    padding: 0 1rem;
+  }
+
+@media (min-width: 530px) {
+
+.site-header__loginIcon {
+      display: none
+  }
+  }
+
+.site-header__loginIcon:hover {
     color: #58b4ab;
   }
 
@@ -1019,9 +1025,7 @@ main {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-flex: 0;
-        -ms-flex: 0 0 10vh;
-            flex: 0 0 10vh;
+    padding: 0 1rem;
     height: 88vh;
     -webkit-box-shadow: 2px 4px 6px 0px #ccc;
             box-shadow: 2px 4px 6px 0px #ccc;
@@ -1030,9 +1034,7 @@ main {
 @media (min-width: 530px) {
 
 .sidebar {
-    -webkit-box-flex: 0;
-        -ms-flex: 0 0 7rem;
-            flex: 0 0 7rem;
+    padding: 0 .6rem;
     font-size: 1.5rem
 }
   }
@@ -1040,9 +1042,7 @@ main {
 @media (min-width: 957px) {
 
 .sidebar {
-    -webkit-box-flex: 0;
-        -ms-flex: 0 0 14rem;
-            flex: 0 0 14rem;
+    padding: 0 3rem;
     font-size: 2rem
 }
   }
