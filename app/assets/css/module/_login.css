@@ -1,0 +1,230 @@
+/* 登陆模态框 */
+.login {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(50, 50, 50, .6);
+
+  opacity: 0;
+  visibility: hidden;
+  transition: all .3s ease-out;
+
+  &__box {
+    text-align: center;
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(244, 244, 244);
+    border-radius: 7px;
+
+    @mixin atSmall {
+      padding: 1rem 6rem;
+    }
+
+    @mixin atMedium {
+
+    }
+  }
+
+  /* 登陆框 */
+  &__signin {
+      /*width: 200px;*/
+
+    @mixin atSmall {
+      /*width: 200px;*/
+    }
+
+    @mixin atMedium {
+      width: 320px;
+    }
+
+    &__welcome {
+      letter-spacing: .5vh;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+
+      @mixin atSmall {
+        font-size: 1.3rem;
+      }
+
+      @mixin atMedium {
+        font-size: 1.7rem;
+      }
+    }
+
+    &__input {
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+
+      input {
+        flex: 1 0 auto;
+        padding: .7rem 1rem;
+        border: 1px solid #ccc;
+        border-radius: .3rem;
+        font-size: 1.3rem;
+        outline: none;
+        color: #555;
+        transition: all .2s;
+      }
+
+      input::placeholder {
+        color: #ccc;
+      }
+
+      input:focus {
+        border-color: $mainGreen;
+      }
+
+    }
+
+    &__button {
+      display: flex;
+      justify-content: center;
+    }
+
+    &__btn-yes {
+      flex: 1 0 auto;
+      border: 1px solid #6bc5bc;
+      background-color: #6bc5bc;
+      border-radius: 4px;
+      padding: .5rem 0;
+      color: #fff;
+      font-size: 3vh;
+      cursor: pointer;
+      transition: all .3s;
+    }
+
+    &__btn-yes:hover {
+      background-color: $mainGreen;
+      border-color: $mainGreen;
+    }
+
+    &__btn-yes:focus {
+      display: none;
+    }
+  }
+
+  /* 注册框 */
+  &__signup {
+      /*width: 200px;*/
+
+    @mixin atSmall {
+      /*width: 200px;*/
+    }
+
+    @mixin atMedium {
+      width: 320px;
+    }
+
+    &__welcome {
+      letter-spacing: .5vh;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+
+      @mixin atSmall {
+        font-size: 1.3rem;
+      }
+
+      @mixin atMedium {
+        font-size: 1.7rem;
+      }
+    }
+
+    &__input {
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+
+      input {
+        flex: 1 0 auto;
+        padding: .7rem 1rem;
+        border: 1px solid #ccc;
+        border-radius: .3rem;
+        font-size: 1.3rem;
+        outline: none;
+        color: #555;
+        transition: all .2s;
+      }
+
+      input::placeholder {
+        color: #ccc;
+      }
+
+      input:focus {
+        border-color: $mainPurple;
+      }
+
+    }
+
+    &__button {
+      display: flex;
+      justify-content: center;
+    }
+
+    &__btn-yes {
+      flex: 1 0 auto;
+      border: 1px solid #777499;
+      background-color: #777499;
+      border-radius: 4px;
+      padding: .5rem 0;
+      color: #fff;
+      font-size: 3vh;
+      cursor: pointer;
+      transition: all .3s;
+    }
+
+    &__btn-yes:hover {
+      background-color: $mainPurple;
+      border-color: $mainPurple;
+    }
+
+    &__btn-yes:focus {
+      display: none;
+    }
+  }
+
+  /* 登陆注册切换 */
+  &__bottom {
+      color: #bbb;
+      margin-top: .5rem;
+      font-size: .9rem;
+      display: flex;
+      justify-content: flex-end;
+
+      span {
+        margin: 0 .5rem;
+      }
+
+      a {
+        color: #bbb;
+      }
+
+      a:hover {
+        color: #666;
+      }
+  }
+
+  /* 显示模态框 */
+  &--visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &.fade {
+    animation: fade .3s;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    visibility: hidden;
+  } to  {
+    opacity: 1;
+    visibility: visible;
+  }
+}

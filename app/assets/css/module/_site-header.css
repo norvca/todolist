@@ -7,6 +7,7 @@
   color: #777;
   padding: 0 1vh;
 
+
   @mixin atSmall {
     padding: 0;
   }
@@ -14,44 +15,51 @@
   /* 随机任务区域 */
   &__random-task {
     display: none;
+    align-self: center;
+
 
     @mixin atSmall {
       display: block;
-      text-align: center;
       line-height: 12vh;
-      padding: 0 1vh;
+      padding: 0 .5rem 0 1.1rem;
       user-select: none;
-    }
-
-    @mixin atMedium {
-      padding: 0 2vh;
     }
 
     &__fire {
       font-size: 1.5rem;
-      padding-right: .3rem;
       cursor: pointer;
 
       @mixin atMedium {
-        padding-right: 0;
         font-size: 2rem;
-        letter-spacing: 1vh;
+        letter-spacing: .1rem;
       }
     }
 
     &__fire:hover {
       color: $mainGreen;
     }
+  }
 
-    &__state {
-      cursor: pointer;
-      font-size: 1rem;
+  &__login {
+    display: block;
+    align-self: center;
+    cursor: pointer;
+    font-size: 1rem;
 
-      @mixin atMedium {
-        font-size: 1.5rem;
-      }
+    @mixin atMedium {
+      font-size: 1.3rem;
+    }
+
+    span {
+      vertical-align: middle;
+      padding: 0 1.1rem 0 .5rem;
     }
   }
+
+  &__loginButton:hover {
+    color: $mainGreen;
+  }
+
 
   /* 顶部搜索栏 */
   &__search-box {
@@ -97,10 +105,9 @@
     }
 
     @mixin atMedium {
-      padding: 0 4vh;
+      padding: 0 1.7rem;
     }
   }
-
 }
 
 
@@ -121,11 +128,3 @@
   background: linear-gradient(to right bottom, $mainGreen, $mainPurple);
   color: #fff;
 }
-
-
-
-
-
-
-
-

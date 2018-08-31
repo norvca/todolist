@@ -3,18 +3,27 @@ import {sidebarModule} from "./SidebarModule";
 import {todolistModule} from "./TodolistModule";
 import {detailModule} from "./DetailModule";
 import {modalModule} from "./ModalModule";
+import {login} from "./Login/Login";
 import {helperFunction} from "./HelperFunction";
-
-
-// 变量声明
-const sidebarContent = document.querySelector(".sidebar__content");
-const deleteData = document.querySelector(".sidebar__delete");
-const section = document.querySelector(".todolist");
-const detail = document.querySelector(".detail__paragraph");
 
 
 // 定义事件处理函数
 const handler = (function() {
+    // 变量声明
+    const loginButton = document.querySelector(".site-header__loginButton");
+    const sidebarContent = document.querySelector(".sidebar__content");
+    const deleteData = document.querySelector(".sidebar__delete");
+    const section = document.querySelector(".todolist");
+    const detail = document.querySelector(".detail__paragraph");
+    const yes = document.querySelector(".modal__btn-yes");
+
+    // header 区域
+    // 显示登陆注册功能模态框
+    loginButton.addEventListener("click", login.createSingleLoginModal);
+
+    // 登陆注册栏切换
+    document.body.addEventListener("click", login.changeState);
+
     // sideBar 区域
     // 左侧任务栏类别、等级导航
     sidebarContent.addEventListener("click", sidebarModule.navigation);
@@ -43,18 +52,8 @@ const handler = (function() {
 
     // 模态框区域
     // 是否清空数据库
-    document.body.addEventListener("click", function(e) {
-      let target = e.target;
-
-      // 删除数据库数据
-      if (target.classList.contains('modal__btn-yes')) {
-        modalModule.deleteAllTasks();
-        return;
-      // 返回
-      } else if (target.classList.contains('modal__btn-no')) {
-        modalModule.regretDeleteTasks();
-      }
-    });
+    document.body.addEventListener("click", modalModule.deleteAllTasks);
+    document.body.addEventListener("click", modalModule.regretDeleteTasks);
 })();
 
 export {handler};

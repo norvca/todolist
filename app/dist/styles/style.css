@@ -414,6 +414,333 @@ main {
   overflow: hidden;
 }
 
+/* 登陆模态框 */
+
+.login {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(50, 50, 50, .6);
+
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: all .3s ease-out;
+  transition: all .3s ease-out;
+}
+
+.login__box {
+    text-align: center;
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    background-color: rgb(244, 244, 244);
+    border-radius: 7px;
+  }
+
+@media (min-width: 530px) {
+
+.login__box {
+      padding: 1rem 6rem
+  }
+  }
+
+@media (min-width: 957px) {
+  }
+
+/* 登陆框 */
+
+/*width: 200px;*/
+
+@media (min-width: 530px) {
+
+.login__signin {
+      /*width: 200px;*/
+  }
+  }
+
+@media (min-width: 957px) {
+
+.login__signin {
+      width: 320px
+  }
+  }
+
+.login__signin__welcome {
+      letter-spacing: .5vh;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+@media (min-width: 530px) {
+
+.login__signin__welcome {
+        font-size: 1.3rem
+    }
+  }
+
+@media (min-width: 957px) {
+
+.login__signin__welcome {
+        font-size: 1.7rem
+    }
+  }
+
+.login__signin__input {
+        margin-bottom: 1rem;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+
+    }
+
+.login__signin__input input {
+        -webkit-box-flex: 1;
+            -ms-flex: 1 0 auto;
+                flex: 1 0 auto;
+        padding: .7rem 1rem;
+        border: 1px solid #ccc;
+        border-radius: .3rem;
+        font-size: 1.3rem;
+        outline: none;
+        color: #555;
+        -webkit-transition: all .2s;
+        transition: all .2s;
+      }
+
+.login__signin__input input::-webkit-input-placeholder {
+        color: #ccc;
+      }
+
+.login__signin__input input:-ms-input-placeholder {
+        color: #ccc;
+      }
+
+.login__signin__input input::-ms-input-placeholder {
+        color: #ccc;
+      }
+
+.login__signin__input input::placeholder {
+        color: #ccc;
+      }
+
+.login__signin__input input:focus {
+        border-color: #58b4ab;
+      }
+
+.login__signin__button {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+    }
+
+.login__signin__btn-yes {
+      -webkit-box-flex: 1;
+          -ms-flex: 1 0 auto;
+              flex: 1 0 auto;
+      border: 1px solid #6bc5bc;
+      background-color: #6bc5bc;
+      border-radius: 4px;
+      padding: .5rem 0;
+      color: #fff;
+      font-size: 3vh;
+      cursor: pointer;
+      -webkit-transition: all .3s;
+      transition: all .3s;
+    }
+
+.login__signin__btn-yes:hover {
+      background-color: #58b4ab;
+      border-color: #58b4ab;
+    }
+
+.login__signin__btn-yes:focus {
+      display: none;
+    }
+
+/* 注册框 */
+
+/*width: 200px;*/
+
+@media (min-width: 530px) {
+
+.login__signup {
+      /*width: 200px;*/
+  }
+  }
+
+@media (min-width: 957px) {
+
+.login__signup {
+      width: 320px
+  }
+  }
+
+.login__signup__welcome {
+      letter-spacing: .5vh;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+@media (min-width: 530px) {
+
+.login__signup__welcome {
+        font-size: 1.3rem
+    }
+  }
+
+@media (min-width: 957px) {
+
+.login__signup__welcome {
+        font-size: 1.7rem
+    }
+  }
+
+.login__signup__input {
+        margin-bottom: 1rem;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+
+    }
+
+.login__signup__input input {
+        -webkit-box-flex: 1;
+            -ms-flex: 1 0 auto;
+                flex: 1 0 auto;
+        padding: .7rem 1rem;
+        border: 1px solid #ccc;
+        border-radius: .3rem;
+        font-size: 1.3rem;
+        outline: none;
+        color: #555;
+        -webkit-transition: all .2s;
+        transition: all .2s;
+      }
+
+.login__signup__input input::-webkit-input-placeholder {
+        color: #ccc;
+      }
+
+.login__signup__input input:-ms-input-placeholder {
+        color: #ccc;
+      }
+
+.login__signup__input input::-ms-input-placeholder {
+        color: #ccc;
+      }
+
+.login__signup__input input::placeholder {
+        color: #ccc;
+      }
+
+.login__signup__input input:focus {
+        border-color: #66638b;
+      }
+
+.login__signup__button {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+    }
+
+.login__signup__btn-yes {
+      -webkit-box-flex: 1;
+          -ms-flex: 1 0 auto;
+              flex: 1 0 auto;
+      border: 1px solid #777499;
+      background-color: #777499;
+      border-radius: 4px;
+      padding: .5rem 0;
+      color: #fff;
+      font-size: 3vh;
+      cursor: pointer;
+      -webkit-transition: all .3s;
+      transition: all .3s;
+    }
+
+.login__signup__btn-yes:hover {
+      background-color: #66638b;
+      border-color: #66638b;
+    }
+
+.login__signup__btn-yes:focus {
+      display: none;
+    }
+
+/* 登陆注册切换 */
+
+.login__bottom {
+      color: #bbb;
+      margin-top: .5rem;
+      font-size: .9rem;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: end;
+          -ms-flex-pack: end;
+              justify-content: flex-end;
+  }
+
+.login__bottom span {
+        margin: 0 .5rem;
+      }
+
+.login__bottom a {
+        color: #bbb;
+      }
+
+.login__bottom a:hover {
+        color: #666;
+      }
+
+/* 显示模态框 */
+
+.login--visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+.login.fade {
+    -webkit-animation: fade .3s;
+            animation: fade .3s;
+  }
+
+@-webkit-keyframes fade {
+  from {
+    opacity: 0;
+    visibility: hidden;
+  } to  {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    visibility: hidden;
+  } to  {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
 .icon {
   width: 2.2rem;
   height: 2.2rem;
@@ -506,14 +833,12 @@ main {
           box-shadow:  0px 2px 11px 0px #ccc;
   color: #777;
   padding: 0 1vh;
-
 }
 
 @media (min-width: 530px) {
 
 .site-header {
     padding: 0
-
 }
   }
 
@@ -521,15 +846,16 @@ main {
 
 .site-header__random-task {
     display: none;
+    -ms-flex-item-align: center;
+        align-self: center;
   }
 
 @media (min-width: 530px) {
 
 .site-header__random-task {
       display: block;
-      text-align: center;
       line-height: 12vh;
-      padding: 0 1vh;
+      padding: 0 .5rem 0 1.1rem;
       -webkit-user-select: none;
          -moz-user-select: none;
           -ms-user-select: none;
@@ -537,25 +863,16 @@ main {
   }
   }
 
-@media (min-width: 957px) {
-
-.site-header__random-task {
-      padding: 0 2vh
-  }
-  }
-
 .site-header__random-task__fire {
       font-size: 1.5rem;
-      padding-right: .3rem;
       cursor: pointer;
     }
 
 @media (min-width: 957px) {
 
 .site-header__random-task__fire {
-        padding-right: 0;
         font-size: 2rem;
-        letter-spacing: 1vh
+        letter-spacing: .1rem
     }
   }
 
@@ -563,16 +880,28 @@ main {
       color: #58b4ab;
     }
 
-.site-header__random-task__state {
-      cursor: pointer;
-      font-size: 1rem;
-    }
+.site-header__login {
+    display: block;
+    -ms-flex-item-align: center;
+        align-self: center;
+    cursor: pointer;
+    font-size: 1rem;
+  }
 
 @media (min-width: 957px) {
 
-.site-header__random-task__state {
-        font-size: 1.5rem
+.site-header__login {
+      font-size: 1.3rem
+  }
+  }
+
+.site-header__login span {
+      vertical-align: middle;
+      padding: 0 1.1rem 0 .5rem;
     }
+
+.site-header__loginButton:hover {
+    color: #58b4ab;
   }
 
 /* 顶部搜索栏 */
@@ -661,7 +990,7 @@ main {
 @media (min-width: 957px) {
 
 .site-header__theme-btn {
-      padding: 0 4vh
+      padding: 0 1.7rem
   }
   }
 
@@ -1127,16 +1456,6 @@ main {
     -webkit-animation: fade .3s;
             animation: fade .3s;
   }
-
-@-webkit-keyframes fade {
-  from {
-    opacity: 0;
-    visibility: hidden;
-  } to  {
-    opacity: 1;
-    visibility: visible;
-  }
-}
 
 @keyframes fade {
   from {
