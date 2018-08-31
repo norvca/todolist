@@ -24,6 +24,9 @@ const handler = (function() {
     // 登陆注册栏切换
     document.body.addEventListener("click", login.changeState);
 
+    // 退出登陆框
+    document.body.addEventListener("click", login.exit);
+
     // sideBar 区域
     // 左侧任务栏类别、等级导航
     sidebarContent.addEventListener("click", sidebarModule.navigation);

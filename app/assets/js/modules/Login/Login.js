@@ -79,6 +79,13 @@ const login = {
       signin.classList.toggle('hidden');
       signup.classList.toggle('hidden');
     }
+  },
+
+  exit(e) {
+    const login = document.querySelector('.login');
+    if (e.target.classList.contains('login__exit')) {
+      login.classList.remove('login--visible');
+    }
   }
 }
 
