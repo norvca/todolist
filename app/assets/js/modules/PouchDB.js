@@ -1,10 +1,12 @@
 // 模块加载
 import PouchDB from "pouchdb";
 import PouchdbFind from "pouchdb-find";
+import authentication from "pouchdb-authentication";
 import {helperFunction} from "./HelperFunction";
 
 // 加载 PouchDB 插件
 PouchDB.plugin(PouchdbFind);
+PouchDB.plugin(authentication);
 
 // 定义变量
 const toDayString = new Date().toString();
@@ -14,7 +16,63 @@ const section = document.querySelector(".todolist");
 const detail = document.querySelector(".detail__paragraph");
 
 // 创建数据库
-const db = new PouchDB("todolist");
+
+const db = new PouchDB("qwe:qwe@http://localhost:5984/todolist", {skip_setup: true});
+
+
+
+
+
+
+
+// --------------------- pouchdb-authentication test -------------------------------
+var btn = document.querySelector(".site-header__theme-btn");
+var add1 = document.querySelector(".icon__add");
+
+add1.onclick = function() {
+    db.logIn('batman', 'brucewayne').then(function (batman) {
+      console.log("I'm Batman.");
+      // return db.logOut();
+    });
+}
+
+btn.onclick = function() {
+    db.signUp('batman', 'brucewayne', function (err, response) {
+      if (err) {
+        if (err.name === 'conflict') {
+            console.log(1)
+          // "batman" already exists, choose another username
+        } else if (err.name === 'forbidden') {
+          // invalid username
+        } else {
+          // HTTP error, cosmic rays, etc.
+        }
+      }
+      console.log(err)
+      console.log(response)
+    });
+
+
+
+
+    // db.getUser('batman', function (err, response) {
+    //   if (err) {
+    //     if (err.name === 'not_found') {
+    //       // typo, or you don't have the privileges to see this user
+    //     } else {
+    //       // some other error
+    //     }
+    //   } else {
+    //     // response is the user object
+    //   }
+    //   console.log(err)
+    //   console.log(2)
+    // });
+}
+
+// --------------------- pouchdb-authentication test -------------------------------
+
+
 
 // 数据库模块
 const pouchDB = {

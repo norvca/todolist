@@ -393,7 +393,7 @@ h4 {
   }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 /* Caution! 样式控制，放在这里以后可能会有BUG */
@@ -403,8 +403,16 @@ h4 {
 }
 
 .act-color {
-  color: #58b4ab !important;;
+  color: #58b4ab !important;
   border-color: #58b4ab !important;
+}
+
+.error {
+  color: #da635d;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  font-size: 1rem;
+  margin-top: .2rem;
 }
 
 main {
@@ -451,6 +459,16 @@ main {
 
 /* 登陆框 */
 
+.login__signin {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+
 @media (min-width: 957px) {
 
 .login__signin {
@@ -461,7 +479,6 @@ main {
 .login__signin__welcome {
       letter-spacing: .5vh;
       font-size: 1.3rem;
-      margin-bottom: 1.5rem;
     }
 
 @media (min-width: 957px) {
@@ -472,20 +489,7 @@ main {
   }
 
 .login__signin__input {
-        margin-bottom: 1rem;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-            -ms-flex-align: center;
-                align-items: center;
-
-    }
-
-.login__signin__input input {
-        -webkit-box-flex: 1;
-            -ms-flex: 1 0 auto;
-                flex: 1 0 auto;
+        margin-top: 1rem;
         padding: .7rem 1rem;
         border: 1px solid #ccc;
         border-radius: .3rem;
@@ -494,27 +498,27 @@ main {
         color: #555;
         -webkit-transition: all .2s;
         transition: all .2s;
-      }
+    }
 
-.login__signin__input input::-webkit-input-placeholder {
-        color: #ccc;
-      }
+.login__signin__input::-webkit-input-placeholder {
+      color: #ccc;
+    }
 
-.login__signin__input input:-ms-input-placeholder {
-        color: #ccc;
-      }
+.login__signin__input:-ms-input-placeholder {
+      color: #ccc;
+    }
 
-.login__signin__input input::-ms-input-placeholder {
-        color: #ccc;
-      }
+.login__signin__input::-ms-input-placeholder {
+      color: #ccc;
+    }
 
-.login__signin__input input::placeholder {
-        color: #ccc;
-      }
+.login__signin__input::placeholder {
+      color: #ccc;
+    }
 
-.login__signin__input input:focus {
-        border-color: #58b4ab;
-      }
+.login__signin__input:focus {
+      border-color: #58b4ab !important;
+    }
 
 .login__signin__button {
       display: -webkit-box;
@@ -523,16 +527,11 @@ main {
       -webkit-box-pack: center;
           -ms-flex-pack: center;
               justify-content: center;
-    }
-
-.login__signin__btn-yes {
-      -webkit-box-flex: 1;
-          -ms-flex: 1 0 auto;
-              flex: 1 0 auto;
       border: 1px solid #6bc5bc;
       background-color: #6bc5bc;
       border-radius: 4px;
       padding: .5rem 0;
+      margin-top: 1rem;
       color: #fff;
       font-size: 3vh;
       cursor: pointer;
@@ -540,16 +539,26 @@ main {
       transition: all .3s;
     }
 
-.login__signin__btn-yes:hover {
+.login__signin__button:hover {
       background-color: #58b4ab;
       border-color: #58b4ab;
     }
 
-.login__signin__btn-yes:focus {
+.login__signin__button:focus {
       display: none;
     }
 
 /* 注册框 */
+
+.login__signup {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
 
 @media (min-width: 957px) {
 
@@ -561,7 +570,6 @@ main {
 .login__signup__welcome {
       letter-spacing: .5vh;
       font-size: 1.3rem;
-      margin-bottom: 1.5rem;
     }
 
 @media (min-width: 957px) {
@@ -572,20 +580,7 @@ main {
   }
 
 .login__signup__input {
-        margin-bottom: 1rem;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-            -ms-flex-align: center;
-                align-items: center;
-
-    }
-
-.login__signup__input input {
-        -webkit-box-flex: 1;
-            -ms-flex: 1 0 auto;
-                flex: 1 0 auto;
+        margin-top: 1rem;
         padding: .7rem 1rem;
         border: 1px solid #ccc;
         border-radius: .3rem;
@@ -594,27 +589,27 @@ main {
         color: #555;
         -webkit-transition: all .2s;
         transition: all .2s;
-      }
+    }
 
-.login__signup__input input::-webkit-input-placeholder {
-        color: #ccc;
-      }
+.login__signup__input::-webkit-input-placeholder {
+      color: #ccc;
+    }
 
-.login__signup__input input:-ms-input-placeholder {
-        color: #ccc;
-      }
+.login__signup__input:-ms-input-placeholder {
+      color: #ccc;
+    }
 
-.login__signup__input input::-ms-input-placeholder {
-        color: #ccc;
-      }
+.login__signup__input::-ms-input-placeholder {
+      color: #ccc;
+    }
 
-.login__signup__input input::placeholder {
-        color: #ccc;
-      }
+.login__signup__input::placeholder {
+      color: #ccc;
+    }
 
-.login__signup__input input:focus {
-        border-color: #66638b;
-      }
+.login__signup__input:focus {
+      border-color: #58b4ab !important;
+    }
 
 .login__signup__button {
       display: -webkit-box;
@@ -625,7 +620,7 @@ main {
               justify-content: center;
     }
 
-.login__signup__btn-yes {
+.login__signup__button {
       -webkit-box-flex: 1;
           -ms-flex: 1 0 auto;
               flex: 1 0 auto;
@@ -633,6 +628,7 @@ main {
       background-color: #777499;
       border-radius: 4px;
       padding: .5rem 0;
+      margin-top: 1rem;
       color: #fff;
       font-size: 3vh;
       cursor: pointer;
@@ -640,12 +636,12 @@ main {
       transition: all .3s;
     }
 
-.login__signup__btn-yes:hover {
+.login__signup__button:hover {
       background-color: #66638b;
       border-color: #66638b;
     }
 
-.login__signup__btn-yes:focus {
+.login__signup__button:focus {
       display: none;
     }
 

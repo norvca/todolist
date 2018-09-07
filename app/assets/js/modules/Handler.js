@@ -3,7 +3,8 @@ import {sidebarModule} from "./SidebarModule";
 import {todolistModule} from "./TodolistModule";
 import {detailModule} from "./DetailModule";
 import {modalModule} from "./ModalModule";
-import {login} from "./Login/Login";
+import {signin} from "./Login/Signin";
+import {signup} from "./Login/Signup";
 import {helperFunction} from "./HelperFunction";
 
 
@@ -20,14 +21,18 @@ const handler = (function() {
 
     // header 区域
     // 显示登陆注册功能模态框
-    loginButton.addEventListener("click", login.createSingleLoginModal);
-    loginIcon.addEventListener("click", login.createSingleLoginModal);
+    loginButton.addEventListener("click", signin.createSingleLoginModal);
+    loginIcon.addEventListener("click", signin.createSingleLoginModal);
+
+    // 登陆按钮提交
+    document.body.addEventListener("blur", signup.vertify, true);
+    document.body.addEventListener("click", signup.submit);
 
     // 登陆注册栏切换
-    document.body.addEventListener("click", login.changeState);
+    document.body.addEventListener("click", signin.changeState);
 
     // 退出登陆框
-    document.body.addEventListener("click", login.exit);
+    document.body.addEventListener("click", signin.exit);
 
     // sideBar 区域
     // 左侧任务栏类别、等级导航

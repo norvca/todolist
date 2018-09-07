@@ -28,6 +28,8 @@
 
   /* 登陆框 */
   &__signin {
+    display: flex;
+    flex-direction: column;
     @mixin atMedium {
       width: 320px;
     }
@@ -35,7 +37,6 @@
     &__welcome {
       letter-spacing: .5vh;
       font-size: 1.3rem;
-      margin-bottom: 1.5rem;
 
       @mixin atMedium {
         font-size: 1.7rem;
@@ -43,12 +44,7 @@
     }
 
     &__input {
-        margin-bottom: 1rem;
-        display: flex;
-        align-items: center;
-
-      input {
-        flex: 1 0 auto;
+        margin-top: 1rem;
         padding: .7rem 1rem;
         border: 1px solid #ccc;
         border-radius: .3rem;
@@ -56,47 +52,44 @@
         outline: none;
         color: #555;
         transition: all .2s;
-      }
+    }
 
-      input::placeholder {
-        color: #ccc;
-      }
+    &__input::placeholder {
+      color: #ccc;
+    }
 
-      input:focus {
-        border-color: $mainGreen;
-      }
-
+    &__input:focus {
+      border-color: $mainGreen !important;
     }
 
     &__button {
       display: flex;
       justify-content: center;
-    }
-
-    &__btn-yes {
-      flex: 1 0 auto;
       border: 1px solid #6bc5bc;
       background-color: #6bc5bc;
       border-radius: 4px;
       padding: .5rem 0;
+      margin-top: 1rem;
       color: #fff;
       font-size: 3vh;
       cursor: pointer;
       transition: all .3s;
     }
 
-    &__btn-yes:hover {
+    &__button:hover {
       background-color: $mainGreen;
       border-color: $mainGreen;
     }
 
-    &__btn-yes:focus {
+    &__button:focus {
       display: none;
     }
   }
 
   /* 注册框 */
   &__signup {
+    display: flex;
+    flex-direction: column;
     @mixin atMedium {
       width: 320px;
     }
@@ -104,7 +97,6 @@
     &__welcome {
       letter-spacing: .5vh;
       font-size: 1.3rem;
-      margin-bottom: 1.5rem;
 
       @mixin atMedium {
         font-size: 1.7rem;
@@ -112,12 +104,7 @@
     }
 
     &__input {
-        margin-bottom: 1rem;
-        display: flex;
-        align-items: center;
-
-      input {
-        flex: 1 0 auto;
+        margin-top: 1rem;
         padding: .7rem 1rem;
         border: 1px solid #ccc;
         border-radius: .3rem;
@@ -125,16 +112,14 @@
         outline: none;
         color: #555;
         transition: all .2s;
-      }
+    }
 
-      input::placeholder {
-        color: #ccc;
-      }
+    &__input::placeholder {
+      color: #ccc;
+    }
 
-      input:focus {
-        border-color: $mainPurple;
-      }
-
+    &__input:focus {
+      border-color: $mainGreen !important;
     }
 
     &__button {
@@ -142,24 +127,25 @@
       justify-content: center;
     }
 
-    &__btn-yes {
+    &__button {
       flex: 1 0 auto;
       border: 1px solid #777499;
       background-color: #777499;
       border-radius: 4px;
       padding: .5rem 0;
+      margin-top: 1rem;
       color: #fff;
       font-size: 3vh;
       cursor: pointer;
       transition: all .3s;
     }
 
-    &__btn-yes:hover {
+    &__button:hover {
       background-color: $mainPurple;
       border-color: $mainPurple;
     }
 
-    &__btn-yes:focus {
+    &__button:focus {
       display: none;
     }
   }
