@@ -43,23 +43,19 @@ const modalModule = {
 
   // 清除数据库
   deleteAllTasks(e) {
-    if (e.target.classList.contains('modal__btn-yes')) {
       // 删除数据库
       db.deleteAllTasks();
 
       // 隐藏模态框
       const modal = document.querySelector('.modal');
       modal.classList.remove('modal--visible');
-    }
   },
 
   // 不清除数据库
   regretDeleteTasks(e) {
-    if (e.target.classList.contains('modal__btn-no')) {
       // 隐藏模态框
       const modal = document.querySelector('.modal');
       modal.classList.remove('modal--visible');
-    }
   }
 }
 

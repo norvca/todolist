@@ -75,11 +75,11 @@ const signup = {
       // })
 
       // 输入的用户名与密码
-      const signupName = document.querySelector('.signupUsername').value;
-      const signupPass = document.querySelector('.signupPassword').value;
-      console.log(userInfo)
-      userInfo.push({"username": signupName, "password": signupPass})
-      console.log(userInfo)
+      // const signupName = document.querySelector('.signupUsername').value;
+      // const signupPass = document.querySelector('.signupPassword').value;
+      // console.log(userInfo)
+      // userInfo.push({"username": signupName, "password": signupPass})
+      // console.log(userInfo)
     }
   }
 };

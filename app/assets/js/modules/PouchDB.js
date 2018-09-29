@@ -17,60 +17,79 @@ const detail = document.querySelector(".detail__paragraph");
 
 // 创建数据库
 
-const db = new PouchDB("qwe:qwe@http://localhost:5984/todolist", {skip_setup: true});
+// const db = new PouchDB("http://127.0.0.1:5984/todolist", {
+//     skipSetup: true,
+//     auth: {
+//         username: "qwe",
+//         password: "qwe"
+//     }
+// });
+
+var db = new PouchDB('todolist');
+// local.sync(db, {live: true, retry: true}).on('error', console.log.bind(console));
+
+// db.signUp('1232222','eeee').then(function (reponse){
+//     console.log(reponse)
+// }).then(function (reponse) {
+//     console.log(reponse)
+//   // handle response
+// }).catch(function (error) {
+//     console.log(error)
+//   // handle error
+// });
+
+// db.signup('batman', 'brucewayne', function (err, response) {
+//   if (err) {
+//     console.log(err)
+//     if (err.name === 'conflict') {
+//       // "batman" already exists, choose another username
+//     } else if (err.name === 'forbidden') {
+//       // invalid username
+//     } else {
+//       // HTTP error, cosmic rays, etc.
+//     }
+//   }
+//   console.log(response)
+// });
+
+// db.login('batman', 'brucewayne', function (err, response) {
+//   if (err) {
+//     console.log(err)
+//     if (err.name === 'unauthorized') {
+//       // name or password incorrect
+//     } else {
+//       // cosmic rays, a meteor, etc.
+//     }
+//   }
+//   console.log(response)
+// });
+
+// db.getSession(function (err, response) {
+//   if (err) {
+//     console.log(err)
+//     // network error
+//   } else if (!response.userCtx.name) {
+//     // nobody's logged in
+//   } else {
+//     console.log(response)
+//     // response.userCtx.name is the current user
+//   }
+// });
 
 
-
-
-
-
-
-// --------------------- pouchdb-authentication test -------------------------------
-var btn = document.querySelector(".site-header__theme-btn");
-var add1 = document.querySelector(".icon__add");
-
-add1.onclick = function() {
-    db.logIn('batman', 'brucewayne').then(function (batman) {
-      console.log("I'm Batman.");
-      // return db.logOut();
-    });
-}
-
-btn.onclick = function() {
-    db.signUp('batman', 'brucewayne', function (err, response) {
-      if (err) {
-        if (err.name === 'conflict') {
-            console.log(1)
-          // "batman" already exists, choose another username
-        } else if (err.name === 'forbidden') {
-          // invalid username
-        } else {
-          // HTTP error, cosmic rays, etc.
-        }
-      }
-      console.log(err)
-      console.log(response)
-    });
-
-
-
-
-    // db.getUser('batman', function (err, response) {
-    //   if (err) {
-    //     if (err.name === 'not_found') {
-    //       // typo, or you don't have the privileges to see this user
-    //     } else {
-    //       // some other error
-    //     }
-    //   } else {
-    //     // response is the user object
-    //   }
-    //   console.log(err)
-    //   console.log(2)
-    // });
-}
-
-// --------------------- pouchdb-authentication test -------------------------------
+// db.getUser('batman', function (err, response) {
+//   if (err) {
+//     console.log(err)
+//     if (err.name === 'not_found') {
+//       // typo, or you don't have the privileges to see this user
+//     } else {
+//       // some other error
+//     }
+//   } else {
+//     console.log(response)
+//     // response is the user object
+//   }
+// });
 
 
 

@@ -12,7 +12,6 @@ import {helperFunction} from "./HelperFunction";
 const handler = (function() {
     // 变量声明
     const loginButton = document.querySelector(".site-header__loginButton");
-    const loginIcon = document.querySelector(".site-header__loginIcon");
     const sidebarContent = document.querySelector(".sidebar__content");
     const deleteData = document.querySelector(".sidebar__delete");
     const section = document.querySelector(".todolist");
@@ -22,17 +21,21 @@ const handler = (function() {
     // header 区域
     // 显示登陆注册功能模态框
     loginButton.addEventListener("click", signin.createSingleLoginModal);
-    loginIcon.addEventListener("click", signin.createSingleLoginModal);
+    loginButton.addEventListener("click", showLoginModal);
 
-    // 登陆按钮提交
-    document.body.addEventListener("blur", signup.vertify, true);
-    document.body.addEventListener("click", signup.submit);
+    function showLoginModal() {
+        var loginBox = document.querySelector(".login__box");
+        // 登陆按钮提交
+        loginBox.addEventListener("blur", signup.vertify, true);
+        loginBox.addEventListener("click", signup.submit);
 
-    // 登陆注册栏切换
-    document.body.addEventListener("click", signin.changeState);
+        // 登陆注册栏切换
+        loginBox.addEventListener("click", signin.changeState);
 
-    // 退出登陆框
-    document.body.addEventListener("click", signin.exit);
+        // 退出登陆框
+        loginBox.addEventListener("click", signin.exit);
+    }
+
 
     // sideBar 区域
     // 左侧任务栏类别、等级导航
@@ -40,6 +43,15 @@ const handler = (function() {
 
     // 显示删库模态框
     deleteData.addEventListener("click", modalModule.createSingleDeleteModal);
+    deleteData.addEventListener("click", showDeleteModal);
+
+    // 删除模态框内函数
+    function showDeleteModal() {
+        var confirmDelete = document.querySelector(".modal__btn-yes");
+        var regretDelete = document.querySelector(".modal__btn-no");
+        confirmDelete.addEventListener("click", modalModule.deleteAllTasks);
+        regretDelete.addEventListener("click", modalModule.regretDeleteTasks);
+    }
 
 
     // todolist 区域
@@ -58,12 +70,6 @@ const handler = (function() {
 
     // 右侧任务详情区域
     detail.addEventListener("focusout", detailModule.refreshDetail);
-
-
-    // 模态框区域
-    // 是否清空数据库
-    document.body.addEventListener("click", modalModule.deleteAllTasks);
-    document.body.addEventListener("click", modalModule.regretDeleteTasks);
 })();
 
 export {handler};
