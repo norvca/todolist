@@ -20,13 +20,13 @@ class ThemeChanger {
 
   // 切换主题功能
   changeTheme(){
-      const themeIcon = this.themeBtn.children[0].children[0];
-      // 切换主题数组
-      this.theme.push(this.theme.shift());
-      this.themeIconName.push(this.themeIconName.shift());
-      // 应用主题
-      this.siteHeader.setAttribute("class", ("site-header "+ this.theme[0]));
-      themeIcon.setAttribute("xlink:href", this.themeIconName[0]);
+    const themeIcon = this.themeBtn.children[0].children[0];
+    // 切换主题数组
+    this.theme.push(this.theme.shift());
+    this.themeIconName.push(this.themeIconName.shift());
+    // 应用主题
+    this.siteHeader.setAttribute("class", ("site-header "+ this.theme[0]));
+    themeIcon.setAttribute("xlink:href", this.themeIconName[0]);
   }
 }
 

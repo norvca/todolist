@@ -5,8 +5,8 @@ import {backendDB as db} from "../BackendDB";
 // 生成登陆模态框
 const createLoginModal = () => {
   // 创建模态框
-  const deleteModal = document.createElement('div');
-  deleteModal.classList.add('login', 'fade');
+  const deleteModal = document.createElement("div");
+  deleteModal.classList.add("login", "fade");
   deleteModal.innerHTML = `<div class='login__box'>
                              <div class='login__signin'>
                                <p class='login__signin__welcome'>欢迎登陆PureTodo!</p>
@@ -43,10 +43,10 @@ const createLoginModal = () => {
 
 // 单例函数
 const getSingle = function(fn) {
-  let instance
+  let instance;
   return function() {
     return instance || (instance = fn());
-  }
+  };
 };
 
 // 生成登陆模态框的闭包
@@ -61,7 +61,7 @@ const signin = {
 
 
     // 让模态框可见
-    singleModal.classList.add('login--visible');
+    singleModal.classList.add("login--visible");
   },
 
   // 提交注册按钮
@@ -93,22 +93,22 @@ const signin = {
 
   // 切换成注册功能
   changeState(e) {
-    const signin = document.querySelector('.login__signin');
-    const signup = document.querySelector('.login__signup');
-    if (e.target.classList.contains('login__changeState')) {
-      signin.classList.toggle('hidden');
-      signup.classList.toggle('hidden');
+    const signin = document.querySelector(".login__signin");
+    const signup = document.querySelector(".login__signup");
+    if (e.target.classList.contains("login__changeState")) {
+      signin.classList.toggle("hidden");
+      signup.classList.toggle("hidden");
     }
   },
 
   // 退出模态框
   exit(e) {
-    const login = document.querySelector('.login');
-    if (e.target.classList.contains('login__exit')) {
-      login.classList.remove('login--visible');
+    const login = document.querySelector(".login");
+    if (e.target.classList.contains("login__exit")) {
+      login.classList.remove("login--visible");
     }
   }
-}
+};
 
 
 

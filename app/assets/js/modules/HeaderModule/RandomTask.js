@@ -16,15 +16,15 @@ class RandomTask {
   }
 
   event() {
-    this.randomTaskBtn.addEventListener("click", this.randomTask.bind(this))
+    this.randomTaskBtn.addEventListener("click", this.randomTask.bind(this));
   }
 
   randomTask() {
-      const ContentIndex = parseInt(Math.random() * this.randomContent.length);
-      const LevelIndex = parseInt(Math.random() * 3);
-      const typeValue = document.querySelector(".sidebar__act").getAttribute("taskType");
-      db.addTask(this.randomContent[ContentIndex], this.randomLevel[LevelIndex]);
-      db.showTask("taskType", typeValue);
+    const ContentIndex = parseInt(Math.random() * this.randomContent.length);
+    const LevelIndex = parseInt(Math.random() * 3);
+    const typeValue = document.querySelector(".sidebar__act").getAttribute("taskType");
+    db.addTask(this.randomContent[ContentIndex], this.randomLevel[LevelIndex]);
+    db.showTask("taskType", typeValue);
   }
 }
 

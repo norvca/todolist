@@ -6,9 +6,9 @@ const signup = {
     const target = e.target;
     const reg = /(^\s+)|(\s+$)/g;
     // 注册验证
-    if (target.classList.contains('signupUsername')) {
-      const signupName = document.querySelector('.signupUsername');
-      const signupName_error = document.querySelector('.signupUsername-error');
+    if (target.classList.contains("signupUsername")) {
+      const signupName = document.querySelector(".signupUsername");
+      const signupName_error = document.querySelector(".signupUsername-error");
 
       // 账户名不能为空
       if (signupName.value == "") {
@@ -32,9 +32,9 @@ const signup = {
         signupName_error.innerHTML = "";
       }
 
-    } else if (target.classList.contains('signupPassword')) {
-      const signupPass = document.querySelector('.signupPassword');
-      const signupPass_error = document.querySelector('.signupPassword-error');
+    } else if (target.classList.contains("signupPassword")) {
+      const signupPass = document.querySelector(".signupPassword");
+      const signupPass_error = document.querySelector(".signupPassword-error");
 
       // 密码不能为空
       if (signupPass.value == "") {

@@ -1,4 +1,4 @@
-var path = require('path')
+var path = require("path");
 
 module.exports = {
   // 选择输出文件格式
@@ -13,13 +13,13 @@ module.exports = {
   module: {
     rules: [
       {
-        loader: 'babel-loader',
+        loader: "babel-loader",
         query: {
-          presets: ['es2015']
+          presets: ["es2015"]
         },
         test: /\.js$/,
         exclude: /node_modules/
       }
     ]
   }
-}
+};

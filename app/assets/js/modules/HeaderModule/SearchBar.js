@@ -33,53 +33,53 @@ class SearchBar {
     const typeValue = document.querySelector(".sidebar__act").getAttribute("taskType");
 
     if(e.target.classList.contains("icon__search")) {
-        this.inActColor(e.target);
-        this.inActColor(this.input);
-        this.inActColor(this.searchBox);
-        this.input.focus();
-        this.input.value = "";
+      this.inActColor(e.target);
+      this.inActColor(this.input);
+      this.inActColor(this.searchBox);
+      this.input.focus();
+      this.input.value = "";
 
-        if(!this.input.classList.contains("act-color")) {
-            db.showTask("taskType", typeValue);
-        }
+      if(!this.input.classList.contains("act-color")) {
+        db.showTask("taskType", typeValue);
+      }
     }
   }
 
   // 查找任务功能
   searchTask(e){
-      if( e.target.classList.contains("act-color") ){
-          db.searchTask(this.value);
-      }
+    if( e.target.classList.contains("act-color") ){
+      db.searchTask(this.value);
+    }
   }
 
   // 添加任务功能
   addTask1(){
   // 获取左侧栏目对应事件类型
-      const typeValue = document.querySelector(".sidebar__act").getAttribute("taskType");
-      if( !this.input.value ){
-          return;
-      } else {
-          db.addTask();
-          db.showTask("taskType", typeValue);
-          this.input.value = "";
-      }
+    const typeValue = document.querySelector(".sidebar__act").getAttribute("taskType");
+    if( !this.input.value ){
+      return;
+    } else {
+      db.addTask();
+      db.showTask("taskType", typeValue);
+      this.input.value = "";
+    }
   }
 
 
   // 按回车键添加任务功能
   addTask2(event = window.event) {
-      const key = event.which || event.keyCode || event.charCode;
-      // 获取左侧栏目对应事件类型
-      const typeValue = document.querySelector(".sidebar__act").getAttribute("taskType");
+    const key = event.which || event.keyCode || event.charCode;
+    // 获取左侧栏目对应事件类型
+    const typeValue = document.querySelector(".sidebar__act").getAttribute("taskType");
 
-      // 焦点在搜索栏并按回车
-      if(document.activeElement.value) {
-          if (key == 13 && document.activeElement.tagName.toUpperCase() === "INPUT") {
-              db.addTask();
-              db.showTask("taskType", typeValue);
-              this.input.value = "";
-          }
+    // 焦点在搜索栏并按回车
+    if(document.activeElement.value) {
+      if (key == 13 && document.activeElement.tagName.toUpperCase() === "INPUT") {
+        db.addTask();
+        db.showTask("taskType", typeValue);
+        this.input.value = "";
       }
+    }
   }
 }
 
