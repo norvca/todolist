@@ -4,32 +4,32 @@ import {helperFunction} from "../HelperFunction";
 // 定义变量
 const toggleLevel = helperFunction.toggleLevel;
 
-// 有限状态机
-const FSM = {
+// 任务等级分类
+const levelStates = {
     green: {
         buttonPressed: function() {
             toggleLevel("level-light", "level-usual", "bgc-usual");
-            this.state = FSM.purple;
+            this.state = levelStates.purple;
         }
     },
     purple: {
         buttonPressed: function() {
             toggleLevel("level-usual", "level-heavy", "bgc-heavy");
-            this.state = FSM.red;
+            this.state = levelStates.red;
         }
     },
     red: {
         buttonPressed: function() {
             toggleLevel("level-heavy", "level-light", "bgc-light");
-            this.state = FSM.green;
+            this.state = levelStates.green;
         }
     }
 }
 
-// 控制等级的小圆点模块
-class LevelDot {
+// 转换小圆点等级的装置
+class LevelChanger {
     constructor() {
-        this.state = FSM.green;
+        this.state = levelStates.green;
         this.button = helperFunction.get_level_element();
         this.event();
     }
@@ -41,4 +41,4 @@ class LevelDot {
     }
 }
 
-export default LevelDot;
+export default LevelChanger;

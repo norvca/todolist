@@ -12,6 +12,7 @@ import {helperFunction} from "./HelperFunction";
 const handler = (function() {
     // 变量声明
     const loginButton = document.querySelector(".site-header__loginButton");
+    const loginIcon = document.querySelector(".site-header__loginIcon");
     const sidebarContent = document.querySelector(".sidebar__content");
     const deleteData = document.querySelector(".sidebar__delete");
     const section = document.querySelector(".todolist");
@@ -22,6 +23,9 @@ const handler = (function() {
     // 显示登陆注册功能模态框
     loginButton.addEventListener("click", signin.createSingleLoginModal);
     loginButton.addEventListener("click", showLoginModal);
+    loginIcon.addEventListener("click", signin.createSingleLoginModal);
+    loginIcon.addEventListener("click", showLoginModal);
+
 
     function showLoginModal() {
         var loginBox = document.querySelector(".login__box");

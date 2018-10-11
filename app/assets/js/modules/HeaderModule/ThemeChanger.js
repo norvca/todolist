@@ -1,5 +1,5 @@
 // 切换主题模块
-class ChangeTheme {
+class ThemeChanger {
   constructor() {
     this.theme = ["", "theme-green", "theme-purple", "theme-gradual"];
     this.themeIconName = ["#icon-theme", "#icon-theme1", "#icon-theme2", "#icon-theme3"];
@@ -24,4 +24,4 @@ class ChangeTheme {
   }
 }
 
-export default ChangeTheme;
+export default ThemeChanger;

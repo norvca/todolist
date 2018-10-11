@@ -2,10 +2,10 @@ import "./modules/Handler";
 import "./modules/BackendDB";
 import RandomTask from "./modules/HeaderModule/RandomTask";
 import SearchBar from "./modules/HeaderModule/SearchBar";
-import LevelDot from "./modules/HeaderModule/LevelDot";
-import ChangeTheme from "./modules/HeaderModule/ChangeTheme";
+import LevelChanger from "./modules/HeaderModule/LevelChanger";
+import ThemeChanger from "./modules/HeaderModule/ThemeChanger";
 
 new RandomTask();
 new SearchBar();
-new LevelDot();
-new ChangeTheme();
+new LevelChanger();
+new ThemeChanger();

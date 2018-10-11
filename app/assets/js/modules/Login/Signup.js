@@ -1,6 +1,5 @@
 // 加载数据库模块
 import {backendDB as db} from "../BackendDB";
-import userInfo from "../UserInfo";
 
 const signup = {
   vertify(e) {
@@ -58,28 +57,6 @@ const signup = {
         signupPass.style.border = "1px solid #ccc";
         signupPass_error.innerHTML = "";
       }
-    }
-  },
-
-  submit(e) {
-    if (e.target.classList.contains('login__signup__button')) {
-      // const signupWrapper = document.querySelector('.login__signup');
-      // const errors = signupWrapper.querySelectorAll(".error");
-      // errors.forEach((e) => {
-      //   console.log(e);
-      //   if(e.innerText != "") {
-      //     console.log("出问题了");
-      //     return;
-      //   }
-      //   console.log("注册成功!");
-      // })
-
-      // 输入的用户名与密码
-      // const signupName = document.querySelector('.signupUsername').value;
-      // const signupPass = document.querySelector('.signupPassword').value;
-      // console.log(userInfo)
-      // userInfo.push({"username": signupName, "password": signupPass})
-      // console.log(userInfo)
     }
   }
 };
