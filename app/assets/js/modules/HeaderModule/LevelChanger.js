@@ -3,23 +3,24 @@ import {helperFunction} from "../HelperFunction";
 
 // 定义变量
 const toggleLevel = helperFunction.toggleLevel;
+const levelDot = helperFunction.get_level_element();
 
 // 任务等级分类
 const levelStates = {
     green: {
-        buttonPressed: function() {
+        dotPressed: function() {
             toggleLevel("level-light", "level-usual", "bgc-usual");
             this.state = levelStates.purple;
         }
     },
     purple: {
-        buttonPressed: function() {
+        dotPressed: function() {
             toggleLevel("level-usual", "level-heavy", "bgc-heavy");
             this.state = levelStates.red;
         }
     },
     red: {
-        buttonPressed: function() {
+        dotPressed: function() {
             toggleLevel("level-heavy", "level-light", "bgc-light");
             this.state = levelStates.green;
         }
@@ -28,17 +29,19 @@ const levelStates = {
 
 // 转换小圆点等级的装置
 class LevelChanger {
-    constructor() {
-        this.state = levelStates.green;
-        this.button = helperFunction.get_level_element();
+    constructor(levelDot, levelState) {
+        this.state = levelState;
+        this.levelDot = levelDot;
         this.event();
     }
 
     event() {
-        this.button.addEventListener("click", () => {
-            this.state.buttonPressed.call(this);
+        this.levelDot.addEventListener("click", () => {
+            this.state.dotPressed.call(this);
         });
     }
 }
+
+new LevelChanger(levelDot, levelStates.green);
 
 export default LevelChanger;

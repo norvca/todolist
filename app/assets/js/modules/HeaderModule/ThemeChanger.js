@@ -1,10 +1,16 @@
+// 定义变量
+const theme = ["", "theme-green", "theme-purple", "theme-gradual"];
+const themeIconName = ["#icon-theme", "#icon-theme1", "#icon-theme2", "#icon-theme3"];
+const siteHeader = document.querySelector(".site-header");
+const themeBtn = document.querySelector(".site-header__theme-btn");
+
 // 切换主题模块
 class ThemeChanger {
-  constructor() {
-    this.theme = ["", "theme-green", "theme-purple", "theme-gradual"];
-    this.themeIconName = ["#icon-theme", "#icon-theme1", "#icon-theme2", "#icon-theme3"];
-    this.siteHeader = document.querySelector(".site-header");
-    this.themeBtn = document.querySelector(".site-header__theme-btn");
+  constructor(theme, themeIconName, siteHeader, themeBtn) {
+    this.theme = theme;
+    this.themeIconName = themeIconName;
+    this.siteHeader = siteHeader;
+    this.themeBtn = themeBtn;
     this.event();
   }
 
@@ -23,5 +29,8 @@ class ThemeChanger {
       themeIcon.setAttribute("xlink:href", this.themeIconName[0]);
   }
 }
+
+new ThemeChanger(theme, themeIconName, siteHeader, themeBtn);
+
 
 export default ThemeChanger;

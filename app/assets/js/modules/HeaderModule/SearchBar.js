@@ -2,14 +2,20 @@
 import {helperFunction} from "../HelperFunction";
 import {backendDB as db} from "../BackendDB";
 
+// 定义变量
+var searchBox = document.querySelector(".site-header__search-box__content");
+var addBtn = document.querySelector(".icon__add");
+var input = helperFunction.get_input_element();
+var inActColor = helperFunction.inActColor;
+
+
 // 搜索栏模块
 class SearchBar {
-  constructor() {
-    this.searchBox = document.querySelector(".site-header__search-box__content");
-    this.addBtn = document.querySelector(".icon__add");
-    this.input = helperFunction.get_input_element();
-    this.level = helperFunction.get_level_element();
-    this.inActColor = helperFunction.inActColor;
+  constructor(searchBox, addBtn, input, inActColor) {
+    this.searchBox = searchBox;
+    this.addBtn = addBtn;
+    this.input = input;
+    this.inActColor = inActColor;
     this.event();
   }
 
@@ -76,5 +82,8 @@ class SearchBar {
       }
   }
 }
+
+new SearchBar(searchBox, addBtn, input, inActColor);
+
 
 export default SearchBar;
