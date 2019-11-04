@@ -5,11 +5,11 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(50, 50, 50, .6);
+  background-color: rgba(50, 50, 50, 0.6);
 
   opacity: 0;
   visibility: hidden;
-  transition: all .3s ease-out;
+  transition: all 0.3s ease-out;
 
   &__box {
     text-align: center;
@@ -21,7 +21,7 @@
     border-radius: 7px;
     padding: 1rem 2rem;
 
-    @mixin atSmall {
+    @include atSmall {
       padding: 1rem 6rem;
     }
   }
@@ -30,28 +30,28 @@
   &__signin {
     display: flex;
     flex-direction: column;
-    @mixin atMedium {
+    @include atMedium {
       width: 320px;
     }
 
     &__welcome {
-      letter-spacing: .5vh;
+      letter-spacing: 0.5vh;
       font-size: 1.3rem;
 
-      @mixin atMedium {
+      @include atMedium {
         font-size: 1.7rem;
       }
     }
 
     &__input {
-        margin-top: 1rem;
-        padding: .7rem 1rem;
-        border: 1px solid #ccc;
-        border-radius: .3rem;
-        font-size: 1.3rem;
-        outline: none;
-        color: #555;
-        transition: all .2s;
+      margin-top: 1rem;
+      padding: 0.7rem 1rem;
+      border: 1px solid #ccc;
+      border-radius: 0.3rem;
+      font-size: 1.3rem;
+      outline: none;
+      color: #555;
+      transition: all 0.2s;
     }
 
     &__input::placeholder {
@@ -68,12 +68,12 @@
       border: 1px solid #6bc5bc;
       background-color: #6bc5bc;
       border-radius: 4px;
-      padding: .5rem 0;
+      padding: 0.5rem 0;
       margin-top: 1rem;
       color: #fff;
       font-size: 3vh;
       cursor: pointer;
-      transition: all .3s;
+      transition: all 0.3s;
     }
 
     &__button:hover {
@@ -90,28 +90,28 @@
   &__signup {
     display: flex;
     flex-direction: column;
-    @mixin atMedium {
+    @include atMedium {
       width: 320px;
     }
 
     &__welcome {
-      letter-spacing: .5vh;
+      letter-spacing: 0.5vh;
       font-size: 1.3rem;
 
-      @mixin atMedium {
+      @include atMedium {
         font-size: 1.7rem;
       }
     }
 
     &__input {
-        margin-top: 1rem;
-        padding: .7rem 1rem;
-        border: 1px solid #ccc;
-        border-radius: .3rem;
-        font-size: 1.3rem;
-        outline: none;
-        color: #555;
-        transition: all .2s;
+      margin-top: 1rem;
+      padding: 0.7rem 1rem;
+      border: 1px solid #ccc;
+      border-radius: 0.3rem;
+      font-size: 1.3rem;
+      outline: none;
+      color: #555;
+      transition: all 0.2s;
     }
 
     &__input::placeholder {
@@ -132,12 +132,12 @@
       border: 1px solid #777499;
       background-color: #777499;
       border-radius: 4px;
-      padding: .5rem 0;
+      padding: 0.5rem 0;
       margin-top: 1rem;
       color: #fff;
       font-size: 3vh;
       cursor: pointer;
-      transition: all .3s;
+      transition: all 0.3s;
     }
 
     &__button:hover {
@@ -152,23 +152,23 @@
 
   /* 登陆注册切换 */
   &__bottom {
+    color: #bbb;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: flex-end;
+
+    span {
+      margin: 0 0.5rem;
+    }
+
+    a {
       color: #bbb;
-      margin-top: .5rem;
-      font-size: .9rem;
-      display: flex;
-      justify-content: flex-end;
+    }
 
-      span {
-        margin: 0 .5rem;
-      }
-
-      a {
-        color: #bbb;
-      }
-
-      a:hover {
-        color: #666;
-      }
+    a:hover {
+      color: #666;
+    }
   }
 
   /* 显示模态框 */
@@ -178,7 +178,7 @@
   }
 
   &.fade {
-    animation: fade .3s;
+    animation: fade 0.3s;
   }
 }
 
@@ -186,7 +186,8 @@
   from {
     opacity: 0;
     visibility: hidden;
-  } to  {
+  }
+  to {
     opacity: 1;
     visibility: visible;
   }

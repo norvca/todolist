@@ -5,11 +5,11 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(50, 50, 50, .6);
+  background-color: rgba(50, 50, 50, 0.6);
 
   opacity: 0;
   visibility: hidden;
-  transition: all .3s ease-out;
+  transition: all 0.3s ease-out;
 
   &__box {
     text-align: center;
@@ -22,12 +22,12 @@
     height: 10rem;
     border-radius: 7px;
 
-    @mixin atSmall {
+    @include atSmall {
       width: 20rem;
       height: 10rem;
     }
 
-    @mixin atMedium {
+    @include atMedium {
       width: 30rem;
       height: 13rem;
     }
@@ -36,10 +36,10 @@
   &__aware {
     font-weight: bold;
     margin-top: 4vh;
-    letter-spacing: .5vh;
+    letter-spacing: 0.5vh;
     font-size: 1.5rem;
 
-    @mixin atSmall {
+    @include atSmall {
       font-size: 2rem;
     }
   }
@@ -50,23 +50,23 @@
   }
 
   &__box a {
-    margin: 0 .5vh;
+    margin: 0 0.5vh;
     border-radius: 4px;
     width: 13vh;
     padding: 1vh 0;
     color: #fff;
     font-size: 3vh;
     cursor: pointer;
-    transition: all .3s;
+    transition: all 0.3s;
     margin-top: 3rem;
 
-    @mixin atMedium {
+    @include atMedium {
       margin-top: 4.5rem;
     }
   }
 
   &__btn-no {
-    background-color: #8FB4AA;
+    background-color: #8fb4aa;
   }
 
   &__btn-no:hover {
@@ -74,7 +74,7 @@
   }
 
   &__btn-yes {
-    background-color: #DA9798;
+    background-color: #da9798;
   }
 
   &__btn-yes:hover {
@@ -87,7 +87,7 @@
   }
 
   &.fade {
-    animation: fade .3s;
+    animation: fade 0.3s;
   }
 }
 
@@ -95,7 +95,8 @@
   from {
     opacity: 0;
     visibility: hidden;
-  } to  {
+  }
+  to {
     opacity: 1;
     visibility: visible;
   }

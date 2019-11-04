@@ -2,13 +2,13 @@
 .detail {
   display: none;
 
-  @mixin atSmall {
+  @include atSmall {
     display: block;
-    box-shadow:  0px 2px 11px 0px #ccc;
+    box-shadow: 0px 2px 11px 0px #ccc;
     width: 220px;
   }
 
-  @mixin atMedium {
+  @include atMedium {
     min-width: 300px;
   }
 
@@ -18,20 +18,20 @@
     height: 90%;
     font: 1.3rem Helvetica;
     outline: none;
-    letter-spacing: .1vh;
+    letter-spacing: 0.1vh;
     border: none;
 
-    @mixin atSmall {
+    @include atSmall {
       width: 70%;
     }
 
-    @mixin atMedium {
+    @include atMedium {
       width: 85%;
     }
   }
 
   &__paragraph::placeholder {
     color: #ccc;
-    letter-spacing: .2vh;
+    letter-spacing: 0.2vh;
   }
 }

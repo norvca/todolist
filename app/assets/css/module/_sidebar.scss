@@ -1,16 +1,16 @@
 /* 左侧工具栏 */
 .sidebar {
-    display: flex;
-    padding: 0 1rem;
-    height: 88vh;
-    box-shadow: 2px 4px 6px 0px #ccc;
+  display: flex;
+  padding: 0 1rem;
+  height: 88vh;
+  box-shadow: 2px 4px 6px 0px #ccc;
 
-  @mixin atSmall {
-    padding: 0 .6rem;
+  @include atSmall {
+    padding: 0 0.6rem;
     font-size: 1.5rem;
   }
 
-  @mixin atMedium {
+  @include atMedium {
     padding: 0 3rem;
     font-size: 2rem;
   }
@@ -23,8 +23,8 @@
     flex: 1;
     user-select: none;
 
-    & ul{
-      margin-top: .5vh;
+    & ul {
+      margin-top: 0.5vh;
       display: flex;
       flex-direction: column;
       justify-content: space-around;
@@ -41,11 +41,11 @@
 
     & ul li:hover a {
       border-bottom: 3px solid #99cccc;
-      padding-bottom: .5vh;
-      transition: all .3s;
+      padding-bottom: 0.5vh;
+      transition: all 0.3s;
     }
 
-    & ul li a{
+    & ul li a {
       pointer-events: none;
       line-height: 10vh;
     }
@@ -53,7 +53,7 @@
     & .icon {
       display: inline;
 
-      @mixin atSmall {
+      @include atSmall {
         display: none;
       }
     }
@@ -61,7 +61,7 @@
     & span {
       display: none;
 
-      @mixin atSmall {
+      @include atSmall {
         display: inline;
       }
     }
@@ -77,7 +77,7 @@
     order: 1;
   }
 
-  &__list-level:hover ~li a {
+  &__list-level:hover ~ li a {
     border: none;
   }
 
@@ -91,6 +91,6 @@
 
   &__act a {
     border-bottom: 3px solid $mainGreen;
-    padding-bottom: .5vh;
+    padding-bottom: 0.5vh;
   }
 }

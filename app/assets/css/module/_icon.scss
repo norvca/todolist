@@ -4,7 +4,7 @@
   fill: currentColor;
   overflow: hidden;
   cursor: pointer;
-  transition: all .3s;
+  transition: all 0.3s;
 
   &__search {
     padding: 0 1vh;
@@ -20,8 +20,7 @@
   &__play,
   &__others,
   &__finished,
-  &__bin
-   {
+  &__bin {
     color: #999;
   }
 
@@ -34,17 +33,16 @@
     display: none;
   }
 
-  &__nofinish:hover &__finish{
+  &__nofinish:hover &__finish {
     display: block;
     transition: all 1s;
   }
 
-  & *{
+  & * {
     pointer-events: none;
   }
 
   &__delete {
-    margin-left: .3vh;
+    margin-left: 0.3vh;
   }
 }
-
