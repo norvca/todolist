@@ -1,6 +1,11 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
 /* 右侧任务详细描述 */
 .detail {
   display: none;
+
+  @include selection($mainGreen, #fff);
 
   @include atSmall {
     display: block;

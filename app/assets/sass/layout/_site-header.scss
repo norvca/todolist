@@ -1,3 +1,6 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
 /* 头部导航 */
 .site-header {
   display: flex;
@@ -88,6 +91,8 @@
 
   /* 顶部搜索栏 */
   &__search-box {
+    @include selection($mainGreen, #fff);
+
     flex: 1 0 auto;
     display: flex;
     justify-content: center;

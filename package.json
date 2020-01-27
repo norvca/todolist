@@ -4,7 +4,7 @@
   "description": "A personal project to improve my code skill",
   "main": "webpack.config.js",
   "scripts": {
-    "watch:sass": "sass --watch --no-source-map app/assets/css/style.scss app/dist/styles/style.css"
+    "watch:sass": "sass --watch --no-source-map app/assets/sass/main.scss app/dist/styles/style.css"
   },
   "repository": {
     "type": "git",

@@ -1,0 +1,16 @@
+a {
+  text-decoration: none;
+  color: #666;
+}
+
+h4 {
+  margin: 1rem 0 0 1rem;
+  width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  @mixin atMedium {
+    width: 200px;
+  }
+}

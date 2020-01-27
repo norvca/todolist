@@ -1,0 +1,22 @@
+@use "../abstracts/variables" as *;
+
+.hidden {
+  display: none !important;
+}
+
+/* Caution! 样式控制，放在这里以后可能会有BUG */
+.active {
+  display: inline !important;
+}
+
+.act-color {
+  color: $mainGreen !important;
+  border-color: $mainGreen !important;
+}
+
+.error {
+  color: $mainRed;
+  align-self: flex-start;
+  font-size: 1rem;
+  margin-top: 0.2rem;
+}

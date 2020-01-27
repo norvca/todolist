@@ -1,52 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="./dist/styles/style.css">
-  <script src="//at.alicdn.com/t/font_557952_xf0v6n8nxz.js"></script>
-<!--   <script type="text/javascript" async="true" data-main="js/app/index.js" src="js/lib/require.js"></script> -->
-  <title>pure Todo</title>
-</head>
-<body>
-  <!-- 头部搜索添加 -->
-  <header class="site-header">
-    <div class="site-header__random-task">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="./dist/styles/style.css" />
+    <script src="//at.alicdn.com/t/font_557952_xf0v6n8nxz.js"></script>
+    <!--   <script type="text/javascript" async="true" data-main="js/app/index.js" src="js/lib/require.js"></script> -->
+    <title>pure Todo</title>
+  </head>
+  <body>
+    <!-- 头部搜索添加 -->
+    <header class="site-header">
+      <div class="site-header__random-task">
         <span class="site-header__random-task__fire">PureTodo</span>
-    </div>
-
-    <div class="site-header__login">
-      <span class="site-header__splitLine">|</span>
-      <span class="site-header__loginButton">登陆</span>
-      <svg class="icon site-header__loginIcon" aria-hidden="true" name="search">
-        <use xlink:href="#icon-user"></use>
-      </svg>
-    </div>
-
-    <div class="site-header__search-box" >
-      <div class="site-header__search-box__content">
-        <!-- 搜索图标 -->
-        <svg class="icon icon__search" aria-hidden="true" name="search">
-            <use xlink:href="#icon-search"></use>
-        </svg>
-        <input class="site-header__search-box__input" type="text" name="search" placeholder="点击放大镜开启关闭搜索功能...">
-        <!-- 任务等级图标 -->
-        <svg class="icon icon__level level-light" level="bgc-light" aria-hidden="true">
-          <use xlink:href="#icon-circle"></use>
-       </svg>
-       <!-- 添加图标 -->
-        <svg class="icon icon__add" aria-hidden="true">
-          <use xlink:href="#icon-ADD"></use>
-       </svg>
       </div>
-    </div>
 
-    <div class="site-header__theme-btn">
-        <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-theme"></use>
+      <div class="site-header__login">
+        <span class="site-header__splitLine">|</span>
+        <span class="site-header__loginButton">登陆</span>
+        <svg
+          class="icon site-header__loginIcon"
+          aria-hidden="true"
+          name="search"
+        >
+          <use xlink:href="#icon-user"></use>
         </svg>
-    </div>
-  </header>
+      </div>
+
+      <div class="site-header__search-box">
+        <div class="site-header__search-box__content">
+          <!-- 搜索图标 -->
+          <svg class="icon icon__search" aria-hidden="true" name="search">
+            <use xlink:href="#icon-search"></use>
+          </svg>
+          <input
+            class="site-header__search-box__input"
+            type="text"
+            name="search"
+            placeholder="点击放大镜开启关闭搜索功能..."
+          />
+          <!-- 任务等级图标 -->
+          <svg
+            class="icon icon__level level-light"
+            level="bgc-light"
+            aria-hidden="true"
+          >
+            <use xlink:href="#icon-circle"></use>
+          </svg>
+          <!-- 添加图标 -->
+          <svg class="icon icon__add" aria-hidden="true">
+            <use xlink:href="#icon-ADD"></use>
+          </svg>
+        </div>
+      </div>
+
+      <div class="site-header__theme-btn">
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-theme"></use>
+        </svg>
+      </div>
+    </header>
 
     <!-- 主要区域 -->
     <main>
@@ -55,19 +68,31 @@
         <div class="sidebar__content">
           <ul class="sidebar__todo-list">
             <li class="sidebar__list-level">
-              <a class="hidden level-light active" level="bgc-light" href="javascript:;">
+              <a
+                class="hidden level-light active"
+                level="bgc-light"
+                href="javascript:;"
+              >
                 <span>LIGHT</span>
                 <svg class="icon" aria-hidden="true" name="search">
                   <use xlink:href="#icon-level1"></use>
                 </svg>
               </a>
-              <a class="hidden level-usual" level="bgc-usual" href="javascript:;">
+              <a
+                class="hidden level-usual"
+                level="bgc-usual"
+                href="javascript:;"
+              >
                 <span>USUAL</span>
                 <svg class="icon" aria-hidden="true" name="search">
                   <use xlink:href="#icon-level2"></use>
                 </svg>
               </a>
-              <a class="hidden level-heavy" level="bgc-heavy" href="javascript:;">
+              <a
+                class="hidden level-heavy"
+                level="bgc-heavy"
+                href="javascript:;"
+              >
                 <span>HEAVY</span>
                 <svg class="icon" aria-hidden="true" name="search">
                   <use xlink:href="#icon-level3"></use>
@@ -84,11 +109,11 @@
             </li>
             <li class="sidebar__list-type" taskType="play">
               <a href="javascript:;">
-              <span>娱乐</span>
-              <svg class="icon icon__play" aria-hidden="true" name="search">
-                <use xlink:href="#icon-play"></use>
-              </svg>
-            </a>
+                <span>娱乐</span>
+                <svg class="icon icon__play" aria-hidden="true" name="search">
+                  <use xlink:href="#icon-play"></use>
+                </svg>
+              </a>
             </li>
             <li class="sidebar__list-type" taskType="other">
               <a href="javascript:;">
@@ -104,7 +129,11 @@
             <li class="sidebar__list-type" taskType="finish">
               <a href="javascript:;">
                 <span>已完成</span>
-                <svg class="icon icon__finished" aria-hidden="true" name="search">
+                <svg
+                  class="icon icon__finished"
+                  aria-hidden="true"
+                  name="search"
+                >
                   <use xlink:href="#icon-finished"></use>
                 </svg>
               </a>
@@ -129,11 +158,10 @@
         </div>
       </aside>
 
-
       <!-- 任务展示区 -->
       <section class="todolist">
         <!-- 测试任务用 -->
-<!--    <div class="todo-each-day" tasktime="2018/1/2">
+        <!--    <div class="todo-each-day" tasktime="2018/1/2">
           <div class="todo-time">
             <span class="todo__week">SUN</span>
             <span class="todo__date">2018/1/2</span>
@@ -184,15 +212,17 @@
         <!-- 测试任务用 -->
       </section>
 
-
       <!-- 右侧详细内容区域 -->
       <article class="detail">
         <h4></h4>
-        <textarea class="detail__paragraph" placeholder="添加任务详情..."></textarea>
+        <textarea
+          class="detail__paragraph"
+          placeholder="添加任务详情..."
+        ></textarea>
       </article>
     </main>
 
-<!--     <script src="//cdn.jsdelivr.net/npm/pouchdb@6.4.3/dist/pouchdb.min.js"></script> -->
+    <!--     <script src="//cdn.jsdelivr.net/npm/pouchdb@6.4.3/dist/pouchdb.min.js"></script> -->
     <script type="text/javascript" src="./dist/js/App.js"></script>
-</body>
+  </body>
 </html>

@@ -1,3 +1,6 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
 /* 登陆模态框 */
 .login {
   position: fixed;

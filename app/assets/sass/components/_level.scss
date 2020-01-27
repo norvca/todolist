@@ -1,3 +1,5 @@
+@use '../abstracts/variables' as *;
+
 .level-light {
   color: $mainGreen;
 }

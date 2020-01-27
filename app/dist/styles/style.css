@@ -1,5 +1,4 @@
 @charset "UTF-8";
-@import 'normalize.css';
 html,
 body,
 ul,
@@ -19,7 +18,6 @@ footer {
 
 html,
 body {
-  width: 100%;
   height: 100%;
 }
 
@@ -30,14 +28,24 @@ body {
   flex-direction: column;
 }
 
-a {
-  text-decoration: none;
-  color: #666;
-}
-
 ul,
 li {
   list-style: none;
+}
+
+::selection {
+  background-color: transparent;
+  color: inherit;
+}
+
+main {
+  display: flex;
+  overflow: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: #666;
 }
 
 h4 {
@@ -69,9 +77,364 @@ h4 {
   margin-top: 0.2rem;
 }
 
-main {
+/* 头部导航 */
+.site-header {
   display: flex;
-  overflow: hidden;
+  flex: 0 0 12vh;
+  background-color: #fff;
+  box-shadow: 0px 2px 11px 0px #ccc;
+  color: #777;
+  /* 随机任务区域 */
+  /* 顶部搜索栏 */
+  /* 主题切换 */
+}
+@media (min-width: 530px) {
+  .site-header {
+    padding: 0;
+  }
+}
+.site-header__random-task {
+  display: none;
+  align-self: center;
+}
+@media (min-width: 530px) {
+  .site-header__random-task {
+    display: block;
+    line-height: 12vh;
+    padding: 0 0.5rem 0 1.1rem;
+    user-select: none;
+  }
+}
+.site-header__random-task__fire {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+@media (min-width: 957px) {
+  .site-header__random-task__fire {
+    font-size: 2rem;
+    letter-spacing: 0.1rem;
+  }
+}
+.site-header__random-task__fire:hover {
+  color: #58b4ab;
+}
+.site-header__login {
+  display: block;
+  align-self: center;
+  cursor: pointer;
+  font-size: 1rem;
+}
+@media (min-width: 957px) {
+  .site-header__login {
+    font-size: 1.3rem;
+  }
+}
+.site-header__splitLine {
+  display: none;
+}
+@media (min-width: 530px) {
+  .site-header__splitLine {
+    display: inline;
+  }
+}
+.site-header__loginButton {
+  vertical-align: middle;
+  display: none;
+}
+@media (min-width: 530px) {
+  .site-header__loginButton {
+    display: inline;
+    padding: 0 0.7rem 0 0.3rem;
+  }
+}
+@media (min-width: 957px) {
+  .site-header__loginButton {
+    padding: 0 1.1rem 0 0.5rem;
+  }
+}
+.site-header__loginButton:hover {
+  color: #58b4ab;
+}
+.site-header__loginIcon {
+  padding: 0 1rem;
+}
+@media (min-width: 530px) {
+  .site-header__loginIcon {
+    display: none;
+  }
+}
+.site-header__loginIcon:hover {
+  color: #58b4ab;
+}
+.site-header__search-box {
+  flex: 1 0 auto;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  background-color: #fff;
+}
+.site-header__search-box ::selection {
+  background-color: #58b4ab;
+  color: #fff;
+}
+.site-header__search-box__content {
+  display: flex;
+  border: 1.5px solid #ccc;
+  flex: 1 0 auto;
+  align-items: center;
+  transition: all 0.3s;
+}
+.site-header__search-box__input {
+  width: 0;
+  border: none;
+  font-size: 3.5vh;
+  padding-left: 1vh;
+  flex: 1 0 auto;
+  outline: none;
+  color: #555;
+  letter-spacing: 0.3vh;
+}
+.site-header__search-box__input::placeholder {
+  color: #ccc;
+  letter-spacing: 0.5vh;
+}
+.site-header__theme-btn {
+  display: none;
+}
+@media (min-width: 530px) {
+  .site-header__theme-btn {
+    display: flex;
+    align-self: center;
+    padding: 0 2vh;
+  }
+}
+@media (min-width: 957px) {
+  .site-header__theme-btn {
+    padding: 0 1.7rem;
+  }
+}
+
+.theme-green {
+  background-color: #58b4ab;
+  background-image: url("../img/theme1.png");
+  color: #fff;
+}
+
+.theme-purple {
+  background-color: #66638b;
+  background-image: url("../img/theme2.png");
+  color: #fff;
+}
+
+.theme-gradual {
+  background: #3e5151;
+  background: linear-gradient(to right bottom, #58b4ab, #66638b);
+  color: #fff;
+}
+
+/* 左侧工具栏 */
+.sidebar {
+  display: flex;
+  padding: 0 1rem;
+  height: 88vh;
+  box-shadow: 2px 4px 6px 0px #ccc;
+  /* 工具栏容器 */
+  /*让 sidebar-list-level 元素排序最末又使其可以控制兄弟元素*/
+}
+@media (min-width: 530px) {
+  .sidebar {
+    padding: 0 0.6rem;
+    font-size: 1.5rem;
+  }
+}
+@media (min-width: 957px) {
+  .sidebar {
+    padding: 0 3rem;
+    font-size: 2rem;
+  }
+}
+.sidebar__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  user-select: none;
+}
+.sidebar__content ul {
+  margin-top: 0.5vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+}
+.sidebar__content ul li {
+  /*flex: 1 0 10vh;*/
+}
+.sidebar__content ul li:hover {
+  cursor: pointer;
+}
+.sidebar__content ul li:hover a {
+  border-bottom: 3px solid #99cccc;
+  padding-bottom: 0.5vh;
+  transition: all 0.3s;
+}
+.sidebar__content ul li a {
+  pointer-events: none;
+  line-height: 10vh;
+}
+.sidebar__content .icon {
+  display: inline;
+}
+@media (min-width: 530px) {
+  .sidebar__content .icon {
+    display: none;
+  }
+}
+.sidebar__content span {
+  display: none;
+}
+@media (min-width: 530px) {
+  .sidebar__content span {
+    display: inline;
+  }
+}
+.sidebar__todo-list {
+  display: flex;
+  flex-direction: column;
+}
+.sidebar__list-level {
+  order: 1;
+}
+.sidebar__list-level:hover ~ li a {
+  border: none;
+}
+.sidebar__delete {
+  background-color: inherit;
+}
+.sidebar__delete a {
+  color: #f55b5b;
+}
+.sidebar__act a {
+  border-bottom: 3px solid #58b4ab;
+  padding-bottom: 0.5vh;
+}
+
+/* 主要任务区 */
+.todolist {
+  display: flex;
+  overflow-y: auto;
+  padding: 0.4rem 1rem;
+  flex-grow: 1;
+  flex-direction: column;
+}
+@media (min-width: 530px) {
+  .todolist {
+    padding: 0.7rem 2rem;
+  }
+}
+.todolist__time {
+  display: flex;
+  flex-direction: column;
+  margin: 7vh 0 1vh -6vh;
+}
+.todolist__time:first-of-type {
+  margin: -2vh 0 1vh -6vh;
+}
+.todolist__week {
+  text-align: center;
+  width: 18vh;
+  font-size: 2.5rem;
+}
+@media (min-width: 530px) {
+  .todolist__week {
+    font-size: 3.5rem;
+  }
+}
+.todolist__date {
+  display: flex;
+  width: 18vh;
+  text-align: center;
+  font-size: 3.2vh;
+  justify-content: center;
+}
+.todolist__list {
+  margin: 2vh 0vh 2vh 4vh;
+}
+.todolist__content {
+  transition: all 0.1s;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+  border-radius: 1.5vh;
+  padding: 1vh 2vh;
+  align-items: center;
+  font-size: 1.5rem;
+  margin-bottom: 0.8rem;
+}
+@media (min-width: 957px) {
+  .todolist__content {
+    font-size: 2rem;
+  }
+}
+.todolist__content:hover {
+  box-shadow: 2px 2px 5px 1px #888;
+}
+.todolist__title {
+  word-break: break-all;
+  display: block;
+}
+.todolist__title:focus {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #666;
+}
+.todolist__focus {
+  margin-left: -4vh;
+  box-shadow: 2px 2px 5px 1px #888;
+}
+
+/* 右侧任务详细描述 */
+.detail {
+  display: none;
+}
+.detail ::selection {
+  background-color: #58b4ab;
+  color: #fff;
+}
+@media (min-width: 530px) {
+  .detail {
+    display: block;
+    box-shadow: 0px 2px 11px 0px #ccc;
+    width: 220px;
+  }
+}
+@media (min-width: 957px) {
+  .detail {
+    min-width: 300px;
+  }
+}
+.detail__paragraph {
+  margin: 0 1rem 1rem 1rem;
+  color: #666;
+  height: 90%;
+  font: 1.3rem Helvetica;
+  outline: none;
+  letter-spacing: 0.1vh;
+  border: none;
+}
+@media (min-width: 530px) {
+  .detail__paragraph {
+    width: 70%;
+  }
+}
+@media (min-width: 957px) {
+  .detail__paragraph {
+    width: 85%;
+  }
+}
+.detail__paragraph::placeholder {
+  color: #ccc;
+  letter-spacing: 0.2vh;
 }
 
 /* 登陆模态框 */
@@ -309,358 +672,6 @@ main {
 
 .bgc-heavy {
   background-color: #da635d;
-}
-
-/* 头部导航 */
-.site-header {
-  display: flex;
-  flex: 0 0 12vh;
-  background-color: #fff;
-  box-shadow: 0px 2px 11px 0px #ccc;
-  color: #777;
-  /* 随机任务区域 */
-  /* 顶部搜索栏 */
-  /* 主题切换 */
-}
-@media (min-width: 530px) {
-  .site-header {
-    padding: 0;
-  }
-}
-.site-header__random-task {
-  display: none;
-  align-self: center;
-}
-@media (min-width: 530px) {
-  .site-header__random-task {
-    display: block;
-    line-height: 12vh;
-    padding: 0 0.5rem 0 1.1rem;
-    user-select: none;
-  }
-}
-.site-header__random-task__fire {
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-@media (min-width: 957px) {
-  .site-header__random-task__fire {
-    font-size: 2rem;
-    letter-spacing: 0.1rem;
-  }
-}
-.site-header__random-task__fire:hover {
-  color: #58b4ab;
-}
-.site-header__login {
-  display: block;
-  align-self: center;
-  cursor: pointer;
-  font-size: 1rem;
-}
-@media (min-width: 957px) {
-  .site-header__login {
-    font-size: 1.3rem;
-  }
-}
-.site-header__splitLine {
-  display: none;
-}
-@media (min-width: 530px) {
-  .site-header__splitLine {
-    display: inline;
-  }
-}
-.site-header__loginButton {
-  vertical-align: middle;
-  display: none;
-}
-@media (min-width: 530px) {
-  .site-header__loginButton {
-    display: inline;
-    padding: 0 0.7rem 0 0.3rem;
-  }
-}
-@media (min-width: 957px) {
-  .site-header__loginButton {
-    padding: 0 1.1rem 0 0.5rem;
-  }
-}
-.site-header__loginButton:hover {
-  color: #58b4ab;
-}
-.site-header__loginIcon {
-  padding: 0 1rem;
-}
-@media (min-width: 530px) {
-  .site-header__loginIcon {
-    display: none;
-  }
-}
-.site-header__loginIcon:hover {
-  color: #58b4ab;
-}
-.site-header__search-box {
-  flex: 1 0 auto;
-  display: flex;
-  justify-content: center;
-  align-self: center;
-  background-color: #fff;
-}
-.site-header__search-box__content {
-  display: flex;
-  border: 1.5px solid #ccc;
-  flex: 1 0 auto;
-  align-items: center;
-  transition: all 0.3s;
-}
-.site-header__search-box__input {
-  width: 0;
-  border: none;
-  font-size: 3.5vh;
-  padding-left: 1vh;
-  flex: 1 0 auto;
-  outline: none;
-  color: #555;
-  letter-spacing: 0.3vh;
-}
-.site-header__search-box__input::placeholder {
-  color: #ccc;
-  letter-spacing: 0.5vh;
-}
-.site-header__theme-btn {
-  display: none;
-}
-@media (min-width: 530px) {
-  .site-header__theme-btn {
-    display: flex;
-    align-self: center;
-    padding: 0 2vh;
-  }
-}
-@media (min-width: 957px) {
-  .site-header__theme-btn {
-    padding: 0 1.7rem;
-  }
-}
-
-.theme-green {
-  background-color: #58b4ab;
-  background-image: url("../img/theme1.png");
-  color: #fff;
-}
-
-.theme-purple {
-  background-color: #66638b;
-  background-image: url("../img/theme2.png");
-  color: #fff;
-}
-
-.theme-gradual {
-  background: #3e5151;
-  background: linear-gradient(to right bottom, #58b4ab, #66638b);
-  color: #fff;
-}
-
-/* 左侧工具栏 */
-.sidebar {
-  display: flex;
-  padding: 0 1rem;
-  height: 88vh;
-  box-shadow: 2px 4px 6px 0px #ccc;
-  /* 工具栏容器 */
-  /*让 sidebar-list-level 元素排序最末又使其可以控制兄弟元素*/
-}
-@media (min-width: 530px) {
-  .sidebar {
-    padding: 0 0.6rem;
-    font-size: 1.5rem;
-  }
-}
-@media (min-width: 957px) {
-  .sidebar {
-    padding: 0 3rem;
-    font-size: 2rem;
-  }
-}
-.sidebar__content {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex: 1;
-  user-select: none;
-}
-.sidebar__content ul {
-  margin-top: 0.5vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  text-align: center;
-}
-.sidebar__content ul li {
-  /*flex: 1 0 10vh;*/
-}
-.sidebar__content ul li:hover {
-  cursor: pointer;
-}
-.sidebar__content ul li:hover a {
-  border-bottom: 3px solid #99cccc;
-  padding-bottom: 0.5vh;
-  transition: all 0.3s;
-}
-.sidebar__content ul li a {
-  pointer-events: none;
-  line-height: 10vh;
-}
-.sidebar__content .icon {
-  display: inline;
-}
-@media (min-width: 530px) {
-  .sidebar__content .icon {
-    display: none;
-  }
-}
-.sidebar__content span {
-  display: none;
-}
-@media (min-width: 530px) {
-  .sidebar__content span {
-    display: inline;
-  }
-}
-.sidebar__todo-list {
-  display: flex;
-  flex-direction: column;
-}
-.sidebar__list-level {
-  order: 1;
-}
-.sidebar__list-level:hover ~ li a {
-  border: none;
-}
-.sidebar__delete {
-  background-color: inherit;
-}
-.sidebar__delete a {
-  color: #f55b5b;
-}
-.sidebar__act a {
-  border-bottom: 3px solid #58b4ab;
-  padding-bottom: 0.5vh;
-}
-
-/* 主要任务区 */
-.todolist {
-  display: flex;
-  overflow-y: auto;
-  padding: 0.4rem 1rem;
-  flex-grow: 1;
-  flex-direction: column;
-}
-@media (min-width: 530px) {
-  .todolist {
-    padding: 0.7rem 2rem;
-  }
-}
-.todolist__time {
-  display: flex;
-  flex-direction: column;
-  margin: 7vh 0 1vh -6vh;
-}
-.todolist__time:first-of-type {
-  margin: -2vh 0 1vh -6vh;
-}
-.todolist__week {
-  text-align: center;
-  width: 18vh;
-  font-size: 2.5rem;
-}
-@media (min-width: 530px) {
-  .todolist__week {
-    font-size: 3.5rem;
-  }
-}
-.todolist__date {
-  display: flex;
-  width: 18vh;
-  text-align: center;
-  font-size: 3.2vh;
-  justify-content: center;
-}
-.todolist__list {
-  margin: 2vh 0vh 2vh 4vh;
-}
-.todolist__content {
-  transition: all 0.1s;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  color: #fff;
-  border-radius: 1.5vh;
-  padding: 1vh 2vh;
-  align-items: center;
-  font-size: 1.5rem;
-  margin-bottom: 0.8rem;
-}
-@media (min-width: 957px) {
-  .todolist__content {
-    font-size: 2rem;
-  }
-}
-.todolist__content:hover {
-  box-shadow: 2px 2px 5px 1px #888;
-}
-.todolist__title {
-  word-break: break-all;
-  display: block;
-}
-.todolist__title:focus {
-  background-color: rgba(255, 255, 255, 0.8);
-  color: #666;
-}
-.todolist__focus {
-  margin-left: -4vh;
-  box-shadow: 2px 2px 5px 1px #888;
-}
-
-/* 右侧任务详细描述 */
-.detail {
-  display: none;
-}
-@media (min-width: 530px) {
-  .detail {
-    display: block;
-    box-shadow: 0px 2px 11px 0px #ccc;
-    width: 220px;
-  }
-}
-@media (min-width: 957px) {
-  .detail {
-    min-width: 300px;
-  }
-}
-.detail__paragraph {
-  margin: 0 1rem 1rem 1rem;
-  color: #666;
-  height: 90%;
-  font: 1.3rem Helvetica;
-  outline: none;
-  letter-spacing: 0.1vh;
-  border: none;
-}
-@media (min-width: 530px) {
-  .detail__paragraph {
-    width: 70%;
-  }
-}
-@media (min-width: 957px) {
-  .detail__paragraph {
-    width: 85%;
-  }
-}
-.detail__paragraph::placeholder {
-  color: #ccc;
-  letter-spacing: 0.2vh;
 }
 
 /* 模态框 */

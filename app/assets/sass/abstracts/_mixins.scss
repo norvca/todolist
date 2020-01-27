@@ -1,3 +1,6 @@
+@use 'variables' as *;
+
+// Media query
 @mixin atSmall {
   @media (min-width: 530px) {
     & {
@@ -19,5 +22,13 @@
     & {
       @content;
     }
+  }
+}
+
+// Text selection
+@mixin selection($background-color: transparent, $color: inherit) {
+  ::selection {
+    background-color: $background-color;
+    color: $color;
   }
 }
