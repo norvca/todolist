@@ -1,6 +1,13 @@
+@use "../abstracts/variables" as *;
+
+main {
+  font-size: 1.5rem;
+  color: $color-dark-1;
+}
+
 a {
   text-decoration: none;
-  color: #666;
+  color: $color-dark-1;
 }
 
 h4 {
@@ -9,8 +16,4 @@ h4 {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-
-  @mixin atMedium {
-    width: 200px;
-  }
 }

@@ -10,6 +10,8 @@
   left: 0;
   background-color: rgba(50, 50, 50, 0.6);
 
+  @include selection($mainGreen, #fff);
+
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease-out;
@@ -53,12 +55,12 @@
       border-radius: 0.3rem;
       font-size: 1.3rem;
       outline: none;
-      color: #555;
+      color: $color-dark-1;
       transition: all 0.2s;
     }
 
     &__input::placeholder {
-      color: #ccc;
+      color: $color-light;
     }
 
     &__input:focus {
@@ -68,8 +70,8 @@
     &__button {
       display: flex;
       justify-content: center;
-      border: 1px solid #6bc5bc;
-      background-color: #6bc5bc;
+      border: 1px solid $mainGreen;
+      background-color: $mainGreen;
       border-radius: 4px;
       padding: 0.5rem 0;
       margin-top: 1rem;
@@ -113,12 +115,12 @@
       border-radius: 0.3rem;
       font-size: 1.3rem;
       outline: none;
-      color: #555;
+      color: $color-dark-1;
       transition: all 0.2s;
     }
 
     &__input::placeholder {
-      color: #ccc;
+      color: $color-light;
     }
 
     &__input:focus {
@@ -132,8 +134,8 @@
 
     &__button {
       flex: 1 0 auto;
-      border: 1px solid #777499;
-      background-color: #777499;
+      border: 1px solid $mainPurple;
+      background-color: $mainPurple;
       border-radius: 4px;
       padding: 0.5rem 0;
       margin-top: 1rem;
@@ -155,9 +157,7 @@
 
   /* 登陆注册切换 */
   &__bottom {
-    color: #bbb;
     margin-top: 0.5rem;
-    font-size: 0.9rem;
     display: flex;
     justify-content: flex-end;
 
@@ -166,11 +166,7 @@
     }
 
     a {
-      color: #bbb;
-    }
-
-    a:hover {
-      color: #666;
+      color: $color-dark-2;
     }
   }
 

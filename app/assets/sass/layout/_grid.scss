@@ -1,0 +1,35 @@
+@use '../abstracts/mixins' as *;
+
+main {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+
+  @include atSmall {
+    .sidebar {
+      @include layout(1, 8);
+    }
+
+    .todolist {
+      @include layout(5, 8);
+    }
+
+    .detail {
+      @include layout(2, 8);
+    }
+  }
+
+  @include atMedium {
+    .sidebar {
+      @include layout(2, 14);
+    }
+
+    .todolist {
+      @include layout(9, 14);
+    }
+
+    .detail {
+      @include layout(3, 14);
+    }
+  }
+}

@@ -8,35 +8,21 @@
   @include selection($mainGreen, #fff);
 
   @include atSmall {
-    display: block;
-    box-shadow: 0px 2px 11px 0px #ccc;
-    width: 220px;
-  }
-
-  @include atMedium {
-    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 2px 11px 0px $color-light;
   }
 
   &__paragraph {
     margin: 0 1rem 1rem 1rem;
-    color: #666;
+    color: $color-dark-1;
     height: 90%;
-    font: 1.3rem Helvetica;
     outline: none;
-    letter-spacing: 0.1vh;
     border: none;
-
-    @include atSmall {
-      width: 70%;
-    }
-
-    @include atMedium {
-      width: 85%;
-    }
+    font-size: 1.5rem;
   }
 
   &__paragraph::placeholder {
-    color: #ccc;
-    letter-spacing: 0.2vh;
+    color: $color-light;
   }
 }

@@ -2,10 +2,10 @@
 @use 'abstracts/mixins';
 
 @use 'base/base';
-@use 'base/global';
 @use 'base/typography';
 @use 'base/utilities';
 
+@use 'layout/grid';
 @use 'layout/site-header';
 @use 'layout/sidebar';
 @use 'layout/todolist';
