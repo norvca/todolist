@@ -20,7 +20,7 @@ ES5 +  CSS3 + CouchDB
 
 ## 预览地址
 
-https://norvca.github.io/ToDoList/app
+https://norvca.github.io/todolist/app
 
 ### 基本功能演示
 
