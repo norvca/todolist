@@ -3,9 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="./dist/styles/style.css" />
+    <!--TODO: 使用 Wbpack 打包 SVG 文件，而不是引入 JS 文件  -->
     <script src="//at.alicdn.com/t/font_557952_xf0v6n8nxz.js"></script>
-    <!--   <script type="text/javascript" async="true" data-main="js/app/index.js" src="js/lib/require.js"></script> -->
     <title>pure Todo</title>
   </head>
   <body>
@@ -181,32 +180,6 @@
                 </svg>
               </div>
             </li>
-            <li class="todo-box bgc-light">
-              <div class="todo-title">
-                <span>熟读唐诗三百首。</span>
-              </div>
-              <div class="todo-icon">
-                <svg class="icon icon-nofinish" aria-hidden="true" name="search">
-                    <use xlink:href="#icon-finish-copy"></use>
-                </svg>
-                <svg class="icon icon-delete" aria-hidden="true" name="search">
-                    <use xlink:href="#icon-delete"></use>
-                </svg>
-              </div>
-            </li>
-            <li class="todo-box bgc-usual">
-              <div class="todo-title">
-                <span>熟读唐诗三百首。</span>
-              </div>
-              <div class="todo-icon">
-                <svg class="icon icon-nofinish" aria-hidden="true" name="search">
-                    <use xlink:href="#icon-finish-copy"></use>
-                </svg>
-                <svg class="icon icon-delete" aria-hidden="true" name="search">
-                    <use xlink:href="#icon-delete"></use>
-                </svg>
-              </div>
-            </li>
           </ul>
         </div> -->
         <!-- 测试任务用 -->
@@ -221,8 +194,5 @@
         ></textarea>
       </article>
     </main>
-
-    <!--     <script src="//cdn.jsdelivr.net/npm/pouchdb@6.4.3/dist/pouchdb.min.js"></script> -->
-    <script type="text/javascript" src="./dist/js/App.js"></script>
   </body>
 </html>

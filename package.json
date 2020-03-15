@@ -4,7 +4,8 @@
   "description": "A personal project to improve my code skill",
   "main": "webpack.config.js",
   "scripts": {
-    "watch:sass": "sass --watch --no-source-map app/assets/sass/main.scss app/dist/styles/style.css"
+    "start": "webpack-dev-server --config webpack.dev.js --open",
+    "build": "webpack --config webpack.prod.js"
   },
   "repository": {
     "type": "git",
@@ -13,7 +14,19 @@
   "author": "norvca",
   "license": "ISC",
   "devDependencies": {
-    "sass": "^1.23.3"
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.4.2",
+    "file-loader": "^5.1.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "sass": "^1.23.3",
+    "sass-loader": "^8.0.2",
+    "style-loader": "^1.1.3",
+    "webpack": "^4.42.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3",
+    "webpack-merge": "^4.2.2"
   },
   "dependencies": {
     "pouchdb": "^7.1.1",
