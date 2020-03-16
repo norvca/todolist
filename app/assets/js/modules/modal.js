@@ -1,12 +1,12 @@
 // 加载数据库模块
-import {backendDB as db} from "./BackendDB";
+import { backendDB as db } from './backendDB';
 
 // 因为单一职责原则，把创建对象函数和形成单例的函数分开写
 // 生成删除数据库的模态框
 const createDeleteModal = () => {
   // 创建模态框
-  const deleteModal = document.createElement("div");
-  deleteModal.classList.add("modal", "fade");
+  const deleteModal = document.createElement('div');
+  deleteModal.classList.add('modal', 'fade');
   deleteModal.innerHTML = `<div class='modal__box'>
                              <p class='modal__aware'>删除全部数据</p>
                              <div class='modal__delete'>
@@ -36,9 +36,8 @@ const modalModule = {
     // 生成模态框的实例
     const singleModal = createSingleModal();
 
-
     // 让模态框可见
-    singleModal.classList.add("modal--visible");
+    singleModal.classList.add('modal--visible');
   },
 
   // 清除数据库
@@ -47,18 +46,16 @@ const modalModule = {
     db.deleteAllTasks();
 
     // 隐藏模态框
-    const modal = document.querySelector(".modal");
-    modal.classList.remove("modal--visible");
+    const modal = document.querySelector('.modal');
+    modal.classList.remove('modal--visible');
   },
 
   // 不清除数据库
   regretDeleteTasks() {
     // 隐藏模态框
-    const modal = document.querySelector(".modal");
-    modal.classList.remove("modal--visible");
+    const modal = document.querySelector('.modal');
+    modal.classList.remove('modal--visible');
   }
 };
 
-
-
-export {modalModule};
+export { modalModule };

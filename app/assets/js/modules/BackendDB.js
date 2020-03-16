@@ -1,5 +1,5 @@
 // 加载数据库模块
-import {pouchDB as db} from "./PouchDB";
+import { pouchDB as db } from './pouchDB';
 
 // 定义接口
 const backendDB = {
@@ -19,8 +19,8 @@ const backendDB = {
   },
 
   // 修改任务
-  modifyTask(idNum , attr, value) {
-    db.modifyTask(idNum , attr, value);
+  modifyTask(idNum, attr, value) {
+    db.modifyTask(idNum, attr, value);
   },
 
   // 展示任务详情
@@ -34,4 +34,4 @@ const backendDB = {
   }
 };
 
-export {backendDB};
+export { backendDB };

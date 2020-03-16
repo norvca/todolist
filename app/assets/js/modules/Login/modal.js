@@ -1,5 +1,5 @@
-import * as signin from './Signin';
-import { signup } from './Signup';
+import * as signin from './signin';
+import { signup } from './signup';
 
 // 创建模态框
 function createModal() {

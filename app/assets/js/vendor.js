@@ -1,1 +1,1 @@
-import './libraries/iconfont';
+import './libraries/icon';

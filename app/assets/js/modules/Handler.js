@@ -1,11 +1,10 @@
 // 加载各模块
-import { sidebarModule } from './SidebarModule';
-import { todolistModule } from './TodolistModule';
-import { detailModule } from './DetailModule';
-import { modalModule } from './ModalModule';
-import * as signin from './Login/Signin';
-import * as loginModal from './Login/modal';
-import { signup } from './Login/Signup';
+import { sidebarModule } from './sidebar';
+import { todolistModule } from './todolist';
+import { detailModule } from './detail';
+import { modalModule } from './modal';
+import * as signin from './login/signin';
+import * as loginModal from './login/modal';
 
 // 定义事件处理函数
 const handler = (function() {
