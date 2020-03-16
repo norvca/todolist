@@ -1,15 +1,3 @@
-// 模态框实例
-import { createSingleModal } from './modal';
-
-// 创建单例模态框
-function createSingleLoginModal() {
-  // 生成模态框的实例
-  const singleModal = createSingleModal();
-
-  // 让模态框可见
-  singleModal.classList.add('login--visible');
-}
-
 // 切换成注册功能
 function changeState(e) {
   const signin = document.querySelector('.login__signin');
@@ -28,4 +16,4 @@ function exit(e) {
   }
 }
 
-export { createSingleLoginModal, changeState, exit };
+export { changeState, exit };

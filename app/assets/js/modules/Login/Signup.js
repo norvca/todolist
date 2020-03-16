@@ -1,5 +1,5 @@
 // 加载数据库模块
-import { backendDB as db } from '../backendDB';
+import { backendDB as db } from '../utils/db-interface';
 
 const signup = {
   vertify(e) {

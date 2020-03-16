@@ -1,5 +1,5 @@
-import './modules/handler';
-import './modules/backendDB';
+import './modules/utils/handler';
+import './modules/utils/db-interface';
 import './modules/header/random-task';
 import './modules/header/search-bar';
 import './modules/header/level-changer';

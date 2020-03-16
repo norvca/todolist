@@ -1,7 +1,7 @@
 // 模块加载
 import PouchDB from 'pouchdb';
 import PouchdbFind from 'pouchdb-find';
-import { helperFunction } from './helper-function';
+import { helperFunction } from '../utils/helper-function';
 
 // 加载 PouchDB 插件
 PouchDB.plugin(PouchdbFind);

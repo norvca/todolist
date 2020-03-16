@@ -1,5 +1,5 @@
 // 加载各模块
-import { backendDB as db } from '../backendDB';
+import { backendDB as db } from '../utils/db-interface';
 
 // 定义变量
 const randomTaskBtn = document.querySelector('.site-header__random-task__fire');

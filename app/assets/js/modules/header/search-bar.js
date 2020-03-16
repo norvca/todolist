@@ -1,6 +1,6 @@
 // 加载各模块
-import { helperFunction } from '../helper-function';
-import { backendDB as db } from '../backendDB';
+import { helperFunction } from '../utils/helper-function';
+import { backendDB as db } from '../utils/db-interface';
 
 // 定义变量
 var searchBox = document.querySelector('.site-header__search-box__content');
