@@ -1,69 +1,78 @@
-// 加载数据库模块
-import { backendDB as db } from '../utils/db-interface';
+import {
+  checkLength,
+  checkRequired,
+  checkEmail,
+  checkPasswordMatch,
+  checkusername,
+  checkpassword
+} from './validator';
 
-const signup = {
-  vertify(e) {
-    const target = e.target;
-    const reg = /(^\s+)|(\s+$)/g;
-    // 注册验证
-    if (target.classList.contains('signupUsername')) {
-      const signupName = document.querySelector('.signupUsername');
-      const signupName_error = document.querySelector('.signupUsername-error');
+const signupHtml = `<div class="login__signup hidden">
+      <p class="login__signup__welcome">欢迎注册新账户!</p>
+      <form class="login__signup__form">
+        <div class="form-control">
+          <input
+            class="username login__signup__input"
+            name="username"
+            type="text"
+            placeholder="用户名"
+          />
+          <p></p>
+        </div>
+        <div class="form-control">
+          <input
+            class="email login__signup__input"
+            name="email"
+            type="text"
+            placeholder="邮箱"
+          />
+          <p></p>
+        </div>
+        
+        <div class="form-control">
+          <input
+            class="password login__signup__input"
+            name="password"
+            type="password"
+            placeholder="密码"
+          />
+          <p></p>
+        </div>
 
-      // 账户名不能为空
-      if (signupName.value == '') {
-        signupName.style.border = '1px solid #da635d';
-        signupName_error.innerHTML = '用户名不能为空';
-        return false;
+        <div class="form-control">
+          <input
+            class="confirmPassword login__signup__input"
+            name="confirmPassword"
+            type="password"
+            placeholder="确认密码"
+          />
+          <p></p>
+        </div>
 
-        // 不能包含空格
-      } else if (reg.test(signupName.value)) {
-        signupName.style.border = '1px solid #da635d';
-        signupName_error.innerHTML = '不能包含空格';
-        return false;
+        <button class='login__signup__button' type="submit">注册</button>
+      </form>
+      <div class="login__bottom">
+        <a class="login__exit" href="# ">退出</a>
+        <span>|</span>
+        <a class="login__changeState" href="# ">返回登陆栏</a>
+      </div>
+    </div>`;
 
-        // 账户名字数在4-16区间
-      } else if (
-        signupName.value.length >= 16 ||
-        signupName.value.length <= 3
-      ) {
-        signupName.style.border = '1px solid #da635d';
-        signupName_error.innerHTML = '长度为4-16个字符';
-        return false;
-      } else {
-        signupName.style.border = '1px solid #ccc';
-        signupName_error.innerHTML = '';
-      }
-    } else if (target.classList.contains('signupPassword')) {
-      const signupPass = document.querySelector('.signupPassword');
-      const signupPass_error = document.querySelector('.signupPassword-error');
+const validate = e => {
+  const signupForm = document.querySelector('.login__signup__form');
+  const username = signupForm.querySelector('.username');
+  const password = signupForm.querySelector('.password');
+  const confirmPassword = signupForm.querySelector('.confirmPassword');
+  const email = signupForm.querySelector('.email');
+  e.preventDefault();
 
-      // 密码不能为空
-      if (signupPass.value == '') {
-        signupPass.style.border = '1px solid #da635d';
-        signupPass_error.innerHTML = '密码不能为空';
-        return false;
-
-        // 不能包含空格
-      } else if (reg.test(signupPass.value)) {
-        signupPass.style.border = '1px solid #da635d';
-        signupPass_error.innerHTML = '不能包含空格';
-        return false;
-
-        // 账户名字数在4-16区间
-      } else if (
-        signupPass.value.length >= 16 ||
-        signupPass.value.length <= 3
-      ) {
-        signupPass.style.border = '1px solid #da635d';
-        signupPass_error.innerHTML = '长度为4-16个字符';
-        return false;
-      } else {
-        signupPass.style.border = '1px solid #ccc';
-        signupPass_error.innerHTML = '';
-      }
-    }
-  }
+  checkRequired([username, password, confirmPassword, email]);
+  checkLength(username, 3, 10);
+  checkLength(password, 6, 25);
+  checkEmail(email);
+  checkPasswordMatch(password, confirmPassword);
+  checkusername(username);
+  checkpassword(password);
 };
 
-export { signup };
+export { signupHtml, validate };

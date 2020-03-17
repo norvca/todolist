@@ -42,6 +42,7 @@
     &__welcome {
       letter-spacing: 0.5vh;
       font-size: 1.3rem;
+      color: $color-dark-2;
 
       @include atMedium {
         font-size: 1.7rem;
@@ -49,6 +50,7 @@
     }
 
     &__input {
+      flex-basis: 1;
       margin-top: 1rem;
       padding: 0.7rem 1rem;
       border: 1px solid #ccc;
@@ -70,6 +72,7 @@
     &__button {
       display: flex;
       justify-content: center;
+      width: 100%;
       border: 1px solid $mainGreen;
       background-color: $mainGreen;
       border-radius: 4px;
@@ -79,15 +82,12 @@
       font-size: 3vh;
       cursor: pointer;
       transition: all 0.3s;
+      outline: none;
     }
 
     &__button:hover {
       background-color: $mainGreen;
       border-color: $mainGreen;
-    }
-
-    &__button:focus {
-      display: none;
     }
   }
 
@@ -102,6 +102,7 @@
     &__welcome {
       letter-spacing: 0.5vh;
       font-size: 1.3rem;
+      color: $color-dark-2;
 
       @include atMedium {
         font-size: 1.7rem;
@@ -130,9 +131,7 @@
     &__button {
       display: flex;
       justify-content: center;
-    }
-
-    &__button {
+      width: 100%;
       flex: 1 0 auto;
       border: 1px solid $mainPurple;
       background-color: $mainPurple;
@@ -143,16 +142,27 @@
       font-size: 3vh;
       cursor: pointer;
       transition: all 0.3s;
+      outline: none;
     }
 
     &__button:hover {
       background-color: $mainPurple;
       border-color: $mainPurple;
     }
+  }
 
-    &__button:focus {
-      display: none;
-    }
+  & .form-control {
+    display: flex;
+    flex-direction: column;
+  }
+
+  & .form-error p {
+    color: $error;
+    text-align: start;
+  }
+
+  & .form-error input {
+    border-color: $error;
   }
 
   /* 登陆注册切换 */

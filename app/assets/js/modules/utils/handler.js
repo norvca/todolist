@@ -15,10 +15,10 @@ const detail = document.querySelector('.detail__paragraph');
 // header 区域
 // 显示登陆注册功能模态框
 loginButton.addEventListener('click', loginModal.createSingleLoginModal);
-loginButton.addEventListener('click', loginModal.showLoginModal);
+loginButton.addEventListener('click', loginModal.modalHandler);
 // 显示登陆注册功能模态框：手机模式
 loginIcon.addEventListener('click', loginModal.createSingleLoginModal);
-loginIcon.addEventListener('click', loginModal.showLoginModal);
+loginIcon.addEventListener('click', loginModal.modalHandler);
 
 // sideBar 区域
 // 左侧任务栏类别、等级导航
