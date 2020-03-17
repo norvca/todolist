@@ -44,11 +44,29 @@ function exit(e) {
   }
 }
 
+// 模态框初始化
+function initModal() {
+  const signinBox = document.querySelector('.login__signin');
+  const signupBox = document.querySelector('.login__signup');
+  const formControls = document.querySelectorAll('.form-control');
+
+  formControls.forEach(el => {
+    const alertText = el.querySelector('p');
+    el.classList.remove('form-error');
+    alertText.innerText = '';
+  });
+
+  signinBox.classList.remove('hidden');
+  signupBox.classList.add('hidden');
+}
+
 // 登录模态框事件处理
 function modalHandler() {
   var loginBox = document.querySelector('.login__box');
   const signinForm = document.querySelector('.login__signin__form');
   const signupForm = document.querySelector('.login__signup__form');
+
+  initModal();
 
   // 用户登录提交
   signinForm.addEventListener('submit', signin.validate);

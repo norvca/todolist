@@ -1,6 +1,5 @@
 function showError(input, message) {
   const formControl = input.parentElement;
-  console.log(formControl);
   if (formControl.classList.contains('form-error')) return;
   formControl.className = 'form-control form-error';
 
