@@ -1,14 +1,15 @@
 import * as signin from './signin';
 import * as signup from './signup';
-import { checkRequired, checkLength } from './validator';
+import signinHtml from '../templates/signinTemplate';
+import signupHtml from '../templates/signupTemplate';
 
-// 创建模态框
+// 创建登录模态框
 function createModal() {
   const modal = document.createElement('div');
   modal.classList.add('login', 'fade');
   modal.innerHTML = `<div class='login__box'>
-                       ${signin.signinHtml}
-                       ${signup.signupHtml}
+                       ${signinHtml}
+                       ${signupHtml}
                      </div>`;
   // 添加到 DOM 结构里
   document.body.appendChild(modal);
