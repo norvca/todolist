@@ -14,7 +14,7 @@ const section = document.querySelector('.todolist');
 const detail = document.querySelector('.detail__paragraph');
 
 // 创建数据库
-let db = new PouchDB('todolist');
+let db = new PouchDB('localDB');
 
 // 数据库模块
 const pouchDB = {
@@ -258,4 +258,4 @@ const pouchDB = {
 // 第一次载入页面就显示任务条
 pouchDB.showTask('taskType', 'work');
 
-export { pouchDB };
+export { pouchDB, db };

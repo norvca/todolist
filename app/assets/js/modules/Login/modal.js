@@ -50,15 +50,22 @@ function initModal() {
   const signinBox = document.querySelector('.login__signin');
   const signupBox = document.querySelector('.login__signup');
   const formControls = document.querySelectorAll('.form-control');
+  const welcome = document.querySelector('.login__signin__welcome');
 
   formControls.forEach(el => {
+    const input = el.querySelector('input');
     const alertText = el.querySelector('p');
+
+    input.value = '';
     el.classList.remove('form-error');
     alertText.innerText = '';
   });
 
   signinBox.classList.remove('hidden');
   signupBox.classList.add('hidden');
+
+  welcome.innerText = '欢迎登陆PureTodo!';
+  welcome.classList.remove('error');
 }
 
 // 登录模态框事件处理

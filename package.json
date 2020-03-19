@@ -29,6 +29,7 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "pouchdb": "^7.1.1",
     "pouchdb-find": "^7.1.1"
   }

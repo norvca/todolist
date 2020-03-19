@@ -180,6 +180,15 @@
     }
   }
 
+  &__changeState:hover {
+    color: $mainGreen;
+  }
+
+  // 退出
+  &__exit:hover {
+    color: $mainRed !important;
+  }
+
   /* 显示模态框 */
   &--visible {
     opacity: 1;
