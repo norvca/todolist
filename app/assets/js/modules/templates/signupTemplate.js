@@ -43,7 +43,7 @@ const signupHtml = `<div class="login__signup hidden">
         <button class='login__signup__button' type="submit">注册</button>
       </form>
       <div class="login__bottom">
-        <a class="login__exit" href="# ">退出</a>
+        <a class="login__exit login__signup__exit" href="# ">退出</a>
         <span>|</span>
         <a class="login__changeState" href="# ">返回登陆栏</a>
       </div>

@@ -4,6 +4,7 @@ import * as todolistMain from '../todolist';
 import * as todolistDetail from '../detail';
 import * as deleteAllModal from '../deleteAllModal';
 import * as loginModal from '../login/modal';
+import { backendDB as db } from './db-interface';
 
 const loginButton = document.querySelector('.site-header__loginButton');
 const loginIcon = document.querySelector('.site-header__loginIcon');
@@ -12,13 +13,13 @@ const deleteData = document.querySelector('.sidebar__delete');
 const section = document.querySelector('.todolist');
 const detail = document.querySelector('.detail__paragraph');
 
+db.showTask('taskType', 'work');
+
 // header 区域
 // 显示登陆注册功能模态框
-loginButton.addEventListener('click', loginModal.createSingleLoginModal);
-loginButton.addEventListener('click', loginModal.modalHandler);
+loginButton.addEventListener('click', loginModal.showModal);
 // 显示登陆注册功能模态框：手机模式
-loginIcon.addEventListener('click', loginModal.createSingleLoginModal);
-loginIcon.addEventListener('click', loginModal.modalHandler);
+loginIcon.addEventListener('click', loginModal.showModal);
 
 // sideBar 区域
 // 左侧任务栏类别、等级导航

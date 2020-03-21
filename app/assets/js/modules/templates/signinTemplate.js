@@ -22,7 +22,7 @@ const signinHtml = `<div class="login__signin">
         <button class='login__signin__button' type="submit">登录</button>
       </form>
       <div class="login__bottom">
-        <a class="login__exit" href="# ">退出</a>
+        <a class="login__exit login__signin__exit" href="# ">退出</a>
         <span>|</span>
         <a class="login__changeState" href="# ">注册新账号</a>
       </div>

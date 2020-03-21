@@ -1,4 +1,4 @@
-import './modules/utils/handler';
+import './modules/utils/app-handler';
 import './modules/utils/db-interface';
 import './modules/header/random-task';
 import './modules/header/search-bar';

@@ -1,10 +1,9 @@
-import * as signin from './signin';
-import * as signup from './signup';
 import signinHtml from '../templates/signinTemplate';
 import signupHtml from '../templates/signupTemplate';
+import loginHandler from './login-handler';
 
 // 创建登录模态框
-function createModal() {
+function createHtml() {
   const modal = document.createElement('div');
   modal.classList.add('login', 'fade');
   modal.innerHTML = `<div class='login__box'>
@@ -25,7 +24,7 @@ function getSingle(fn) {
 }
 
 // 生成登陆模态框的闭包
-const createSingleModal = getSingle(createModal);
+const createSingleModal = getSingle(createHtml);
 
 // 切换成注册功能
 function changeState(e) {
@@ -38,11 +37,9 @@ function changeState(e) {
 }
 
 // 退出模态框
-function exit(e) {
+function exit() {
   const login = document.querySelector('.login');
-  if (e.target.classList.contains('login__exit')) {
-    login.classList.remove('login--visible');
-  }
+  login.classList.remove('login--visible');
 }
 
 // 模态框初始化
@@ -68,34 +65,16 @@ function initModal() {
   welcome.classList.remove('error');
 }
 
-// 登录模态框事件处理
-function modalHandler() {
-  var loginBox = document.querySelector('.login__box');
-  const signinForm = document.querySelector('.login__signin__form');
-  const signupForm = document.querySelector('.login__signup__form');
-
-  initModal();
-
-  // 用户登录提交
-  signinForm.addEventListener('submit', signin.validate);
-
-  // 用户注册提交
-  signupForm.addEventListener('submit', signup.validate);
-
-  // 登陆注册栏切换
-  loginBox.addEventListener('click', changeState);
-
-  // 退出登陆框
-  loginBox.addEventListener('click', exit);
-}
-
 // 创建单例模态框
-function createSingleLoginModal() {
+function showModal() {
   // 返回模态框的实例
   const singleModal = createSingleModal();
 
   // 让模态框可见
   singleModal.classList.add('login--visible');
+
+  // 注册模态框事件
+  loginHandler();
 }
 
-export { modalHandler, createSingleLoginModal };
+export { exit, changeState, initModal, showModal };

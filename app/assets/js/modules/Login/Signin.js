@@ -7,6 +7,7 @@ import {
 } from './validator';
 import { db } from '../database/pouchDB';
 import { dbSync } from '../database/sync';
+import * as loginModal from './modal';
 
 const validate = e => {
   const signinForm = document.querySelector('.login__signin__form');
@@ -46,6 +47,11 @@ function submitInfo(username, password) {
         const token = response.data.token;
         localStorage.setItem('CouchDB-auth', token);
         console.log(response);
+
+        welcome.innerText = '登录成功！';
+        welcome.classList.remove('error');
+
+        loginModal.exit();
 
         dbSync(db, username, token);
       })
