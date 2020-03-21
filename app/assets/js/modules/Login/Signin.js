@@ -5,7 +5,7 @@ import {
   checkusername,
   checkpassword
 } from './validator';
-import { db } from '../database/pouchDB';
+import { localDB } from '../database/pouchDB';
 import { dbSync } from '../database/sync';
 import * as loginModal from './modal';
 
@@ -53,7 +53,7 @@ function submitInfo(username, password) {
 
         loginModal.exit();
 
-        dbSync(db, username, token);
+        dbSync(localDB.db, username, token);
       })
       .catch(err => {
         welcome.innerText = '用户名或密码错误！';

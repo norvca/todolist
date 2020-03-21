@@ -1,5 +1,5 @@
 // 加载数据库模块
-import { pouchDB as db } from '../database/pouchDB';
+import { localDB as db } from '../database/pouchDB';
 
 // 定义接口
 const backendDB = {
