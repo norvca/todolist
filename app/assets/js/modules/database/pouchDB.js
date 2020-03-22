@@ -2,6 +2,8 @@
 import PouchDB from 'pouchdb';
 import PouchdbFind from 'pouchdb-find';
 import { helperFunction } from '../utils/helper-function';
+import taskItemTemplate from '../templates/taskItemTemplate';
+import timeStampTemplate from '../templates/timeStampTemplate';
 
 // 加载 PouchDB 插件
 PouchDB.plugin(PouchdbFind);
@@ -112,10 +114,13 @@ class PouchClass {
       // 如果时间戳不等于任务的时间戳，那就添加时间戳
       if (indexTime !== element.taskTime) {
         indexTime = element.taskTime;
-        taskList.appendChild(this.createTimeStamp(element));
+
+        const timeStampHTML = timeStampTemplate(element);
+        taskList.appendChild(timeStampHTML);
       }
       // 添加任务条
-      taskList.appendChild(this.createTaskItem(element));
+      const taskItemHTML = taskItemTemplate(element);
+      taskList.appendChild(taskItemHTML);
     });
 
     section.innerHTML = '';
@@ -129,45 +134,6 @@ class PouchClass {
     } else {
       this.showDetail();
     }
-  }
-
-  // 组装任务条
-  createTaskItem(element) {
-    // 单项任务的属性设计
-    const perTask = document.createElement('li');
-    perTask.setAttribute('id', `things_${element._id}`);
-    perTask.setAttribute('class', `todolist__content ${element.level}`);
-    perTask.setAttribute('idnum', element._id);
-    perTask.innerHTML = `<div><span class='todolist__title' contenteditable='true' idnum=${element._id}> ${element.title} </span></div>
-            <div class='icon__todo'>
-              <svg class='icon icon__nofinish' aria-hidden='true' name='search' idnum=${element._id}>
-                <use class='icon__finish' xlink:href='#icon-eglass-finish1'></use>
-                <use xlink:href='#icon-eglass-finish'></use>
-              </svg>
-              <svg class='icon icon__delete' aria-hidden='true' name='search' idnum=${element._id}>
-                <use xlink:href='#icon-delete'></use>
-              </svg>
-            </div>`;
-
-    return perTask;
-  }
-
-  // 组装时间戳
-  createTimeStamp(element) {
-    // 创建时间戳
-    const taskTime = element.taskTime;
-    const taskWeek = element.taskWeek;
-    const timeStamp = document.createElement('li');
-    timeStamp.classList.add('todolist__time');
-    timeStamp.innerHTML =
-      "<span class='todolist__week'>" +
-      taskWeek +
-      '</span>' +
-      "<span class='todolist__date'>" +
-      taskTime +
-      '</span>';
-
-    return timeStamp;
   }
 
   // 搜索数据库中的数据然后展示到页面
@@ -184,6 +150,7 @@ class PouchClass {
       .then(result => {
         result.rows.forEach(element => {
           element = element.doc;
+
           if (element.title && element.title.indexOf(value) !== -1) {
             // 如果时间戳不等于任务的时间戳，那就添加时间戳
             if (indexTime !== element.taskTime) {
@@ -192,7 +159,8 @@ class PouchClass {
             }
 
             // 添加任务条
-            taskList.appendChild(this.createTaskItem(element));
+            const taskItemHTML = taskItemTemplate(element);
+            taskList.appendChild(taskItemHTML);
           }
         });
 

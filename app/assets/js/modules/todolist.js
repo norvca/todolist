@@ -5,8 +5,9 @@ import { backendDB as db } from './utils/db-interface';
 // 修改任务标题功能
 function changeTaskTitle(e) {
   if (e.target.tagName.toUpperCase() === 'SPAN') {
-    const idNum = e.target.getAttribute('idnum');
-    const newTitle = e.target.innerText;
+    const taskTitle = e.target;
+    const idNum = taskTitle.getAttribute('idnum');
+    const newTitle = taskTitle.innerText;
 
     db.modifyTask(idNum, 'title', newTitle);
   }

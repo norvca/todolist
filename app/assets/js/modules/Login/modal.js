@@ -10,6 +10,13 @@ function createHtml() {
                        ${signinHtml}
                        ${signupHtml}
                      </div>`;
+  // const modalHTML = `<div clas="login fade">
+  //                     <div clas="login_box">
+  //                       ${signinHtml}
+  //                       ${signupHtml}
+  //                     </div>
+  //                   </div>`;
+
   // 添加到 DOM 结构里
   document.body.appendChild(modal);
   return modal;
