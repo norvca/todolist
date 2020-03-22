@@ -1,8 +1,17 @@
 // 加载数据库模块
-import { localDB as db } from '../database/pouchDB';
+import { localDB, visitorDB } from '../database/pouchDB';
+
+let db;
+// 切换离线数据库或游客数据库
+if (localStorage.getItem('DB-name') && localStorage.getItem('CouchDB-auth')) {
+  db = localDB;
+} else {
+  db = visitorDB;
+}
 
 // 定义接口
 const backendDB = {
+  db,
   // 添加任务
   addTask(randomContent, ramdomLevel) {
     db.addTask(randomContent, ramdomLevel);

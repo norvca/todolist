@@ -6,8 +6,9 @@ import {
   checkpassword
 } from './validator';
 import { localDB } from '../database/pouchDB';
-import { dbSync } from '../database/sync';
+import { firstSync } from '../database/sync';
 import * as loginModal from './modal';
+import { hexedDBame } from '../utils/hex-encode';
 
 const validate = e => {
   const signinForm = document.querySelector('.login__signin__form');
@@ -45,15 +46,18 @@ function submitInfo(username, password) {
       })
       .then(response => {
         const token = response.data.token;
+        const dbName = hexedDBame(username);
+
         localStorage.setItem('CouchDB-auth', token);
-        console.log(response);
+        localStorage.setItem('DB-name', dbName);
 
         welcome.innerText = '登录成功！';
         welcome.classList.remove('error');
 
         loginModal.exit();
 
-        dbSync(localDB.db, username, token);
+        firstSync(localDB.db, username, token);
+        localDB.showTask('taskType', 'work');
       })
       .catch(err => {
         welcome.innerText = '用户名或密码错误！';

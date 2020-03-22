@@ -14,8 +14,8 @@ const section = document.querySelector('.todolist');
 const detail = document.querySelector('.detail__paragraph');
 
 // 创建数据库
-let db = new PouchDB('localDB');
-let visitorDB = new PouchDB('visitorDB');
+let pouchLocal = new PouchDB('localDB');
+let pouchVisitor = new PouchDB('visitorDB');
 
 // 数据库模型
 class PouchClass {
@@ -57,7 +57,8 @@ class PouchClass {
       };
     }
 
-    db.put(todo)
+    this.db
+      .put(todo)
       .then(() => {
         console.log('添加到数据库成功！');
       })
@@ -68,14 +69,14 @@ class PouchClass {
 
   // 从数据库中读取数据然后渲染到页面
   showTask(indexType, value) {
-    return db
+    return this.db
       .createIndex({
         index: { fields: [indexType] }
       })
       .then(() => {
         // 按照任务类别来显示
         if (indexType === 'taskType') {
-          return db
+          return this.db
             .find({
               selector: {
                 taskType: value
@@ -88,7 +89,7 @@ class PouchClass {
 
           // 按照任务等级来显示
         } else {
-          return db
+          return this.db
             .find({
               selector: {
                 level: value
@@ -175,50 +176,52 @@ class PouchClass {
     const taskList = document.createElement('ul');
     taskList.classList.add('todolist__list');
 
-    db.allDocs({
-      include_docs: true,
-      descending: true
-    }).then(result => {
-      result.rows.forEach(element => {
-        element = element.doc;
-        if (element.title && element.title.indexOf(value) !== -1) {
-          // 如果时间戳不等于任务的时间戳，那就添加时间戳
-          if (indexTime !== element.taskTime) {
-            indexTime = element.taskTime;
-            taskList.appendChild(this.createTimeStamp(element));
-          }
+    this.db
+      .allDocs({
+        include_docs: true,
+        descending: true
+      })
+      .then(result => {
+        result.rows.forEach(element => {
+          element = element.doc;
+          if (element.title && element.title.indexOf(value) !== -1) {
+            // 如果时间戳不等于任务的时间戳，那就添加时间戳
+            if (indexTime !== element.taskTime) {
+              indexTime = element.taskTime;
+              taskList.appendChild(this.createTimeStamp(element));
+            }
 
-          // 添加任务条
-          taskList.appendChild(this.createTaskItem(element));
+            // 添加任务条
+            taskList.appendChild(this.createTaskItem(element));
+          }
+        });
+
+        section.innerHTML = '';
+        section.appendChild(taskList);
+
+        // 首任务聚焦
+        if (taskList.firstChild) {
+          const firstTask = taskList.firstChild.nextSibling;
+          firstTask.classList.add('todolist__focus');
+          this.showDetail(firstTask.getAttribute('idnum'));
+        } else {
+          this.showDetail();
         }
       });
-
-      section.innerHTML = '';
-      section.appendChild(taskList);
-
-      // 首任务聚焦
-      if (taskList.firstChild) {
-        const firstTask = taskList.firstChild.nextSibling;
-        firstTask.classList.add('todolist__focus');
-        this.showDetail(firstTask.getAttribute('idnum'));
-      } else {
-        this.showDetail();
-      }
-    });
   }
 
   // 修改任务数据
   modifyTask(idNum, attr, value) {
-    db.get(idNum).then(doc => {
+    this.db.get(idNum).then(doc => {
       doc[attr] = value;
-      db.put(doc);
+      this.db.put(doc);
     });
   }
 
   // 显示右侧任务详情
   showDetail(id) {
     if (id) {
-      db.get(id).then(doc => {
+      this.db.get(id).then(doc => {
         const title = doc.title;
         const text = doc.detail;
         detail.previousElementSibling.innerText = title;
@@ -234,11 +237,12 @@ class PouchClass {
 
   // 删除全部数据
   deleteAllTasks() {
-    db.allDocs()
+    this.db
+      .allDocs()
       .then(result => {
         return Promise.all(
           result.rows.map(row => {
-            return db.remove(row.id, row.value.rev);
+            return this.db.remove(row.id, row.value.rev);
           })
         );
       })
@@ -252,6 +256,7 @@ class PouchClass {
   }
 }
 
-const localDB = new PouchClass(db);
+const localDB = new PouchClass(pouchLocal);
+const visitorDB = new PouchClass(pouchVisitor);
 
 export { localDB, visitorDB };
