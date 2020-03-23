@@ -1,11 +1,19 @@
 // 加载数据库模块
-import { localDB, visitorDB } from '../database/pouchDB';
+import { userDB, visitorDB } from '../database/pouchDB';
 
 let db;
-// 切换离线数据库或游客数据库
+// 初始数据库选择：用户数据库或游客数据库
 if (localStorage.getItem('DB-name') && localStorage.getItem('CouchDB-auth')) {
-  db = localDB;
+  db = userDB;
 } else {
+  db = visitorDB;
+}
+
+function useUserDB() {
+  db = userDB;
+}
+
+function useVisitorDB() {
   db = visitorDB;
 }
 
@@ -43,4 +51,4 @@ const backendDB = {
   }
 };
 
-export { backendDB };
+export { backendDB, useUserDB, useVisitorDB };

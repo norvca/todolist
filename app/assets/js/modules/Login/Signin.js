@@ -5,7 +5,8 @@ import {
   checkusername,
   checkpassword
 } from './validator';
-import { localDB } from '../database/pouchDB';
+import { userDB } from '../database/pouchDB';
+import { useUserDB } from '../utils/db-interface';
 import { firstSync } from '../database/sync';
 import * as loginModal from './modal';
 import { hexedDBame } from '../utils/hex-encode';
@@ -56,8 +57,10 @@ function submitInfo(username, password) {
 
         loginModal.exit();
 
-        firstSync(localDB.db, username, token);
-        localDB.showTask('taskType', 'work');
+        useUserDB();
+        firstSync(userDB.db, username, token);
+        userDB.showTask('taskType', 'work');
+        console.log('Sync success!');
       })
       .catch(err => {
         welcome.innerText = '用户名或密码错误！';

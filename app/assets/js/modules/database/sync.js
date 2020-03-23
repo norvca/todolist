@@ -1,6 +1,6 @@
 import { hexedDBame } from '../utils/hex-encode';
 import PouchDB from 'pouchdb';
-import { localDB } from './pouchDB';
+import { userDB } from './pouchDB';
 
 function firstSync(db, username, token) {
   const dbName = hexedDBame(username);
@@ -24,7 +24,7 @@ function firstSync(db, username, token) {
     .on('change', function(change) {
       // yo, something changed!
       console.log(change);
-      localDB.showTask('taskType', 'work');
+      userDB.showTask('taskType', 'work');
     })
     .on('paused', function(info) {
       // replication was paused, usually because of a lost connection
@@ -40,14 +40,14 @@ function firstSync(db, username, token) {
     });
 }
 
-async function reSync(db) {
+function reSync(db) {
   const dbName = localStorage.getItem('DB-name');
   const token = localStorage.getItem('CouchDB-auth');
 
   if (dbName && token) {
     console.log(dbName, token);
 
-    let remoteDB = await new PouchDB('http://192.168.206.141:4000', {
+    let remoteDB = new PouchDB('http://192.168.206.141:4000', {
       fetch: function(url, opts) {
         opts.headers.set('X-Auth-CouchDB-Token', token);
         opts.headers.set('X-CouchDB-dbName', dbName);
@@ -58,12 +58,8 @@ async function reSync(db) {
     });
 
     console.log(remoteDB);
-    remoteDB
-      .info()
-      .then(data => console.log(data))
-      .catch(err => console.log(err));
 
-    PouchDB.sync(db, remoteDB, {
+    const syncing = PouchDB.sync(db, remoteDB, {
       live: true,
       heartbeat: false,
       timeout: false,
@@ -72,7 +68,7 @@ async function reSync(db) {
       .on('change', function(change) {
         // yo, something changed!
         console.log(change);
-        localDB.showTask('taskType', 'work');
+        userDB.showTask('taskType', 'work');
       })
       .on('paused', function(info) {
         // replication was paused, usually because of a lost connection
@@ -86,7 +82,10 @@ async function reSync(db) {
       .on('error', function(err) {
         // totally unhandled error (shouldn't happen)
         console.log(err);
+        // 出错后退出持续同步请求
+        // localStorage.clear();
       });
+
     console.log('远程同步');
   }
 }

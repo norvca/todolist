@@ -5,7 +5,7 @@ import * as todolistDetail from '../detail';
 import * as deleteAllModal from '../deleteAllModal';
 import * as loginModal from '../login/modal';
 import { backendDB as db } from './db-interface';
-import { localDB } from '../database/pouchDB';
+import { userDB } from '../database/pouchDB';
 import { reSync } from '../database/sync';
 
 const loginButton = document.querySelector('.site-header__loginButton');
@@ -15,7 +15,7 @@ const deleteData = document.querySelector('.sidebar__delete');
 const section = document.querySelector('.todolist');
 const detail = document.querySelector('.detail__paragraph');
 
-reSync(localDB.db);
+reSync(userDB.db);
 db.showTask('taskType', 'work');
 
 // header 区域

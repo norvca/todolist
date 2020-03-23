@@ -18,8 +18,12 @@
     @include atSmall {
       display: block;
       line-height: 12vh;
-      padding: 0 0.5rem 0 1.1rem;
+      padding: 0 0.7rem;
       user-select: none;
+    }
+
+    @include atMedium {
+      padding: 0 1.1rem;
     }
 
     &__fire {
@@ -42,16 +46,13 @@
     cursor: pointer;
     font-size: 1rem;
 
+    @include atSmall {
+      padding: 0 0.7rem 0 0;
+    }
+
     @include atMedium {
       font-size: 1.3rem;
-    }
-  }
-
-  &__splitLine {
-    display: none;
-
-    @include atSmall {
-      display: inline;
+      padding: 0 1.1rem 0 0;
     }
   }
 
@@ -61,11 +62,6 @@
 
     @include atSmall {
       display: inline;
-      padding: 0 0.7rem 0 0.3rem;
-    }
-
-    @include atMedium {
-      padding: 0 1.1rem 0 0.5rem;
     }
   }
 

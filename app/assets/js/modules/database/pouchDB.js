@@ -16,7 +16,7 @@ const section = document.querySelector('.todolist');
 const detail = document.querySelector('.detail__paragraph');
 
 // 创建数据库
-let pouchLocal = new PouchDB('localDB');
+let pouchUser = new PouchDB('userDB');
 let pouchVisitor = new PouchDB('visitorDB');
 
 // 数据库模型
@@ -224,7 +224,7 @@ class PouchClass {
   }
 }
 
-const localDB = new PouchClass(pouchLocal);
+const userDB = new PouchClass(pouchUser);
 const visitorDB = new PouchClass(pouchVisitor);
 
-export { localDB, visitorDB };
+export { userDB, visitorDB };
