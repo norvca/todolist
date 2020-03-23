@@ -23,6 +23,7 @@ function firstSync(db, username, token) {
   })
     .on('change', function(change) {
       // yo, something changed!
+      userDB.showCurrentTask();
       console.log(change);
     })
     .on('paused', function(info) {
@@ -63,6 +64,7 @@ function reSync(db) {
   })
     .on('change', function(change) {
       // yo, something changed!
+      userDB.showCurrentTask();
       console.log(change);
     })
     .on('paused', function(info) {

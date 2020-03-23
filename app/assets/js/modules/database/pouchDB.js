@@ -105,6 +105,14 @@ class PouchClass {
       });
   }
 
+  showCurrentTask() {
+    const taskType = document
+      .querySelector('.sidebar__act')
+      .getAttribute('taskType');
+
+    this.showTask('taskType', taskType);
+  }
+
   // 把任务条渲染到页面
   redrawTasksUI(tasks) {
     let indexTime = '';

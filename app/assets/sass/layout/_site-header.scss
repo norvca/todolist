@@ -90,16 +90,21 @@
     padding-top: 2px;
     border: 1px solid $mainPurple;
     background-color: $mainPurple;
-    width: 2rem;
-    height: 2rem;
+    width: 3rem;
+    height: 3rem;
     border-radius: 50%;
+    margin: 0 1rem;
     cursor: pointer;
 
     @include atSmall {
-      margin: 0 0.7rem 0 0;
+      width: 2.5rem;
+      height: 2.5rem;
+      margin: 0 0.8rem 0 0;
     }
 
     @include atMedium {
+      width: 2rem;
+      height: 2rem;
       font-size: 1.4rem;
       margin: 0 1.1rem 0 0;
     }
