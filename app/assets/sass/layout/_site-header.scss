@@ -18,12 +18,12 @@
     @include atSmall {
       display: block;
       line-height: 12vh;
-      padding: 0 0.7rem;
+      margin: 0 0.7rem;
       user-select: none;
     }
 
     @include atMedium {
-      padding: 0 1.1rem;
+      margin: 0 1.1rem;
     }
 
     &__fire {
@@ -47,12 +47,12 @@
     font-size: 1rem;
 
     @include atSmall {
-      padding: 0 0.7rem 0 0;
+      margin: 0 0.7rem 0 0;
     }
 
     @include atMedium {
       font-size: 1.3rem;
-      padding: 0 1.1rem 0 0;
+      margin: 0 1.1rem 0 0;
     }
   }
 
@@ -79,6 +79,34 @@
 
   &__loginIcon:hover {
     color: $mainGreen;
+  }
+
+  // 用户头像
+  &__profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    padding-top: 4px;
+    border: 1px solid $mainPurple;
+    background-color: $mainPurple;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    cursor: pointer;
+
+    @include atSmall {
+      margin: 0 0.7rem 0 0;
+    }
+
+    @include atMedium {
+      font-size: 1.4rem;
+      margin: 0 1.1rem 0 0;
+    }
+  }
+
+  &__username {
+    color: $color-white;
   }
 
   /* 顶部搜索栏 */
@@ -128,11 +156,11 @@
     @include atSmall {
       display: flex;
       align-self: center;
-      padding: 0 2vh;
+      margin: 0 1rem;
     }
 
     @include atMedium {
-      padding: 0 1.7rem;
+      margin: 0 1.7rem;
     }
   }
 }

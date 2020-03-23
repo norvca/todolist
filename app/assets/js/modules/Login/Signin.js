@@ -6,10 +6,9 @@ import {
   checkpassword
 } from './validator';
 import { userDB } from '../database/pouchDB';
-import { useUserDB } from '../utils/db-interface';
-import { firstSync } from '../database/sync';
 import * as loginModal from './modal';
 import { hexedDBame } from '../utils/hex-encode';
+import { initApp } from '../utils/app-init';
 
 const validate = e => {
   const signinForm = document.querySelector('.login__signin__form');
@@ -50,16 +49,14 @@ function submitInfo(username, password) {
         const dbName = hexedDBame(username);
 
         localStorage.setItem('CouchDB-auth', token);
+        localStorage.setItem('User-name', username);
         localStorage.setItem('DB-name', dbName);
-
         welcome.innerText = '登录成功！';
         welcome.classList.remove('error');
-
         loginModal.exit();
 
-        useUserDB();
-        firstSync(userDB.db, username, token);
-        userDB.showTask('taskType', 'work');
+        initApp(username, token);
+
         console.log('Sync success!');
       })
       .catch(err => {

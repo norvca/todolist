@@ -5,3 +5,7 @@ import './modules/header/search-bar';
 import './modules/header/level-changer';
 import './modules/header/theme-changer';
 import '../sass/main.scss';
+
+import { reinitApp } from './modules/utils/app-init';
+
+reinitApp();
