@@ -1,5 +1,5 @@
 // 加载中间件模块
-import { backendDB as db } from './utils/db-interface';
+import {backendDB as db} from '../utils/db-interface';
 
 // 定义右侧详情模块
 // 更新任务详情功能
@@ -11,4 +11,4 @@ function refreshDetail() {
   db.modifyTask(idNum, type, detailContent);
 }
 
-export { refreshDetail };
+export {refreshDetail};

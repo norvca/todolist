@@ -1,0 +1,38 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: $color-blur;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    background-color: $color-white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+
+  &__close {
+    align-self: flex-end;
+    font-size: 1.5rem;
+    transform: scaleY(0.8);
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  &__content {
+    padding: 0.5rem 5rem;
+  }
+
+  &__logout {
+    color: $mainRed;
+  }
+}

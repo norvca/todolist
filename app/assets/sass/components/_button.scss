@@ -1,0 +1,32 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// 提交按钮
+.button {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  border: 1px solid $mainGreen;
+  background-color: $mainGreen;
+  border-radius: 4px;
+  padding: 0.5rem 0;
+  margin-top: 1rem;
+  color: #fff;
+  font-size: 3vh;
+  cursor: pointer;
+  transition: all 0.3s;
+  outline: none;
+}
+
+.button--logout {
+  background-color: $mainRed;
+  border: 1px solid $mainRed;
+}
+
+.close {
+  color: $color-dark-2;
+}
+
+.close:hover {
+  color: $color-dark-1;
+}

@@ -1,8 +1,8 @@
 // 加载各模块
-import * as sidebar from '../sidebar';
-import * as todolistMain from '../todolist';
-import * as todolistDetail from '../detail';
-import * as deleteAllModal from '../deleteAllModal';
+import * as sidebar from '../layout/sidebar';
+import * as todolistMain from '../layout/todolist';
+import * as todolistDetail from '../layout/detail';
+import * as deleteAllModal from '../layout/modals/deleteAll-modal';
 import * as loginModal from '../login/modal';
 
 const loginButton = document.querySelector('.site-header__loginButton');

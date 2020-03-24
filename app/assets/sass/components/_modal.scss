@@ -8,7 +8,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(50, 50, 50, 0.6);
+  background-color: $color-blur;
 
   opacity: 0;
   visibility: hidden;
@@ -20,7 +20,7 @@
     top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgb(244, 244, 244);
+    background-color: $color-white;
     width: 13rem;
     height: 10rem;
     border-radius: 7px;
@@ -37,6 +37,7 @@
   }
 
   &__aware {
+    color: $color-dark-2;
     font-weight: bold;
     margin-top: 4vh;
     letter-spacing: 0.5vh;
@@ -85,21 +86,6 @@
   }
 
   &--visible {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  &.fade {
-    animation: fade 0.3s;
-  }
-}
-
-@keyframes fade {
-  from {
-    opacity: 0;
-    visibility: hidden;
-  }
-  to {
     opacity: 1;
     visibility: visible;
   }

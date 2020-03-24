@@ -1,22 +1,15 @@
 // 加载数据库模块
-import { backendDB as db } from './utils/db-interface';
+import { backendDB as db } from '../../utils/db-interface';
+import deleteAllHTML from '../../templates/deleteTasksTemplate';
 
 // 因为单一职责原则，把创建对象函数和形成单例的函数分开写
 // 生成删除数据库的模态框
 const createDeleteModal = () => {
-  // 创建模态框
-  const deleteModal = document.createElement('div');
-  deleteModal.classList.add('modal', 'fade');
-  deleteModal.innerHTML = `<div class='modal__box'>
-                             <p class='modal__aware'>删除全部数据</p>
-                             <div class='modal__delete'>
-                               <a class='modal__btn-yes'>是的</a>
-                               <a class='modal__btn-no'>再想想</a>
-                             </div>
-                           </div>`;
+  // 引入HTML模板
+  document.body.appendChild(deleteAllHTML);
+
   // 添加到 DOM 结构里
-  document.body.appendChild(deleteModal);
-  return deleteModal;
+  return deleteAllHTML;
 };
 
 // 单例函数

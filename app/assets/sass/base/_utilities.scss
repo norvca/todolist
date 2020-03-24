@@ -16,3 +16,18 @@
 .error {
   color: $error !important;
 }
+
+.fade {
+  animation: fade 0.3s;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    visibility: hidden;
+  }
+  to {
+    opacity: 1;
+    visibility: visible;
+  }
+}

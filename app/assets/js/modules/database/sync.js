@@ -37,6 +37,8 @@ function firstSync(db, username, token) {
     .on('error', function(err) {
       // totally unhandled error (shouldn't happen)
       console.log(err);
+      // Token过期失效后退出持续同步请求
+      localStorage.clear();
     });
 }
 
@@ -79,8 +81,8 @@ function reSync(db) {
     .on('error', function(err) {
       // totally unhandled error (shouldn't happen)
       console.log(err);
-      // 出错后退出持续同步请求
-      // localStorage.clear();
+      // Token过期失效后退出持续同步请求
+      localStorage.clear();
     });
 
   console.log('远程同步');

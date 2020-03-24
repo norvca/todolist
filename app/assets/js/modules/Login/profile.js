@@ -1,3 +1,23 @@
+import profileTemplate from '../templates/profileTemplate';
+
+function ProfileHandler() {
+  const profileIcon = document.querySelector('.site-header__profile');
+
+  profileIcon.addEventListener('click', createHTML);
+}
+
+function createHTML() {
+  document.body.appendChild(profileTemplate());
+
+  const profileCloser = document.querySelector('.popup__close');
+  profileCloser.addEventListener('click', removeHTML);
+}
+
+function removeHTML() {
+  const popup = document.querySelector('.popup');
+  document.body.removeChild('popup');
+}
+
 function showProfile() {
   const loginBtn = document.querySelector('.site-header__login');
   const profile = document.querySelector('.site-header__profile');
@@ -8,6 +28,8 @@ function showProfile() {
 
   loginBtn.classList.add('hidden');
   profile.classList.remove('hidden');
+
+  ProfileHandler();
 }
 
 function hideProfile() {

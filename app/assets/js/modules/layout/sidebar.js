@@ -1,5 +1,5 @@
 // 加载中间件模块
-import { backendDB as db } from './utils/db-interface';
+import {backendDB as db} from '../utils/db-interface';
 
 // 变量声明
 const levelBox = [0, 1, 2];
@@ -38,4 +38,4 @@ function navigation(e) {
   }
 }
 
-export { navigation };
+export {navigation};
