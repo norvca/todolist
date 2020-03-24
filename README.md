@@ -30,7 +30,7 @@ https://norvca.github.io/todolist/app/dist
 
 ### 同步功能演示
 
-![](https://github.com/norvca/pictures/blob/master/sync.gif)
+![](https://raw.githubusercontent.com/norvca/pictures/master/sync.gif)
 
 
 
