@@ -1,7 +1,7 @@
 // 模块加载
 import PouchDB from 'pouchdb';
 import PouchdbFind from 'pouchdb-find';
-import { helperFunction } from '../utils/helper-function';
+import {helperFunction} from '../utils/helper-function';
 import taskItemTemplate from '../templates/taskItemTemplate';
 import timeStampTemplate from '../templates/timeStampTemplate';
 
@@ -44,7 +44,7 @@ class PouchClass {
         taskTime: taskTime,
         taskType: taskType,
         taskWeek: taskWeek,
-        detail: null
+        detail: null,
       };
       // 没有参数则从input栏获取数据新建任务
     } else {
@@ -55,7 +55,7 @@ class PouchClass {
         taskTime: taskTime,
         taskType: taskType,
         taskWeek: taskWeek,
-        detail: null
+        detail: null,
       };
     }
 
@@ -73,7 +73,7 @@ class PouchClass {
   showTask(indexType, value) {
     return this.db
       .createIndex({
-        index: { fields: [indexType] }
+        index: {fields: [indexType]},
       })
       .then(() => {
         // 按照任务类别来显示
@@ -81,9 +81,9 @@ class PouchClass {
           return this.db
             .find({
               selector: {
-                taskType: value
+                taskType: value,
               },
-              sort: [{ taskType: 'desc' }]
+              sort: [{taskType: 'desc'}],
             })
             .then(result => {
               this.redrawTasksUI(result.docs);
@@ -94,9 +94,9 @@ class PouchClass {
           return this.db
             .find({
               selector: {
-                level: value
+                level: value,
               },
-              sort: [{ level: 'desc' }]
+              sort: [{level: 'desc'}],
             })
             .then(result => {
               this.redrawTasksUI(result.docs);
@@ -153,7 +153,7 @@ class PouchClass {
     this.db
       .allDocs({
         include_docs: true,
-        descending: true
+        descending: true,
       })
       .then(result => {
         result.rows.forEach(element => {
@@ -219,7 +219,7 @@ class PouchClass {
         return Promise.all(
           result.rows.map(row => {
             return this.db.remove(row.id, row.value.rev);
-          })
+          }),
         );
       })
       .then(() => {
@@ -235,4 +235,4 @@ class PouchClass {
 const userDB = new PouchClass(pouchUser);
 const visitorDB = new PouchClass(pouchVisitor);
 
-export { userDB, visitorDB };
+export {userDB, visitorDB};

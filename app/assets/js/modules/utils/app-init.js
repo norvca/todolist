@@ -1,8 +1,8 @@
-import { firstSync, reSync } from '../database/sync';
-import { userDB } from '../database/pouchDB';
-import { useUserDB } from '../utils/db-interface';
-import { backendDB as db } from './db-interface';
-import { showProfile } from '../login/profile';
+import {firstSync, reSync} from '../database/sync';
+import {userDB} from '../database/pouchDB';
+import {useUserDB} from '../utils/db-interface';
+import {backendDB as db} from './db-interface';
+import {showProfile} from '../login/profile';
 
 function initApp(username, token) {
   showProfile();
@@ -23,4 +23,4 @@ function reinitApp() {
   }
 }
 
-export { initApp, reinitApp };
+export {initApp, reinitApp};

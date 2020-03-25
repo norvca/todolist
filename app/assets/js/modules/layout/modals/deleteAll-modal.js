@@ -1,5 +1,5 @@
 // 加载数据库模块
-import { backendDB as db } from '../../utils/db-interface';
+import {backendDB as db} from '../../utils/db-interface';
 import deleteAllHTML from '../../templates/deleteTasksTemplate';
 
 // 因为单一职责原则，把创建对象函数和形成单例的函数分开写
@@ -13,9 +13,9 @@ const createDeleteModal = () => {
 };
 
 // 单例函数
-const getSingle = function(fn) {
+const getSingle = function (fn) {
   let instance;
-  return function() {
+  return function () {
     return instance || (instance = fn());
   };
 };
@@ -61,5 +61,5 @@ export {
   createSingleDeleteModal,
   deleteAllTasks,
   regretDeleteTasks,
-  showDeleteModal
+  showDeleteModal,
 };

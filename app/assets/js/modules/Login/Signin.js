@@ -3,12 +3,11 @@ import {
   checkLength,
   checkRequired,
   checkusername,
-  checkpassword
+  checkpassword,
 } from './validator';
-import { userDB } from '../database/pouchDB';
 import * as loginModal from './modal';
-import { hexedDBame } from '../utils/hex-encode';
-import { initApp } from '../utils/app-init';
+import {hexedDBame} from '../utils/hex-encode';
+import {initApp} from '../utils/app-init';
 
 const validate = e => {
   const signinForm = document.querySelector('.login__signin__form');
@@ -40,9 +39,9 @@ function submitInfo(username, password) {
   // 前端通过则提交到服务端
   if (isSubmit) {
     axios
-      .post('http://192.168.206.141:3000/api/user/login', {
+      .post('http://192.168.206.142:3000/api/user/login', {
         username: username,
-        password: password
+        password: password,
       })
       .then(response => {
         const token = response.data.token;
@@ -67,4 +66,4 @@ function submitInfo(username, password) {
   }
 }
 
-export { validate };
+export {validate};

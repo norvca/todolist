@@ -25,7 +25,7 @@ function createHtml() {
 // 单例函数
 function getSingle(fn) {
   let instance;
-  return function() {
+  return function () {
     return instance || (instance = fn());
   };
 }
@@ -84,4 +84,4 @@ function showModal() {
   loginHandler();
 }
 
-export { exit, changeState, initModal, showModal };
+export {exit, changeState, initModal, showModal};

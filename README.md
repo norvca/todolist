@@ -1,22 +1,14 @@
-
-
 # ToDoList
 
 一个用原生 js 写的 ToDoList
 
-
-
 ## 项目特点
 
-用 js 配合 CouchDB实现 的 ToDoList 
-
-
+用 js 配合 CouchDB 实现 的 ToDoList
 
 ## 技术栈
 
-ES5 +  CSS3 + CouchDB
-
-
+ES5 + CSS3 + CouchDB
 
 ## 预览地址
 
@@ -26,17 +18,13 @@ https://norvca.github.io/todolist/app/dist
 
 ![](http://g.recordit.co/0hhMlzvanm.gif)
 
-
-
 ### 同步功能演示
 
 ![](https://raw.githubusercontent.com/norvca/pictures/master/sync.gif)
 
-
-
 ## 项目进度
 
->  项目重新改版，进度清零
+> 项目重新改版，进度清零
 
 - [x] 增
 - [x] 删
@@ -53,9 +41,8 @@ https://norvca.github.io/todolist/app/dist
 - [ ] 登陆功能（游客登录与邮箱注册）
 - [x] 实现中文模糊搜索功能
 - [x] 代码模块化
-- [x] ES6重写
+- [x] ES6 重写
 - [ ] 运用设计模式
-
 
 ## 已知问题
 
@@ -79,11 +66,10 @@ https://norvca.github.io/todolist/app/dist
 
   css 部分还是有待改进，看完 css: the missing manual 回来改进 css 部分
 
-- [x] ~~数据库中  [xxx.openCursor().onsuccess](https://github.com/norvca/ToDoList/blob/1935a84e905c1bcc7dcb5afc021bc6603b771977/app/assets/js/modules/DB.js#L132)   里的代码里的代码会多执行一次~~
+- [x] ~~数据库中 [xxx.openCursor().onsuccess](https://github.com/norvca/ToDoList/blob/1935a84e905c1bcc7dcb5afc021bc6603b771977/app/assets/js/modules/DB.js#L132) 里的代码里的代码会多执行一次~~
 
   没有把代码放入 `if(cursor)` 的判断条件里，会导致多执行一次。
 
 - [x] ~~动态添加的 DOM 节点不能立刻触发 CSS 的 transition 属性~~
 
-  用CSS 的 animation 属性模拟第一次 transition 功能 , [参考链接](https://christianheilmann.com/2015/08/30/quicky-fading-in-a-newly-created-element-using-css/)
-
+  用 CSS 的 animation 属性模拟第一次 transition 功能 , [参考链接](https://christianheilmann.com/2015/08/30/quicky-fading-in-a-newly-created-element-using-css/)

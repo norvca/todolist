@@ -1,5 +1,5 @@
 // 加载中间件模块
-import { backendDB as db } from '../utils/db-interface';
+import {backendDB as db} from '../utils/db-interface';
 
 // 主界面模块
 // 修改任务标题功能
@@ -23,7 +23,7 @@ function finishTask(e) {
     // 删除页面上的数据
     const ele = e.target.parentNode.parentNode;
     const hasPrevTask = ele.previousSibling.classList.contains(
-      'todolist__content'
+      'todolist__content',
     );
     const NextTask = ele.nextSibling;
 
@@ -62,7 +62,7 @@ function deleteTask(e) {
     // 删除页面上的数据
     const ele = e.target.parentNode.parentNode;
     const hasPrevTask = ele.previousSibling.classList.contains(
-      'todolist__content'
+      'todolist__content',
     );
     const NextTask = ele.nextSibling;
 
@@ -104,4 +104,4 @@ function showTaskDetail(e) {
   }
 }
 
-export { changeTaskTitle, finishTask, deleteTask, showTaskDetail };
+export {changeTaskTitle, finishTask, deleteTask, showTaskDetail};

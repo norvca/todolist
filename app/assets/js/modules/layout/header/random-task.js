@@ -1,5 +1,5 @@
 // 加载各模块
-import { backendDB as db } from '../../utils/db-interface';
+import {backendDB as db} from '../../utils/db-interface';
 
 // 定义变量
 const randomTaskBtn = document.querySelector('.site-header__random-task__fire');
@@ -8,7 +8,7 @@ const randomContent = [
   '中午去睡个好觉',
   '日语入门学习',
   '尝试做些家常菜',
-  '了解一些设计常识'
+  '了解一些设计常识',
 ];
 const randomLevel = ['bgc-light', 'bgc-usual', 'bgc-heavy'];
 

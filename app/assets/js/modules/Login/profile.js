@@ -15,7 +15,7 @@ function createHTML() {
 
 function removeHTML() {
   const popup = document.querySelector('.popup');
-  document.body.removeChild('popup');
+  document.body.removeChild(popup);
 }
 
 function showProfile() {
@@ -40,4 +40,4 @@ function hideProfile() {
   loginBtn.classList.remove('hidden');
 }
 
-export { showProfile, hideProfile };
+export {showProfile, hideProfile};

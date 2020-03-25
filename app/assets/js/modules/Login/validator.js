@@ -64,7 +64,7 @@ function checkusername(input) {
   if (!re.test(input.value.trim())) {
     showError(
       input,
-      `${input.placeholder}开头必须为字母，全称只能包含字母、数字`
+      `${input.placeholder}开头必须为字母，全称只能包含字母、数字`,
     );
   }
 }
@@ -76,7 +76,7 @@ function checkpassword(input) {
   if (!re.test(input.value.trim())) {
     showError(
       input,
-      `${input.placeholder}开头必须为字母或数字，全称只能包含字母、数字、和常见字符`
+      `${input.placeholder}开头必须为字母或数字，全称只能包含字母、数字、和常见字符`,
     );
   }
 }
@@ -87,5 +87,5 @@ export {
   checkEmail,
   checkPasswordMatch,
   checkusername,
-  checkpassword
+  checkpassword,
 };

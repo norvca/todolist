@@ -1,15 +1,13 @@
-const path = require('path');
-
 module.exports = {
   entry: {
     vendor: './app/assets/js/vendor.js',
-    main: './app/assets/js/app.js'
+    main: './app/assets/js/app.js',
   },
   module: {
     rules: [
       {
         test: /\.html$/,
-        use: ['html-loader']
+        use: ['html-loader'],
       },
       {
         test: /\.(svg|png|jpg|gif)$/,
@@ -17,10 +15,10 @@ module.exports = {
           loader: 'file-loader',
           options: {
             name: '[name].[hash].[ext]',
-            outputPath: 'imgs'
-          }
-        }
-      }
-    ]
-  }
+            outputPath: 'imgs',
+          },
+        },
+      },
+    ],
+  },
 };

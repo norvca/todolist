@@ -4,7 +4,7 @@ const themeIconName = [
   '#icon-theme',
   '#icon-theme1',
   '#icon-theme2',
-  '#icon-theme3'
+  '#icon-theme3',
 ];
 const siteHeader = document.querySelector('.site-header');
 const themeBtn = document.querySelector('.site-header__theme-btn');

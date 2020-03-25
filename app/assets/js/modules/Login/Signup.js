@@ -5,7 +5,7 @@ import {
   checkEmail,
   checkPasswordMatch,
   checkusername,
-  checkpassword
+  checkpassword,
 } from './validator';
 
 const validate = e => {
@@ -45,7 +45,7 @@ function submitInfo(username, password, email) {
       .post('http://192.168.206.140:3000/api/user/register', {
         username: username,
         password: password,
-        email: email
+        email: email,
       })
       .then(res => {
         console.log(res.data);
@@ -58,4 +58,4 @@ function submitInfo(username, password, email) {
   }
 }
 
-export { validate };
+export {validate};

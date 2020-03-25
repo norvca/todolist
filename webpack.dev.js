@@ -7,20 +7,20 @@ module.exports = merge(common, {
   mode: 'development',
   output: {
     path: path.resolve(__dirname, './app/dist/'),
-    filename: '[name].js'
+    filename: '[name].js',
   },
   module: {
     rules: [
       {
         test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
-      }
-    ]
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './app/assets/template.html',
-      favicon: './app/assets/img/favicon.ico'
-    })
-  ]
+      favicon: './app/assets/img/favicon.ico',
+    }),
+  ],
 });
