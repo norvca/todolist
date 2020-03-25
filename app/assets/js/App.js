@@ -6,6 +6,6 @@ import './modules/layout/header/level-changer';
 import './modules/layout/header/theme-changer';
 import '../sass/main.scss';
 
-import { reinitApp } from './modules/utils/app-init';
+import {reinitApp} from './modules/utils/app-init';
 
 reinitApp();
