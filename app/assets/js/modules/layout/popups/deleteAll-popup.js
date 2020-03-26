@@ -10,8 +10,8 @@ const createDeletePopup = () => {
 
 // 模态框事件处理
 function popupHandler() {
-  var confirmDelete = document.querySelector('.modal__btn-yes');
-  var regretDelete = document.querySelector('.modal__btn-no');
+  var confirmDelete = document.querySelector('.deleteAll-popup__btn-yes');
+  var regretDelete = document.querySelector('.deleteAll-popup__btn-no');
 
   confirmDelete.addEventListener('click', deleteAllTasks);
   regretDelete.addEventListener('click', regretDeleteTasks);
@@ -19,7 +19,6 @@ function popupHandler() {
 
 // 清除数据库
 function deleteAllTasks() {
-  // 删除数据库
   db.deleteAllTasks();
   deleteModal();
 }
@@ -31,7 +30,7 @@ function regretDeleteTasks() {
 
 // 删除模态框
 function deleteModal() {
-  const modal = document.querySelector('.modal');
+  const modal = document.querySelector('.deleteAll-popup');
   modal.remove();
 }
 

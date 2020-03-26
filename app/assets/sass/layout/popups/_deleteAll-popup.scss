@@ -1,0 +1,58 @@
+@use '../../abstracts/variables' as *;
+@use '../../abstracts/mixins' as *;
+
+.deleteAll-popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: $color-blur;
+
+  &__box {
+    text-align: center;
+    background-color: $color-white;
+    padding: 1.5rem 5rem;
+    border-radius: 0.5rem;
+  }
+
+  &__aware {
+    padding-bottom: 4rem;
+    color: $color-dark-2;
+    font-weight: bold;
+    letter-spacing: 4px;
+    font-size: 2rem;
+  }
+
+  &__delete {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__btn {
+    margin: 0 0.5rem;
+  }
+
+  &__btn-no {
+    border: 1px solid $secondGreen;
+    background-color: $secondGreen;
+  }
+
+  &__btn-no:hover {
+    border: 1px solid $mainGreen;
+    background-color: $mainGreen;
+  }
+
+  &__btn-yes {
+    border: 1px solid $secondRed;
+    background-color: $secondRed;
+  }
+
+  &__btn-yes:hover {
+    border: 1px solid $mainRed;
+    background-color: $mainRed;
+  }
+}

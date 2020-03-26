@@ -1,5 +1,5 @@
-@use '../abstracts/variables' as *;
-@use '../abstracts/mixins' as *;
+@use '../../abstracts/variables' as *;
+@use '../../abstracts/mixins' as *;
 
 /* 登陆模态框 */
 .login {
@@ -8,7 +8,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(50, 50, 50, 0.6);
+  background-color: $color-blur;
 
   @include selection($mainGreen, #fff);
 

@@ -10,10 +10,10 @@
 @use 'layout/sidebar';
 @use 'layout/todolist';
 @use 'layout/detail';
+@use 'layout/popups/deleteAll-popup';
+@use 'layout/popups/login-popup';
+@use 'layout/popups/profile-popup';
 
-@use 'components/login';
 @use 'components/icon';
 @use 'components/level';
-@use 'components/modal';
-@use 'components/popup';
 @use 'components/button';
