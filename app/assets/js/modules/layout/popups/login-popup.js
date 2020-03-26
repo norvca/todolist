@@ -1,6 +1,6 @@
-import signinHtml from '../templates/signinTemplate';
-import signupHtml from '../templates/signupTemplate';
-import loginHandler from './login-handler';
+import signinHtml from '../../templates/signin-template';
+import signupHtml from '../../templates/signup-template';
+import loginHandler from '../../Login/login-handler';
 
 // 创建登录模态框
 function createHtml() {

@@ -1,4 +1,4 @@
-import * as loginModal from './login-popup';
+import * as loginPopup from '../layout/popups/login-popup';
 import * as signin from './signin';
 import * as signup from './signup';
 
@@ -10,7 +10,7 @@ function modalHandler() {
   const signinExitBtn = document.querySelector('.login__signin__exit');
   const signupExitBtn = document.querySelector('.login__signup__exit');
 
-  loginModal.initModal();
+  loginPopup.initModal();
 
   // 用户登录提交
   signinForm.addEventListener('submit', signin.validate);
@@ -19,11 +19,11 @@ function modalHandler() {
   signupForm.addEventListener('submit', signup.validate);
 
   // 登陆注册栏切换
-  loginBox.addEventListener('click', loginModal.changeState);
+  loginBox.addEventListener('click', loginPopup.changeState);
 
   // 退出登陆框
-  signinExitBtn.addEventListener('click', loginModal.exit);
-  signupExitBtn.addEventListener('click', loginModal.exit);
+  signinExitBtn.addEventListener('click', loginPopup.exit);
+  signupExitBtn.addEventListener('click', loginPopup.exit);
 }
 
 export default modalHandler;

@@ -1,4 +1,4 @@
-import profileTemplate from '../templates/profileTemplate';
+import profileTemplate from '../../templates/profile-template';
 
 function ProfileHandler() {
   const profileIcon = document.querySelector('.site-header__profile');

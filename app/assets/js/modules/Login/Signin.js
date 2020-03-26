@@ -5,7 +5,7 @@ import {
   checkusername,
   checkpassword,
 } from './validator';
-import * as loginModal from './login-popup';
+import * as loginPopup from '../layout/popups/login-popup';
 import {hexedDBame} from '../utils/hex-encode';
 import {initApp} from '../utils/app-init';
 
@@ -52,7 +52,7 @@ function submitInfo(username, password) {
         localStorage.setItem('DB-name', dbName);
         welcome.innerText = '登录成功！';
         welcome.classList.remove('error');
-        loginModal.exit();
+        loginPopup.exit();
 
         initApp(username, token);
 

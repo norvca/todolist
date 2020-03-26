@@ -2,8 +2,8 @@
 import * as sidebar from '../layout/sidebar';
 import * as todolistMain from '../layout/todolist';
 import * as todolistDetail from '../layout/detail';
-import * as deleteAllModal from '../layout/modals/deleteAll-popup';
-import * as loginModal from '../login/login-popup';
+import * as deleteAllPopup from '../layout/popups/deleteAll-popup';
+import * as loginPopup from '../layout/popups/login-popup';
 
 const loginButton = document.querySelector('.site-header__loginButton');
 const loginIcon = document.querySelector('.site-header__loginIcon');
@@ -14,16 +14,16 @@ const detail = document.querySelector('.detail__paragraph');
 
 // header 区域
 // 显示登陆注册功能模态框
-loginButton.addEventListener('click', loginModal.showModal);
+loginButton.addEventListener('click', loginPopup.showModal);
 // 显示登陆注册功能模态框：手机模式
-loginIcon.addEventListener('click', loginModal.showModal);
+loginIcon.addEventListener('click', loginPopup.showModal);
 
 // sideBar 区域
 // 左侧任务栏类别、等级导航
 sidebarContent.addEventListener('click', sidebar.navigation);
 
 // 显示删库模态框
-deleteData.addEventListener('click', deleteAllModal.createDeleteModal);
+deleteData.addEventListener('click', deleteAllPopup.createDeletePopup);
 
 // todolist 区域
 // 修改任务标题

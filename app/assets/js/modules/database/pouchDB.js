@@ -2,8 +2,8 @@
 import PouchDB from 'pouchdb';
 import PouchdbFind from 'pouchdb-find';
 import {helperFunction} from '../utils/helper-function';
-import taskItemTemplate from '../templates/taskItemTemplate';
-import timeStampTemplate from '../templates/timeStampTemplate';
+import taskItemTemplate from '../templates/taskItem-template';
+import timeStampTemplate from '../templates/timeStamp-template';
 
 // 加载 PouchDB 插件
 PouchDB.plugin(PouchdbFind);
