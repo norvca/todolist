@@ -2,8 +2,8 @@
 import * as sidebar from '../layout/sidebar';
 import * as todolistMain from '../layout/todolist';
 import * as todolistDetail from '../layout/detail';
-import * as deleteAllModal from '../layout/modals/deleteAll-modal';
-import * as loginModal from '../login/modal';
+import * as deleteAllModal from '../layout/modals/deleteAll-popup';
+import * as loginModal from '../login/login-popup';
 
 const loginButton = document.querySelector('.site-header__loginButton');
 const loginIcon = document.querySelector('.site-header__loginIcon');
@@ -23,8 +23,7 @@ loginIcon.addEventListener('click', loginModal.showModal);
 sidebarContent.addEventListener('click', sidebar.navigation);
 
 // 显示删库模态框
-deleteData.addEventListener('click', deleteAllModal.createSingleDeleteModal);
-deleteData.addEventListener('click', deleteAllModal.showDeleteModal);
+deleteData.addEventListener('click', deleteAllModal.createDeleteModal);
 
 // todolist 区域
 // 修改任务标题

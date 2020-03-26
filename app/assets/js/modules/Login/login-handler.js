@@ -1,4 +1,4 @@
-import * as loginModal from './modal';
+import * as loginModal from './login-popup';
 import * as signin from './signin';
 import * as signup from './signup';
 

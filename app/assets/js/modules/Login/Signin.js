@@ -5,7 +5,7 @@ import {
   checkusername,
   checkpassword,
 } from './validator';
-import * as loginModal from './modal';
+import * as loginModal from './login-popup';
 import {hexedDBame} from '../utils/hex-encode';
 import {initApp} from '../utils/app-init';
 
