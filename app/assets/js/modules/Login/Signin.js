@@ -8,6 +8,7 @@ import {
 import * as loginPopup from '../layout/popups/login-popup';
 import {hexedDBame} from '../utils/hex-encode';
 import {initApp} from '../utils/app-init';
+import * as api from '../api/urls';
 
 const validate = e => {
   const signinForm = document.querySelector('.login__signin__form');
@@ -39,7 +40,7 @@ function submitInfo(username, password) {
   // 前端通过则提交到服务端
   if (isSubmit) {
     axios
-      .post('http://192.168.206.142:3000/api/user/login', {
+      .post(api.signinUrl, {
         username: username,
         password: password,
       })

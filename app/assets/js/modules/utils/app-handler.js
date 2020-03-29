@@ -14,9 +14,9 @@ const detail = document.querySelector('.detail__paragraph');
 
 // header 区域
 // 显示登陆注册功能模态框
-loginButton.addEventListener('click', loginPopup.showModal);
+loginButton.addEventListener('click', loginPopup.createHtml);
 // 显示登陆注册功能模态框：手机模式
-loginIcon.addEventListener('click', loginPopup.showModal);
+loginIcon.addEventListener('click', loginPopup.createHtml);
 
 // sideBar 区域
 // 左侧任务栏类别、等级导航

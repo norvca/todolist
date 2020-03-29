@@ -3,6 +3,9 @@
 
 /* 登陆模态框 */
 .login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   top: 0;
   right: 0;
@@ -12,8 +15,6 @@
 
   @include selection($mainGreen, #fff);
 
-  opacity: 0;
-  visibility: hidden;
   transition: all 0.3s ease-out;
 
   &__box {
@@ -187,16 +188,6 @@
   // 退出
   &__exit:hover {
     color: $mainRed !important;
-  }
-
-  /* 显示模态框 */
-  &--visible {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  &.fade {
-    animation: fade 0.3s;
   }
 }
 

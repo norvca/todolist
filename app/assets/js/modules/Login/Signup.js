@@ -7,6 +7,7 @@ import {
   checkusername,
   checkpassword,
 } from './validator';
+import * as api from '../api/urls';
 
 const validate = e => {
   const signupForm = document.querySelector('.login__signup__form');
@@ -42,7 +43,7 @@ function submitInfo(username, password, email) {
   // 前端通过则提交到服务端
   if (isSubmit) {
     axios
-      .post('http://192.168.206.140:3000/api/user/register', {
+      .post(api.registerUrl, {
         username: username,
         password: password,
         email: email,

@@ -1,7 +1,7 @@
 // 模块加载
 import PouchDB from 'pouchdb';
 import PouchdbFind from 'pouchdb-find';
-import {helperFunction} from '../utils/helper-function';
+import helperFunction from '../utils/helper-function';
 import taskItemTemplate from '../templates/taskItem-template';
 import timeStampTemplate from '../templates/timeStamp-template';
 
@@ -14,6 +14,7 @@ const input = helperFunction.get_input_element();
 const level = helperFunction.get_level_element();
 const section = document.querySelector('.todolist');
 const detail = document.querySelector('.detail__paragraph');
+const detailTitle = document.querySelector('.detail__title');
 
 // 创建数据库
 let pouchUser = new PouchDB('userDB');
@@ -200,12 +201,12 @@ class PouchClass {
       this.db.get(id).then(doc => {
         const title = doc.title;
         const text = doc.detail;
-        detail.previousElementSibling.innerText = title;
+        detailTitle.innerText = title;
         detail.value = text;
         detail.placeholder = '添加任务详情...';
       });
     } else {
-      detail.previousElementSibling.innerText = '';
+      detailTitle.innerText = '';
       detail.value = '';
       detail.placeholder = '此分类目前没有任务哦~';
     }
@@ -223,8 +224,7 @@ class PouchClass {
         );
       })
       .then(() => {
-        // window.location.href = "index.html";
-        section.innerHTML = '';
+        helperFunction.freshPage();
       })
       .catch(err => {
         console.log(err + '删除数据库失败！');

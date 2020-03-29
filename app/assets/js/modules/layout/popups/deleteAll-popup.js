@@ -20,16 +20,16 @@ function popupHandler() {
 // 清除数据库
 function deleteAllTasks() {
   db.deleteAllTasks();
-  deleteModal();
+  deletePopup();
 }
 
 // 不清除数据库
 function regretDeleteTasks() {
-  deleteModal();
+  deletePopup();
 }
 
 // 删除模态框
-function deleteModal() {
+function deletePopup() {
   const modal = document.querySelector('.deleteAll-popup');
   modal.remove();
 }

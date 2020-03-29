@@ -20,6 +20,8 @@ function reinitApp() {
     reSync(userDB.db);
     showProfile();
     db.showTask('taskType', 'work');
+  } else {
+    db.showTask('taskType', 'work');
   }
 }
 

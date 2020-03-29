@@ -1,37 +1,12 @@
-import signinHtml from '../../templates/signin-template';
-import signupHtml from '../../templates/signup-template';
-import loginHandler from '../../Login/login-handler';
+import loginHTML from '../../templates/login-template';
+import * as signin from '../../Login/Signin';
+import * as signup from '../../Login/Signup';
 
 // 创建登录模态框
 function createHtml() {
-  const modal = document.createElement('div');
-  modal.classList.add('login', 'fade');
-  modal.innerHTML = `<div class='login__box'>
-                       ${signinHtml}
-                       ${signupHtml}
-                     </div>`;
-  // const modalHTML = `<div clas="login fade">
-  //                     <div clas="login_box">
-  //                       ${signinHtml}
-  //                       ${signupHtml}
-  //                     </div>
-  //                   </div>`;
-
-  // 添加到 DOM 结构里
-  document.body.appendChild(modal);
-  return modal;
+  document.body.insertAdjacentHTML('beforeend', loginHTML);
+  initPopup();
 }
-
-// 单例函数
-function getSingle(fn) {
-  let instance;
-  return function () {
-    return instance || (instance = fn());
-  };
-}
-
-// 生成登陆模态框的闭包
-const createSingleModal = getSingle(createHtml);
 
 // 切换成注册功能
 function changeState(e) {
@@ -46,11 +21,11 @@ function changeState(e) {
 // 退出模态框
 function exit() {
   const login = document.querySelector('.login');
-  login.classList.remove('login--visible');
+  login.remove();
 }
 
 // 模态框初始化
-function initModal() {
+function initPopup() {
   const signinBox = document.querySelector('.login__signin');
   const signupBox = document.querySelector('.login__signup');
   const formControls = document.querySelectorAll('.form-control');
@@ -70,18 +45,30 @@ function initModal() {
 
   welcome.innerText = '欢迎登陆PureTodo!';
   welcome.classList.remove('error');
-}
 
-// 创建单例模态框
-function showModal() {
-  // 返回模态框的实例
-  const singleModal = createSingleModal();
-
-  // 让模态框可见
-  singleModal.classList.add('login--visible');
-
-  // 注册模态框事件
   loginHandler();
 }
 
-export {exit, changeState, initModal, showModal};
+// 登录模态框事件处理
+function loginHandler() {
+  var loginBox = document.querySelector('.login__box');
+  const signinForm = document.querySelector('.login__signin__form');
+  const signupForm = document.querySelector('.login__signup__form');
+  const signinExitBtn = document.querySelector('.login__signin__exit');
+  const signupExitBtn = document.querySelector('.login__signup__exit');
+
+  // 用户登录提交
+  signinForm.addEventListener('submit', signin.validate);
+
+  // 用户注册提交
+  signupForm.addEventListener('submit', signup.validate);
+
+  // 登陆注册栏切换
+  loginBox.addEventListener('click', changeState);
+
+  // 退出登陆框
+  signinExitBtn.addEventListener('click', exit);
+  signupExitBtn.addEventListener('click', exit);
+}
+
+export {exit, createHtml};

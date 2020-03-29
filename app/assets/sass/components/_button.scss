@@ -6,14 +6,17 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  border-radius: 4px;
   padding: 0.5rem 0;
   color: #fff;
   font-size: 1.5rem;
   cursor: pointer;
-  transition: all 0.3s;
   outline: none;
   white-space: nowrap;
+  border-radius: 4px;
+}
+
+.button:active {
+  padding-left: 1px;
 }
 
 .close {

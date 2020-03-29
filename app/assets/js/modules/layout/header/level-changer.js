@@ -1,5 +1,5 @@
 // 加载其他模块
-import {helperFunction} from '../../utils/helper-function';
+import helperFunction from '../../utils/helper-function';
 
 // 定义变量
 const toggleLevel = helperFunction.toggleLevel;

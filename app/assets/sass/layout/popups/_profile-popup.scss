@@ -35,4 +35,38 @@
   &__logout {
     color: $mainRed;
   }
+
+  &__btn {
+    margin: 0.5rem 0;
+  }
+
+  &__btn--change-username {
+    background-color: $mainGreen;
+    border: 1px solid $mainGreen;
+  }
+
+  &__btn--change-username:hover {
+    background-color: $secondGreen;
+    border: 1px solid $secondGreen;
+  }
+
+  &__btn--change-password {
+    background-color: $mainPurple;
+    border: 1px solid $mainPurple;
+  }
+
+  &__btn--change-password:hover {
+    background-color: $secondPurple;
+    border: 1px solid $secondPurple;
+  }
+
+  &__btn--logout {
+    background-color: $mainRed;
+    border: 1px solid $mainRed;
+  }
+
+  &__btn--logout:hover {
+    background-color: $secondRed;
+    border: 1px solid $secondRed;
+  }
 }

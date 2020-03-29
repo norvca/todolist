@@ -1,11 +1,14 @@
 import {hexedDBame} from '../utils/hex-encode';
 import PouchDB from 'pouchdb';
 import {userDB} from './pouchDB';
+import * as api from '../api/urls';
+
+let syncHandler;
 
 function firstSync(db, username, token) {
   const dbName = hexedDBame(username);
 
-  let remoteDB = new PouchDB('http://192.168.206.142:4000', {
+  let remoteDB = new PouchDB(api.syncUrl, {
     fetch: function (url, opts) {
       opts.headers.set('X-Auth-CouchDB-Token', token);
       opts.headers.set('X-CouchDB-dbName', dbName);
@@ -15,7 +18,7 @@ function firstSync(db, username, token) {
     skip_setup: true,
   });
 
-  PouchDB.sync(db, remoteDB, {
+  syncHandler = PouchDB.sync(db, remoteDB, {
     live: true,
     heartbeat: false,
     timeout: false,
@@ -46,7 +49,7 @@ function reSync(db) {
   const dbName = localStorage.getItem('DB-name');
   const token = localStorage.getItem('CouchDB-auth');
 
-  let remoteDB = new PouchDB('http://192.168.206.142:4000', {
+  let remoteDB = new PouchDB(api.syncUrl, {
     fetch: function (url, opts) {
       opts.headers.set('X-Auth-CouchDB-Token', token);
       opts.headers.set('X-CouchDB-dbName', dbName);
@@ -56,9 +59,7 @@ function reSync(db) {
     skip_setup: true,
   });
 
-  console.log(remoteDB);
-
-  PouchDB.sync(db, remoteDB, {
+  syncHandler = PouchDB.sync(db, remoteDB, {
     live: true,
     heartbeat: false,
     timeout: false,
@@ -84,8 +85,6 @@ function reSync(db) {
       // Token过期失效后退出持续同步请求
       localStorage.clear();
     });
-
-  console.log('远程同步');
 }
 
-export {firstSync, reSync};
+export {firstSync, reSync, syncHandler};

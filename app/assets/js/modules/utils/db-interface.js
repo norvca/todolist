@@ -15,6 +15,7 @@ function useUserDB() {
 
 function useVisitorDB() {
   db = visitorDB;
+  db.deleteAllTasks();
 }
 
 // 定义接口

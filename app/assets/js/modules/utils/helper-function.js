@@ -1,3 +1,7 @@
+const section = document.querySelector('.todolist');
+const detail = document.querySelector('.detail__paragraph');
+const detailTitle = document.querySelector('.detail__title');
+
 // 定义 helper 函数
 const helperFunction = {
   // sideHeader 区域
@@ -23,6 +27,13 @@ const helperFunction = {
     helperFunction.get_level_element().setAttribute('level', value);
     helperFunction.get_input_element().focus();
   },
+
+  // 清空页面
+  freshPage() {
+    section.innerHTML = '';
+    detailTitle.innerText = '';
+    detail.innerText = '';
+  },
 };
 
-export {helperFunction};
+export default helperFunction;
