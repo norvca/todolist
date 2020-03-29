@@ -1,4 +1,5 @@
-const section = document.querySelector('.todolist');
+const syncState = document.querySelector('.todolist__sync-state');
+const taskLists = document.querySelector('.todolist__tasks');
 const detail = document.querySelector('.detail__paragraph');
 const detailTitle = document.querySelector('.detail__title');
 
@@ -30,7 +31,8 @@ const helperFunction = {
 
   // 清空页面
   freshPage() {
-    section.innerHTML = '';
+    syncState.innerText = '';
+    taskLists.innerText = '';
     detailTitle.innerText = '';
     detail.innerText = '';
   },

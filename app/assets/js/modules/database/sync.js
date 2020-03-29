@@ -3,6 +3,7 @@ import PouchDB from 'pouchdb';
 import {userDB} from './pouchDB';
 import * as api from '../api/urls';
 
+const syncState = document.querySelector('.todolist__sync-state');
 let syncHandler;
 
 function firstSync(db, username, token) {
@@ -24,19 +25,22 @@ function firstSync(db, username, token) {
     timeout: false,
     retry: true,
   })
+    .on('active', function (info) {
+      // replication was resumed
+      console.log(info);
+      syncState.innerText = '与云端硬盘同步数据中...';
+    })
     .on('change', function (change) {
       // yo, something changed!
-      userDB.showCurrentTask();
       console.log(change);
+      userDB.showCurrentTask();
+      syncState.innerText = '数据同步完成!';
     })
     .on('paused', function (info) {
       // replication was paused, usually because of a lost connection
       console.log(info);
     })
-    .on('active', function (info) {
-      // replication was resumed
-      console.log(info);
-    })
+
     .on('error', function (err) {
       // totally unhandled error (shouldn't happen)
       console.log(err);
@@ -65,20 +69,21 @@ function reSync(db) {
     timeout: false,
     retry: true,
   })
+    .on('active', function (info) {
+      // replication was resumed
+      console.log(info);
+      syncState.innerText = '与云端硬盘同步数据中...';
+    })
     .on('change', function (change) {
       // yo, something changed!
-      userDB.showCurrentTask();
       console.log(change);
+      userDB.showCurrentTask();
+      syncState.innerText = '数据同步完成!';
     })
     .on('paused', function (info) {
       // replication was paused, usually because of a lost connection
       console.log(info);
     })
-    .on('active', function (info) {
-      // replication was resumed
-      console.log(info);
-    })
-
     .on('error', function (err) {
       // totally unhandled error (shouldn't happen)
       console.log(err);

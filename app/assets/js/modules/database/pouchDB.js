@@ -12,7 +12,7 @@ PouchDB.plugin(PouchdbFind);
 const toDayString = new Date().toString();
 const input = helperFunction.get_input_element();
 const level = helperFunction.get_level_element();
-const section = document.querySelector('.todolist');
+const taskLists = document.querySelector('.todolist__tasks');
 const detail = document.querySelector('.detail__paragraph');
 const detailTitle = document.querySelector('.detail__title');
 
@@ -132,8 +132,8 @@ class PouchClass {
       taskList.appendChild(taskItemHTML);
     });
 
-    section.innerHTML = '';
-    section.appendChild(taskList);
+    taskLists.innerHTML = '';
+    taskLists.appendChild(taskList);
 
     // 首任务聚焦
     if (taskList.firstChild) {
@@ -173,8 +173,8 @@ class PouchClass {
           }
         });
 
-        section.innerHTML = '';
-        section.appendChild(taskList);
+        taskLists.innerHTML = '';
+        taskLists.appendChild(taskList);
 
         // 首任务聚焦
         if (taskList.firstChild) {

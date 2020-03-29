@@ -3,11 +3,25 @@
 
 /* 主要任务区 */
 .todolist {
-  display: flex;
-  flex-direction: column;
+  padding: 0 1.5rem;
   overflow-y: auto;
-  padding: 1.5rem;
-  flex-grow: 1;
+
+  &__sync-state {
+    padding-top: 1rem;
+    font-size: 1.6rem;
+    color: $color-dark-3;
+
+    @include atMedium {
+      padding-top: 0.5rem;
+      font-size: 1.2rem;
+    }
+  }
+
+  &__tasks {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
 
   &__time {
     display: flex;
