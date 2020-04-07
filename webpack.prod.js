@@ -29,7 +29,11 @@ module.exports = merge(common, {
             loader: 'postcss-loader',
             options: {
               ident: 'postcss',
-              plugins: () => [require('postcss-preset-env')()],
+              plugins: () => [
+                require('postcss-preset-env')({
+                  browsers: ['last 2 versions', '>.5%'],
+                }),
+              ],
             },
           },
           'sass-loader',
@@ -41,7 +45,7 @@ module.exports = merge(common, {
     new MiniCssExtractPlugin({filename: '[name].[contenthash].css'}),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: './app/assets/template.html',
+      template: './app/assets/index.html',
       favicon: './app/assets/img/favicon.ico',
       minify: {
         removeComments: true,

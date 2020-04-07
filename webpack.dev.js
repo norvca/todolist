@@ -30,7 +30,7 @@ module.exports = merge(common, {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './app/assets/template.html',
+      template: './app/assets/index.html',
       favicon: './app/assets/img/favicon.ico',
     }),
   ],
