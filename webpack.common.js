@@ -1,6 +1,6 @@
 module.exports = {
   entry: {
-    icon: './app/assets/js/libraries/icon.js',
+    icon: './app/assets/js/modules/icons/icon.js',
     main: './app/assets/js/app.js',
   },
   module: {
@@ -24,7 +24,7 @@ module.exports = {
   },
   optimization: {
     splitChunks: {
-      chunks: 'async',
+      chunks: 'all',
       minSize: 100000,
       minRemainingSize: 0,
       maxSize: 100000,
