@@ -3,7 +3,7 @@ import * as sidebar from '../layout/sidebar';
 import * as todolistMain from '../layout/todolist';
 import * as todolistDetail from '../layout/detail';
 import * as deleteAllPopup from '../layout/popups/deleteAll-popup';
-import * as loginPopup from '../layout/popups/login-popup';
+// import * as loginPopup from '../layout/popups/login-popup';
 
 const loginButton = document.querySelector('.site-header__loginButton');
 const loginIcon = document.querySelector('.site-header__loginIcon');
@@ -14,9 +14,21 @@ const detail = document.querySelector('.detail__paragraph');
 
 // header 区域
 // 显示登陆注册功能模态框
-loginButton.addEventListener('click', loginPopup.createHtml);
+loginButton.addEventListener('click', () => {
+  import(
+    /* webpackChunkName: "login", webpackPrefetch: true */ '../layout/popups/login-popup'
+  ).then(({createHtml}) => {
+    createHtml();
+  });
+});
 // 显示登陆注册功能模态框：手机模式
-loginIcon.addEventListener('click', loginPopup.createHtml);
+loginIcon.addEventListener('click', () => {
+  import(
+    /* webpackChunkName: "login", webpackPrefetch: true */ '../layout/popups/login-popup'
+  ).then(({createHtml}) => {
+    createHtml();
+  });
+});
 
 // sideBar 区域
 // 左侧任务栏类别、等级导航

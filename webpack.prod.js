@@ -47,11 +47,6 @@ module.exports = merge(common, {
     new HtmlWebpackPlugin({
       template: './app/assets/index.html',
       favicon: './app/assets/img/favicon.ico',
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeAttributeQuotes: true,
-      },
     }),
   ],
 });
