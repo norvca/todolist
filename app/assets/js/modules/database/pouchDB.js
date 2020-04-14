@@ -28,40 +28,10 @@ class PouchClass {
 
   // 添加数据到数据库
   addTask(randomContent, ramdomLevel) {
-    const title = input.value;
-    const taskLevel = level.getAttribute('level');
-    const taskTime = new Date().toLocaleDateString();
-    const taskType = document
-      .querySelector('.sidebar__act')
-      .getAttribute('taskType');
-    const taskWeek = toDayString.slice.call(toDayString, 0, 3).toUpperCase();
-    let todo;
-    // 有标题等参数即添加随机任务
-    if (arguments[0]) {
-      todo = {
-        _id: new Date().toISOString(),
-        title: randomContent,
-        level: ramdomLevel,
-        taskTime: taskTime,
-        taskType: taskType,
-        taskWeek: taskWeek,
-        detail: null,
-      };
-      // 没有参数则从input栏获取数据新建任务
-    } else {
-      todo = {
-        _id: new Date().toISOString(),
-        title: title,
-        level: taskLevel,
-        taskTime: taskTime,
-        taskType: taskType,
-        taskWeek: taskWeek,
-        detail: null,
-      };
-    }
+    const task = taskCreater(randomContent, ramdomLevel);
 
     this.db
-      .put(todo)
+      .put(task)
       .then(() => {
         console.log('添加到数据库成功！');
       })
@@ -230,6 +200,35 @@ class PouchClass {
         console.log(err + '删除数据库失败！');
       });
   }
+}
+
+// 任务模板
+function taskCreater(randomContent, ramdomLevel) {
+  const title = input.value;
+  const taskLevel = level.getAttribute('level');
+  const taskTime = new Date().toLocaleDateString();
+  const taskType = document
+    .querySelector('.sidebar__act')
+    .getAttribute('taskType');
+  const taskWeek = toDayString.slice.call(toDayString, 0, 3).toUpperCase();
+
+  let taskConfig = {
+    _id: new Date().toISOString(),
+    title: title,
+    level: taskLevel,
+    taskTime: taskTime,
+    taskType: taskType,
+    taskWeek: taskWeek,
+    detail: null,
+  };
+
+  // 有标题等参数则说明添加随机任务
+  if (randomContent) {
+    taskConfig.title = randomContent;
+    taskConfig.level = ramdomLevel;
+  }
+
+  return taskConfig;
 }
 
 const userDB = new PouchClass(pouchUser);
