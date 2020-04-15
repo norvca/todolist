@@ -1,6 +1,6 @@
 const signinHtml = `<div class="login__signin">
       <p class="login__signin__welcome">欢迎登陆PureTodo!</p>
-      <form class="login__signin__form">
+      <form class="login__signin__form form">
         <div class="form-control">
           <input
             class="username login__signin__input"

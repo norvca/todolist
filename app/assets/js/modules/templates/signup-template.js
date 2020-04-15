@@ -1,6 +1,6 @@
 const signupHtml = `<div class="login__signup hidden">
       <p class="login__signup__welcome">欢迎注册新账户!</p>
-      <form class="login__signup__form">
+      <form class="login__signup__form form">
         <div class="form-control">
           <input
             class="username login__signup__input"

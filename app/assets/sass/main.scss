@@ -12,7 +12,9 @@
 @use 'layout/detail';
 @use 'layout/popups/deleteAll-popup';
 @use 'layout/popups/login-popup';
-@use 'layout/popups/profile-popup';
+@use 'layout/popups/form';
+@use 'layout/popups/profile/popup';
+@use 'layout/popups/profile/change-username';
 
 @use 'components/icon';
 @use 'components/level';

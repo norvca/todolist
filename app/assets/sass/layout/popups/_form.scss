@@ -1,0 +1,17 @@
+@use '../../abstracts/variables' as *;
+
+.form {
+  & .form-control {
+    display: flex;
+    flex-direction: column;
+  }
+
+  & .form-error p {
+    color: $error;
+    text-align: start;
+  }
+
+  & .form-error input {
+    border-color: $error;
+  }
+}

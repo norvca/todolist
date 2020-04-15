@@ -10,7 +10,7 @@ module.exports = merge(common, {
     path: path.resolve(__dirname, './app/dist/'),
     filename: '[name].js',
   },
-  devServer: {hot: true, hotOnly: true},
+  devServer: {hot: true},
   module: {
     rules: [
       {
