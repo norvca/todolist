@@ -3,6 +3,7 @@ import {syncHandler} from '../../database/sync';
 import helperFunction from '../../utils/helper-function';
 import {useVisitorDB} from '../../utils/db-interface';
 import changeUserPopup from '../../templates/change-username';
+import changePassPopup from '../../templates/change-password';
 
 // 顶部显示用户图标
 function showProfile() {
@@ -28,7 +29,8 @@ function createHTML() {
 
 // 事件处理中心
 function ProfileHandler() {
-  const profileCloser = document.querySelector('.profile-popup__close');
+  const profileCloser = document.querySelector('.profile-popup__utils__close');
+  const profileReturn = document.querySelector('.profile-popup__utils__return');
   const logoutBtn = document.querySelector('.profile-popup__btn--logout');
   const changeUserBtn = document.querySelector(
     '.profile-popup__btn--change-username',
@@ -38,6 +40,7 @@ function ProfileHandler() {
   );
 
   profileCloser.addEventListener('click', removeHTML);
+  profileReturn.addEventListener('click', returnProfile);
   changeUserBtn.addEventListener('click', changeUsername);
   changePassBtn.addEventListener('click', changePassword);
   logoutBtn.addEventListener('click', logout);
@@ -50,12 +53,22 @@ function changeUsername() {
   );
   const currProfileContent = document.querySelector('.profile-popup__content');
 
+  showUtilReturn();
   currProfileContent.classList.add('hidden');
   profilePopupContainer.insertAdjacentHTML('beforeend', changeUserPopup);
 }
 
 // 修改密码
-function changePassword() {}
+function changePassword() {
+  const profilePopupContainer = document.querySelector(
+    '.profile-popup__container',
+  );
+  const currProfileContent = document.querySelector('.profile-popup__content');
+
+  showUtilReturn();
+  currProfileContent.classList.add('hidden');
+  profilePopupContainer.insertAdjacentHTML('beforeend', changePassPopup);
+}
 
 // 登出事件
 function logout() {
@@ -73,6 +86,40 @@ function logout() {
 function removeHTML() {
   const popup = document.querySelector('.profile-popup');
   document.body.removeChild(popup);
+}
+
+// 返回用户资料主界面
+function returnProfile() {
+  const profilePopupContainer = document.querySelector(
+    '.profile-popup__container',
+  );
+  const currProfileContent = document.querySelector('.profile-popup__content');
+  currProfileContent.classList.remove('hidden');
+
+  const changeUserModule = document.querySelector(
+    '.profile-popup__change-username',
+  );
+  const changePassModule = document.querySelector(
+    '.profile-popup__change-password',
+  );
+
+  hideUtilReturn();
+  if (changeUserModule) {
+    return profilePopupContainer.removeChild(changeUserModule);
+  }
+  profilePopupContainer.removeChild(changePassModule);
+}
+
+// 显示返回图标
+function showUtilReturn() {
+  const returnBtn = document.querySelector('.profile-popup__utils__return');
+  returnBtn.classList.remove('hidden');
+}
+
+// 隐藏返回图标
+function hideUtilReturn() {
+  const returnBtn = document.querySelector('.profile-popup__utils__return');
+  returnBtn.classList.add('hidden');
 }
 
 function hideProfile() {

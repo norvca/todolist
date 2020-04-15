@@ -20,12 +20,25 @@
     border-radius: 0.5rem;
   }
 
-  &__close {
-    align-self: flex-end;
-    font-size: 1.5rem;
-    transform: scaleY(0.8);
-    font-weight: 500;
-    cursor: pointer;
+  &__utils {
+    display: flex;
+
+    &__return {
+      font-size: 1.5rem;
+      transform: scaleX(0.9);
+      cursor: pointer;
+    }
+
+    &__gap {
+      flex-grow: 1;
+    }
+
+    &__close {
+      font-size: 1.5rem;
+      transform: scaleY(0.8);
+      font-weight: 500;
+      cursor: pointer;
+    }
   }
 
   &__content {
