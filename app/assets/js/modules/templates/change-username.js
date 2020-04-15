@@ -1,9 +1,9 @@
 const changeUserPopup = `<div class="profile-popup__change-username">
                           <h2 class="profile-popup__welcome">修改用户名</h2>
-                          <form class="profile-popup__form form">
+                          <form class="profile-popup__form form form__change-username">
                             <div class="form-control">
                               <input
-                                class="username profile-popup__input"
+                                class="current-username profile-popup__input"
                                 name="username"
                                 type="text"
                                 placeholder="当前用户名"
@@ -19,7 +19,7 @@ const changeUserPopup = `<div class="profile-popup__change-username">
                               />
                               <p></p>
                             </div>
-                            <button class='profile-popup__button' type="submit">提交</button>
+                            <button class='profile-popup__button change-username__submit' type="submit">提交</button>
                           </form>
                         </div>`;
 

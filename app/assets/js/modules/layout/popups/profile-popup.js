@@ -4,6 +4,7 @@ import helperFunction from '../../utils/helper-function';
 import {useVisitorDB} from '../../utils/db-interface';
 import changeUserPopup from '../../templates/change-username';
 import changePassPopup from '../../templates/change-password';
+import changeUsernameHandler from '../../profile/change-username';
 
 // 顶部显示用户图标
 function showProfile() {
@@ -56,6 +57,7 @@ function changeUsername() {
   showUtilReturn();
   currProfileContent.classList.add('hidden');
   profilePopupContainer.insertAdjacentHTML('beforeend', changeUserPopup);
+  changeUsernameHandler();
 }
 
 // 修改密码

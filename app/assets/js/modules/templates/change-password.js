@@ -1,6 +1,6 @@
 const changePassPopup = `<div class="profile-popup__change-password">
                           <h2 class="profile-popup__welcome">修改密码</h2>
-                          <form class="profile-popup__form form">
+                          <form class="profile-popup__form form form__change-password">
                             <div class="form-control">
                               <input
                                 class="password profile-popup__input"
@@ -28,7 +28,7 @@ const changePassPopup = `<div class="profile-popup__change-password">
                               />
                               <p></p>
                             </div>
-                            <button class='profile-popup__button' type="submit">提交</button>
+                            <button class='profile-popup__button change-password__submit' type="submit">提交</button>
                           </form>
                         </div>`;
 

@@ -8,7 +8,7 @@ import {
 import * as loginPopup from '../layout/popups/login-popup';
 import {hexedDBame} from '../utils/hex-encode';
 import {initApp} from '../utils/app-init';
-import * as api from '../api/urls';
+import api from '../api/urls';
 
 const validate = e => {
   const signinForm = document.querySelector('.login__signin__form');

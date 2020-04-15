@@ -7,7 +7,7 @@ import {
   checkusername,
   checkpassword,
 } from './validator';
-import * as api from '../api/urls';
+import api from '../api/urls';
 
 const validate = e => {
   const signupForm = document.querySelector('.login__signup__form');

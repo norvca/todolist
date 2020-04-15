@@ -1,7 +1,7 @@
 import {hexedDBame} from '../utils/hex-encode';
 import PouchDB from 'pouchdb';
 import {userDB} from './pouchDB';
-import * as api from '../api/urls';
+import api from '../api/urls';
 
 const syncState = document.querySelector('.todolist__sync-state');
 let syncHandler;
