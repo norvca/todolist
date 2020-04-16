@@ -8,14 +8,27 @@ import {
   checkpassword,
 } from './validator';
 import api from '../api/urls';
+import * as loginPopup from '../layout/popups/login-popup';
 
-const validate = e => {
+function checkAndSubmit(e) {
+  e.preventDefault();
   const signupForm = document.querySelector('.login__signup__form');
   const username = signupForm.querySelector('.username');
   const password = signupForm.querySelector('.password');
   const confirmPassword = signupForm.querySelector('.confirmPassword');
   const email = signupForm.querySelector('.email');
-  e.preventDefault();
+
+  const isCheckPassed = validate(username, password, confirmPassword, email);
+  if (isCheckPassed) {
+    submitInfo(username.value, password.value, email.value);
+  }
+}
+
+function validate(username, password, confirmPassword, email) {
+  const formControls = document.querySelectorAll(
+    '.login__signup .form-control',
+  );
+  const list = Array.from(formControls);
 
   checkRequired([username, password, confirmPassword, email]);
   checkLength(username, 3, 10);
@@ -25,38 +38,47 @@ const validate = e => {
   checkusername(username);
   checkpassword(password);
 
-  submitInfo(username.value, password.value, email.value);
-};
-
-// 提交信息到服务端
-function submitInfo(username, password, email) {
-  const signupBox = document.querySelector('.login__signup');
-  const formControls = signupBox.querySelectorAll('.form-control');
-  const welcome = signupBox.querySelector('.login__signup__welcome');
-  const list = Array.from(formControls);
-
   // 检查前端输入是否全部通过
-  const isSubmit = list.every(el => {
+  const isCheckPassed = list.every(el => {
     return !el.classList.contains('form-error');
   });
 
-  // 前端通过则提交到服务端
-  if (isSubmit) {
-    axios
-      .post(api.registerUrl, {
-        username: username,
-        password: password,
-        email: email,
-      })
-      .then(res => {
-        console.log(res.data);
-      })
-      .catch(err => {
-        welcome.innerText = '用户名已存在！';
-        welcome.classList.add('error');
-        console.log(err.response.data);
-      });
-  }
+  return isCheckPassed;
 }
 
-export {validate};
+// 提交信息到服务端
+function submitInfo(username, password, email) {
+  axios
+    .post(api.registerUrl, {
+      username: username,
+      password: password,
+      email: email,
+    })
+    .then(res => {
+      setSuccessInfo('注册成功！');
+      loginPopup.exit();
+      console.log(res.data);
+    })
+    .catch(err => {
+      setErrorInfo('用户名已存在！');
+      console.log(err.response.data);
+    });
+}
+
+function setSuccessInfo(info) {
+  const welcome = document.querySelector(
+    '.login__signup .login__signup__welcome',
+  );
+  welcome.innerText = info;
+  welcome.classList.remove('error');
+}
+
+function setErrorInfo(info) {
+  const welcome = document.querySelector(
+    '.login__signup .login__signup__welcome',
+  );
+  welcome.innerText = info;
+  welcome.classList.add('error');
+}
+
+export {checkAndSubmit};

@@ -1,20 +1,3 @@
-function showError(input, message) {
-  const formControl = input.parentElement;
-  if (formControl.classList.contains('form-error')) return;
-  formControl.className = 'form-control form-error';
-
-  const p = formControl.querySelector('p');
-  p.innerText = message;
-}
-
-function showSuccess(input) {
-  const formControl = input.parentElement;
-  formControl.className = 'form-control';
-
-  const p = formControl.querySelector('p');
-  p.innerText = '';
-}
-
 // 检查是否存在
 function checkRequired(inputArr) {
   inputArr.forEach(input => {
@@ -79,6 +62,23 @@ function checkpassword(input) {
       `${input.placeholder}开头必须为字母或数字，全称只能包含字母、数字、和常见字符`,
     );
   }
+}
+
+function showError(input, message) {
+  const formControl = input.parentElement;
+  if (formControl.classList.contains('form-error')) return;
+  formControl.className = 'form-control form-error';
+
+  const p = formControl.querySelector('p');
+  p.innerText = message;
+}
+
+function showSuccess(input) {
+  const formControl = input.parentElement;
+  formControl.className = 'form-control';
+
+  const p = formControl.querySelector('p');
+  p.innerText = '';
 }
 
 export {

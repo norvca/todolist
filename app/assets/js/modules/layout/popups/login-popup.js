@@ -42,10 +42,10 @@ function loginHandler() {
   const signupExitBtn = document.querySelector('.login__signup__exit');
 
   // 用户登录提交
-  signinForm.addEventListener('submit', signin.validate);
+  signinForm.addEventListener('submit', signin.checkAndSubmit);
 
   // 用户注册提交
-  signupForm.addEventListener('submit', signup.validate);
+  signupForm.addEventListener('submit', signup.checkAndSubmit);
 
   // 登录注册功能切换
   loginBox.addEventListener('click', changeState);

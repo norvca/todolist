@@ -18,10 +18,11 @@ function showProfile() {
   loginBtn.classList.add('hidden');
   profile.classList.remove('hidden');
 
+  // 创建模态框;
   profile.addEventListener('click', createHTML);
 }
 
-// 创建用户信息模态框
+// 创建模态框
 function createHTML() {
   document.body.insertAdjacentHTML('beforeend', profileHTMLCreater());
 
