@@ -2,26 +2,10 @@ import loginHTML from '../../templates/login-template';
 import * as signin from '../../Login/Signin';
 import * as signup from '../../Login/Signup';
 
-// 创建登录模态框
+// 创建模态框
 function createHtml() {
   document.body.insertAdjacentHTML('beforeend', loginHTML);
   initPopup();
-}
-
-// 切换成注册功能
-function changeState(e) {
-  const signin = document.querySelector('.login__signin');
-  const signup = document.querySelector('.login__signup');
-  if (e.target.classList.contains('login__changeState')) {
-    signin.classList.toggle('hidden');
-    signup.classList.toggle('hidden');
-  }
-}
-
-// 退出模态框
-function exit() {
-  const login = document.querySelector('.login');
-  login.remove();
 }
 
 // 模态框初始化
@@ -49,7 +33,7 @@ function initPopup() {
   loginHandler();
 }
 
-// 登录模态框事件处理
+// 事件处理中心
 function loginHandler() {
   var loginBox = document.querySelector('.login__box');
   const signinForm = document.querySelector('.login__signin__form');
@@ -63,12 +47,28 @@ function loginHandler() {
   // 用户注册提交
   signupForm.addEventListener('submit', signup.validate);
 
-  // 登陆注册栏切换
+  // 登录注册功能切换
   loginBox.addEventListener('click', changeState);
 
-  // 退出登陆框
+  // 删除模态框
   signinExitBtn.addEventListener('click', exit);
   signupExitBtn.addEventListener('click', exit);
+}
+
+// 登录注册功能切换
+function changeState(e) {
+  const signin = document.querySelector('.login__signin');
+  const signup = document.querySelector('.login__signup');
+  if (e.target.classList.contains('login__changeState')) {
+    signin.classList.toggle('hidden');
+    signup.classList.toggle('hidden');
+  }
+}
+
+// 删除模态框
+function exit() {
+  const login = document.querySelector('.login');
+  login.remove();
 }
 
 export {exit, createHtml};

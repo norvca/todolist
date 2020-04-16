@@ -1,14 +1,13 @@
-// 加载数据库模块
 import {backendDB as db} from '../../utils/db-interface';
 import deleteAllHTML from '../../templates/deleteAll-template';
 
-// 生成删除数据库的模态框
+// 创建模态框
 const createDeletePopup = () => {
   document.body.insertAdjacentHTML('beforeend', deleteAllHTML);
   popupHandler();
 };
 
-// 模态框事件处理
+// 事件处理中心
 function popupHandler() {
   var confirmDelete = document.querySelector('.deleteAll-popup__btn-yes');
   var regretDelete = document.querySelector('.deleteAll-popup__btn-no');
