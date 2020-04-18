@@ -21,14 +21,6 @@ const helperFunction = {
     return ele.classList.toggle('act-color');
   },
 
-  // 任务等级小圆点颜色、属性的切换
-  toggleLevel(level1, level2, value) {
-    helperFunction.get_level_element().classList.remove(level1);
-    helperFunction.get_level_element().classList.add(level2);
-    helperFunction.get_level_element().setAttribute('level', value);
-    helperFunction.get_input_element().focus();
-  },
-
   // 清空页面
   freshPage() {
     syncState.innerText = '';

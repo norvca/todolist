@@ -2,7 +2,9 @@
 import * as sidebar from '../layout/sidebar';
 import * as todolistMain from '../layout/todolist';
 import * as todolistDetail from '../layout/detail';
+import * as levelChanger from '../layout/header/level-changer';
 
+const levelChangeBtn = document.querySelector('.icon__level');
 const loginButton = document.querySelector('.site-header__loginButton');
 const loginIcon = document.querySelector('.site-header__loginIcon');
 const sidebarContent = document.querySelector('.sidebar__content');
@@ -40,6 +42,9 @@ deleteData.addEventListener('click', () => {
 });
 
 // header 区域
+// 切换任务类型
+levelChangeBtn.addEventListener('click', levelChanger.changeLevel);
+
 // 显示登陆注册功能模态框
 loginButton.addEventListener('click', () => {
   import(

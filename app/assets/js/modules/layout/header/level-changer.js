@@ -1,47 +1,13 @@
-// 加载其他模块
-import helperFunction from '../../utils/helper-function';
+let levels = ['level-light', 'level-usual', 'level-heavy'];
+let levelColors = ['bgc-light', 'bgc-usual', 'bgc-heavy'];
 
-// 定义变量
-const toggleLevel = helperFunction.toggleLevel;
-const levelDot = helperFunction.get_level_element();
+function changeLevel() {
+  levels = [levels[1], levels[2], levels[0]];
+  levelColors = [levelColors[1], levelColors[2], levelColors[0]];
 
-// 任务等级分类
-const levelStates = {
-  green: {
-    dotPressed: function () {
-      toggleLevel('level-light', 'level-usual', 'bgc-usual');
-      this.state = levelStates.purple;
-    },
-  },
-  purple: {
-    dotPressed: function () {
-      toggleLevel('level-usual', 'level-heavy', 'bgc-heavy');
-      this.state = levelStates.red;
-    },
-  },
-  red: {
-    dotPressed: function () {
-      toggleLevel('level-heavy', 'level-light', 'bgc-light');
-      this.state = levelStates.green;
-    },
-  },
-};
-
-// 转换小圆点等级的装置
-class LevelChanger {
-  constructor(levelDot, levelState) {
-    this.state = levelState;
-    this.levelDot = levelDot;
-    this.event();
-  }
-
-  event() {
-    this.levelDot.addEventListener('click', () => {
-      this.state.dotPressed.call(this);
-    });
-  }
+  const levelChangeBtn = document.querySelector('.icon__level');
+  levelChangeBtn.setAttribute('class', `icon icon__level ${levels[0]}`);
+  levelChangeBtn.setAttribute('level', levelColors[0]);
 }
 
-new LevelChanger(levelDot, levelStates.green);
-
-export default LevelChanger;
+export {changeLevel};
