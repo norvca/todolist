@@ -12,6 +12,16 @@ const deleteData = document.querySelector('.sidebar__delete');
 const section = document.querySelector('.todolist');
 const detail = document.querySelector('.detail__paragraph');
 
+// header 区域
+// 切换任务类型
+levelChangeBtn.addEventListener('click', levelChanger.changeLevel);
+
+// 显示登陆注册功能模态框
+loginButton.addEventListener('click', createLoginPopupDesktop());
+
+// 显示登陆注册功能模态框：手机模式
+loginIcon.addEventListener('click', createLoginPopupPhone());
+
 // sideBar 区域
 // 左侧任务栏类别、等级导航
 sidebarContent.addEventListener('click', sidebar.navigation);
@@ -33,32 +43,37 @@ section.addEventListener('click', todolistMain.showTaskDetail);
 detail.addEventListener('focusout', todolistDetail.refreshDetail);
 
 // 显示删库模态框
-deleteData.addEventListener('click', () => {
-  import(
-    /* webpackChunkName: "delete-all", webpackPrefetch: true */ '../layout/popups/deleteAll-popup'
-  ).then(({createDeletePopup}) => {
-    createDeletePopup();
-  });
-});
+deleteData.addEventListener('click', createDeletePopup());
 
-// header 区域
-// 切换任务类型
-levelChangeBtn.addEventListener('click', levelChanger.changeLevel);
+// 动态加载的登录框
+function createLoginPopupDesktop() {
+  return () => {
+    import(
+      /* webpackChunkName: "login", webpackPrefetch: true */ '../layout/popups/login-popup'
+    ).then(({createPopup}) => {
+      createPopup();
+    });
+  };
+}
 
-// 显示登陆注册功能模态框
-loginButton.addEventListener('click', () => {
-  import(
-    /* webpackChunkName: "login", webpackPrefetch: true */ '../layout/popups/login-popup'
-  ).then(({createHtml}) => {
-    createHtml();
-  });
-});
+// 动态加载的登录框
+function createLoginPopupPhone() {
+  return () => {
+    import(
+      /* webpackChunkName: "login", webpackPrefetch: true */ '../layout/popups/login-popup'
+    ).then(({createPopup}) => {
+      createPopup();
+    });
+  };
+}
 
-// 显示登陆注册功能模态框：手机模式
-loginIcon.addEventListener('click', () => {
-  import(
-    /* webpackChunkName: "login", webpackPrefetch: true */ '../layout/popups/login-popup'
-  ).then(({createHtml}) => {
-    createHtml();
-  });
-});
+// 动态加载的删除任务框
+function createDeletePopup() {
+  return () => {
+    import(
+      /* webpackChunkName: "delete-all", webpackPrefetch: true */ '../layout/popups/deleteAll-popup'
+    ).then(({createPopup}) => {
+      createPopup();
+    });
+  };
+}

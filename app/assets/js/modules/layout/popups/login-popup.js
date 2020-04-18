@@ -3,7 +3,7 @@ import * as signin from '../../Login/Signin';
 import * as signup from '../../Login/Signup';
 
 // 创建模态框
-function createHtml() {
+function createPopup() {
   document.body.insertAdjacentHTML('beforeend', loginHTML);
   initPopup();
 }
@@ -71,4 +71,4 @@ function exit() {
   login.remove();
 }
 
-export {exit, createHtml};
+export {exit, createPopup};

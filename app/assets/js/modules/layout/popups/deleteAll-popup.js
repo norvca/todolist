@@ -2,7 +2,7 @@ import {backendDB as db} from '../../utils/db-interface';
 import deleteAllHTML from '../../templates/deleteAll-template';
 
 // 创建模态框
-const createDeletePopup = () => {
+const createPopup = () => {
   document.body.insertAdjacentHTML('beforeend', deleteAllHTML);
   popupHandler();
 };
@@ -33,4 +33,4 @@ function deletePopup() {
   modal.remove();
 }
 
-export {createDeletePopup};
+export {createPopup};
