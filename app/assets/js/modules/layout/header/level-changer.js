@@ -7,8 +7,8 @@ function changeLevel() {
 }
 
 function alterLevel() {
-  levelArr = [levelArr[1], levelArr[2], levelArr[0]];
-  levelColorArr = [levelColorArr[1], levelColorArr[2], levelColorArr[0]];
+  levelArr = [...levelArr.slice(1), ...levelArr.slice(0, 1)];
+  levelColorArr = [...levelColorArr.slice(1), ...levelColorArr.slice(0, 1)];
 }
 
 function useLevel() {
