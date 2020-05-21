@@ -120,6 +120,7 @@ class PouchClass {
     let indexTime;
     const taskList = document.createElement('ul');
     taskList.classList.add('todolist__list');
+    console.log(this);
 
     this.db
       .allDocs({
@@ -134,7 +135,7 @@ class PouchClass {
             // 如果时间戳不等于任务的时间戳，那就添加时间戳
             if (indexTime !== element.taskTime) {
               indexTime = element.taskTime;
-              taskList.appendChild(this.createTimeStamp(element));
+              taskList.appendChild(timeStampTemplate(element));
             }
 
             // 添加任务条
