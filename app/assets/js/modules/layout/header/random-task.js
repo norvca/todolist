@@ -32,7 +32,7 @@ class RandomTask {
       .querySelector('.sidebar__act')
       .getAttribute('taskType');
     db.addTask(this.randomContent[ContentIndex], this.randomLevel[LevelIndex]);
-    db.showTask('taskType', typeValue);
+    db.sortByTaskType(typeValue);
   }
 }
 

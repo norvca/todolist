@@ -26,9 +26,14 @@ const backendDB = {
     db.addTask(randomContent, ramdomLevel);
   },
 
-  // 渲染任务到页面
-  showTask(indexType, value) {
-    db.showTask(indexType, value);
+  // 按任务类型分类
+  sortByTaskType(value) {
+    db.sortByTaskType(value);
+  },
+
+  // 按任务类型分类
+  sortByTaskLevel(value) {
+    db.sortByTaskLevel(value);
   },
 
   // 搜索任务

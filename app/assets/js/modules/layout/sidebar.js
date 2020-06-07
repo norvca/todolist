@@ -19,7 +19,7 @@ function navigation(e) {
 
     // 展示不同类型任务到页面
     const typeValue = target.getAttribute('taskType');
-    db.showTask('taskType', typeValue);
+    db.sortByTaskType(typeValue);
   }
   // 点击到了任务等级的话
   else if (target.classList.contains('sidebar__list-level')) {
@@ -34,7 +34,7 @@ function navigation(e) {
     });
     // 给当前任务等级添加 active
     thisLevel.classList.add('active');
-    db.showTask('level', levelValue);
+    db.sortByTaskLevel(levelValue);
   }
 }
 

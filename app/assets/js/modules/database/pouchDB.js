@@ -38,39 +38,41 @@ class PouchClass {
       });
   }
 
-  // 从数据库中读取数据然后渲染到页面
-  showTask(indexType, value) {
+  sortByTaskType(value) {
     return this.db
       .createIndex({
-        index: {fields: [indexType]},
+        index: {fields: ['taskType']},
       })
       .then(() => {
-        // 按照任务类别来显示
-        if (indexType === 'taskType') {
-          return this.db
-            .find({
-              selector: {
-                taskType: value,
-              },
-              sort: [{taskType: 'desc'}],
-            })
-            .then(result => {
-              this.redrawTasksUI(result.docs);
-            });
+        return this.db
+          .find({
+            selector: {
+              taskType: value,
+            },
+            sort: [{taskType: 'desc'}],
+          })
+          .then(result => {
+            this.redrawTasksUI(result.docs);
+          });
+      });
+  }
 
-          // 按照任务等级来显示
-        } else {
-          return this.db
-            .find({
-              selector: {
-                level: value,
-              },
-              sort: [{level: 'desc'}],
-            })
-            .then(result => {
-              this.redrawTasksUI(result.docs);
-            });
-        }
+  sortByTaskLevel(value) {
+    return this.db
+      .createIndex({
+        index: {fields: ['level']},
+      })
+      .then(() => {
+        return this.db
+          .find({
+            selector: {
+              level: value,
+            },
+            sort: [{level: 'desc'}],
+          })
+          .then(result => {
+            this.redrawTasksUI(result.docs);
+          });
       });
   }
 
@@ -79,7 +81,7 @@ class PouchClass {
       .querySelector('.sidebar__act')
       .getAttribute('taskType');
 
-    this.showTask('taskType', taskType);
+    this.sortByTaskType(taskType);
   }
 
   // 把任务条渲染到页面
