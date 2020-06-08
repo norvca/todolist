@@ -4,6 +4,7 @@ import PouchdbFind from 'pouchdb-find';
 import helperFunction from '../utils/helper-function';
 import taskItemTemplate from '../templates/taskItem-template';
 import timeStampTemplate from '../templates/timeStamp-template';
+import taskCreater from '../utils/task-creater';
 
 // 加载 PouchDB 插件
 PouchDB.plugin(PouchdbFind);
@@ -22,11 +23,12 @@ class PouchClass {
     this.taskLists = document.querySelector('.todolist__tasks');
     this.detail = document.querySelector('.detail__paragraph');
     this.detailTitle = document.querySelector('.detail__title');
+    this.taskCreater = taskCreater;
   }
 
   // 添加数据到数据库
-  addTask(randomContent, ramdomLevel) {
-    const task = this.taskCreater(randomContent, ramdomLevel);
+  addTask() {
+    const task = this.taskCreater.createTask();
 
     this.db
       .put(task)
@@ -200,37 +202,6 @@ class PouchClass {
       .catch(err => {
         console.log(err + '删除数据库失败！');
       });
-  }
-
-  // 任务模板
-  taskCreater(randomContent, ramdomLevel) {
-    const title = this.input.value;
-    const taskLevel = this.level.getAttribute('level');
-    const taskTime = new Date().toLocaleDateString();
-    const taskType = document
-      .querySelector('.sidebar__act')
-      .getAttribute('taskType');
-    const taskWeek = this.toDayString.slice
-      .call(this.toDayString, 0, 3)
-      .toUpperCase();
-
-    let taskConfig = {
-      _id: new Date().toISOString(),
-      title: title,
-      level: taskLevel,
-      taskTime: taskTime,
-      taskType: taskType,
-      taskWeek: taskWeek,
-      detail: null,
-    };
-
-    // 有标题等参数则说明添加随机任务
-    if (randomContent) {
-      taskConfig.title = randomContent;
-      taskConfig.level = ramdomLevel;
-    }
-
-    return taskConfig;
   }
 }
 

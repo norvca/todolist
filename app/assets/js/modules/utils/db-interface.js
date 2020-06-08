@@ -22,8 +22,13 @@ function useVisitorDB() {
 const backendDB = {
   db,
   // 添加任务
-  addTask(randomContent, ramdomLevel) {
-    db.addTask(randomContent, ramdomLevel);
+  addTask() {
+    db.addTask();
+  },
+
+  // 添加随机
+  addRandomTask(randomContent, ramdomLevel) {
+    db.addRandomTask(randomContent, ramdomLevel);
   },
 
   // 按任务类型分类
