@@ -27,8 +27,8 @@ const backendDB = {
   },
 
   // 添加随机
-  addRandomTask(randomContent, ramdomLevel) {
-    db.addRandomTask(randomContent, ramdomLevel);
+  addRandomTask() {
+    db.addRandomTask();
   },
 
   // 按任务类型分类

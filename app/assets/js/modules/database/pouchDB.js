@@ -40,6 +40,20 @@ class PouchClass {
       });
   }
 
+  // 添加数据到数据库
+  addRandomTask() {
+    const task = this.taskCreater.createRandomTask();
+
+    this.db
+      .put(task)
+      .then(() => {
+        console.log('添加到数据库成功！');
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
   sortByTaskType(value) {
     return this.db
       .createIndex({

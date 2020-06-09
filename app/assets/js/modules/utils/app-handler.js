@@ -3,6 +3,7 @@ import * as sidebar from '../layout/sidebar';
 import * as todolistMain from '../layout/todolist';
 import * as todolistDetail from '../layout/detail';
 import * as levelChanger from '../layout/header/level-changer';
+import createRandomTask from '../layout/header/random-task';
 
 const levelChangeBtn = document.querySelector('.icon__level');
 const loginButton = document.querySelector('.site-header__loginButton');
@@ -11,8 +12,12 @@ const sidebarContent = document.querySelector('.sidebar__content');
 const deleteData = document.querySelector('.sidebar__delete');
 const section = document.querySelector('.todolist');
 const detail = document.querySelector('.detail__paragraph');
+const randomTaskBtn = document.querySelector('.site-header__random-task__fire');
 
 // header 区域
+// 添加随机任务
+randomTaskBtn.addEventListener('click', createRandomTask);
+
 // 切换任务类型
 levelChangeBtn.addEventListener('click', levelChanger.changeLevel);
 

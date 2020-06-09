@@ -13,10 +13,22 @@ class TaskCreater {
   }
 
   createTask() {
-    const test = {
+    return {
       _id: new Date().toISOString(),
       title: this.title,
       level: this.taskLevel,
+      taskTime: this.taskTime,
+      taskType: this.taskType,
+      taskWeek: this.taskWeek,
+      detail: null,
+    };
+  }
+
+  createRandomTask() {
+    const test = {
+      _id: new Date().toISOString(),
+      title: this.randomTitle,
+      level: this.randomLevel,
       taskTime: this.taskTime,
       taskType: this.taskType,
       taskWeek: this.taskWeek,
@@ -45,6 +57,23 @@ class TaskCreater {
   get taskWeek() {
     const toDayString = new Date().toString();
     return toDayString.slice.call(toDayString, 0, 3).toUpperCase();
+  }
+
+  get randomTitle() {
+    return this.shuffle(this._titles.slice())[0];
+  }
+
+  get randomLevel() {
+    console.log(this.shuffle(this._levels.slice()));
+    return this.shuffle(this._levels.slice())[0];
+  }
+
+  shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
   }
 }
 
