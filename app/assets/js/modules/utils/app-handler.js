@@ -4,6 +4,7 @@ import * as todolistMain from '../layout/todolist';
 import * as todolistDetail from '../layout/detail';
 import * as levelChanger from '../layout/header/level-changer';
 import createRandomTask from '../layout/header/random-task';
+import searchBar from '../layout/header/search-bar';
 
 const levelChangeBtn = document.querySelector('.icon__level');
 const loginButton = document.querySelector('.site-header__loginButton');
@@ -13,8 +14,21 @@ const deleteData = document.querySelector('.sidebar__delete');
 const section = document.querySelector('.todolist');
 const detail = document.querySelector('.detail__paragraph');
 const randomTaskBtn = document.querySelector('.site-header__random-task__fire');
+const searchBox = document.querySelector('.site-header__search-box__content');
+const searBarInput = document.querySelector('.site-header__search-box__input');
+const addBtn = document.querySelector('.icon__add');
 
 // header 区域
+// 开启查找任务功能
+searchBox.addEventListener('click', searchBar.openSearchTask.bind(searchBar));
+
+// 查找任务
+searBarInput.addEventListener('keyup', searchBar.searchTask);
+
+// 添加任务
+searBarInput.addEventListener('keyup', searchBar.addTask2.bind(searchBar));
+addBtn.addEventListener('click', searchBar.addTask1.bind(searchBar));
+
 // 添加随机任务
 randomTaskBtn.addEventListener('click', createRandomTask);
 

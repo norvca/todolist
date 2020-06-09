@@ -11,19 +11,11 @@ class SearchBar {
     this.addBtn = document.querySelector('.icon__add');
     this.input = helperFunction.get_input_element();
     this.inActColor = helperFunction.inActColor;
-    this.event();
-  }
-
-  // 初始化事件
-  event() {
-    this.searchBox.addEventListener('click', this.openSearchTask.bind(this));
-    this.input.addEventListener('keyup', this.searchTask);
-    this.input.addEventListener('keyup', this.addTask2.bind(this));
-    this.addBtn.addEventListener('click', this.addTask1.bind(this));
   }
 
   // 开启查找任务功能
   openSearchTask(e) {
+    console.log(this);
     if (e.target.classList.contains('icon__search')) {
       this.inActColor(e.target);
       this.inActColor(this.input);
@@ -51,7 +43,6 @@ class SearchBar {
     } else {
       db.addTask();
       db.sortByTaskType(this.typeValue);
-
       this.input.value = '';
     }
   }
@@ -78,4 +69,5 @@ class SearchBar {
   }
 }
 
-new SearchBar();
+const searchBar = new SearchBar();
+export default searchBar;
