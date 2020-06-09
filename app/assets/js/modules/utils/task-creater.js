@@ -34,7 +34,6 @@ class TaskCreater {
       taskWeek: this.taskWeek,
       detail: null,
     };
-    console.log(test);
     return test;
   }
 
@@ -64,7 +63,6 @@ class TaskCreater {
   }
 
   get randomLevel() {
-    console.log(this.shuffle(this._levels.slice()));
     return this.shuffle(this._levels.slice())[0];
   }
 

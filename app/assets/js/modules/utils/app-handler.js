@@ -48,7 +48,7 @@ loginIcon.addEventListener('click', createLoginPopupPhone());
 
 // sideBar 区域
 // 左侧任务栏类别、等级导航
-sidebarContent.addEventListener('click', sidebar.navigation);
+sidebarContent.addEventListener('click', sidebar.navigate);
 
 // todolist 区域
 // 修改任务标题

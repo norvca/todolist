@@ -1,41 +1,43 @@
 // 加载中间件模块
 import {backendDB as db} from '../utils/db-interface';
 
-// 变量声明
-const levelBox = [0, 1, 2];
-
 // 定义页面左侧导航处理程序模块
 // 左侧导航栏功能
-function navigation(e) {
-  const lis = document.querySelectorAll('.sidebar__list-type');
+function navigate(e) {
   const target = e.target;
-
-  // 点击到了任务类别的话
-  if (target.classList.contains('sidebar__list-type')) {
-    lis.forEach(ele => {
-      ele.classList.remove('sidebar__act');
-    });
-    target.classList.add('sidebar__act');
-
-    // 展示不同类型任务到页面
-    const typeValue = target.getAttribute('taskType');
-    db.sortByTaskType(typeValue);
-  }
-  // 点击到了任务等级的话
-  else if (target.classList.contains('sidebar__list-level')) {
-    levelBox.push(levelBox.shift());
-    const levels = target.children;
-    const thisLevel = levels[levelBox[0]];
-    const levelValue = thisLevel.getAttribute('level');
-
-    // 去除 active 类名
-    Array.prototype.forEach.call(levels, e => {
-      e.classList.remove('active');
-    });
-    // 给当前任务等级添加 active
-    thisLevel.classList.add('active');
-    db.sortByTaskLevel(levelValue);
-  }
+  target.classList.contains('sidebar__list-type')
+    ? navigateByType(target)
+    : navigateByLevel(target);
 }
 
-export {navigation};
+// 按任务类型导航
+function navigateByType(target) {
+  const lis = document.querySelectorAll('.sidebar__list-type');
+  lis.forEach(ele => {
+    ele.classList.remove('sidebar__act');
+  });
+  target.classList.add('sidebar__act');
+
+  const typeValue = target.getAttribute('taskType');
+  db.sortByTaskType(typeValue);
+}
+
+const levelBox = [0, 1, 2];
+
+// 按任务等级导航
+function navigateByLevel(target) {
+  levelBox.push(levelBox.shift());
+
+  const levelArr = target.children;
+  Array.from(levelArr, e => {
+    e.classList.remove('active');
+  });
+
+  const currentLevel = levelArr[levelBox[0]];
+  currentLevel.classList.add('active');
+
+  const levelValue = currentLevel.getAttribute('level');
+  db.sortByTaskLevel(levelValue);
+}
+
+export {navigate};
