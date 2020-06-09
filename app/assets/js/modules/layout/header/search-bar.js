@@ -2,19 +2,15 @@
 import helperFunction from '../../utils/helper-function';
 import {backendDB as db} from '../../utils/db-interface';
 
-// 定义变量
-var searchBox = document.querySelector('.site-header__search-box__content');
-var addBtn = document.querySelector('.icon__add');
-var input = helperFunction.get_input_element();
-var inActColor = helperFunction.inActColor;
-
 // 搜索栏模块
 class SearchBar {
-  constructor(searchBox, addBtn, input, inActColor) {
-    this.searchBox = searchBox;
-    this.addBtn = addBtn;
-    this.input = input;
-    this.inActColor = inActColor;
+  constructor() {
+    this.searchBox = document.querySelector(
+      '.site-header__search-box__content',
+    );
+    this.addBtn = document.querySelector('.icon__add');
+    this.input = helperFunction.get_input_element();
+    this.inActColor = helperFunction.inActColor;
     this.event();
   }
 
@@ -28,11 +24,6 @@ class SearchBar {
 
   // 开启查找任务功能
   openSearchTask(e) {
-    // 获取左侧栏目对应事件类型
-    const typeValue = document
-      .querySelector('.sidebar__act')
-      .getAttribute('taskType');
-
     if (e.target.classList.contains('icon__search')) {
       this.inActColor(e.target);
       this.inActColor(this.input);
@@ -41,7 +32,7 @@ class SearchBar {
       this.input.value = '';
 
       if (!this.input.classList.contains('act-color')) {
-        db.sortByTaskType(typeValue);
+        db.sortByTaskType(this.typeValue);
       }
     }
   }
@@ -55,15 +46,11 @@ class SearchBar {
 
   // 添加任务功能
   addTask1() {
-    // 获取左侧栏目对应事件类型
-    const typeValue = document
-      .querySelector('.sidebar__act')
-      .getAttribute('taskType');
     if (!this.input.value) {
       return;
     } else {
       db.addTask();
-      db.sortByTaskType(typeValue);
+      db.sortByTaskType(this.typeValue);
 
       this.input.value = '';
     }
@@ -72,10 +59,6 @@ class SearchBar {
   // 按回车键添加任务功能
   addTask2(event = window.event) {
     const key = event.which || event.keyCode || event.charCode;
-    // 获取左侧栏目对应事件类型
-    const typeValue = document
-      .querySelector('.sidebar__act')
-      .getAttribute('taskType');
 
     // 焦点在搜索栏并按回车
     if (document.activeElement.value) {
@@ -84,13 +67,15 @@ class SearchBar {
         document.activeElement.tagName.toUpperCase() === 'INPUT'
       ) {
         db.addTask();
-        db.sortByTaskType(typeValue);
+        db.sortByTaskType(this.typeValue);
         this.input.value = '';
       }
     }
   }
+
+  get typeValue() {
+    return document.querySelector('.sidebar__act').getAttribute('taskType');
+  }
 }
 
-new SearchBar(searchBox, addBtn, input, inActColor);
-
-export default SearchBar;
+new SearchBar();
