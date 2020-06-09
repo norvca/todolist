@@ -1,15 +1,14 @@
 // 切换主题模块
 class ThemeChanger {
   constructor() {
-    this.theme = ['', 'theme-green', 'theme-purple', 'theme-gradual'];
-    this.themeIconName = [
-      '#icon-theme',
-      '#icon-theme1',
-      '#icon-theme2',
-      '#icon-theme3',
-    ];
+    this.theme = {
+      background: ['', 'theme-green', 'theme-purple', 'theme-gradual'],
+      iconName: ['#icon-theme', '#icon-theme1', '#icon-theme2', '#icon-theme3'],
+    };
     this.siteHeader = document.querySelector('.site-header');
-    this.themeBtn = document.querySelector('.site-header__theme-btn');
+    this.themeIcon = document.querySelector(
+      '.site-header__theme-btn',
+    ).children[0].children[0];
   }
 
   // 切换主题功能
@@ -19,15 +18,18 @@ class ThemeChanger {
   }
 
   shiftTheme() {
-    this.theme.push(this.theme.shift());
-    this.themeIconName.push(this.themeIconName.shift());
+    for (let prop in this.theme) {
+      let propArr = this.theme[prop];
+      propArr.push(propArr.shift());
+    }
   }
 
   renderTheme() {
-    this.siteHeader.setAttribute('class', 'site-header ' + this.theme[0]);
-
-    const themeIcon = this.themeBtn.children[0].children[0];
-    themeIcon.setAttribute('xlink:href', this.themeIconName[0]);
+    this.siteHeader.setAttribute(
+      'class',
+      'site-header ' + this.theme.background[0],
+    );
+    this.themeIcon.setAttribute('xlink:href', this.theme.iconName[0]);
   }
 }
 
