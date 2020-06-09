@@ -4,8 +4,8 @@ import {backendDB as db} from '../utils/db-interface';
 // 主界面模块
 // 修改任务标题功能
 function changeTaskTitle(e) {
-  if (e.target.tagName.toUpperCase() === 'SPAN') {
-    const taskTitle = e.target;
+  const taskTitle = e.target;
+  if (taskTitle.tagName.toUpperCase() === 'SPAN') {
     const idNum = taskTitle.getAttribute('idnum');
     const newTitle = taskTitle.innerText;
 
@@ -15,39 +15,46 @@ function changeTaskTitle(e) {
 
 // 任务已完成功能
 function finishTask(e) {
-  const taskList = document.querySelector('.todolist__list');
+  const target = e.target;
   const focusedTask = document.querySelector('.todolist__focus');
-  if (e.target.classList.contains('icon__nofinish')) {
-    const idNum = e.target.getAttribute('idnum');
+
+  if (target.classList.contains('icon__nofinish')) {
+    const idNum = target.getAttribute('idnum');
     db.modifyTask(idNum, 'taskType', 'finish');
-    // 删除页面上的数据
-    const ele = e.target.parentNode.parentNode;
-    const hasPrevTask = ele.previousSibling.classList.contains(
-      'todolist__content',
-    );
-    const NextTask = ele.nextSibling;
 
-    // 判断是否需要删除时间戳
-    if (
-      (!hasPrevTask && NextTask == null) ||
-      (!hasPrevTask && !NextTask.classList.contains('todolist__content'))
-    ) {
-      ele.parentNode.removeChild(ele.previousSibling);
-    }
+    const currentTask = target.parentNode.parentNode;
+    isDeleteTimeStamp(currentTask);
+    currentTask.remove();
+    updateTaskDetail(currentTask, focusedTask);
+  }
+}
 
-    // 删除页面任务
-    ele.parentNode.removeChild(ele);
-    // 首任务聚焦
-    if (taskList.firstChild) {
-      // 删除的正好是焦点任务就重新聚焦
-      if (ele === focusedTask) {
-        const firstTask = taskList.firstChild.nextSibling;
-        firstTask.classList.add('todolist__focus');
-        db.showDetail(firstTask.getAttribute('idnum'));
-      }
-    } else {
-      db.showDetail();
+function isDeleteTimeStamp(currentTask) {
+  const hasPrevTask = currentTask.previousSibling.classList.contains(
+    'todolist__content',
+  );
+  const NextTask = currentTask.nextSibling;
+
+  if (
+    (!hasPrevTask && NextTask == null) ||
+    (!hasPrevTask && !NextTask.classList.contains('todolist__content'))
+  ) {
+    currentTask.parentNode.removeChild(currentTask.previousSibling);
+  }
+}
+
+function updateTaskDetail(currentTask, focusedTask) {
+  const taskList = document.querySelector('.todolist__list');
+  // 首任务聚焦
+  if (taskList.firstChild) {
+    // 删除的正好是焦点任务就重新聚焦
+    if (currentTask === focusedTask) {
+      const firstTask = taskList.firstChild.nextSibling;
+      firstTask.classList.add('todolist__focus');
+      db.showDetail(firstTask.getAttribute('idnum'));
     }
+  } else {
+    db.showDetail();
   }
 }
 
