@@ -5,6 +5,7 @@ import * as todolistDetail from '../layout/detail';
 import * as levelChanger from '../layout/header/level-changer';
 import createRandomTask from '../layout/header/random-task';
 import searchBar from '../layout/header/search-bar';
+import themeChanger from '../layout/header/theme-changer';
 
 const levelChangeBtn = document.querySelector('.icon__level');
 const loginButton = document.querySelector('.site-header__loginButton');
@@ -17,6 +18,7 @@ const randomTaskBtn = document.querySelector('.site-header__random-task__fire');
 const searchBox = document.querySelector('.site-header__search-box__content');
 const searBarInput = document.querySelector('.site-header__search-box__input');
 const addBtn = document.querySelector('.icon__add');
+const themeBtn = document.querySelector('.site-header__theme-btn');
 
 // header 区域
 // 开启查找任务功能
@@ -34,6 +36,9 @@ randomTaskBtn.addEventListener('click', createRandomTask);
 
 // 切换任务类型
 levelChangeBtn.addEventListener('click', levelChanger.changeLevel);
+
+// 切换主题
+themeBtn.addEventListener('click', themeChanger.changeTheme.bind(themeChanger));
 
 // 显示登陆注册功能模态框
 loginButton.addEventListener('click', createLoginPopupDesktop());

@@ -92,7 +92,7 @@ class PouchClass {
       });
   }
 
-  showCurrentTask() {
+  sortByCurrentTask() {
     const taskType = document
       .querySelector('.sidebar__act')
       .getAttribute('taskType');
