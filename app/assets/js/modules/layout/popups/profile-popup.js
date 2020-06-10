@@ -1,6 +1,6 @@
 import profileHTMLCreater from '../../templates/profile-template';
 import {syncHandler} from '../../database/sync';
-import helperFunction from '../../utils/helper-function';
+import clearPage from '../clear-page';
 import {useVisitorDB} from '../../utils/db-interface';
 import changeUserPopup from '../../templates/change-username';
 import changePassPopup from '../../templates/change-password';
@@ -83,7 +83,7 @@ function logout() {
   removeHTML();
   syncHandler.cancel();
   useVisitorDB();
-  helperFunction.freshPage();
+  clearPage();
 }
 
 function removeHTML() {

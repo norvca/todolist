@@ -1,7 +1,7 @@
 // 模块加载
 import PouchDB from 'pouchdb';
 import PouchdbFind from 'pouchdb-find';
-import helperFunction from '../utils/helper-function';
+import clearPage from '../layout/clear-page';
 import taskItemTemplate from '../templates/taskItem-template';
 import timeStampTemplate from '../templates/timeStamp-template';
 import taskCreater from '../utils/task-creater';
@@ -18,8 +18,8 @@ class PouchClass {
   constructor(db) {
     this.db = db;
     this.toDayString = new Date().toString();
-    this.input = helperFunction.get_input_element();
-    this.level = helperFunction.get_level_element();
+    this.input = document.querySelector('.site-header__search-box__input');
+    this.level = document.querySelector('.icon__level');
     this.taskLists = document.querySelector('.todolist__tasks');
     this.detail = document.querySelector('.detail__paragraph');
     this.detailTitle = document.querySelector('.detail__title');
@@ -211,7 +211,7 @@ class PouchClass {
         );
       })
       .then(() => {
-        helperFunction.freshPage();
+        clearPage();
       })
       .catch(err => {
         console.log(err + '删除数据库失败！');

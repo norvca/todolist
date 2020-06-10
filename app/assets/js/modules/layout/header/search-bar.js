@@ -1,5 +1,4 @@
 // 加载各模块
-import helperFunction from '../../utils/helper-function';
 import {backendDB as db} from '../../utils/db-interface';
 
 // 搜索栏模块
@@ -9,17 +8,14 @@ class SearchBar {
       '.site-header__search-box__content',
     );
     this.addBtn = document.querySelector('.icon__add');
-    this.input = helperFunction.get_input_element();
-    this.inActColor = helperFunction.inActColor;
+    this.input = document.querySelector('.site-header__search-box__input');
   }
 
   // 开启查找任务功能
   openSearchTask(e) {
-    console.log(this);
-    if (e.target.classList.contains('icon__search')) {
-      this.inActColor(e.target);
-      this.inActColor(this.input);
-      this.inActColor(this.searchBox);
+    const target = e.target;
+    if (target.classList.contains('icon__search')) {
+      this.activeUI(target);
       this.input.focus();
       this.input.value = '';
 
@@ -27,6 +23,12 @@ class SearchBar {
         db.sortByTaskType(this.typeValue);
       }
     }
+  }
+
+  activeUI(target) {
+    target.classList.toggle('act-color');
+    this.input.classList.toggle('act-color');
+    this.searchBox.classList.toggle('act-color');
   }
 
   // 查找任务功能
