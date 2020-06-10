@@ -1,6 +1,5 @@
 // 加载数据库模块
-import {userDB, visitorDB} from './pouchDB';
-import pubsub from '../utils/pubsub';
+import {userDB, visitorDB} from '../database/pouchDB';
 
 let db;
 // 初始数据库选择：用户数据库或游客数据库
@@ -60,7 +59,6 @@ const backendDB = {
   // 删除全部任务
   deleteAllTasks() {
     db.deleteAllTasks();
-    pubsub.emit('deleteAllTasks');
   },
 };
 
