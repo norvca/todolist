@@ -1,7 +1,6 @@
 import {firstSync, reSync} from '../database/sync';
 import {userDB} from '../database/pouchDB';
-import {useUserDB} from '../utils/db-interface';
-import {backendDB as db} from './db-interface';
+import {useUserDB, backendDB as db} from '../database/db-interface';
 import {showProfile} from '../layout/popups/profile-popup';
 
 function initApp(username, token) {

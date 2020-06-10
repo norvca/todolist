@@ -1,5 +1,5 @@
 // 加载中间件模块
-import {backendDB as db} from '../utils/db-interface';
+import {backendDB as db} from '../database/db-interface';
 
 // 主界面模块
 // 修改任务标题功能

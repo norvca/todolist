@@ -1,4 +1,4 @@
-import {backendDB as db} from '../../utils/db-interface';
+import {backendDB as db} from '../../database/db-interface';
 import deleteAllHTML from '../../templates/deleteAll-template';
 
 // 创建模态框
