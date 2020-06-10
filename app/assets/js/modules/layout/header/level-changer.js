@@ -1,20 +1,32 @@
-let levelArr = ['level-light', 'level-usual', 'level-heavy'];
-let levelColorArr = ['bgc-light', 'bgc-usual', 'bgc-heavy'];
+class LevelChanger {
+  constructor() {
+    this.levels = {
+      status: ['level-light', 'level-usual', 'level-heavy'],
+      colors: ['bgc-light', 'bgc-usual', 'bgc-heavy'],
+    };
+    this.levelChangeBtn = document.querySelector('.icon__level');
+  }
 
-function changeLevel() {
-  alterLevel();
-  useLevel();
+  changeLevel() {
+    this.shiftLevel();
+    this.renderLevel();
+  }
+
+  shiftLevel() {
+    for (let prop in this.levels) {
+      let propArr = this.levels[prop];
+      propArr.push(propArr.shift());
+    }
+  }
+
+  renderLevel() {
+    this.levelChangeBtn.setAttribute(
+      'class',
+      `icon icon__level ${this.levels.status[0]}`,
+    );
+    this.levelChangeBtn.setAttribute('level', this.levels.colors[0]);
+  }
 }
 
-function alterLevel() {
-  levelArr = [...levelArr.slice(1), ...levelArr.slice(0, 1)];
-  levelColorArr = [...levelColorArr.slice(1), ...levelColorArr.slice(0, 1)];
-}
-
-function useLevel() {
-  const levelChangeBtn = document.querySelector('.icon__level');
-  levelChangeBtn.setAttribute('class', `icon icon__level ${levelArr[0]}`);
-  levelChangeBtn.setAttribute('level', levelColorArr[0]);
-}
-
-export {changeLevel};
+const levelChanger = new LevelChanger();
+export default levelChanger;

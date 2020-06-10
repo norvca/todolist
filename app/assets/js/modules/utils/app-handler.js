@@ -2,7 +2,7 @@
 import * as sidebar from '../layout/sidebar';
 import * as todolistMain from '../layout/todolist';
 import * as todolistDetail from '../layout/detail';
-import * as levelChanger from '../layout/header/level-changer';
+import levelChanger from '../layout/header/level-changer';
 import createRandomTask from '../layout/header/random-task';
 import searchBar from '../layout/header/search-bar';
 import themeChanger from '../layout/header/theme-changer';
@@ -35,7 +35,10 @@ addBtn.addEventListener('click', searchBar.addTask1.bind(searchBar));
 randomTaskBtn.addEventListener('click', createRandomTask);
 
 // 切换任务类型
-levelChangeBtn.addEventListener('click', levelChanger.changeLevel);
+levelChangeBtn.addEventListener(
+  'click',
+  levelChanger.changeLevel.bind(levelChanger),
+);
 
 // 切换主题
 themeBtn.addEventListener('click', themeChanger.changeTheme.bind(themeChanger));
