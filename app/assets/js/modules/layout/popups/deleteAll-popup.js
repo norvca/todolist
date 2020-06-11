@@ -1,36 +1,39 @@
 import {backendDB as db} from '../../database/db-interface';
 import deleteAllHTML from '../../templates/deleteAll-template';
 
-// 创建模态框
-const createPopup = () => {
-  document.body.insertAdjacentHTML('beforeend', deleteAllHTML);
-  popupHandler();
-};
+class DeleteAllPopup {
+  constructor() {
+    this.db = db;
+    this.deleteAllHTML = deleteAllHTML;
+  }
 
-// 事件处理中心
-function popupHandler() {
-  var confirmDelete = document.querySelector('.deleteAll-popup__btn-yes');
-  var regretDelete = document.querySelector('.deleteAll-popup__btn-no');
+  createPopup() {
+    document.body.insertAdjacentHTML('beforeend', this.deleteAllHTML);
+    this.popupHandler();
+  }
 
-  confirmDelete.addEventListener('click', deleteAllTasks);
-  regretDelete.addEventListener('click', regretDeleteTasks);
+  popupHandler() {
+    this.confirmDelete = document.querySelector('.deleteAll-popup__btn-yes');
+    this.regretDelete = document.querySelector('.deleteAll-popup__btn-no');
+
+    this.confirmDelete.addEventListener('click', this.deleteAllTasks);
+    this.regretDelete.addEventListener('click', this.regretDeleteTasks);
+  }
+
+  deleteAllTasks = () => {
+    db.deleteAllTasks();
+    this.deletePopup();
+  };
+
+  regretDeleteTasks = () => {
+    this.deletePopup();
+  };
+
+  deletePopup() {
+    this.modal = document.querySelector('.deleteAll-popup');
+    this.modal.remove();
+  }
 }
 
-// 清除数据库
-function deleteAllTasks() {
-  db.deleteAllTasks();
-  deletePopup();
-}
-
-// 不清除数据库
-function regretDeleteTasks() {
-  deletePopup();
-}
-
-// 删除模态框
-function deletePopup() {
-  const modal = document.querySelector('.deleteAll-popup');
-  modal.remove();
-}
-
-export {createPopup};
+const deleteAllPopup = new DeleteAllPopup();
+export {deleteAllPopup};

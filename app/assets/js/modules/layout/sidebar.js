@@ -5,9 +5,8 @@ import {backendDB as db} from '../database/db-interface';
 // 左侧导航栏功能
 function navigate(e) {
   const target = e.target;
-  target.classList.contains('sidebar__list-type')
-    ? navigateByType(target)
-    : navigateByLevel(target);
+  if (target.classList.contains('sidebar__list-type')) navigateByType(target);
+  if (target.classList.contains('sidebar__list-level')) navigateByLevel(target);
 }
 
 // 按任务类型导航

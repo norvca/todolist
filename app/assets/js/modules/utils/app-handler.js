@@ -99,8 +99,8 @@ function createDeletePopup() {
   return () => {
     import(
       /* webpackChunkName: "delete-all", webpackPrefetch: true */ '../layout/popups/deleteAll-popup'
-    ).then(({createPopup}) => {
-      createPopup();
+    ).then(({deleteAllPopup}) => {
+      deleteAllPopup.createPopup();
     });
   };
 }
