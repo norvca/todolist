@@ -1,4 +1,5 @@
 // 加载数据库模块
+import 'babel-polyfill';
 import {userDB, visitorDB} from '../database/pouchDB';
 import pubsub from '../utils/pubsub';
 
@@ -53,8 +54,9 @@ const backendDB = {
   },
 
   // 展示任务详情
-  showDetail(idNum) {
-    db.showDetail(idNum);
+  async showDetail(idNum) {
+    const detail = await db.showDetail(idNum);
+    pubsub.emit('showDetail', detail);
   },
 
   // 删除全部任务

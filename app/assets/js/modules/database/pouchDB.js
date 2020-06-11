@@ -4,6 +4,8 @@ import PouchdbFind from 'pouchdb-find';
 import taskItemTemplate from '../templates/taskItem-template';
 import timeStampTemplate from '../templates/timeStamp-template';
 import taskCreater from '../utils/task-creater';
+import {clearDetail} from '../ui/detail';
+import {backendDB} from './db-interface';
 
 // 加载 PouchDB 插件
 PouchDB.plugin(PouchdbFind);
@@ -124,9 +126,9 @@ class PouchClass {
     if (taskList.firstChild) {
       taskList.firstChild.nextSibling.classList.add('todolist__focus');
       // 默认展示最新一项任务的详情
-      this.showDetail(tasks[length]._id);
+      backendDB.showDetail(tasks[length]._id);
     } else {
-      this.showDetail();
+      clearDetail();
     }
   }
 
@@ -166,9 +168,9 @@ class PouchClass {
         if (taskList.firstChild) {
           const firstTask = taskList.firstChild.nextSibling;
           firstTask.classList.add('todolist__focus');
-          this.showDetail(firstTask.getAttribute('idnum'));
+          backendDB.showDetail(firstTask.getAttribute('idnum'));
         } else {
-          this.showDetail();
+          clearDetail();
         }
       });
   }
@@ -183,19 +185,9 @@ class PouchClass {
 
   // 显示右侧任务详情
   showDetail(id) {
-    if (id) {
-      this.db.get(id).then(doc => {
-        const title = doc.title;
-        const text = doc.detail;
-        this.detailTitle.innerText = title;
-        this.detail.value = text;
-        this.detail.placeholder = '添加任务详情...';
-      });
-    } else {
-      this.detailTitle.innerText = '';
-      this.detail.value = '';
-      this.detail.placeholder = '此分类目前没有任务哦~';
-    }
+    return this.db.get(id).then(({title, detail}) => {
+      return {title, detail};
+    });
   }
 
   // 删除全部数据

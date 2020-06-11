@@ -1,5 +1,6 @@
 // 加载中间件模块
 import {backendDB as db} from '../database/db-interface';
+import {clearDetail} from '../ui/detail';
 
 // 主界面模块
 // 修改任务标题功能
@@ -54,7 +55,7 @@ function updateTaskDetail(currentTask, focusedTask) {
       db.showDetail(firstTask.getAttribute('idnum'));
     }
   } else {
-    db.showDetail();
+    clearDetail();
   }
 }
 
@@ -92,7 +93,7 @@ function deleteTask(e) {
         db.showDetail(firstTask.getAttribute('idnum'));
       }
     } else {
-      db.showDetail();
+      clearDetail();
     }
   }
 }
