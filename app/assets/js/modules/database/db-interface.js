@@ -46,8 +46,9 @@ const backendDB = {
   },
 
   // 搜索任务
-  searchTask(value) {
-    db.searchTask(value);
+  async renderBySearch(input) {
+    const result = await db.renderBySearch();
+    pubsub.emit('renderBySearch', {input, result});
   },
 
   // 修改任务

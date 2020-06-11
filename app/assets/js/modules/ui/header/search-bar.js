@@ -34,7 +34,7 @@ class SearchBar {
   // 查找任务功能
   searchTask(e) {
     if (e.target.classList.contains('act-color')) {
-      db.searchTask(this.value);
+      db.renderBySearch(this.value);
     }
   }
 

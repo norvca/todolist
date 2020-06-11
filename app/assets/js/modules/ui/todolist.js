@@ -6,6 +6,7 @@ import taskItemTemplate from '../templates/taskItem-template';
 import pubsub from '../utils/pubsub';
 
 pubsub.on('renderByTaskType', renderTasks);
+pubsub.on('renderBySearch', renderBySearch);
 
 // 主界面模块
 function renderTasks(tasks) {
@@ -34,6 +35,41 @@ function renderTasks(tasks) {
     taskList.firstChild.nextSibling.classList.add('todolist__focus');
     // 默认展示最新一项任务的详情
     db.showDetail(tasks[length]._id);
+  } else {
+    clearDetail();
+  }
+}
+
+function renderBySearch({input, result}) {
+  let indexTime;
+  const taskLists = document.querySelector('.todolist__tasks');
+  const taskList = document.createElement('ul');
+  taskList.classList.add('todolist__list');
+
+  result.rows.forEach(element => {
+    element = element.doc;
+
+    if (element.title && element.title.indexOf(input) !== -1) {
+      // 如果时间戳不等于任务的时间戳，那就添加时间戳
+      if (indexTime !== element.taskTime) {
+        indexTime = element.taskTime;
+        taskList.appendChild(timeStampTemplate(element));
+      }
+
+      // 添加任务条
+      const taskItemHTML = taskItemTemplate(element);
+      taskList.appendChild(taskItemHTML);
+    }
+  });
+
+  taskLists.innerHTML = '';
+  taskLists.appendChild(taskList);
+
+  // 首任务聚焦
+  if (taskList.firstChild) {
+    const firstTask = taskList.firstChild.nextSibling;
+    firstTask.classList.add('todolist__focus');
+    db.showDetail(firstTask.getAttribute('idnum'));
   } else {
     clearDetail();
   }

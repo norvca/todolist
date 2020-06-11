@@ -1,11 +1,7 @@
 // 模块加载
 import PouchDB from 'pouchdb';
 import PouchdbFind from 'pouchdb-find';
-import taskItemTemplate from '../templates/taskItem-template';
-import timeStampTemplate from '../templates/timeStamp-template';
 import taskCreater from '../utils/task-creater';
-import {clearDetail} from '../ui/detail';
-import {backendDB} from './db-interface';
 
 // 加载 PouchDB 插件
 PouchDB.plugin(PouchdbFind);
@@ -88,7 +84,7 @@ class PouchClass {
       });
   }
 
-  sortByCurrentTask() {
+  renderByCurrentTask() {
     const taskType = document
       .querySelector('.sidebar__act')
       .getAttribute('taskType');
@@ -97,45 +93,14 @@ class PouchClass {
   }
 
   // 搜索数据库中的数据然后展示到页面
-  searchTask(value) {
-    let indexTime;
-    const taskList = document.createElement('ul');
-    taskList.classList.add('todolist__list');
-    console.log(this);
-
-    this.db
+  renderBySearch() {
+    return this.db
       .allDocs({
         include_docs: true,
         descending: true,
       })
       .then(result => {
-        result.rows.forEach(element => {
-          element = element.doc;
-
-          if (element.title && element.title.indexOf(value) !== -1) {
-            // 如果时间戳不等于任务的时间戳，那就添加时间戳
-            if (indexTime !== element.taskTime) {
-              indexTime = element.taskTime;
-              taskList.appendChild(timeStampTemplate(element));
-            }
-
-            // 添加任务条
-            const taskItemHTML = taskItemTemplate(element);
-            taskList.appendChild(taskItemHTML);
-          }
-        });
-
-        this.taskLists.innerHTML = '';
-        this.taskLists.appendChild(taskList);
-
-        // 首任务聚焦
-        if (taskList.firstChild) {
-          const firstTask = taskList.firstChild.nextSibling;
-          firstTask.classList.add('todolist__focus');
-          backendDB.showDetail(firstTask.getAttribute('idnum'));
-        } else {
-          clearDetail();
-        }
+        return result;
       });
   }
 

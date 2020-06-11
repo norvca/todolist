@@ -51,7 +51,7 @@ function getSyncHandler(db, remoteDB) {
     })
     .on('change', function (change) {
       console.log(change);
-      userDB.sortByCurrentTask();
+      userDB.renderByCurrentTask();
       syncState.innerText = '数据同步完成!';
     })
     .on('paused', function (info) {
