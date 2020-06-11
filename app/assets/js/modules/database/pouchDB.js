@@ -1,7 +1,6 @@
 // 模块加载
 import PouchDB from 'pouchdb';
 import PouchdbFind from 'pouchdb-find';
-import clearPage from '../ui/clear-page';
 import taskItemTemplate from '../templates/taskItem-template';
 import timeStampTemplate from '../templates/timeStamp-template';
 import taskCreater from '../utils/task-creater';
@@ -209,9 +208,6 @@ class PouchClass {
             return this.db.remove(row.id, row.value.rev);
           }),
         );
-      })
-      .then(() => {
-        clearPage();
       })
       .catch(err => {
         console.log(err + '删除数据库失败！');
