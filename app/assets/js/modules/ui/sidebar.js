@@ -18,7 +18,7 @@ function navigateByType(target) {
   target.classList.add('sidebar__act');
 
   const typeValue = target.getAttribute('taskType');
-  db.sortByTaskType(typeValue);
+  db.renderByTaskType(typeValue);
 }
 
 const levelBox = [0, 1, 2];
@@ -36,7 +36,7 @@ function navigateByLevel(target) {
   currentLevel.classList.add('active');
 
   const levelValue = currentLevel.getAttribute('level');
-  db.sortByTaskLevel(levelValue);
+  db.renderByTaskLevel(levelValue);
 }
 
 export {navigate};

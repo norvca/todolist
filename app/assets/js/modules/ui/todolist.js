@@ -5,7 +5,7 @@ import timeStampTemplate from '../templates/timeStamp-template';
 import taskItemTemplate from '../templates/taskItem-template';
 import pubsub from '../utils/pubsub';
 
-pubsub.on('sortByTaskType', renderTasks);
+pubsub.on('renderByTaskType', renderTasks);
 
 // 主界面模块
 function renderTasks(tasks) {

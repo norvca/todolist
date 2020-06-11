@@ -6,7 +6,7 @@ function createRandomTask() {
     .querySelector('.sidebar__act')
     .getAttribute('taskType');
   db.addRandomTask();
-  db.sortByTaskType(typeValue);
+  db.renderByTaskType(typeValue);
 }
 
 export default createRandomTask;

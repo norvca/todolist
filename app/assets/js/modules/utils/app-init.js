@@ -7,7 +7,7 @@ function initApp(username, token) {
   showProfile();
   useUserDB();
   firstSync(userDB.db, username, token);
-  userDB.sortByTaskType('work');
+  userDB.renderByTaskType('work');
 }
 
 function reinitApp() {
@@ -18,9 +18,9 @@ function reinitApp() {
   if (dbName && token && username) {
     reSync(userDB.db);
     showProfile();
-    db.sortByTaskType('work');
+    db.renderByTaskType('work');
   } else {
-    db.sortByTaskType('work');
+    db.renderByTaskType('work');
   }
 }
 

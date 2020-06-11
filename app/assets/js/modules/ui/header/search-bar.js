@@ -20,7 +20,7 @@ class SearchBar {
       this.input.value = '';
 
       if (!this.input.classList.contains('act-color')) {
-        db.sortByTaskType(this.typeValue);
+        db.renderByTaskType(this.typeValue);
       }
     }
   };
@@ -44,7 +44,7 @@ class SearchBar {
       return;
     } else {
       db.addTask();
-      db.sortByTaskType(this.typeValue);
+      db.renderByTaskType(this.typeValue);
       this.input.value = '';
     }
   };
@@ -60,7 +60,7 @@ class SearchBar {
         document.activeElement.tagName.toUpperCase() === 'INPUT'
       ) {
         db.addTask();
-        db.sortByTaskType(this.typeValue);
+        db.renderByTaskType(this.typeValue);
         this.input.value = '';
       }
     }
