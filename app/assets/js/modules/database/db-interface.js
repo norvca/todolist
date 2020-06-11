@@ -35,19 +35,19 @@ const backendDB = {
 
   // 按任务类型分类
   async renderByTaskType(value) {
-    const taskArr = await db.renderByTaskType(value);
+    const taskArr = await db.sortByTaskType(value);
     pubsub.emit('renderByTaskType', taskArr);
   },
 
   // 按任务类型分类
   async renderByTaskLevel(value) {
-    const taskArr = await db.renderByTaskLevel(value);
+    const taskArr = await db.sortByTaskLevel(value);
     pubsub.emit('renderByTaskType', taskArr);
   },
 
   // 搜索任务
   async renderBySearch(input) {
-    const result = await db.renderBySearch();
+    const result = await db.fetchDB();
     pubsub.emit('renderBySearch', {input, result});
   },
 

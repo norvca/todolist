@@ -14,7 +14,6 @@ let pouchVisitor = new PouchDB('visitorDB');
 class PouchClass {
   constructor(db) {
     this.db = db;
-    this.taskLists = document.querySelector('.todolist__tasks');
     this.taskCreater = taskCreater;
   }
 
@@ -46,7 +45,7 @@ class PouchClass {
       });
   }
 
-  renderByTaskType(value) {
+  sortByTaskType(value) {
     return this.db
       .createIndex({
         index: {fields: ['taskType']},
@@ -65,7 +64,7 @@ class PouchClass {
       });
   }
 
-  renderByTaskLevel(value) {
+  sortByTaskLevel(value) {
     return this.db
       .createIndex({
         index: {fields: ['level']},
@@ -84,16 +83,15 @@ class PouchClass {
       });
   }
 
-  renderByCurrentTask() {
+  sortByCurrentTask() {
     const taskType = document
       .querySelector('.sidebar__act')
       .getAttribute('taskType');
 
-    this.renderByTaskType(taskType);
+    this.sortByTaskType(taskType);
   }
 
-  // 搜索数据库中的数据然后展示到页面
-  renderBySearch() {
+  fetchDB() {
     return this.db
       .allDocs({
         include_docs: true,
