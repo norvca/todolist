@@ -18,12 +18,7 @@ let pouchVisitor = new PouchDB('visitorDB');
 class PouchClass {
   constructor(db) {
     this.db = db;
-    this.toDayString = new Date().toString();
-    this.input = document.querySelector('.site-header__search-box__input');
-    this.level = document.querySelector('.icon__level');
     this.taskLists = document.querySelector('.todolist__tasks');
-    this.detail = document.querySelector('.detail__paragraph');
-    this.detailTitle = document.querySelector('.detail__title');
     this.taskCreater = taskCreater;
   }
 
@@ -69,7 +64,7 @@ class PouchClass {
             sort: [{taskType: 'desc'}],
           })
           .then(result => {
-            this.redrawTasksUI(result.docs);
+            return result.docs;
           });
       });
   }
@@ -88,7 +83,7 @@ class PouchClass {
             sort: [{level: 'desc'}],
           })
           .then(result => {
-            this.redrawTasksUI(result.docs);
+            return result.docs;
           });
       });
   }
@@ -99,37 +94,6 @@ class PouchClass {
       .getAttribute('taskType');
 
     this.sortByTaskType(taskType);
-  }
-
-  // 把任务条渲染到页面
-  redrawTasksUI(tasks) {
-    let indexTime = '';
-    const taskList = document.createElement('ul');
-    taskList.classList.add('todolist__list');
-    tasks.forEach(element => {
-      // 如果时间戳不等于任务的时间戳，那就添加时间戳
-      if (indexTime !== element.taskTime) {
-        indexTime = element.taskTime;
-
-        const timeStampHTML = timeStampTemplate(element);
-        taskList.appendChild(timeStampHTML);
-      }
-      // 添加任务条
-      const taskItemHTML = taskItemTemplate(element);
-      taskList.appendChild(taskItemHTML);
-    });
-
-    this.taskLists.innerHTML = '';
-    this.taskLists.appendChild(taskList);
-
-    // 首任务聚焦
-    if (taskList.firstChild) {
-      taskList.firstChild.nextSibling.classList.add('todolist__focus');
-      // 默认展示最新一项任务的详情
-      backendDB.showDetail(tasks[length]._id);
-    } else {
-      clearDetail();
-    }
   }
 
   // 搜索数据库中的数据然后展示到页面

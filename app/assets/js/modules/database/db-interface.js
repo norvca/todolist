@@ -34,13 +34,15 @@ const backendDB = {
   },
 
   // 按任务类型分类
-  sortByTaskType(value) {
-    db.sortByTaskType(value);
+  async sortByTaskType(value) {
+    const taskArr = await db.sortByTaskType(value);
+    pubsub.emit('sortByTaskType', taskArr);
   },
 
   // 按任务类型分类
-  sortByTaskLevel(value) {
-    db.sortByTaskLevel(value);
+  async sortByTaskLevel(value) {
+    const taskArr = await db.sortByTaskLevel(value);
+    pubsub.emit('sortByTaskType', taskArr);
   },
 
   // 搜索任务

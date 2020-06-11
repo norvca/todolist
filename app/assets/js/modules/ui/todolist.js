@@ -1,8 +1,44 @@
 // 加载中间件模块
 import {backendDB as db} from '../database/db-interface';
 import {clearDetail} from '../ui/detail';
+import timeStampTemplate from '../templates/timeStamp-template';
+import taskItemTemplate from '../templates/taskItem-template';
+import pubsub from '../utils/pubsub';
+
+pubsub.on('sortByTaskType', renderTasks);
 
 // 主界面模块
+function renderTasks(tasks) {
+  let indexTime = '';
+  const taskLists = document.querySelector('.todolist__tasks');
+  const taskList = document.createElement('ul');
+  taskList.classList.add('todolist__list');
+  tasks.forEach(element => {
+    // 如果时间戳不等于任务的时间戳，那就添加时间戳
+    if (indexTime !== element.taskTime) {
+      indexTime = element.taskTime;
+
+      const timeStampHTML = timeStampTemplate(element);
+      taskList.appendChild(timeStampHTML);
+    }
+    // 添加任务条
+    const taskItemHTML = taskItemTemplate(element);
+    taskList.appendChild(taskItemHTML);
+  });
+
+  taskLists.innerHTML = '';
+  taskLists.appendChild(taskList);
+
+  // 首任务聚焦
+  if (taskList.firstChild) {
+    taskList.firstChild.nextSibling.classList.add('todolist__focus');
+    // 默认展示最新一项任务的详情
+    db.showDetail(tasks[length]._id);
+  } else {
+    clearDetail();
+  }
+}
+
 // 修改任务标题功能
 function changeTaskTitle(e) {
   const taskTitle = e.target;
