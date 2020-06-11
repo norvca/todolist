@@ -1,11 +1,11 @@
 // 加载各模块
-import * as sidebar from '../layout/sidebar';
-import * as todolistMain from '../layout/todolist';
-import * as todolistDetail from '../layout/detail';
-import levelChanger from '../layout/header/level-changer';
-import createRandomTask from '../layout/header/random-task';
-import searchBar from '../layout/header/search-bar';
-import themeChanger from '../layout/header/theme-changer';
+import * as sidebar from '../ui/sidebar';
+import * as todolistMain from '../ui/todolist';
+import * as todolistDetail from '../ui/detail';
+import levelChanger from '../ui/header/level-changer';
+import createRandomTask from '../ui/header/random-task';
+import searchBar from '../ui/header/search-bar';
+import themeChanger from '../ui/header/theme-changer';
 
 const levelChangeBtn = document.querySelector('.icon__level');
 const loginButton = document.querySelector('.site-header__loginButton');
@@ -76,7 +76,7 @@ deleteData.addEventListener('click', createDeletePopup());
 function createLoginPopupDesktop() {
   return () => {
     import(
-      /* webpackChunkName: "login", webpackPrefetch: true */ '../layout/popups/login-popup'
+      /* webpackChunkName: "login", webpackPrefetch: true */ '../ui/popups/login-popup'
     ).then(({createPopup}) => {
       createPopup();
     });
@@ -87,7 +87,7 @@ function createLoginPopupDesktop() {
 function createLoginPopupPhone() {
   return () => {
     import(
-      /* webpackChunkName: "login", webpackPrefetch: true */ '../layout/popups/login-popup'
+      /* webpackChunkName: "login", webpackPrefetch: true */ '../ui/popups/login-popup'
     ).then(({createPopup}) => {
       createPopup();
     });
@@ -98,7 +98,7 @@ function createLoginPopupPhone() {
 function createDeletePopup() {
   return () => {
     import(
-      /* webpackChunkName: "delete-all", webpackPrefetch: true */ '../layout/popups/deleteAll-popup'
+      /* webpackChunkName: "delete-all", webpackPrefetch: true */ '../ui/popups/deleteAll-popup'
     ).then(({deleteAllPopup}) => {
       deleteAllPopup.createPopup();
     });

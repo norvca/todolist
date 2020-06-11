@@ -8,7 +8,7 @@ import {
   checkpassword,
 } from './validator';
 import api from '../api/urls';
-import * as loginPopup from '../layout/popups/login-popup';
+import * as loginPopup from '../ui/popups/login-popup';
 
 function checkAndSubmit(e) {
   e.preventDefault();
