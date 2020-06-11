@@ -12,10 +12,10 @@ class ThemeChanger {
   }
 
   // 切换主题功能
-  changeTheme() {
+  changeTheme = () => {
     this.shiftTheme();
     this.renderTheme();
-  }
+  };
 
   shiftTheme() {
     for (let prop in this.theme) {

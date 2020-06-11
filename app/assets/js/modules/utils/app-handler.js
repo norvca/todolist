@@ -22,14 +22,14 @@ const themeBtn = document.querySelector('.site-header__theme-btn');
 
 // header 区域
 // 开启查找任务功能
-searchBox.addEventListener('click', searchBar.openSearchTask.bind(searchBar));
+searchBox.addEventListener('click', searchBar.openSearchTask);
 
 // 查找任务
 searBarInput.addEventListener('keyup', searchBar.searchTask);
 
 // 添加任务
-searBarInput.addEventListener('keyup', searchBar.addTask2.bind(searchBar));
-addBtn.addEventListener('click', searchBar.addTask1.bind(searchBar));
+searBarInput.addEventListener('keyup', searchBar.addTask2);
+addBtn.addEventListener('click', searchBar.addTask1);
 
 // 添加随机任务
 randomTaskBtn.addEventListener('click', createRandomTask);
@@ -41,7 +41,7 @@ levelChangeBtn.addEventListener(
 );
 
 // 切换主题
-themeBtn.addEventListener('click', themeChanger.changeTheme.bind(themeChanger));
+themeBtn.addEventListener('click', themeChanger.changeTheme);
 
 // 显示登陆注册功能模态框
 loginButton.addEventListener('click', createLoginPopupDesktop());

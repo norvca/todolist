@@ -12,7 +12,7 @@ class SearchBar {
   }
 
   // 开启查找任务功能
-  openSearchTask(e) {
+  openSearchTask = e => {
     const target = e.target;
     if (target.classList.contains('icon__search')) {
       this.activeUI(target);
@@ -23,7 +23,7 @@ class SearchBar {
         db.sortByTaskType(this.typeValue);
       }
     }
-  }
+  };
 
   activeUI(target) {
     target.classList.toggle('act-color');
@@ -39,7 +39,7 @@ class SearchBar {
   }
 
   // 添加任务功能
-  addTask1() {
+  addTask1 = () => {
     if (!this.input.value) {
       return;
     } else {
@@ -47,10 +47,10 @@ class SearchBar {
       db.sortByTaskType(this.typeValue);
       this.input.value = '';
     }
-  }
+  };
 
   // 按回车键添加任务功能
-  addTask2(event = window.event) {
+  addTask2 = (event = window.event) => {
     const key = event.which || event.keyCode || event.charCode;
 
     // 焦点在搜索栏并按回车
@@ -64,7 +64,7 @@ class SearchBar {
         this.input.value = '';
       }
     }
-  }
+  };
 
   get typeValue() {
     return document.querySelector('.sidebar__act').getAttribute('taskType');
