@@ -45,7 +45,7 @@ class PouchClass {
       });
   }
 
-  sortByTaskType(value) {
+  renderByTaskType(value) {
     return this.db
       .createIndex({
         index: {fields: ['taskType']},
@@ -64,7 +64,7 @@ class PouchClass {
       });
   }
 
-  sortByTaskLevel(value) {
+  renderByTaskLevel(value) {
     return this.db
       .createIndex({
         index: {fields: ['level']},
@@ -83,15 +83,15 @@ class PouchClass {
       });
   }
 
-  sortByCurrentTask() {
+  renderByCurrentTask() {
     const taskType = document
       .querySelector('.sidebar__act')
       .getAttribute('taskType');
 
-    this.sortByTaskType(taskType);
+    this.renderByTaskType(taskType);
   }
 
-  fetchDB() {
+  renderBySearch() {
     return this.db
       .allDocs({
         include_docs: true,

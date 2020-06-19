@@ -49,6 +49,7 @@ function submitInfo(username, password) {
       password: password,
     })
     .then(response => {
+      console.log(response);
       const token = response.data.token;
       const dbName = hexedDBame(username);
 
