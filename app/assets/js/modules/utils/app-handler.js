@@ -77,8 +77,8 @@ function createLoginPopupDesktop() {
   return () => {
     import(
       /* webpackChunkName: "login", webpackPrefetch: true */ '../ui/popups/login-popup'
-    ).then(({createPopup}) => {
-      createPopup();
+    ).then(({default: loginPopup}) => {
+      loginPopup.createPopup();
     });
   };
 }
@@ -88,8 +88,8 @@ function createLoginPopupPhone() {
   return () => {
     import(
       /* webpackChunkName: "login", webpackPrefetch: true */ '../ui/popups/login-popup'
-    ).then(({createPopup}) => {
-      createPopup();
+    ).then(({loginPopup}) => {
+      loginPopup.createPopup();
     });
   };
 }
