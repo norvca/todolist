@@ -1,10 +1,10 @@
 import {firstSync, reSync} from '../database/sync';
 import {userDB} from '../database/pouchDB';
 import {useUserDB, backendDB as db} from '../database/db-interface';
-import {showProfile} from '../ui/popups/profile-popup';
+import profilePopup from '../ui/popups/profile-popup';
 
 function initApp(username, token) {
-  showProfile();
+  profilePopup.showProfileIcon();
   useUserDB();
   firstSync(userDB.db, username, token);
   userDB.renderByTaskType('work');
@@ -17,7 +17,7 @@ function reinitApp() {
 
   if (dbName && token && username) {
     reSync(userDB.db);
-    showProfile();
+    profilePopup.showProfileIcon();
     db.renderByTaskType('work');
   } else {
     db.renderByTaskType('work');
