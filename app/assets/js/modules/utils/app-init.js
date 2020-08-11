@@ -7,6 +7,7 @@ function initApp(username, token) {
   profilePopup.showProfileIcon();
   useUserDB();
   firstSync(userDB.db, username, token);
+  // TODO: 用 userDB 则登录后不能立即渲染任务栏，切换成db就可以
   userDB.renderByTaskType('work');
 }
 

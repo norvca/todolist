@@ -35,7 +35,7 @@ const backendDB = {
 
   // 按任务类型分类
   async renderByTaskType(value) {
-    const taskArr = await db.renderByTaskLevel(value);
+    const taskArr = await db.renderByTaskType(value);
     pubsub.emit('renderByTaskType', taskArr);
   },
 
