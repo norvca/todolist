@@ -2,15 +2,21 @@
 
 一个用原生 js 写的 ToDoList
 
-## 项目特点
+### 项目特点
 
 用 js 配合 CouchDB 实现 的 ToDoList
 
-## 技术栈
+### 技术栈
 
 ES5 + CSS3 + CouchDB
 
-## 预览地址
+### 关联项目
+
+- 设计部分：[todolist-design](https://github.com/norvca/todolist-design)
+
+- 服务端部分：[todolist-backend](https://github.com/norvca/todolist-backend)
+
+### 预览地址
 
 https://norvca.github.io/todolist/app/dist
 
