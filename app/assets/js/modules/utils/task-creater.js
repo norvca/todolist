@@ -9,7 +9,7 @@ class TaskCreater {
       '尝试做些家常菜',
       '了解一些设计常识',
     ];
-    this._levels = ['bgc-light', 'bgc-usual', 'bgc-heavy'];
+    this._levels = ['level-light', 'level-usual', 'level-heavy'];
   }
 
   createTask() {

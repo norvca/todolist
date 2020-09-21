@@ -1,9 +1,6 @@
 class LevelChanger {
   constructor() {
-    this.levels = {
-      status: ['level-light', 'level-usual', 'level-heavy'],
-      colors: ['bgc-light', 'bgc-usual', 'bgc-heavy'],
-    };
+    this.level = ['level-light', 'level-usual', 'level-heavy'];
     this.levelChangeBtn = document.querySelector('.icon__level');
   }
 
@@ -13,18 +10,15 @@ class LevelChanger {
   }
 
   shiftLevel() {
-    for (let prop in this.levels) {
-      let propArr = this.levels[prop];
-      propArr.push(propArr.shift());
-    }
+    this.level.push(this.level.shift());
   }
 
   renderLevel() {
     this.levelChangeBtn.setAttribute(
       'class',
-      `icon icon__level ${this.levels.status[0]}`,
+      `icon icon__level ${this.level[0]}`,
     );
-    this.levelChangeBtn.setAttribute('level', this.levels.colors[0]);
+    this.levelChangeBtn.setAttribute('level', this.level[0]);
   }
 }
 

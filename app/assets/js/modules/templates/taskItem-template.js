@@ -1,7 +1,7 @@
 // 组装任务条
 export default function taskItemTemplate(element) {
   // 单项任务的属性设计
-  const taskItemHTML = `<li id="things_${element._id}" class="todolist__content ${element.level}" idnum="${element._id}">
+  const taskItemHTML = `<li id="things_${element._id}" class="todolist__content" idnum="${element._id}" level="${element.level}" >
                             <div>
                               <span class='todolist__title' contenteditable='true' idnum=${element._id}> ${element.title} </span>
                             </div>

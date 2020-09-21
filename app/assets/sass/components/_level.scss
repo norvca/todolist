@@ -12,12 +12,14 @@
   color: $mainRed;
 }
 
-.bgc-light {
+li[level='level-light'] {
   background-color: $mainGreen;
 }
-.bgc-usual {
+
+li[level='level-usual'] {
   background-color: $mainPurple;
 }
-.bgc-heavy {
+
+li[level='level-heavy'] {
   background-color: $mainRed;
 }
