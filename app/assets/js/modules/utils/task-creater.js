@@ -1,15 +1,15 @@
 class TaskCreater {
   constructor() {
-    this._title = document.querySelector('.site-header__search-box__input');
-    this._taskLevel = document.querySelector('.icon__level');
-    this._titles = [
+    this._input = document.querySelector('.site-header__search-box__input');
+    this._levelIcon = document.querySelector('.icon__level');
+    this._templateTitles = [
       '读完那本英文原著',
       '中午去睡个好觉',
       '日语入门学习',
       '尝试做些家常菜',
       '了解一些设计常识',
     ];
-    this._levels = ['level-light', 'level-usual', 'level-heavy'];
+    this._templateLevels = ['level-light', 'level-usual', 'level-heavy'];
   }
 
   createTask() {
@@ -38,11 +38,11 @@ class TaskCreater {
   }
 
   get title() {
-    return this._title.value;
+    return this._input.value;
   }
 
   get taskLevel() {
-    return this._taskLevel.getAttribute('level');
+    return this._levelIcon.getAttribute('level');
   }
   get taskTime() {
     return new Date().toLocaleDateString();
@@ -59,11 +59,11 @@ class TaskCreater {
   }
 
   get randomTitle() {
-    return this.shuffle(this._titles.slice())[0];
+    return this.shuffle(this._templateTitles.slice())[0];
   }
 
   get randomLevel() {
-    return this.shuffle(this._levels.slice())[0];
+    return this.shuffle(this._templateLevels.slice())[0];
   }
 
   shuffle(array) {
