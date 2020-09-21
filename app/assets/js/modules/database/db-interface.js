@@ -48,7 +48,7 @@ const backendDB = {
   // 搜索任务
   async renderBySearch(input) {
     const result = await db.renderBySearch();
-    pubsub.emit('renderBySearch', {input, result});
+    pubsub.emit('renderByLevel', {input, result});
   },
 
   // 修改任务
