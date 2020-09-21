@@ -1,24 +1,31 @@
 class LevelChanger {
   constructor() {
-    this.level = ['level-light', 'level-usual', 'level-heavy'];
+    this.levels = ['level-light', 'level-usual', 'level-heavy'];
     this.levelChangeBtn = document.querySelector('.icon__level');
   }
 
   changeLevel() {
     this.shiftLevel();
     this.renderLevel();
+
+    // Store current level in local storage
+    localStorage.setItem('currentLevel', this.currentLevel);
   }
 
   shiftLevel() {
-    this.level.push(this.level.shift());
+    this.levels.push(this.levels.shift());
   }
 
   renderLevel() {
     this.levelChangeBtn.setAttribute(
       'class',
-      `icon icon__level ${this.level[0]}`,
+      `icon icon__level ${this.currentLevel}`,
     );
-    this.levelChangeBtn.setAttribute('level', this.level[0]);
+    this.levelChangeBtn.setAttribute('level', this.currentLevel);
+  }
+
+  get currentLevel() {
+    return this.levels[0];
   }
 }
 

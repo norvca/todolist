@@ -42,7 +42,7 @@ class TaskCreater {
   }
 
   get taskLevel() {
-    return this._levelIcon.getAttribute('level');
+    return localStorage.getItem('currentLevel');
   }
   get taskTime() {
     return new Date().toLocaleDateString();
