@@ -19,6 +19,9 @@ function navigateByType(target) {
 
   const typeValue = target.getAttribute('taskType');
   db.renderByTaskType(typeValue);
+
+  // Store current task type in local storage
+  localStorage.setItem('currentType', typeValue);
 }
 
 const levelBox = [0, 1, 2];

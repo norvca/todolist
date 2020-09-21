@@ -49,8 +49,7 @@ class TaskCreater {
   }
 
   get taskType() {
-    const currentType = document.querySelector('.sidebar__act');
-    return currentType.getAttribute('taskType');
+    return localStorage.getItem('currentType');
   }
 
   get taskWeek() {
