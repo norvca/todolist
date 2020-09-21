@@ -42,13 +42,13 @@ const backendDB = {
   // 按任务类型分类
   async renderByTaskLevel(value) {
     const taskArr = await db.renderByTaskLevel(value);
-    pubsub.emit('renderByTaskType', taskArr);
+    pubsub.emit('renderByTaskLevel', taskArr);
   },
 
   // 搜索任务
   async renderBySearch(input) {
     const result = await db.renderBySearch();
-    pubsub.emit('renderByLevel', {input, result});
+    pubsub.emit('renderBySearch', {input, result});
   },
 
   // 修改任务

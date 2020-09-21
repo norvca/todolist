@@ -6,7 +6,7 @@ import taskItemTemplate from '../templates/taskItem-template';
 import pubsub from '../utils/pubsub';
 
 pubsub.on('renderByTaskType', renderTasks);
-pubsub.on('renderByLevel', renderTasks);
+pubsub.on('renderByTaskLevel', renderTasks);
 pubsub.on('renderBySearch', renderBySearch);
 
 // 主界面模块
