@@ -25,7 +25,7 @@ body {
 }
 
 html {
-  font-family: Helvetica, sans-serif;
+  font-family: 'Noto Sans', 'Microsoft YaHei', 'Heiti SC', 'STHeiti', sans-serif;
   font-size: 62.5%;
 
   @include atSmall {
@@ -40,6 +40,10 @@ html {
 body {
   display: flex;
   flex-direction: column;
+}
+
+textarea {
+  font-family: 'Noto Sans', 'Microsoft YaHei', 'Heiti SC', 'STHeiti', sans-serif;
 }
 
 ul,
