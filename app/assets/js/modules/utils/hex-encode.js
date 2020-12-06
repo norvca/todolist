@@ -8,8 +8,8 @@ function toHex(s) {
   return h;
 }
 
-function hexedDBame(username) {
+function hexedDBName(username) {
   return `userdb-${toHex(username)}`;
 }
 
-export {hexedDBame};
+export {hexedDBName};

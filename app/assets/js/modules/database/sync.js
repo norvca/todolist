@@ -1,4 +1,4 @@
-import {hexedDBame} from '../utils/hex-encode';
+import {hexedDBName} from '../utils/hex-encode';
 import PouchDB from 'pouchdb';
 import {userDB} from './pouchDB';
 import api from '../api/urls';
@@ -7,7 +7,7 @@ let syncHandler;
 
 // 登录账号后第一次同步
 function firstSync(db, username, token) {
-  const dbName = hexedDBame(username);
+  const dbName = hexedDBName(username);
   const remoteDB = getRemoteDB(api, dbName, token);
 
   syncHandler = getSyncHandler(db, remoteDB);

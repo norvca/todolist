@@ -6,7 +6,7 @@ import {
   checkpassword,
 } from './validator';
 import loginPopup from '../ui/popups/login-popup';
-import {hexedDBame} from '../utils/hex-encode';
+import {hexedDBName} from '../utils/hex-encode';
 import {initApp} from '../utils/app-init';
 import api from '../api/urls';
 
@@ -51,7 +51,7 @@ function submitInfo(username, password) {
     .then(response => {
       console.log(response);
       const token = response.data.token;
-      const dbName = hexedDBame(username);
+      const dbName = hexedDBName(username);
 
       setSuccessInfo('登录成功！');
       loginPopup.exit();
