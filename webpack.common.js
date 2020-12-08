@@ -1,7 +1,10 @@
 module.exports = {
   entry: {
-    icon: './app/assets/js/modules/icons/icon.js',
-    main: './app/assets/js/app.js',
+    icon: './app/src/js/modules/icons/icon.ts',
+    main: './app/src/js/app.ts',
+  },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.json'],
   },
   module: {
     rules: [
@@ -21,17 +24,9 @@ module.exports = {
         },
       },
       {
-        test: /\.js$/,
+        test: /\.(ts|js)x?$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
-        options: {
-          presets: [
-            '@babel/preset-env',
-            {
-              plugins: ['@babel/plugin-proposal-class-properties'],
-            },
-          ],
-        },
       },
     ],
   },

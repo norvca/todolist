@@ -31,8 +31,8 @@ module.exports = merge(common, {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './app/assets/index.html',
-      favicon: './app/assets/img/favicon.ico',
+      template: './app/src/index.html',
+      favicon: './app/src/img/favicon.ico',
     }),
     new webpack.HotModuleReplacementPlugin(),
   ],

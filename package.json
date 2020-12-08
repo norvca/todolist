@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.js --open",
     "build": "webpack --config webpack.prod.js",
-    "eslint": "eslint --fix app/assets",
+    "eslint": "eslint --fix dist",
     "prettier": "prettier --write '**/*.+(js|json|yml|css|scss|ts|md|)'",
     "lint": "npm run eslint && npm run prettier"
   },
@@ -19,7 +19,9 @@
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/plugin-proposal-class-properties": "^7.10.1",
+    "@babel/plugin-proposal-object-rest-spread": "^7.12.1",
     "@babel/preset-env": "^7.9.0",
+    "@babel/preset-typescript": "^7.12.7",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
     "babel-eslint": "^10.1.0",

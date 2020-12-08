@@ -14,7 +14,7 @@ module.exports = merge(common, {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(ts|js)x?$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -45,8 +45,8 @@ module.exports = merge(common, {
     new MiniCssExtractPlugin({filename: '[name].[contenthash].css'}),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: './app/assets/index.html',
-      favicon: './app/assets/img/favicon.ico',
+      template: './app/src/index.html',
+      favicon: './app/src/img/favicon.ico',
     }),
   ],
 });
