@@ -2,15 +2,15 @@
 import {backendDB as db} from '../database/db-interface';
 import pubsub from '../utils/pubsub';
 
-const detailContent = document.querySelector('.detail__paragraph');
-const detailTitle = document.querySelector('.detail__title');
+const detailContent = document.querySelector('.detail__paragraph') as HTMLTextAreaElement;
+const detailTitle = document.querySelector('.detail__title') as HTMLHeadingElement;
 
 pubsub.on('showDetail', showDetail);
 
 // 定义右侧详情模块
 // 更新任务详情功能
 function refreshDetail() {
-  const focusTask = document.querySelector('.todolist__focus');
+  const focusTask = document.querySelector('.todolist__focus') as HTMLLIElement;
   const idNum = focusTask.getAttribute('idnum');
   const detailContent = this.value;
   const type = 'detail';

@@ -7,8 +7,8 @@ import taskCreater from '../utils/task-creater';
 PouchDB.plugin(PouchdbFind);
 
 // 创建数据库
-let pouchUser = new PouchDB('userDB');
-let pouchVisitor = new PouchDB('visitorDB');
+const pouchUser = new PouchDB('userDB');
+const pouchVisitor = new PouchDB('visitorDB');
 
 // 数据库模型
 class PouchClass {
@@ -84,9 +84,7 @@ class PouchClass {
   }
 
   renderByCurrentTask() {
-    const taskType = document
-      .querySelector('.sidebar__act')
-      .getAttribute('taskType');
+    const taskType = document.querySelector('.sidebar__act').getAttribute('taskType');
 
     this.renderByTaskType(taskType);
   }

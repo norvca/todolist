@@ -2,16 +2,16 @@ import axios from 'axios';
 import api from '../api/urls';
 
 // 事件处理中心
-function changeUsernameHandler() {
-  const changeUsernameForm = document.querySelector('.form__change-username');
+function changeUsernameHandler(): void {
+  const changeUsernameForm = document.querySelector('.form__change-username') as HTMLFormElement;
   changeUsernameForm.addEventListener('submit', changeUsername);
 }
 
 // 修改用户名
-function changeUsername(e) {
-  const currentUsername = document.querySelector('.current-username');
-  const newUsername = document.querySelector('.new-username');
-  const welcome = document.querySelector('.profile-popup__welcome');
+function changeUsername(e: Event) {
+  const currentUsername = document.querySelector('.current-username') as HTMLInputElement;
+  const newUsername = document.querySelector('.new-username') as HTMLInputElement;
+  const welcome = document.querySelector('.profile-popup__welcome') as HTMLHeadingElement;
   e.preventDefault();
 
   axios

@@ -3,18 +3,16 @@ import * as signin from '../../Login/Signin';
 import * as signup from '../../Login/Signup';
 
 class LoginPopup {
-  constructor() {}
-
   createPopup() {
     document.body.insertAdjacentHTML('beforeend', loginHTML);
     this.initPopup();
   }
 
   initPopup() {
-    const signinBox = document.querySelector('.login__signin');
-    const signupBox = document.querySelector('.login__signup');
-    const formControls = document.querySelectorAll('.form-control');
-    const welcome = document.querySelector('.login__signin__welcome');
+    const signinBox = document.querySelector('.login__signin') as HTMLDivElement;
+    const signupBox = document.querySelector('.login__signup') as HTMLDivElement;
+    const formControls = document.querySelectorAll('.form-control') as NodeListOf<HTMLDivElement>;
+    const welcome = document.querySelector('.login__signin__welcome') as HTMLParagraphElement;
 
     formControls.forEach(el => {
       const input = el.querySelector('input');
@@ -35,11 +33,11 @@ class LoginPopup {
   }
 
   loginHandler() {
-    const loginBox = document.querySelector('.login__box');
-    const signinForm = document.querySelector('.login__signin__form');
-    const signupForm = document.querySelector('.login__signup__form');
-    const signinExitBtn = document.querySelector('.login__signin__exit');
-    const signupExitBtn = document.querySelector('.login__signup__exit');
+    const loginBox = document.querySelector('.login__box') as HTMLDivElement;
+    const signinForm = document.querySelector('.login__signin__form') as HTMLFormElement;
+    const signupForm = document.querySelector('.login__signup__form') as HTMLFormElement;
+    const signinExitBtn = document.querySelector('.login__signin__exit') as HTMLAnchorElement;
+    const signupExitBtn = document.querySelector('.login__signup__exit') as HTMLAnchorElement;
 
     // 用户登录提交
     signinForm.addEventListener('submit', signin.checkAndSubmit);
@@ -56,8 +54,8 @@ class LoginPopup {
   }
 
   changeState(e) {
-    const signin = document.querySelector('.login__signin');
-    const signup = document.querySelector('.login__signup');
+    const signin = document.querySelector('.login__signin') as HTMLDivElement;
+    const signup = document.querySelector('.login__signup') as HTMLDivElement;
     if (e.target.classList.contains('login__changeState')) {
       signin.classList.toggle('hidden');
       signup.classList.toggle('hidden');
@@ -65,7 +63,7 @@ class LoginPopup {
   }
 
   exit() {
-    const loginModal = document.querySelector('.login');
+    const loginModal = document.querySelector('.login') as HTMLDivElement;
     loginModal.remove();
   }
 }

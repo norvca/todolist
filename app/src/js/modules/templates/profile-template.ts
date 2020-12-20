@@ -1,4 +1,4 @@
-function profileHTMLCreater() {
+function profileHTMLCreater(): string {
   const username = localStorage.getItem('User-name');
 
   const HTML = `<div class="profile-popup fade">

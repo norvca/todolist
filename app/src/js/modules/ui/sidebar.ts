@@ -11,7 +11,7 @@ function navigate(e) {
 
 // 按任务类型导航
 function navigateByType(target) {
-  const lis = document.querySelectorAll('.sidebar__list-type');
+  const lis = document.querySelectorAll('.sidebar__list-type') as NodeListOf<HTMLLIElement>;
   lis.forEach(ele => {
     ele.classList.remove('sidebar__act');
   });

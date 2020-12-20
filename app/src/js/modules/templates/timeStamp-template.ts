@@ -1,5 +1,5 @@
 // 组装时间戳
-export default function timeStampTemplate(element) {
+export default function timeStampTemplate(element): DocumentFragment {
   // 创建时间戳
   const taskTime = element.taskTime;
   const taskWeek = element.taskWeek;
@@ -9,8 +9,6 @@ export default function timeStampTemplate(element) {
                             <span class='todolist__date'>${taskTime}</span>
                           </li>`;
 
-  const fragement = document
-    .createRange()
-    .createContextualFragment(timeStampHTML);
+  const fragement = document.createRange().createContextualFragment(timeStampHTML);
   return fragement;
 }

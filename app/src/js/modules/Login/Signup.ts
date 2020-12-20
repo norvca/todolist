@@ -1,22 +1,15 @@
 import axios from 'axios';
-import {
-  checkLength,
-  checkRequired,
-  checkEmail,
-  checkPasswordMatch,
-  checkusername,
-  checkpassword,
-} from './validator';
+import {checkLength, checkRequired, checkEmail, checkPasswordMatch, checkusername, checkpassword} from './validator';
 import api from '../api/urls';
 import loginPopup from '../ui/popups/login-popup';
 
-function checkAndSubmit(e) {
+function checkAndSubmit(e: Event): void {
   e.preventDefault();
-  const signupForm = document.querySelector('.login__signup__form');
-  const username = signupForm.querySelector('.username');
-  const password = signupForm.querySelector('.password');
-  const confirmPassword = signupForm.querySelector('.confirmPassword');
-  const email = signupForm.querySelector('.email');
+  const signupForm = document.querySelector('.login__signup__form') as HTMLFormElement;
+  const username = signupForm.querySelector('.username') as HTMLInputElement;
+  const password = signupForm.querySelector('.password') as HTMLInputElement;
+  const confirmPassword = signupForm.querySelector('.confirmPassword') as HTMLInputElement;
+  const email = signupForm.querySelector('.email') as HTMLInputElement;
 
   const isCheckPassed = validate(username, password, confirmPassword, email);
   if (isCheckPassed) {
@@ -25,9 +18,7 @@ function checkAndSubmit(e) {
 }
 
 function validate(username, password, confirmPassword, email) {
-  const formControls = document.querySelectorAll(
-    '.login__signup .form-control',
-  );
+  const formControls = document.querySelectorAll('.login__signup .form-control') as NodeListOf<HTMLDivElement>;
   const list = Array.from(formControls);
 
   checkRequired([username, password, confirmPassword, email]);
@@ -66,17 +57,13 @@ function submitInfo(username, password, email) {
 }
 
 function setSuccessInfo(info) {
-  const welcome = document.querySelector(
-    '.login__signup .login__signup__welcome',
-  );
+  const welcome = document.querySelector('.login__signup .login__signup__welcome') as HTMLParagraphElement;
   welcome.innerText = info;
   welcome.classList.remove('error');
 }
 
 function setErrorInfo(info) {
-  const welcome = document.querySelector(
-    '.login__signup .login__signup__welcome',
-  );
+  const welcome = document.querySelector('.login__signup .login__signup__welcome') as HTMLParagraphElement;
   welcome.innerText = info;
   welcome.classList.add('error');
 }

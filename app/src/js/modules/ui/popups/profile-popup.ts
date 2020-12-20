@@ -7,12 +7,10 @@ import changePassPopup from '../../templates/change-password';
 import changeUsernameHandler from '../../profile/change-username';
 
 class ProfilePopup {
-  constructor() {}
-
   // 顶部显示用户图标
   showProfileIcon() {
-    const loginBtn = document.querySelector('.site-header__login');
-    const profile = document.querySelector('.site-header__profile');
+    const loginBtn = document.querySelector('.site-header__login') as HTMLDivElement;
+    const profile = document.querySelector('.site-header__profile') as HTMLDivElement;
     const username = localStorage.getItem('User-name');
     const capital = username.slice(0, 1).toUpperCase();
 
@@ -33,19 +31,11 @@ class ProfilePopup {
 
   // 事件处理中心
   ProfileHandler() {
-    const profileCloser = document.querySelector(
-      '.profile-popup__utils__close',
-    );
-    const profileReturn = document.querySelector(
-      '.profile-popup__utils__return',
-    );
-    const logoutBtn = document.querySelector('.profile-popup__btn--logout');
-    const changeUserBtn = document.querySelector(
-      '.profile-popup__btn--change-username',
-    );
-    const changePassBtn = document.querySelector(
-      '.profile-popup__btn--change-password',
-    );
+    const profileCloser = document.querySelector('.profile-popup__utils__close') as HTMLSpanElement;
+    const profileReturn = document.querySelector('.profile-popup__utils__return') as HTMLSpanElement;
+    const logoutBtn = document.querySelector('.profile-popup__btn--logout') as HTMLButtonElement;
+    const changeUserBtn = document.querySelector('.profile-popup__btn--change-username') as HTMLButtonElement;
+    const changePassBtn = document.querySelector('.profile-popup__btn--change-password') as HTMLButtonElement;
 
     changeUserBtn.addEventListener('click', this.changeUsername);
     changePassBtn.addEventListener('click', this.changePassword);
@@ -56,12 +46,8 @@ class ProfilePopup {
 
   // 修改用户名
   changeUsername = () => {
-    const profilePopupContainer = document.querySelector(
-      '.profile-popup__container',
-    );
-    const currProfileContent = document.querySelector(
-      '.profile-popup__content',
-    );
+    const profilePopupContainer = document.querySelector('.profile-popup__container') as HTMLDivElement;
+    const currProfileContent = document.querySelector('.profile-popup__content') as HTMLDivElement;
 
     this.showUtilReturn();
     currProfileContent.classList.add('hidden');
@@ -71,12 +57,8 @@ class ProfilePopup {
 
   // 修改密码
   changePassword = () => {
-    const profilePopupContainer = document.querySelector(
-      '.profile-popup__container',
-    );
-    const currProfileContent = document.querySelector(
-      '.profile-popup__content',
-    );
+    const profilePopupContainer = document.querySelector('.profile-popup__container') as HTMLDivElement;
+    const currProfileContent = document.querySelector('.profile-popup__content') as HTMLDivElement;
 
     this.showUtilReturn();
     currProfileContent.classList.add('hidden');
@@ -97,26 +79,18 @@ class ProfilePopup {
   };
 
   removeHTML() {
-    const popup = document.querySelector('.profile-popup');
+    const popup = document.querySelector('.profile-popup') as HTMLDivElement;
     document.body.removeChild(popup);
   }
 
   // 返回用户资料主界面
   returnProfile = () => {
-    const profilePopupContainer = document.querySelector(
-      '.profile-popup__container',
-    );
-    const currProfileContent = document.querySelector(
-      '.profile-popup__content',
-    );
+    const profilePopupContainer = document.querySelector('.profile-popup__container') as HTMLDivElement;
+    const currProfileContent = document.querySelector('.profile-popup__content') as HTMLDivElement;
     currProfileContent.classList.remove('hidden');
 
-    const changeUserModule = document.querySelector(
-      '.profile-popup__change-username',
-    );
-    const changePassModule = document.querySelector(
-      '.profile-popup__change-password',
-    );
+    const changeUserModule = document.querySelector('.profile-popup__change-username') as HTMLDivElement;
+    const changePassModule = document.querySelector('.profile-popup__change-password') as HTMLDivElement;
 
     this.hideUtilReturn();
     if (changeUserModule) {
@@ -127,19 +101,19 @@ class ProfilePopup {
 
   // 显示返回图标
   showUtilReturn() {
-    const returnBtn = document.querySelector('.profile-popup__utils__return');
+    const returnBtn = document.querySelector('.profile-popup__utils__return') as HTMLSpanElement;
     returnBtn.classList.remove('hidden');
   }
 
   // 隐藏返回图标
   hideUtilReturn() {
-    const returnBtn = document.querySelector('.profile-popup__utils__return');
+    const returnBtn = document.querySelector('.profile-popup__utils__return') as HTMLSpanElement;
     returnBtn.classList.add('hidden');
   }
 
   hideProfile() {
-    const loginBtn = document.querySelector('.site-header__login');
-    const profile = document.querySelector('.site-header__profile');
+    const loginBtn = document.querySelector('.site-header__login') as HTMLDivElement;
+    const profile = document.querySelector('.site-header__profile') as HTMLDivElement;
 
     profile.classList.add('hidden');
     loginBtn.classList.remove('hidden');

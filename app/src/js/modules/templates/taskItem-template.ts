@@ -1,5 +1,5 @@
 // 组装任务条
-export default function taskItemTemplate(element) {
+export default function taskItemTemplate(element): DocumentFragment {
   // 单项任务的属性设计
   const taskItemHTML = `<li id="things_${element._id}" class="todolist__content" idnum="${element._id}" level="${element.level}" >
                             <div>
@@ -16,9 +16,7 @@ export default function taskItemTemplate(element) {
                             </div>
                           </li>`;
 
-  const fragement = document
-    .createRange()
-    .createContextualFragment(taskItemHTML);
+  const fragement = document.createRange().createContextualFragment(taskItemHTML);
 
   return fragement;
 }

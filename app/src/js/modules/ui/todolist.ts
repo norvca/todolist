@@ -12,7 +12,7 @@ pubsub.on('renderBySearch', renderBySearch);
 // 主界面模块
 function renderTasks(tasks) {
   let indexTime = '';
-  const taskLists = document.querySelector('.todolist__tasks');
+  const taskLists = document.querySelector('.todolist__tasks') as HTMLDivElement;
   const taskList = document.createElement('ul');
   taskList.classList.add('todolist__list');
   tasks.forEach(element => {
@@ -43,7 +43,7 @@ function renderTasks(tasks) {
 
 function renderBySearch({input, result}) {
   let indexTime;
-  const taskLists = document.querySelector('.todolist__tasks');
+  const taskLists = document.querySelector('.todolist__tasks') as HTMLDivElement;
   const taskList = document.createElement('ul');
   taskList.classList.add('todolist__list');
 
@@ -90,7 +90,7 @@ function changeTaskTitle(e) {
 // 任务已完成功能
 function finishTask(e) {
   const target = e.target;
-  const focusedTask = document.querySelector('.todolist__focus');
+  const focusedTask = document.querySelector('.todolist__focus') as HTMLLIElement;
 
   if (target.classList.contains('icon__nofinish')) {
     const idNum = target.getAttribute('idnum');
@@ -104,21 +104,16 @@ function finishTask(e) {
 }
 
 function isDeleteTimeStamp(currentTask) {
-  const hasPrevTask = currentTask.previousSibling.classList.contains(
-    'todolist__content',
-  );
+  const hasPrevTask = currentTask.previousSibling.classList.contains('todolist__content');
   const NextTask = currentTask.nextSibling;
 
-  if (
-    (!hasPrevTask && NextTask == null) ||
-    (!hasPrevTask && !NextTask.classList.contains('todolist__content'))
-  ) {
+  if ((!hasPrevTask && NextTask == null) || (!hasPrevTask && !NextTask.classList.contains('todolist__content'))) {
     currentTask.parentNode.removeChild(currentTask.previousSibling);
   }
 }
 
 function updateTaskDetail(currentTask, focusedTask) {
-  const taskList = document.querySelector('.todolist__list');
+  const taskList = document.querySelector('.todolist__list') as HTMLUListElement;
   // 首任务聚焦
   if (taskList.firstChild) {
     // 删除的正好是焦点任务就重新聚焦
@@ -134,24 +129,19 @@ function updateTaskDetail(currentTask, focusedTask) {
 
 // 任务删除功能
 function deleteTask(e) {
-  const taskList = document.querySelector('.todolist__list');
-  const focusedTask = document.querySelector('.todolist__focus');
+  const taskList = document.querySelector('.todolist__list') as HTMLUListElement;
+  const focusedTask = document.querySelector('.todolist__focus') as HTMLLIElement;
   if (e.target.classList.contains('icon__delete')) {
     const idNum = e.target.getAttribute('idnum');
     db.modifyTask(idNum, 'taskType', 'bin');
 
     // 删除页面上的数据
     const ele = e.target.parentNode.parentNode;
-    const hasPrevTask = ele.previousSibling.classList.contains(
-      'todolist__content',
-    );
+    const hasPrevTask = ele.previousSibling.classList.contains('todolist__content');
     const NextTask = ele.nextSibling;
 
     // 判断是否需要删除时间戳
-    if (
-      (!hasPrevTask && NextTask == null) ||
-      (!hasPrevTask && !NextTask.classList.contains('todolist__content'))
-    ) {
+    if ((!hasPrevTask && NextTask == null) || (!hasPrevTask && !NextTask.classList.contains('todolist__content'))) {
       ele.parentNode.removeChild(ele.previousSibling);
     }
 

@@ -1,7 +1,10 @@
 class LevelChanger {
+  private levels: string[];
+  private levelChangeBtn;
+
   constructor() {
     this.levels = ['level-light', 'level-usual', 'level-heavy'];
-    this.levelChangeBtn = document.querySelector('.icon__level');
+    this.levelChangeBtn = document.querySelector('.icon__level') as SVGElement;
   }
 
   changeLevel() {
@@ -17,10 +20,7 @@ class LevelChanger {
   }
 
   renderLevel() {
-    this.levelChangeBtn.setAttribute(
-      'class',
-      `icon icon__level ${this.currentLevel}`,
-    );
+    this.levelChangeBtn.setAttribute('class', `icon icon__level ${this.currentLevel}`);
     this.levelChangeBtn.setAttribute('level', this.currentLevel);
   }
 

@@ -13,8 +13,8 @@ class DeleteAllPopup {
   }
 
   popupHandler() {
-    this.confirmDelete = document.querySelector('.deleteAll-popup__btn-yes');
-    this.regretDelete = document.querySelector('.deleteAll-popup__btn-no');
+    this.confirmDelete = document.querySelector('.deleteAll-popup__btn-yes') as HTMLButtonElement;
+    this.regretDelete = document.querySelector('.deleteAll-popup__btn-no') as HTMLButtonElement;
 
     this.confirmDelete.addEventListener('click', this.deleteAllTasks);
     this.regretDelete.addEventListener('click', this.regretDeleteTasks);
@@ -30,7 +30,7 @@ class DeleteAllPopup {
   };
 
   deletePopup() {
-    this.modal = document.querySelector('.deleteAll-popup');
+    this.modal = document.querySelector('.deleteAll-popup') as HTMLDivElement;
     this.modal.remove();
   }
 }

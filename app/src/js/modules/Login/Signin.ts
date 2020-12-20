@@ -1,19 +1,14 @@
 import axios from 'axios';
-import {
-  checkLength,
-  checkRequired,
-  checkusername,
-  checkpassword,
-} from './validator';
+import {checkLength, checkRequired, checkusername, checkpassword} from './validator';
 import loginPopup from '../ui/popups/login-popup';
 import {hexedDBName} from '../utils/hex-encode';
 import {initApp} from '../utils/app-init';
 import api from '../api/urls';
 
-function checkAndSubmit(e) {
+function checkAndSubmit(e: Event): void {
   e.preventDefault();
-  const username = document.querySelector('.login__signin__form .username');
-  const password = document.querySelector('.login__signin__form .password');
+  const username = document.querySelector('.login__signin__form .username') as HTMLInputElement;
+  const password = document.querySelector('.login__signin__form .password') as HTMLInputElement;
 
   const isCheckPassed = validate(username, password);
   if (isCheckPassed) {
@@ -22,9 +17,7 @@ function checkAndSubmit(e) {
 }
 
 function validate(username, password) {
-  const formControls = document.querySelectorAll(
-    '.login__signin .form-control',
-  );
+  const formControls = document.querySelectorAll('.login__signin .form-control') as NodeListOf<HTMLDivElement>;
   const list = Array.from(formControls);
 
   checkRequired([username, password]);
@@ -72,17 +65,13 @@ function setLocalStorage(username, dbName, token) {
 }
 
 function setSuccessInfo(info) {
-  const welcome = document.querySelector(
-    '.login__signin .login__signin__welcome',
-  );
+  const welcome = document.querySelector('.login__signin .login__signin__welcome') as HTMLParagraphElement;
   welcome.innerText = info;
   welcome.classList.remove('error');
 }
 
 function setErrorInfo(info) {
-  const welcome = document.querySelector(
-    '.login__signin .login__signin__welcome',
-  );
+  const welcome = document.querySelector('.login__signin .login__signin__welcome') as HTMLParagraphElement;
   welcome.innerText = info;
   welcome.classList.add('error');
 }

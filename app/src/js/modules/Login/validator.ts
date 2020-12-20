@@ -1,5 +1,5 @@
 // 检查是否存在
-function checkRequired(inputArr) {
+function checkRequired(inputArr): void {
   inputArr.forEach(input => {
     if (input.value.trim() === '') {
       showError(input, `${input.placeholder}不能为空`);
@@ -10,7 +10,7 @@ function checkRequired(inputArr) {
 }
 
 // 检查输入字符长度
-function checkLength(input, min, max) {
+function checkLength(input, min, max): void {
   const length = input.value.trim().length;
 
   if (length < min) {
@@ -23,8 +23,9 @@ function checkLength(input, min, max) {
 }
 
 // 检查邮件格式
-function checkEmail(input) {
-  var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+function checkEmail(input): void {
+  // eslint-disable-next-line
+  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   if (re.test(input.value.trim())) {
     showSuccess(input);
@@ -34,33 +35,27 @@ function checkEmail(input) {
 }
 
 // 检查密码是否输入相同
-function checkPasswordMatch(input1, input2) {
+function checkPasswordMatch(input1, input2): void {
   if (input1.value !== input2.value) {
     showError(input2, `两次输入的密码不一致`);
   }
 }
 
 // 检查用户名格式
-function checkusername(input) {
-  var re = /^[a-zA-Z]+[a-zA-Z0-9]*$/;
+function checkusername(input): void {
+  const re = /^[a-zA-Z]+[a-zA-Z0-9]*$/;
 
   if (!re.test(input.value.trim())) {
-    showError(
-      input,
-      `${input.placeholder}开头必须为字母，全称只能包含字母、数字`,
-    );
+    showError(input, `${input.placeholder}开头必须为字母，全称只能包含字母、数字`);
   }
 }
 
 // 检查密码格式
-function checkpassword(input) {
-  var re = /^([a-zA-Z0-9]+[a-zA-Z0-9~!@#$%^&*()_+-=])*$/;
+function checkpassword(input): void {
+  const re = /^([a-zA-Z0-9]+[a-zA-Z0-9~!@#$%^&*()_+-=])*$/;
 
   if (!re.test(input.value.trim())) {
-    showError(
-      input,
-      `${input.placeholder}开头必须为字母或数字，全称只能包含字母、数字、和常见字符`,
-    );
+    showError(input, `${input.placeholder}开头必须为字母或数字，全称只能包含字母、数字、和常见字符`);
   }
 }
 
@@ -81,11 +76,4 @@ function showSuccess(input) {
   p.innerText = '';
 }
 
-export {
-  checkLength,
-  checkRequired,
-  checkEmail,
-  checkPasswordMatch,
-  checkusername,
-  checkpassword,
-};
+export {checkLength, checkRequired, checkEmail, checkPasswordMatch, checkusername, checkpassword};
