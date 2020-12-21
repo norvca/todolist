@@ -1,5 +1,6 @@
 export interface DBModel {
   db: PouchDB.Database;
+
   addTask(): void;
   addRandomTask(): void;
   renderByTaskType(value: string): Promise<PouchDB.Core.ExistingDocument<Record<never, never>>[]>;

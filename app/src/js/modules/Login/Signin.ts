@@ -1,11 +1,11 @@
 import axios from 'axios';
-import { checkLength, checkRequired, checkusername, checkpassword } from './validator';
+import { checkLength, checkRequired, checkUsername, checkPassword } from './validator';
 import loginPopup from '../ui/popups/login-popup';
 import { hexedDBName } from '../utils/hex-encode';
 import { initApp } from '../utils/app-init';
 import api from '../api/urls';
 
-function checkAndSubmit(e: MouseEvent): void {
+function checkAndSubmit(e: Event): void {
   e.preventDefault();
   const username = document.querySelector('.login__signin__form .username') as HTMLInputElement;
   const password = document.querySelector('.login__signin__form .password') as HTMLInputElement;
@@ -23,8 +23,8 @@ function validate(username: HTMLInputElement, password: HTMLInputElement) {
   checkRequired([username, password]);
   checkLength(username, 3, 10);
   checkLength(password, 6, 25);
-  checkusername(username);
-  checkpassword(password);
+  checkUsername(username);
+  checkPassword(password);
 
   // 检查前端输入是否全部通过
   const isCheckPassed = list.every(el => {
@@ -37,7 +37,7 @@ function validate(username: HTMLInputElement, password: HTMLInputElement) {
 // 提交信息到服务端
 function submitInfo(username: string, password: string) {
   axios
-    .post(api.signinUrl, {
+    .post(api.signInUrl, {
       username: username,
       password: password,
     })

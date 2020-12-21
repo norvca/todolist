@@ -42,7 +42,7 @@ function checkPasswordMatch(input1: HTMLInputElement, input2: HTMLInputElement):
 }
 
 // 检查用户名格式
-function checkusername(input: HTMLInputElement): void {
+function checkUsername(input: HTMLInputElement): void {
   const re = /^[a-zA-Z]+[a-zA-Z0-9]*$/;
 
   if (!re.test(input.value.trim())) {
@@ -51,7 +51,7 @@ function checkusername(input: HTMLInputElement): void {
 }
 
 // 检查密码格式
-function checkpassword(input: HTMLInputElement): void {
+function checkPassword(input: HTMLInputElement): void {
   const re = /^([a-zA-Z0-9]+[a-zA-Z0-9~!@#$%^&*()_+-=])*$/;
 
   if (!re.test(input.value.trim())) {
@@ -76,4 +76,4 @@ function showSuccess(input: HTMLInputElement) {
   p.innerText = '';
 }
 
-export { checkLength, checkRequired, checkEmail, checkPasswordMatch, checkusername, checkpassword };
+export { checkLength, checkRequired, checkEmail, checkPasswordMatch, checkUsername, checkPassword };

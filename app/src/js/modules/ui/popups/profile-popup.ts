@@ -1,4 +1,4 @@
-import profileHTMLCreater from '../../templates/profile-template';
+import profileHTMLCreator from '../../templates/profile-template';
 import { syncHandler } from '../../database/sync';
 import clearPage from '../clear-page';
 import { useVisitorDB } from '../../database/db-interface';
@@ -26,7 +26,7 @@ class ProfilePopup {
 
   // 创建模态框
   initPopup = () => {
-    document.body.insertAdjacentHTML('beforeend', profileHTMLCreater());
+    document.body.insertAdjacentHTML('beforeend', profileHTMLCreator());
     this.ProfileHandler();
   };
 

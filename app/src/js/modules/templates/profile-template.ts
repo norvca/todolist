@@ -1,4 +1,4 @@
-function profileHTMLCreater(): string {
+function profileHTMLCreator(): string {
   const username = localStorage.getItem('User-name');
 
   const HTML = `<div class="profile-popup fade">
@@ -19,4 +19,4 @@ function profileHTMLCreater(): string {
   return HTML;
 }
 
-export default profileHTMLCreater;
+export default profileHTMLCreator;

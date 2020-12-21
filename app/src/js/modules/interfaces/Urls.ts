@@ -1,6 +1,6 @@
 export interface Urls {
   syncUrl: string;
-  signinUrl: string;
+  signInUrl: string;
   registerUrl: string;
   changeUsernameUrl: string;
 }

@@ -8,7 +8,7 @@ function changeUsernameHandler(): void {
 }
 
 // 修改用户名
-function changeUsername(e: MouseEvent) {
+function changeUsername(e: Event) {
   const currentUsername = document.querySelector('.current-username') as HTMLInputElement;
   const newUsername = document.querySelector('.new-username') as HTMLInputElement;
   const welcome = document.querySelector('.profile-popup__welcome') as HTMLHeadingElement;

@@ -3,7 +3,7 @@ import { Urls } from '../interfaces/Urls';
 
 const api: Urls = {
   syncUrl: 'http://192.168.229.130:4000',
-  signinUrl: 'http://192.168.229.130:3000/api/user/login',
+  signInUrl: 'http://192.168.229.130:3000/api/user/login',
   registerUrl: 'http://192.168.229.130:3000/api/user/register',
   changeUsernameUrl: 'http://192.168.229.130:4000/api/user/changeUsername',
 };

@@ -35,7 +35,7 @@ class LoginPopup {
   loginHandler() {
     const loginBox = document.querySelector('.login__box') as HTMLDivElement;
     const signinForm = document.querySelector('.login__signin__form') as HTMLFormElement;
-    const signupForm = document.querySelector('.login__signup__form') as HTMLFormElement;
+    const signUpForm = document.querySelector('.login__signup__form') as HTMLFormElement;
     const signinExitBtn = document.querySelector('.login__signin__exit') as HTMLAnchorElement;
     const signupExitBtn = document.querySelector('.login__signup__exit') as HTMLAnchorElement;
 
@@ -43,7 +43,7 @@ class LoginPopup {
     signinForm.addEventListener('submit', signin.checkAndSubmit);
 
     // 用户注册提交
-    signupForm.addEventListener('submit', signup.checkAndSubmit);
+    signUpForm.addEventListener('submit', signup.checkAndSubmit);
 
     // 登录注册功能切换
     loginBox.addEventListener('click', this.changeState);
@@ -53,7 +53,7 @@ class LoginPopup {
     signupExitBtn.addEventListener('click', this.exit);
   }
 
-  changeState(e: MouseEvent) {
+  changeState(e: Event) {
     const signin = document.querySelector('.login__signin') as HTMLDivElement;
     const signup = document.querySelector('.login__signup') as HTMLDivElement;
     const target = e.target as HTMLAnchorElement;

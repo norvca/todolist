@@ -3,7 +3,7 @@ import { backendDB as db } from '../database/db-interface';
 
 // 定义页面左侧导航处理程序模块
 // 左侧导航栏功能
-function navigate(e: MouseEvent): void {
+function navigate(e: Event): void {
   const target = e.target as HTMLLIElement;
   if (target.classList.contains('sidebar__list-type')) navigateByType(target);
   if (target.classList.contains('sidebar__list-level')) navigateByLevel(target);

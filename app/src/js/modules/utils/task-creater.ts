@@ -1,6 +1,6 @@
 import { Task } from '../interfaces/Task';
 
-class TaskCreater {
+class TaskCreator {
   private _input;
   private _levelIcon;
   private _templateTitles: string[];
@@ -75,4 +75,4 @@ class TaskCreater {
   }
 }
 
-export default TaskCreater;
+export default TaskCreator;

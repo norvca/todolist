@@ -97,7 +97,7 @@ function changeTaskTitle(e: FocusEvent): void {
 }
 
 // 任务已完成功能
-function finishTask(e: MouseEvent): void {
+function finishTask(e: Event): void {
   const target = e.target as SVGElement;
   const focusedTask = document.querySelector('.todolist__focus') as HTMLLIElement;
 
@@ -139,7 +139,7 @@ function updateTaskDetail(currentTask: HTMLLIElement, focusedTask: HTMLLIElement
 }
 
 // 任务删除功能
-function deleteTask(e: MouseEvent): void {
+function deleteTask(e: Event): void {
   const target = e.target as SVGElement;
   const taskList = document.querySelector('.todolist__list') as HTMLUListElement;
   const focusedTask = document.querySelector('.todolist__focus') as HTMLLIElement;
@@ -176,7 +176,7 @@ function deleteTask(e: MouseEvent): void {
 }
 
 // 显示任务详情功能
-function showTaskDetail(e: MouseEvent): void {
+function showTaskDetail(e: Event): void {
   const target = e.target as HTMLLIElement;
 
   if (target.classList.contains('todolist__content')) {

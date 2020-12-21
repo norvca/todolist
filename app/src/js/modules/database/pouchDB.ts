@@ -1,7 +1,7 @@
 // 模块加载
 import PouchDB from 'pouchdb';
 import PouchdbFind from 'pouchdb-find';
-import TaskCreater from '../utils/task-creater';
+import TaskCreator from '../utils/task-creater';
 import { DBModel } from '../interfaces/DBModel';
 import { PromiseDetailInfo } from '../interfaces/Detail';
 
@@ -14,16 +14,16 @@ const pouchVisitor = new PouchDB('visitorDB');
 
 // 数据库模型
 class PouchClass implements DBModel {
-  private taskCreater;
+  private taskCreator;
 
   constructor(public db: PouchDB.Database) {
     this.db = db;
-    this.taskCreater = new TaskCreater();
+    this.taskCreator = new TaskCreator();
   }
 
   // 添加数据到数据库
   addTask(): void {
-    const task = this.taskCreater.createTask();
+    const task = this.taskCreator.createTask();
 
     this.db
       .put(task)
@@ -37,7 +37,7 @@ class PouchClass implements DBModel {
 
   // 添加数据到数据库
   addRandomTask(): void {
-    const task = this.taskCreater.createRandomTask();
+    const task = this.taskCreator.createRandomTask();
 
     this.db
       .put(task)

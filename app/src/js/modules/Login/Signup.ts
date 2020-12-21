@@ -1,15 +1,15 @@
 import axios from 'axios';
-import { checkLength, checkRequired, checkEmail, checkPasswordMatch, checkusername, checkpassword } from './validator';
+import { checkLength, checkRequired, checkEmail, checkPasswordMatch, checkUsername, checkPassword } from './validator';
 import api from '../api/urls';
 import loginPopup from '../ui/popups/login-popup';
 
-function checkAndSubmit(e: MouseEvent): void {
+function checkAndSubmit(e: Event): void {
   e.preventDefault();
-  const signupForm = document.querySelector('.login__signup__form') as HTMLFormElement;
-  const username = signupForm.querySelector('.username') as HTMLInputElement;
-  const password = signupForm.querySelector('.password') as HTMLInputElement;
-  const confirmPassword = signupForm.querySelector('.confirmPassword') as HTMLInputElement;
-  const email = signupForm.querySelector('.email') as HTMLInputElement;
+  const signUpForm = document.querySelector('.login__signup__form') as HTMLFormElement;
+  const username = signUpForm.querySelector('.username') as HTMLInputElement;
+  const password = signUpForm.querySelector('.password') as HTMLInputElement;
+  const confirmPassword = signUpForm.querySelector('.confirmPassword') as HTMLInputElement;
+  const email = signUpForm.querySelector('.email') as HTMLInputElement;
 
   const isCheckPassed = validate(username, password, confirmPassword, email);
   if (isCheckPassed) {
@@ -31,8 +31,8 @@ function validate(
   checkLength(password, 6, 25);
   checkEmail(email);
   checkPasswordMatch(password, confirmPassword);
-  checkusername(username);
-  checkpassword(password);
+  checkUsername(username);
+  checkPassword(password);
 
   // 检查前端输入是否全部通过
   const isCheckPassed = list.every(el => {

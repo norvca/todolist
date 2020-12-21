@@ -14,7 +14,7 @@ class SearchBar {
   }
 
   // 开启查找任务功能
-  openSearchTask = (e: MouseEvent) => {
+  openSearchTask = (e: Event) => {
     const target = e.target as SVGElement;
 
     if (target.classList.contains('icon__search')) {

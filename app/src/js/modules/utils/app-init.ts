@@ -15,7 +15,7 @@ function initApp(username: string, token: string): void {
   userDB.renderByTaskType('work');
 }
 
-function reinitApp(): void {
+function reInitApp(): void {
   const dbName = localStorage.getItem('DB-name');
   const token = localStorage.getItem('CouchDB-auth');
   const username = localStorage.getItem('User-name');
@@ -33,4 +33,4 @@ function reinitApp(): void {
   }
 }
 
-export { initApp, reinitApp };
+export { initApp, reInitApp };
