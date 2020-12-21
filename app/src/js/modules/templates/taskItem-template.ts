@@ -1,5 +1,7 @@
+import { Task } from '../interfaces/Task';
+
 // 组装任务条
-export default function taskItemTemplate(element): DocumentFragment {
+export default function taskItemTemplate(element: Task): DocumentFragment {
   // 单项任务的属性设计
   const taskItemHTML = `<li id="things_${element._id}" class="todolist__content" idnum="${element._id}" level="${element.level}" >
                             <div>

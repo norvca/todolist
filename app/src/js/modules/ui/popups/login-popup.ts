@@ -15,8 +15,8 @@ class LoginPopup {
     const welcome = document.querySelector('.login__signin__welcome') as HTMLParagraphElement;
 
     formControls.forEach(el => {
-      const input = el.querySelector('input');
-      const alertText = el.querySelector('p');
+      const input = el.querySelector('input') as HTMLInputElement;
+      const alertText = el.querySelector('p') as HTMLParagraphElement;
 
       input.value = '';
       el.classList.remove('form-error');
@@ -53,10 +53,12 @@ class LoginPopup {
     signupExitBtn.addEventListener('click', this.exit);
   }
 
-  changeState(e) {
+  changeState(e: MouseEvent) {
     const signin = document.querySelector('.login__signin') as HTMLDivElement;
     const signup = document.querySelector('.login__signup') as HTMLDivElement;
-    if (e.target.classList.contains('login__changeState')) {
+    const target = e.target as HTMLAnchorElement;
+
+    if (target.classList.contains('login__changeState')) {
       signin.classList.toggle('hidden');
       signup.classList.toggle('hidden');
     }

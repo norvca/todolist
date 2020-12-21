@@ -1,4 +1,4 @@
-function toHex(s) {
+function toHex(s: string) {
   // utf8 to latin1
   s = unescape(encodeURIComponent(s));
   let h = '';
@@ -8,8 +8,8 @@ function toHex(s) {
   return h;
 }
 
-function hexedDBName(username) {
+function hexedDBName(username: string): string {
   return `userdb-${toHex(username)}`;
 }
 
-export {hexedDBName};
+export { hexedDBName };

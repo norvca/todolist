@@ -1,7 +1,7 @@
 import profileHTMLCreater from '../../templates/profile-template';
-import {syncHandler} from '../../database/sync';
+import { syncHandler } from '../../database/sync';
 import clearPage from '../clear-page';
-import {useVisitorDB} from '../../database/db-interface';
+import { useVisitorDB } from '../../database/db-interface';
 import changeUserPopup from '../../templates/change-username';
 import changePassPopup from '../../templates/change-password';
 import changeUsernameHandler from '../../profile/change-username';
@@ -11,10 +11,11 @@ class ProfilePopup {
   showProfileIcon() {
     const loginBtn = document.querySelector('.site-header__login') as HTMLDivElement;
     const profile = document.querySelector('.site-header__profile') as HTMLDivElement;
-    const username = localStorage.getItem('User-name');
+    const profileName = profile.firstElementChild as HTMLSpanElement;
+    const username = localStorage.getItem('User-name') as string;
     const capital = username.slice(0, 1).toUpperCase();
 
-    profile.firstElementChild.innerText = capital;
+    profileName.innerText = capital;
 
     loginBtn.classList.add('hidden');
     profile.classList.remove('hidden');

@@ -1,12 +1,13 @@
-import {hexedDBName} from '../utils/hex-encode';
+import { hexedDBName } from '../utils/hex-encode';
 import PouchDB from 'pouchdb';
-import {userDB} from './pouchDB';
+import { userDB } from './pouchDB';
 import api from '../api/urls';
+import { Urls } from '../interfaces/Urls';
 
-let syncHandler;
+let syncHandler: PouchDB.Replication.Sync<Record<never, never>>;
 
 // 登录账号后第一次同步
-function firstSync(db, username, token) {
+function firstSync(db: PouchDB.Database, username: string, token: string): void {
   const dbName = hexedDBName(username);
   const remoteDB = getRemoteDB(api, dbName, token);
 
@@ -14,20 +15,20 @@ function firstSync(db, username, token) {
 }
 
 // 已经登陆则自动同步
-function reSync(db) {
-  const dbName = localStorage.getItem('DB-name');
-  const token = localStorage.getItem('CouchDB-auth');
+function reSync(db: PouchDB.Database): void {
+  const dbName = localStorage.getItem('DB-name') as string;
+  const token = localStorage.getItem('CouchDB-auth') as string;
   const remoteDB = getRemoteDB(api, dbName, token);
 
   syncHandler = getSyncHandler(db, remoteDB);
 }
 
 // 连接服务端数据库
-function getRemoteDB(api, dbName, token) {
+function getRemoteDB(api: Urls, dbName: string, token: string) {
   return new PouchDB(api.syncUrl, {
     fetch: function (url, opts) {
-      opts.headers.set('X-CouchDB-dbName', dbName);
-      opts.headers.set('X-Auth-CouchDB-Token', token);
+      opts.headers?.set('X-CouchDB-dbName', dbName);
+      opts.headers?.set('X-Auth-CouchDB-Token', token);
       opts.credentials = 'omit';
       return PouchDB.fetch(url, opts);
     },
@@ -36,8 +37,8 @@ function getRemoteDB(api, dbName, token) {
 }
 
 // 获取数据同步状态
-function getSyncHandler(db, remoteDB) {
-  const syncState = document.querySelector('.todolist__sync-state');
+function getSyncHandler(db: PouchDB.Database, remoteDB: PouchDB.Database) {
+  const syncState = document.querySelector('.todolist__sync-state') as HTMLDivElement;
 
   return PouchDB.sync(db, remoteDB, {
     live: true,
@@ -64,4 +65,4 @@ function getSyncHandler(db, remoteDB) {
     });
 }
 
-export {firstSync, reSync, syncHandler};
+export { firstSync, reSync, syncHandler };

@@ -1,11 +1,11 @@
 import axios from 'axios';
-import {checkLength, checkRequired, checkusername, checkpassword} from './validator';
+import { checkLength, checkRequired, checkusername, checkpassword } from './validator';
 import loginPopup from '../ui/popups/login-popup';
-import {hexedDBName} from '../utils/hex-encode';
-import {initApp} from '../utils/app-init';
+import { hexedDBName } from '../utils/hex-encode';
+import { initApp } from '../utils/app-init';
 import api from '../api/urls';
 
-function checkAndSubmit(e: Event): void {
+function checkAndSubmit(e: MouseEvent): void {
   e.preventDefault();
   const username = document.querySelector('.login__signin__form .username') as HTMLInputElement;
   const password = document.querySelector('.login__signin__form .password') as HTMLInputElement;
@@ -16,7 +16,7 @@ function checkAndSubmit(e: Event): void {
   }
 }
 
-function validate(username, password) {
+function validate(username: HTMLInputElement, password: HTMLInputElement) {
   const formControls = document.querySelectorAll('.login__signin .form-control') as NodeListOf<HTMLDivElement>;
   const list = Array.from(formControls);
 
@@ -35,7 +35,7 @@ function validate(username, password) {
 }
 
 // 提交信息到服务端
-function submitInfo(username, password) {
+function submitInfo(username: string, password: string) {
   axios
     .post(api.signinUrl, {
       username: username,
@@ -58,22 +58,22 @@ function submitInfo(username, password) {
     });
 }
 
-function setLocalStorage(username, dbName, token) {
+function setLocalStorage(username: string, dbName: string, token: string) {
   localStorage.setItem('CouchDB-auth', token);
   localStorage.setItem('User-name', username);
   localStorage.setItem('DB-name', dbName);
 }
 
-function setSuccessInfo(info) {
+function setSuccessInfo(info: string) {
   const welcome = document.querySelector('.login__signin .login__signin__welcome') as HTMLParagraphElement;
   welcome.innerText = info;
   welcome.classList.remove('error');
 }
 
-function setErrorInfo(info) {
+function setErrorInfo(info: string) {
   const welcome = document.querySelector('.login__signin .login__signin__welcome') as HTMLParagraphElement;
   welcome.innerText = info;
   welcome.classList.add('error');
 }
 
-export {checkAndSubmit};
+export { checkAndSubmit };

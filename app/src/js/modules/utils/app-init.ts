@@ -1,9 +1,9 @@
-import {firstSync, reSync} from '../database/sync';
-import {userDB} from '../database/pouchDB';
-import {useUserDB, backendDB as db} from '../database/db-interface';
+import { firstSync, reSync } from '../database/sync';
+import { userDB } from '../database/pouchDB';
+import { useUserDB, backendDB as db } from '../database/db-interface';
 import profilePopup from '../ui/popups/profile-popup';
 
-function initApp(username, token) {
+function initApp(username: string, token: string): void {
   // Reset current task states
   localStorage.setItem('currentLevel', 'level-light');
   localStorage.setItem('currentType', 'work');
@@ -15,7 +15,7 @@ function initApp(username, token) {
   userDB.renderByTaskType('work');
 }
 
-function reinitApp() {
+function reinitApp(): void {
   const dbName = localStorage.getItem('DB-name');
   const token = localStorage.getItem('CouchDB-auth');
   const username = localStorage.getItem('User-name');
@@ -33,4 +33,4 @@ function reinitApp() {
   }
 }
 
-export {initApp, reinitApp};
+export { initApp, reinitApp };

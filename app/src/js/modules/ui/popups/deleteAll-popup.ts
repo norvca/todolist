@@ -1,7 +1,9 @@
-import {backendDB as db} from '../../database/db-interface';
+import { backendDB as db } from '../../database/db-interface';
 import deleteAllHTML from '../../templates/deleteAll-template';
 
 class DeleteAllPopup {
+  db;
+  deleteAllHTML;
   constructor() {
     this.db = db;
     this.deleteAllHTML = deleteAllHTML;
@@ -13,15 +15,15 @@ class DeleteAllPopup {
   }
 
   popupHandler() {
-    this.confirmDelete = document.querySelector('.deleteAll-popup__btn-yes') as HTMLButtonElement;
-    this.regretDelete = document.querySelector('.deleteAll-popup__btn-no') as HTMLButtonElement;
+    const confirmDelete = document.querySelector('.deleteAll-popup__btn-yes') as HTMLButtonElement;
+    const regretDelete = document.querySelector('.deleteAll-popup__btn-no') as HTMLButtonElement;
 
-    this.confirmDelete.addEventListener('click', this.deleteAllTasks);
-    this.regretDelete.addEventListener('click', this.regretDeleteTasks);
+    confirmDelete.addEventListener('click', this.deleteAllTasks);
+    regretDelete.addEventListener('click', this.regretDeleteTasks);
   }
 
   deleteAllTasks = () => {
-    db.deleteAllTasks();
+    this.db.deleteAllTasks();
     this.deletePopup();
   };
 
@@ -30,10 +32,10 @@ class DeleteAllPopup {
   };
 
   deletePopup() {
-    this.modal = document.querySelector('.deleteAll-popup') as HTMLDivElement;
-    this.modal.remove();
+    const modal = document.querySelector('.deleteAll-popup') as HTMLDivElement;
+    modal.remove();
   }
 }
 
 const deleteAllPopup = new DeleteAllPopup();
-export {deleteAllPopup};
+export { deleteAllPopup };

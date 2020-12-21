@@ -1,5 +1,5 @@
 // 检查是否存在
-function checkRequired(inputArr): void {
+function checkRequired(inputArr: HTMLInputElement[]): void {
   inputArr.forEach(input => {
     if (input.value.trim() === '') {
       showError(input, `${input.placeholder}不能为空`);
@@ -10,7 +10,7 @@ function checkRequired(inputArr): void {
 }
 
 // 检查输入字符长度
-function checkLength(input, min, max): void {
+function checkLength(input: HTMLInputElement, min: number, max: number): void {
   const length = input.value.trim().length;
 
   if (length < min) {
@@ -23,7 +23,7 @@ function checkLength(input, min, max): void {
 }
 
 // 检查邮件格式
-function checkEmail(input): void {
+function checkEmail(input: HTMLInputElement): void {
   // eslint-disable-next-line
   const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -35,14 +35,14 @@ function checkEmail(input): void {
 }
 
 // 检查密码是否输入相同
-function checkPasswordMatch(input1, input2): void {
+function checkPasswordMatch(input1: HTMLInputElement, input2: HTMLInputElement): void {
   if (input1.value !== input2.value) {
     showError(input2, `两次输入的密码不一致`);
   }
 }
 
 // 检查用户名格式
-function checkusername(input): void {
+function checkusername(input: HTMLInputElement): void {
   const re = /^[a-zA-Z]+[a-zA-Z0-9]*$/;
 
   if (!re.test(input.value.trim())) {
@@ -51,7 +51,7 @@ function checkusername(input): void {
 }
 
 // 检查密码格式
-function checkpassword(input): void {
+function checkpassword(input: HTMLInputElement): void {
   const re = /^([a-zA-Z0-9]+[a-zA-Z0-9~!@#$%^&*()_+-=])*$/;
 
   if (!re.test(input.value.trim())) {
@@ -59,21 +59,21 @@ function checkpassword(input): void {
   }
 }
 
-function showError(input, message) {
-  const formControl = input.parentElement;
+function showError(input: HTMLInputElement, message: string) {
+  const formControl = input.parentElement as HTMLDivElement;
   if (formControl.classList.contains('form-error')) return;
   formControl.className = 'form-control form-error';
 
-  const p = formControl.querySelector('p');
+  const p = formControl.querySelector('p') as HTMLParagraphElement;
   p.innerText = message;
 }
 
-function showSuccess(input) {
-  const formControl = input.parentElement;
+function showSuccess(input: HTMLInputElement) {
+  const formControl = input.parentElement as HTMLDivElement;
   formControl.className = 'form-control';
 
-  const p = formControl.querySelector('p');
+  const p = formControl.querySelector('p') as HTMLParagraphElement;
   p.innerText = '';
 }
 
-export {checkLength, checkRequired, checkEmail, checkPasswordMatch, checkusername, checkpassword};
+export { checkLength, checkRequired, checkEmail, checkPasswordMatch, checkusername, checkpassword };

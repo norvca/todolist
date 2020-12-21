@@ -1,9 +1,9 @@
 import axios from 'axios';
-import {checkLength, checkRequired, checkEmail, checkPasswordMatch, checkusername, checkpassword} from './validator';
+import { checkLength, checkRequired, checkEmail, checkPasswordMatch, checkusername, checkpassword } from './validator';
 import api from '../api/urls';
 import loginPopup from '../ui/popups/login-popup';
 
-function checkAndSubmit(e: Event): void {
+function checkAndSubmit(e: MouseEvent): void {
   e.preventDefault();
   const signupForm = document.querySelector('.login__signup__form') as HTMLFormElement;
   const username = signupForm.querySelector('.username') as HTMLInputElement;
@@ -17,7 +17,12 @@ function checkAndSubmit(e: Event): void {
   }
 }
 
-function validate(username, password, confirmPassword, email) {
+function validate(
+  username: HTMLInputElement,
+  password: HTMLInputElement,
+  confirmPassword: HTMLInputElement,
+  email: HTMLInputElement,
+) {
   const formControls = document.querySelectorAll('.login__signup .form-control') as NodeListOf<HTMLDivElement>;
   const list = Array.from(formControls);
 
@@ -38,7 +43,7 @@ function validate(username, password, confirmPassword, email) {
 }
 
 // 提交信息到服务端
-function submitInfo(username, password, email) {
+function submitInfo(username: string, password: string, email: string) {
   axios
     .post(api.registerUrl, {
       username: username,
@@ -56,16 +61,16 @@ function submitInfo(username, password, email) {
     });
 }
 
-function setSuccessInfo(info) {
+function setSuccessInfo(info: string) {
   const welcome = document.querySelector('.login__signup .login__signup__welcome') as HTMLParagraphElement;
   welcome.innerText = info;
   welcome.classList.remove('error');
 }
 
-function setErrorInfo(info) {
+function setErrorInfo(info: string) {
   const welcome = document.querySelector('.login__signup .login__signup__welcome') as HTMLParagraphElement;
   welcome.innerText = info;
   welcome.classList.add('error');
 }
 
-export {checkAndSubmit};
+export { checkAndSubmit };

@@ -1,4 +1,11 @@
+import { Task } from '../interfaces/Task';
+
 class TaskCreater {
+  private _input;
+  private _levelIcon;
+  private _templateTitles: string[];
+  private _templateLevels: string[];
+
   constructor() {
     this._input = document.querySelector('.site-header__search-box__input') as HTMLInputElement;
     this._levelIcon = document.querySelector('.icon__level') as SVGElement;
@@ -6,7 +13,7 @@ class TaskCreater {
     this._templateLevels = ['level-light', 'level-usual', 'level-heavy'];
   }
 
-  createTask() {
+  createTask(): Task {
     return {
       _id: new Date().toISOString(),
       title: this.title,
@@ -18,7 +25,7 @@ class TaskCreater {
     };
   }
 
-  createRandomTask() {
+  createRandomTask(): Task {
     const test = {
       _id: new Date().toISOString(),
       title: this.randomTitle,
@@ -31,35 +38,35 @@ class TaskCreater {
     return test;
   }
 
-  get title() {
+  get title(): string {
     return this._input.value;
   }
 
-  get taskLevel() {
-    return localStorage.getItem('currentLevel');
+  get taskLevel(): string {
+    return localStorage.getItem('currentLevel') as string;
   }
-  get taskTime() {
+  get taskTime(): string {
     return new Date().toLocaleDateString();
   }
 
-  get taskType() {
-    return localStorage.getItem('currentType');
+  get taskType(): string {
+    return localStorage.getItem('currentType') as string;
   }
 
-  get taskWeek() {
+  get taskWeek(): string {
     const toDayString = new Date().toString();
     return toDayString.slice.call(toDayString, 0, 3).toUpperCase();
   }
 
-  get randomTitle() {
+  get randomTitle(): string {
     return this.shuffle(this._templateTitles.slice())[0];
   }
 
-  get randomLevel() {
+  get randomLevel(): string {
     return this.shuffle(this._templateLevels.slice())[0];
   }
 
-  shuffle(array) {
+  shuffle(array: string[]): string[] {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
@@ -68,5 +75,4 @@ class TaskCreater {
   }
 }
 
-const taskCreater = new TaskCreater();
-export default taskCreater;
+export default TaskCreater;

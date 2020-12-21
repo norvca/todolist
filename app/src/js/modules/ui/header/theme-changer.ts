@@ -1,6 +1,6 @@
 // 切换主题模块
 class ThemeChanger {
-  private theme: {background: string[]; iconName: string[]};
+  private theme: { background: string[]; iconName: string[] };
   private siteHeader;
   private themeIcon;
 

@@ -1,5 +1,5 @@
 class LevelChanger {
-  private levels: string[];
+  private levels: [string, string, string];
   private levelChangeBtn;
 
   constructor() {
@@ -16,7 +16,8 @@ class LevelChanger {
   }
 
   shiftLevel() {
-    this.levels.push(this.levels.shift());
+    const firstLevel = this.levels.shift() as string;
+    this.levels.push(firstLevel);
   }
 
   renderLevel() {

@@ -1,5 +1,7 @@
+import { Task } from '../interfaces/Task';
+
 // 组装时间戳
-export default function timeStampTemplate(element): DocumentFragment {
+export default function timeStampTemplate(element: Task): DocumentFragment {
   // 创建时间戳
   const taskTime = element.taskTime;
   const taskWeek = element.taskWeek;

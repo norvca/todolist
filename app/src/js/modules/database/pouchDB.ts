@@ -1,7 +1,9 @@
 // 模块加载
 import PouchDB from 'pouchdb';
 import PouchdbFind from 'pouchdb-find';
-import taskCreater from '../utils/task-creater';
+import TaskCreater from '../utils/task-creater';
+import { DBModel } from '../interfaces/DBModel';
+import { PromiseDetailInfo } from '../interfaces/Detail';
 
 // 加载 PouchDB 插件
 PouchDB.plugin(PouchdbFind);
@@ -11,14 +13,16 @@ const pouchUser = new PouchDB('userDB');
 const pouchVisitor = new PouchDB('visitorDB');
 
 // 数据库模型
-class PouchClass {
-  constructor(db) {
+class PouchClass implements DBModel {
+  private taskCreater;
+
+  constructor(public db: PouchDB.Database) {
     this.db = db;
-    this.taskCreater = taskCreater;
+    this.taskCreater = new TaskCreater();
   }
 
   // 添加数据到数据库
-  addTask() {
+  addTask(): void {
     const task = this.taskCreater.createTask();
 
     this.db
@@ -32,7 +36,7 @@ class PouchClass {
   }
 
   // 添加数据到数据库
-  addRandomTask() {
+  addRandomTask(): void {
     const task = this.taskCreater.createRandomTask();
 
     this.db
@@ -45,10 +49,10 @@ class PouchClass {
       });
   }
 
-  renderByTaskType(value) {
+  renderByTaskType(value: string): Promise<PouchDB.Core.ExistingDocument<Record<never, never>>[]> {
     return this.db
       .createIndex({
-        index: {fields: ['taskType']},
+        index: { fields: ['taskType'] },
       })
       .then(() => {
         return this.db
@@ -56,7 +60,7 @@ class PouchClass {
             selector: {
               taskType: value,
             },
-            sort: [{taskType: 'desc'}],
+            sort: [{ taskType: 'desc' }],
           })
           .then(result => {
             return result.docs;
@@ -64,10 +68,10 @@ class PouchClass {
       });
   }
 
-  renderByTaskLevel(value) {
+  renderByTaskLevel(value: string): Promise<PouchDB.Core.ExistingDocument<Record<never, never>>[]> {
     return this.db
       .createIndex({
-        index: {fields: ['level']},
+        index: { fields: ['level'] },
       })
       .then(() => {
         return this.db
@@ -75,7 +79,7 @@ class PouchClass {
             selector: {
               level: value,
             },
-            sort: [{level: 'desc'}],
+            sort: [{ level: 'desc' }],
           })
           .then(result => {
             return result.docs;
@@ -83,13 +87,14 @@ class PouchClass {
       });
   }
 
-  renderByCurrentTask() {
-    const taskType = document.querySelector('.sidebar__act').getAttribute('taskType');
+  renderByCurrentTask(): void {
+    const currentTaskLiElement = document.querySelector('.sidebar__act') as HTMLLIElement;
+    const taskType = currentTaskLiElement.getAttribute('taskType') as string;
 
     this.renderByTaskType(taskType);
   }
 
-  renderBySearch() {
+  renderBySearch(): Promise<PouchDB.Core.AllDocsResponse<Record<never, never>>> {
     return this.db
       .allDocs({
         include_docs: true,
@@ -101,7 +106,7 @@ class PouchClass {
   }
 
   // 修改任务数据
-  modifyTask(idNum, attr, value) {
+  modifyTask(idNum: string, attr: string, value: string): void {
     this.db.get(idNum).then(doc => {
       doc[attr] = value;
       this.db.put(doc);
@@ -109,14 +114,14 @@ class PouchClass {
   }
 
   // 显示右侧任务详情
-  showDetail(id) {
-    return this.db.get(id).then(({title, detail}) => {
-      return {title, detail};
+  showDetail(id: string): PromiseDetailInfo {
+    return this.db.get(id).then(({ title, detail }) => {
+      return { title, detail };
     });
   }
 
   // 删除全部数据
-  deleteAllTasks() {
+  deleteAllTasks(): void {
     this.db
       .allDocs()
       .then(result => {
@@ -135,4 +140,4 @@ class PouchClass {
 const userDB = new PouchClass(pouchUser);
 const visitorDB = new PouchClass(pouchVisitor);
 
-export {userDB, visitorDB};
+export { userDB, visitorDB, PouchClass };

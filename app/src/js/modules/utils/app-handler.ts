@@ -73,7 +73,7 @@ deleteData.addEventListener('click', createDeletePopup());
 function createLoginPopupDesktop() {
   return () => {
     import(/* webpackChunkName: "login", webpackPrefetch: true */ '../ui/popups/login-popup').then(
-      ({default: loginPopup}) => {
+      ({ default: loginPopup }) => {
         loginPopup.createPopup();
       },
     );
@@ -83,9 +83,11 @@ function createLoginPopupDesktop() {
 // 动态加载的登录框
 function createLoginPopupPhone() {
   return () => {
-    import(/* webpackChunkName: "login", webpackPrefetch: true */ '../ui/popups/login-popup').then(({loginPopup}) => {
-      loginPopup.createPopup();
-    });
+    import(/* webpackChunkName: "login", webpackPrefetch: true */ '../ui/popups/login-popup').then(
+      ({ default: loginPopup }) => {
+        loginPopup.createPopup();
+      },
+    );
   };
 }
 
@@ -93,7 +95,7 @@ function createLoginPopupPhone() {
 function createDeletePopup() {
   return () => {
     import(/* webpackChunkName: "delete-all", webpackPrefetch: true */ '../ui/popups/deleteAll-popup').then(
-      ({deleteAllPopup}) => {
+      ({ deleteAllPopup }) => {
         deleteAllPopup.createPopup();
       },
     );
