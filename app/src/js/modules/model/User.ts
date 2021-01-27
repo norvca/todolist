@@ -8,10 +8,6 @@ import { PromiseDetailInfo } from '../interfaces/IDetail';
 // 加载 PouchDB 插件
 PouchDB.plugin(PouchdbFind);
 
-// 创建数据库
-const pouchUser = new PouchDB('userDB');
-const pouchVisitor = new PouchDB('visitorDB');
-
 // 数据库模型
 class User implements IUser {
   private taskCreator;
@@ -137,7 +133,7 @@ class User implements IUser {
   }
 }
 
-const userDB = new User(pouchUser);
-const visitorDB = new User(pouchVisitor);
+const loginUser = new User(new PouchDB('loginDB'));
+const visitorUser = new User(new PouchDB('visitorDB'));
 
-export { userDB, visitorDB };
+export { loginUser, visitorUser };

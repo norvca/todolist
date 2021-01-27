@@ -6,8 +6,12 @@ import { PromiseDetailInfo } from '../interfaces/IDetail';
 
 PouchDB.plugin(PouchdbFind);
 
-export default class DBPouch implements IDatabase {
-  constructor(private db: PouchDB.Database) {}
+export class DBPouch implements IDatabase {
+  private db: PouchDB.Database;
+
+  constructor(name: string) {
+    this.db = new PouchDB(name);
+  }
 
   insert(task: ITask): void {
     this.db

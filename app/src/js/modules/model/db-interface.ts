@@ -1,71 +1,71 @@
 // 加载数据库模块
 import 'babel-polyfill';
-import { userDB, visitorDB } from './User';
+import { loginUser, visitorUser } from './User';
 import pubsub from '../utils/pubsub';
 import { IUser } from '../interfaces/IUser';
 
-let db: IUser;
+let user: IUser;
 // 初始数据库选择：用户数据库或游客数据库
 if (localStorage.getItem('DB-name') && localStorage.getItem('CouchDB-auth')) {
-  db = userDB;
+  user = loginUser;
 } else {
-  db = visitorDB;
+  user = visitorUser;
 }
 
 function useUserDB(): void {
-  db = userDB;
+  user = loginUser;
 }
 
 function useVisitorDB(): void {
-  db = visitorDB;
-  db.deleteAllTasks();
+  user = visitorUser;
+  user.deleteAllTasks();
 }
 
 // 定义接口
 const backendDB = {
-  db,
+  user,
   // 添加任务
   addTask(): void {
-    db.addTask();
+    user.addTask();
   },
 
   // 添加随机
   addRandomTask(): void {
-    db.addRandomTask();
+    user.addRandomTask();
   },
 
   // 按任务类型分类
   async searchByTaskType(value: string): Promise<void> {
-    const taskArr = await db.searchByTaskType(value);
+    const taskArr = await user.searchByTaskType(value);
     pubsub.emit('renderByTaskType', taskArr);
   },
 
   // 按任务类型分类
   async searchByTaskLevel(value: string): Promise<void> {
-    const taskArr = await db.searchByTaskLevel(value);
+    const taskArr = await user.searchByTaskLevel(value);
     pubsub.emit('renderByTaskLevel', taskArr);
   },
 
   // 搜索任务
   async renderBySearch(input: string): Promise<void> {
-    const result = await db.searchAll();
+    const result = await user.searchAll();
     pubsub.emit('renderBySearch', { input, result });
   },
 
   // 修改任务
   modifyTask(idNum: string, attr: string, value: string): void {
-    db.modifyTask(idNum, attr, value);
+    user.modifyTask(idNum, attr, value);
   },
 
   // 展示任务详情
   async showDetail(idNum: string): Promise<void> {
-    const detail = await db.searchDetail(idNum);
+    const detail = await user.searchDetail(idNum);
     pubsub.emit('showDetail', detail);
   },
 
   // 删除全部任务
   deleteAllTasks(): void {
-    db.deleteAllTasks();
+    user.deleteAllTasks();
     pubsub.emit('deleteAllTasks');
   },
 };

@@ -1,5 +1,5 @@
 import sync from '../model/sync';
-import { userDB } from '../model/User';
+import { loginUser } from '../model/User';
 import { useUserDB, backendDB as db } from '../model/db-interface';
 import profilePopup from '../ui/popups/profile-popup';
 
@@ -10,9 +10,9 @@ function initApp(username: string, token: string): void {
 
   profilePopup.showProfileIcon();
   useUserDB();
-  sync.firstSync(userDB.db, username, token);
-  // TODO: 用 userDB 则登录后不能立即渲染任务栏，切换成db就可以
-  userDB.searchByTaskType('work');
+  sync.firstSync(loginUser.db, username, token);
+  // TODO: 用 loginUser 则登录后不能立即渲染任务栏，切换成db就可以
+  loginUser.searchByTaskType('work');
 }
 
 function reInitApp(): void {
@@ -25,7 +25,7 @@ function reInitApp(): void {
   localStorage.setItem('currentType', 'work');
 
   if (dbName && token && username) {
-    sync.reSync(userDB.db);
+    sync.reSync(loginUser.db);
     profilePopup.showProfileIcon();
     db.searchByTaskType('work');
   } else {
