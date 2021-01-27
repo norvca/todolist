@@ -35,8 +35,8 @@ const backendDB = {
   },
 
   // 按任务类型分类
-  async renderByTaskType(value: string): Promise<void> {
-    const taskArr = await db.renderByTaskType(value);
+  async sortByTaskType(value: string): Promise<void> {
+    const taskArr = await db.sortByTaskType(value);
     pubsub.emit('renderByTaskType', taskArr);
   },
 

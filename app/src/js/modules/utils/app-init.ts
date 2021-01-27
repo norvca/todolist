@@ -12,7 +12,7 @@ function initApp(username: string, token: string): void {
   useUserDB();
   firstSync(userDB.db, username, token);
   // TODO: 用 userDB 则登录后不能立即渲染任务栏，切换成db就可以
-  userDB.renderByTaskType('work');
+  userDB.sortByTaskType('work');
 }
 
 function reInitApp(): void {
@@ -27,9 +27,9 @@ function reInitApp(): void {
   if (dbName && token && username) {
     reSync(userDB.db);
     profilePopup.showProfileIcon();
-    db.renderByTaskType('work');
+    db.sortByTaskType('work');
   } else {
-    db.renderByTaskType('work');
+    db.sortByTaskType('work');
   }
 }
 

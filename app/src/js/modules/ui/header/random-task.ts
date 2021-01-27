@@ -6,7 +6,7 @@ function createRandomTask(): void {
   const currentTaskType = currentTaskTypeElement.getAttribute('taskType') as string;
 
   db.addRandomTask();
-  db.renderByTaskType(currentTaskType);
+  db.sortByTaskType(currentTaskType);
 }
 
 export default createRandomTask;

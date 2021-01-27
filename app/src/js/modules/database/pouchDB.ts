@@ -49,7 +49,7 @@ class PouchClass implements DBModel {
       });
   }
 
-  renderByTaskType(value: string): Promise<PouchDB.Core.ExistingDocument<Record<never, never>>[]> {
+  sortByTaskType(value: string): Promise<PouchDB.Core.ExistingDocument<Record<never, never>>[]> {
     return this.db
       .createIndex({
         index: { fields: ['taskType'] },
@@ -91,7 +91,7 @@ class PouchClass implements DBModel {
     const currentTaskLiElement = document.querySelector('.sidebar__act') as HTMLLIElement;
     const taskType = currentTaskLiElement.getAttribute('taskType') as string;
 
-    this.renderByTaskType(taskType);
+    this.sortByTaskType(taskType);
   }
 
   renderBySearch(): Promise<PouchDB.Core.AllDocsResponse<Record<never, never>>> {

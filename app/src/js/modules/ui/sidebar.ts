@@ -18,7 +18,7 @@ function navigateByType(target: HTMLLIElement) {
   target.classList.add('sidebar__act');
 
   const typeValue = target.getAttribute('taskType') as string;
-  db.renderByTaskType(typeValue);
+  db.sortByTaskType(typeValue);
   // Store current task type in local storage
   localStorage.setItem('currentType', typeValue);
 }

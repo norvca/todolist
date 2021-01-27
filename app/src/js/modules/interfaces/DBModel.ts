@@ -3,7 +3,7 @@ export interface DBModel {
 
   addTask(): void;
   addRandomTask(): void;
-  renderByTaskType(value: string): Promise<PouchDB.Core.ExistingDocument<Record<never, never>>[]>;
+  sortByTaskType(value: string): Promise<PouchDB.Core.ExistingDocument<Record<never, never>>[]>;
   renderByTaskLevel(value: string): Promise<PouchDB.Core.ExistingDocument<Record<never, never>>[]>;
   renderByCurrentTask(): void;
   renderBySearch(): Promise<PouchDB.Core.AllDocsResponse<Record<never, never>>>;
