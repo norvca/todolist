@@ -1,4 +1,4 @@
-export interface DBModel {
+export interface UserModel {
   db: PouchDB.Database;
 
   addTask(): void;
