@@ -1,4 +1,4 @@
-import { backendDB as db } from '../../database/db-interface';
+import { backendDB as db } from '../../model/db-interface';
 import deleteAllHTML from '../../templates/deleteAll-template';
 
 class DeleteAllPopup {

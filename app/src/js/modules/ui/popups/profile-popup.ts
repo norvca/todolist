@@ -1,7 +1,7 @@
 import profileHTMLCreator from '../../templates/profile-template';
-import sync from '../../database/sync';
+import sync from '../../model/sync';
 import clearPage from '../clear-page';
-import { useVisitorDB } from '../../database/db-interface';
+import { useVisitorDB } from '../../model/db-interface';
 import changeUserPopup from '../../templates/change-username';
 import changePassPopup from '../../templates/change-password';
 import changeUsernameHandler from '../../profile/change-username';

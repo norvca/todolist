@@ -140,4 +140,4 @@ class User implements IUser {
 const userDB = new User(pouchUser);
 const visitorDB = new User(pouchVisitor);
 
-export { userDB, visitorDB, User };
+export { userDB, visitorDB };

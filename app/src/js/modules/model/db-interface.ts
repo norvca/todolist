@@ -1,6 +1,6 @@
 // 加载数据库模块
 import 'babel-polyfill';
-import { userDB, visitorDB } from '../database/pouchDB';
+import { userDB, visitorDB } from './User';
 import pubsub from '../utils/pubsub';
 import { IUser } from '../interfaces/IUser';
 

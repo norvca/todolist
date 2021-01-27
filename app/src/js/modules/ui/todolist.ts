@@ -1,5 +1,5 @@
 // 加载中间件模块
-import { backendDB as db } from '../database/db-interface';
+import { backendDB as db } from '../model/db-interface';
 import { clearDetail } from '../ui/detail';
 import timeStampTemplate from '../templates/timeStamp-template';
 import taskItemTemplate from '../templates/taskItem-template';

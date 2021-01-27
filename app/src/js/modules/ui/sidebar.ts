@@ -1,5 +1,5 @@
 // 加载中间件模块
-import { backendDB as db } from '../database/db-interface';
+import { backendDB as db } from '../model/db-interface';
 
 // 定义页面左侧导航处理程序模块
 // 左侧导航栏功能

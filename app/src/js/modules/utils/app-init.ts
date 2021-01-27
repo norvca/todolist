@@ -1,6 +1,6 @@
-import sync from '../database/sync';
-import { userDB } from '../database/pouchDB';
-import { useUserDB, backendDB as db } from '../database/db-interface';
+import sync from '../model/sync';
+import { userDB } from '../model/User';
+import { useUserDB, backendDB as db } from '../model/db-interface';
 import profilePopup from '../ui/popups/profile-popup';
 
 function initApp(username: string, token: string): void {
