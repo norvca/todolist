@@ -1,6 +1,5 @@
 import { hexedDBName } from '../utils/hex-encode';
 import PouchDB from 'pouchdb';
-import { userDB } from './pouchDB';
 import api from '../api/urls';
 import { IUrls } from '../interfaces/IUrls';
 
@@ -53,7 +52,7 @@ class Sync {
       })
       .on('change', function (change) {
         console.log(change);
-        userDB.searchByCurrentTask();
+        // Todo: 登录同步完成后需渲染 todoList
         syncState.innerText = '数据同步完成!';
       })
       .on('paused', function (info) {
