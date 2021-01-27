@@ -1,6 +1,6 @@
 import sync from '../model/sync';
 import { loginUser } from '../model/User';
-import { useUserDB, backendDB as db } from '../model/db-interface';
+import { useUserDB, backendDB } from '../model/db-interface';
 import profilePopup from '../ui/popups/profile-popup';
 
 function initApp(username: string, token: string): void {
@@ -11,8 +11,7 @@ function initApp(username: string, token: string): void {
   profilePopup.showProfileIcon();
   useUserDB();
   sync.firstSync(loginUser.db, username, token);
-  // TODO: 用 loginUser 则登录后不能立即渲染任务栏，切换成db就可以
-  loginUser.searchByTaskType('work');
+  backendDB.searchByTaskType('work');
 }
 
 function reInitApp(): void {
@@ -27,9 +26,9 @@ function reInitApp(): void {
   if (dbName && token && username) {
     sync.reSync(loginUser.db);
     profilePopup.showProfileIcon();
-    db.searchByTaskType('work');
+    backendDB.searchByTaskType('work');
   } else {
-    db.searchByTaskType('work');
+    backendDB.searchByTaskType('work');
   }
 }
 
