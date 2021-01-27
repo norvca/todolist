@@ -1,7 +1,7 @@
 // 同步数据前经过的 proxy 服务器
-import { Urls } from '../interfaces/Urls';
+import { IUrls } from '../interfaces/IUrls';
 
-const api: Urls = {
+const api: IUrls = {
   syncUrl: 'http://192.168.229.130:4000',
   signInUrl: 'http://192.168.229.130:3000/api/user/login',
   registerUrl: 'http://192.168.229.130:3000/api/user/register',

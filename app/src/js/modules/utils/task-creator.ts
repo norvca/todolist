@@ -1,4 +1,4 @@
-import { Task } from '../interfaces/Task';
+import { ITask } from '../interfaces/ITask';
 
 class TaskCreator {
   private _input;
@@ -13,7 +13,7 @@ class TaskCreator {
     this._templateLevels = ['level-light', 'level-usual', 'level-heavy'];
   }
 
-  createTask(): Task {
+  createTask(): ITask {
     return {
       _id: new Date().toISOString(),
       title: this.title,
@@ -25,7 +25,7 @@ class TaskCreator {
     };
   }
 
-  createRandomTask(): Task {
+  createRandomTask(): ITask {
     const test = {
       _id: new Date().toISOString(),
       title: this.randomTitle,

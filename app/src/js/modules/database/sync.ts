@@ -2,7 +2,7 @@ import { hexedDBName } from '../utils/hex-encode';
 import PouchDB from 'pouchdb';
 import { userDB } from './pouchDB';
 import api from '../api/urls';
-import { Urls } from '../interfaces/Urls';
+import { IUrls } from '../interfaces/IUrls';
 
 let syncHandler: PouchDB.Replication.Sync<Record<never, never>>;
 
@@ -24,7 +24,7 @@ function reSync(db: PouchDB.Database): void {
 }
 
 // 连接服务端数据库
-function getRemoteDB(api: Urls, dbName: string, token: string) {
+function getRemoteDB(api: IUrls, dbName: string, token: string) {
   return new PouchDB(api.syncUrl, {
     fetch: function (url, opts) {
       opts.headers?.set('X-CouchDB-dbName', dbName);

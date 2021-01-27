@@ -2,8 +2,8 @@
 import PouchDB from 'pouchdb';
 import PouchdbFind from 'pouchdb-find';
 import TaskCreator from '../utils/task-creator';
-import { UserModel } from '../interfaces/UserModel';
-import { PromiseDetailInfo } from '../interfaces/Detail';
+import { IUser } from '../interfaces/IUser';
+import { PromiseDetailInfo } from '../interfaces/IDetail';
 
 // 加载 PouchDB 插件
 PouchDB.plugin(PouchdbFind);
@@ -13,7 +13,7 @@ const pouchUser = new PouchDB('userDB');
 const pouchVisitor = new PouchDB('visitorDB');
 
 // 数据库模型
-class PouchClass implements UserModel {
+class User implements IUser {
   private taskCreator;
 
   constructor(public db: PouchDB.Database) {
@@ -137,7 +137,7 @@ class PouchClass implements UserModel {
   }
 }
 
-const userDB = new PouchClass(pouchUser);
-const visitorDB = new PouchClass(pouchVisitor);
+const userDB = new User(pouchUser);
+const visitorDB = new User(pouchVisitor);
 
-export { userDB, visitorDB, PouchClass };
+export { userDB, visitorDB, User };

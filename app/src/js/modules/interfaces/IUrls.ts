@@ -1,4 +1,4 @@
-export interface Urls {
+export interface IUrls {
   syncUrl: string;
   signInUrl: string;
   registerUrl: string;

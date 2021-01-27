@@ -4,14 +4,14 @@ import { clearDetail } from '../ui/detail';
 import timeStampTemplate from '../templates/timeStamp-template';
 import taskItemTemplate from '../templates/taskItem-template';
 import pubsub from '../utils/pubsub';
-import { Task } from '../interfaces/Task';
+import { ITask } from '../interfaces/ITask';
 
 pubsub.on('renderByTaskType', renderTasks);
 pubsub.on('renderByTaskLevel', renderTasks);
 pubsub.on('renderBySearch', renderBySearch);
 
 // 主界面模块
-function renderTasks(tasks: Task[]) {
+function renderTasks(tasks: ITask[]) {
   let indexTime = '';
   const taskLists = document.querySelector('.todolist__tasks') as HTMLDivElement;
   const taskList = document.createElement('ul');

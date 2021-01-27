@@ -1,7 +1,7 @@
 // 加载中间件模块
 import { backendDB as db } from '../database/db-interface';
 import pubsub from '../utils/pubsub';
-import { DetailInfo } from '../interfaces/Detail';
+import { DetailInfo } from '../interfaces/IDetail';
 
 const detailContent = document.querySelector('.detail__paragraph') as HTMLTextAreaElement;
 const detailTitle = document.querySelector('.detail__title') as HTMLHeadingElement;

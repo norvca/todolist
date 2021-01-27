@@ -2,9 +2,9 @@
 import 'babel-polyfill';
 import { userDB, visitorDB } from '../database/pouchDB';
 import pubsub from '../utils/pubsub';
-import { UserModel } from '../interfaces/UserModel';
+import { IUser } from '../interfaces/IUser';
 
-let db: UserModel;
+let db: IUser;
 // 初始数据库选择：用户数据库或游客数据库
 if (localStorage.getItem('DB-name') && localStorage.getItem('CouchDB-auth')) {
   db = userDB;
