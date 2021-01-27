@@ -59,7 +59,7 @@ const backendDB = {
 
   // 展示任务详情
   async showDetail(idNum: string): Promise<void> {
-    const detail = await db.showDetail(idNum);
+    const detail = await db.searchDetail(idNum);
     pubsub.emit('showDetail', detail);
   },
 

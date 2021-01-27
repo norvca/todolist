@@ -8,7 +8,7 @@ export interface DBModel {
   searchByCurrentTask(): void;
   searchAll(): Promise<PouchDB.Core.AllDocsResponse<Record<never, never>>>;
   modifyTask(idNum: string, attr: string, value: string): void;
-  showDetail(
+  searchDetail(
     id: string,
   ): Promise<{
     title: string;

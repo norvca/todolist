@@ -114,7 +114,7 @@ class PouchClass implements DBModel {
   }
 
   // 显示右侧任务详情
-  showDetail(id: string): PromiseDetailInfo {
+  searchDetail(id: string): PromiseDetailInfo {
     return this.db.get(id).then(({ title, detail }) => {
       return { title, detail };
     });
