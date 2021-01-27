@@ -1,4 +1,4 @@
-import { firstSync, reSync } from '../database/sync';
+import sync from '../database/sync';
 import { userDB } from '../database/pouchDB';
 import { useUserDB, backendDB as db } from '../database/db-interface';
 import profilePopup from '../ui/popups/profile-popup';
@@ -10,7 +10,7 @@ function initApp(username: string, token: string): void {
 
   profilePopup.showProfileIcon();
   useUserDB();
-  firstSync(userDB.db, username, token);
+  sync.firstSync(userDB.db, username, token);
   // TODO: 用 userDB 则登录后不能立即渲染任务栏，切换成db就可以
   userDB.searchByTaskType('work');
 }
@@ -25,7 +25,7 @@ function reInitApp(): void {
   localStorage.setItem('currentType', 'work');
 
   if (dbName && token && username) {
-    reSync(userDB.db);
+    sync.reSync(userDB.db);
     profilePopup.showProfileIcon();
     db.searchByTaskType('work');
   } else {

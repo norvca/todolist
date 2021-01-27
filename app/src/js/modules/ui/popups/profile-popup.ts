@@ -1,5 +1,5 @@
 import profileHTMLCreator from '../../templates/profile-template';
-import { syncHandler } from '../../database/sync';
+import sync from '../../database/sync';
 import clearPage from '../clear-page';
 import { useVisitorDB } from '../../database/db-interface';
 import changeUserPopup from '../../templates/change-username';
@@ -74,7 +74,9 @@ class ProfilePopup {
 
     this.hideProfile();
     this.removeHTML();
-    syncHandler.cancel();
+    if (sync.syncHandler) {
+      sync.syncHandler.cancel();
+    }
     useVisitorDB();
     clearPage();
   };
