@@ -35,20 +35,20 @@ const backendDB = {
   },
 
   // 按任务类型分类
-  async sortByTaskType(value: string): Promise<void> {
-    const taskArr = await db.sortByTaskType(value);
+  async searchByTaskType(value: string): Promise<void> {
+    const taskArr = await db.searchByTaskType(value);
     pubsub.emit('renderByTaskType', taskArr);
   },
 
   // 按任务类型分类
-  async renderByTaskLevel(value: string): Promise<void> {
-    const taskArr = await db.renderByTaskLevel(value);
+  async searchByTaskLevel(value: string): Promise<void> {
+    const taskArr = await db.searchByTaskLevel(value);
     pubsub.emit('renderByTaskLevel', taskArr);
   },
 
   // 搜索任务
   async renderBySearch(input: string): Promise<void> {
-    const result = await db.renderBySearch();
+    const result = await db.searchAll();
     pubsub.emit('renderBySearch', { input, result });
   },
 

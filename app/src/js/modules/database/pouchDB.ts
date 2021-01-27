@@ -49,7 +49,7 @@ class PouchClass implements DBModel {
       });
   }
 
-  sortByTaskType(value: string): Promise<PouchDB.Core.ExistingDocument<Record<never, never>>[]> {
+  searchByTaskType(value: string): Promise<PouchDB.Core.ExistingDocument<Record<never, never>>[]> {
     return this.db
       .createIndex({
         index: { fields: ['taskType'] },
@@ -68,7 +68,7 @@ class PouchClass implements DBModel {
       });
   }
 
-  renderByTaskLevel(value: string): Promise<PouchDB.Core.ExistingDocument<Record<never, never>>[]> {
+  searchByTaskLevel(value: string): Promise<PouchDB.Core.ExistingDocument<Record<never, never>>[]> {
     return this.db
       .createIndex({
         index: { fields: ['level'] },
@@ -87,14 +87,14 @@ class PouchClass implements DBModel {
       });
   }
 
-  renderByCurrentTask(): void {
+  searchByCurrentTask(): void {
     const currentTaskLiElement = document.querySelector('.sidebar__act') as HTMLLIElement;
     const taskType = currentTaskLiElement.getAttribute('taskType') as string;
 
-    this.sortByTaskType(taskType);
+    this.searchByTaskType(taskType);
   }
 
-  renderBySearch(): Promise<PouchDB.Core.AllDocsResponse<Record<never, never>>> {
+  searchAll(): Promise<PouchDB.Core.AllDocsResponse<Record<never, never>>> {
     return this.db
       .allDocs({
         include_docs: true,

@@ -23,7 +23,7 @@ class SearchBar {
       this.input.value = '';
 
       if (!this.input.classList.contains('act-color')) {
-        db.sortByTaskType(this.typeValue);
+        db.searchByTaskType(this.typeValue);
       }
     }
   };
@@ -48,7 +48,7 @@ class SearchBar {
       return;
     } else {
       db.addTask();
-      db.sortByTaskType(this.typeValue);
+      db.searchByTaskType(this.typeValue);
       this.input.value = '';
     }
   };
@@ -61,7 +61,7 @@ class SearchBar {
     if (target.value) {
       if (e.key == 'Enter' && target.tagName.toUpperCase() === 'INPUT') {
         db.addTask();
-        db.sortByTaskType(this.typeValue);
+        db.searchByTaskType(this.typeValue);
         this.input.value = '';
       }
     }

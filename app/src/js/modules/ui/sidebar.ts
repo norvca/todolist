@@ -18,7 +18,7 @@ function navigateByType(target: HTMLLIElement) {
   target.classList.add('sidebar__act');
 
   const typeValue = target.getAttribute('taskType') as string;
-  db.sortByTaskType(typeValue);
+  db.searchByTaskType(typeValue);
   // Store current task type in local storage
   localStorage.setItem('currentType', typeValue);
 }
@@ -38,7 +38,7 @@ function navigateByLevel(target: HTMLLIElement) {
   currentLevel.classList.add('active');
 
   const levelValue = currentLevel.getAttribute('level') as string;
-  db.renderByTaskLevel(levelValue);
+  db.searchByTaskLevel(levelValue);
 }
 
 export { navigate };

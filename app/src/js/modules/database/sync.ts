@@ -52,7 +52,7 @@ function getSyncHandler(db: PouchDB.Database, remoteDB: PouchDB.Database) {
     })
     .on('change', function (change) {
       console.log(change);
-      userDB.renderByCurrentTask();
+      userDB.searchByCurrentTask();
       syncState.innerText = '数据同步完成!';
     })
     .on('paused', function (info) {
