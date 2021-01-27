@@ -1,7 +1,7 @@
 // 模块加载
 import PouchDB from 'pouchdb';
 import PouchdbFind from 'pouchdb-find';
-import TaskCreator from '../utils/task-creater';
+import TaskCreator from '../utils/task-creator';
 import { DBModel } from '../interfaces/DBModel';
 import { PromiseDetailInfo } from '../interfaces/Detail';
 
