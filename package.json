@@ -1,39 +1,63 @@
 {
-  "name": "todolist",
-  "version": "0.0.0",
+  "name": "webpack-typescript-tailwind-ejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "serve": "vite preview",
+    "start": "webpack serve --config webpack.dev.js --progress",
+    "build": "webpack --config webpack.prod.js",
+    "serve": "webpack serve --config webpack.prod.js",
     "prepare": "husky install"
   },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
   "devDependencies": {
     "@commitlint/cli": "12.1.4",
     "@commitlint/config-conventional": "12.1.4",
     "@typescript-eslint/eslint-plugin": "4.26.0",
     "@typescript-eslint/parser": "4.26.0",
     "autoprefixer": "10.2.6",
+    "clean-webpack-plugin": "4.0.0-alpha.0",
+    "css-loader": "5.2.6",
+    "css-minimizer-webpack-plugin": "3.0.1",
+    "ejs-compiled-loader": "3.1.0",
     "eslint": "7.28.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-config-standard": "16.0.3",
     "eslint-plugin-import": "2.23.4",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "5.1.0",
+    "fork-ts-checker-webpack-plugin": "6.2.10",
+    "html-loader": "2.1.2",
+    "html-webpack-plugin": "5.3.1",
     "husky": "^6.0.0",
     "lint-staged": "11.0.0",
+    "mini-css-extract-plugin": "1.6.0",
     "postcss": "8.3.0",
-    "prettier": "2.3.0",
+    "postcss-loader": "5.3.0",
+    "prettier": "2.3.1",
+    "style-loader": "2.0.0",
+    "svg-sprite-loader": "6.0.7",
     "tailwindcss": "2.1.4",
+    "terser-webpack-plugin": "5.1.3",
+    "ts-loader": "9.2.3",
     "typescript": "4.3.2",
-    "vite": "^2.3.4",
-    "vite-plugin-custom-index": "0.1.2",
-    "vite-plugin-handlebars": "1.5.1"
+    "url-loader": "4.1.1",
+    "webpack": "5.38.1",
+    "webpack-cli": "4.7.0",
+    "webpack-dev-server": "3.11.2",
+    "webpack-merge": "5.7.3"
   },
   "lint-staged": {
     "*.ts": [
-      "eslint",
+      "eslint --cache",
       "prettier --write"
     ],
     "*.{js,css,md}": "prettier --write"
+  },
+  "dependencies": {
+    "@types/ejs": "3.0.6",
+    "ejs": "2.7.4"
   }
 }

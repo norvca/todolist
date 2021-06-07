@@ -1,8 +1,10 @@
+# webpack-typescript-tailwind-ejs
+
 # ToDoList
 
 ### Techs
 
-Vite / Typescript / TailwindCSS / Lints / Handlebars
+Webpack / Typescript / TailwindCSS / Lints / Ejs
 
 ### Related Projects
 
