@@ -1,8 +1,4 @@
-# webpack-typescript-tailwind-ejs
-
 # ToDoList
-
-### Techs
 
 Webpack / Typescript / TailwindCSS / Lints / Ejs
 
@@ -13,6 +9,8 @@ Webpack / Typescript / TailwindCSS / Lints / Ejs
 - Backend part：[todolist-backend](https://github.com/norvca/todolist-backend)
 
 ### Online Preview
+
+https://norvca.github.io/todolist/dist
 
 ### Basic
 
