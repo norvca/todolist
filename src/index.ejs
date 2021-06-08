@@ -8,10 +8,10 @@
   <title>Document</title>
 </head>
 
-<body class="text-gray-600 debug-screens">
+<body class="flex flex-col h-screen text-gray-500 debug-screens">
   <!------------------- Header Section ------------------->
   <!------------------- Header Section ------------------->
-  <header class="flex items-center px-2 py-4 shadow-lg">
+  <header class="flex items-center px-2 py-4 shadow-md">
     <!-- LOGO -->
     <div class="hidden mx-2 md:block ">
       <span
@@ -52,7 +52,95 @@
     </div>
   </header>
 
+  <!------------------- Main Section ------------------->
+  <!------------------- Main Section ------------------->
+  <main class="flex flex-1 text-2xl">
+    <!-- Navigation -->
+    <section class="flex flex-col items-center justify-between py-6 text-center shadow-right w-2/14">
+      <!-- top part -->
+      <ul class="space-y-12">
+        <li>
+          <a href="#" class="nav-active">
+            <span class="hidden md:block">工作</span>
+            <svg class="block icon md:hidden">
+              <use href="#sprite_work"></use>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="hidden md:block">娱乐</span>
+            <svg class="block icon md:hidden">
+              <use href="#sprite_play"></use>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="hidden md:block">其他</span>
+            <svg class="block icon md:hidden">
+              <use href="#sprite_others"></use>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="hidden md:block text-green">LIGHT</span>
+            <svg class="block icon md:hidden">
+              <use href="#sprite_level1"></use>
+            </svg>
+          </a>
+          <a href="#" class="hidden">
+            <span class="hidden md:block text-purple">USUAL</span>
+            <svg class="block icon md:hidden">
+              <use href="#sprite_level2"></use>
+            </svg>
+          </a>
+          <a href="#" class="hidden">
+            <span class="hidden md:block text-red">HEAVY</span>
+            <svg class="block icon md:hidden">
+              <use href="#sprite_level3"></use>
+            </svg>
+          </a>
+        </li>
+      </ul>
 
+      <!-- bottom part -->
+      <ul class="space-y-12">
+        <li>
+          <a href="#">
+            <span class="hidden md:block">已完成</span>
+            <svg class="block icon md:hidden">
+              <use href="#sprite_done"></use>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="hidden md:block">垃圾箱</span>
+            <svg class="block icon md:hidden">
+              <use href="#sprite_bin"></use>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="hidden text-red md:block">DELETE</span>
+            <svg class="block icon md:hidden">
+              <use href="#sprite_delete-all"></use>
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Tasks -->
+    <section class="border w-9/14">
+
+    </section>
+
+    <!-- Details -->
+    <section class="bg-yellow-100 border-yellow-400 w-3/14"></section>
   </main>
 </body>
 
