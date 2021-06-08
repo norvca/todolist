@@ -8,13 +8,52 @@
   <title>Document</title>
 </head>
 
-<body>
-  <div class="flex flex-col items-center justify-center min-h-screen pb-40 space-y-10 bg-yellow-50">
-    <svg class="w-40 h-40">
-      <use href="#sprite_candy"></use>
-    </svg>
-    <h1 class="text-6xl text-gray-500">Hello, there...</h1>
-  </div>
+<body class="text-gray-600 debug-screens">
+  <!------------------- Header Section ------------------->
+  <!------------------- Header Section ------------------->
+  <header class="flex items-center px-2 py-4 shadow-lg">
+    <!-- LOGO -->
+    <div class="hidden mx-2 md:block ">
+      <span
+        class="text-3xl font-bold tracking-widest text-transparent cursor-pointer bg-gradient-to-r from-green to-purple bg-clip-text">PureTodo</span>
+    </div>
+
+    <!-- Login button -->
+    <div class="mx-2">
+      <a href="#" class="hidden text-xl font md:block">登录</a>
+      <svg class="icon md:hidden">
+        <use href="#sprite_login"></use>
+      </svg>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="flex flex-1 px-3 py-2 mx-2 space-x-2 border border-gray-00">
+      <!-- open search -->
+      <svg class="icon">
+        <use href="#sprite_search"></use>
+      </svg>
+      <!-- search input -->
+      <input type="text" placeholder="点击放大镜开启关闭搜索功能..." class="flex-1 focus:outline-none">
+      <!-- change level -->
+      <svg class="icon">
+        <use href="#sprite_change-level"></use>
+      </svg>
+      <!-- add task  -->
+      <svg class=" icon">
+        <use href="#sprite_add"></use>
+      </svg>
+    </div>
+
+    <!-- Dark mode -->
+    <div class="mx-2">
+      <svg class="hidden icon sm:block">
+        <use href="#sprite_moon"></use>
+      </svg>
+    </div>
+  </header>
+
+
+  </main>
 </body>
 
 </html>

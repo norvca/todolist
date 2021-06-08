@@ -5,10 +5,21 @@ module.exports = {
   },
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    debugScreens: {
+      position: ["top", "right"],
+    },
+    extend: {
+      colors: {
+        green: "#58b4ab",
+        "green-light": "#8fb4aa",
+        purple: "#66638b",
+        red: "#da635d",
+        "red-light": "#da9798",
+      },
+    },
   },
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require("tailwindcss-debug-screens")],
 };

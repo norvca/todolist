@@ -1,7 +1,13 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 
-/* Your custom tailwind components */
 /* @import './components/index.css'; */
 
 @import "tailwindcss/utilities";
+
+/* Your custom tailwind components */
+@layer components {
+  .icon {
+    @apply w-8 h-8 text-gray-500 cursor-pointer fill-current sm:w-10 sm:h-10;
+  }
+}
