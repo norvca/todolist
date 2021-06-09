@@ -18,4 +18,8 @@ https://norvca.github.io/todolist/dist
 
 ### Synchronization
 
-![](https://raw.githubusercontent.com/norvca/pictures/master/sync.gif)
+![](https://raw.githubusercontent.com/norvca/pics/master/proj-todolist/sync.gif)
+
+### Dark mode, Responsive
+
+![](https://raw.githubusercontent.com/norvca/pics/master/proj-todolist/dark-mode.gif)
