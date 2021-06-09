@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 
 <head>
   <meta charset="UTF-8">
@@ -8,10 +8,10 @@
   <title>Document</title>
 </head>
 
-<body class="flex flex-col h-screen text-gray-500 debug-screens">
+<body class="flex flex-col h-screen text-gray-500 dark:bg-gray-800 dark:text-gray-400 debug-screens">
   <!------------------- Header Section ------------------->
   <!------------------- Header Section ------------------->
-  <header class="flex items-center px-2 py-4 shadow-bottom ">
+  <header class="flex items-center px-2 py-4 dark:border-b-2 dark:border-gray-700 shadow-header dark:shadow-none">
     <!-- LOGO -->
     <div class="hidden mx-2 md:block ">
       <span
@@ -27,16 +27,16 @@
     </div>
 
     <!-- Search Bar -->
-    <div class="flex flex-1 px-3 py-2 mx-2 space-x-2 border border-gray-00">
+    <div class="flex flex-1 px-3 py-2 mx-2 space-x-2 border border-gray-300 dark:border-opacity-0 dark:bg-gray-700">
       <!-- open search -->
       <svg class="icon">
         <use href="#sprite_search"></use>
       </svg>
       <!-- search input -->
       <input type="text" placeholder="点击放大镜开启关闭搜索功能..."
-        class="w-4/5 text-lg tracking-widest placeholder-gray-300 sm:w-full focus:outline-none">
+        class="w-4/5 text-lg tracking-widest placeholder-gray-300 dark:placeholder-gray-400 sm:w-full focus:outline-none dark:bg-gray-700">
       <!-- change level -->
-      <svg class="icon">
+      <svg class="icon text-green dark:text-green">
         <use href="#sprite_change-level"></use>
       </svg>
       <!-- add task  -->
@@ -46,7 +46,7 @@
     </div>
 
     <!-- Dark mode -->
-    <div class="sm:mx-2">
+    <div class="sm:mx-2 theme">
       <svg class="hidden icon sm:block">
         <use href="#sprite_moon"></use>
       </svg>
@@ -58,7 +58,7 @@
   <main class="flex overflow-y-hidden text-2xl">
     <!-- Navigation -->
     <section
-      class="flex flex-col items-center justify-between px-4 py-6 text-center select-none xl:px-10 2xl:px-14 shadow-right">
+      class="flex flex-col items-center justify-between px-4 py-6 text-center select-none dark:border-r-2 dark:border-gray-700 xl:px-10 2xl:px-14 shadow-nav dark:shadow-none">
       <!-- top part -->
       <ul class="space-y-12">
         <li>
@@ -87,19 +87,19 @@
         </li>
         <li>
           <a href="#">
-            <span class="hidden md:block text-green">LIGHT</span>
+            <span class="hidden md:block text-green dark:text-green-dark">LIGHT</span>
             <svg class="block icon md:hidden">
               <use href="#sprite_level1"></use>
             </svg>
           </a>
           <a href="#" class="hidden">
-            <span class="hidden md:block text-purple">USUAL</span>
+            <span class="hidden md:block text-purple dark:text-purple-dark">USUAL</span>
             <svg class="block icon md:hidden">
               <use href="#sprite_level2"></use>
             </svg>
           </a>
           <a href="#" class="hidden">
-            <span class="hidden md:block text-red">HEAVY</span>
+            <span class="hidden md:block text-red dark:text-red-dark">HEAVY</span>
             <svg class="block icon md:hidden">
               <use href="#sprite_level3"></use>
             </svg>
@@ -127,7 +127,7 @@
         </li>
         <li>
           <a href="#">
-            <span class="hidden text-red md:block">DELETE</span>
+            <span class="hidden text-red dark:text-red-dark md:block">DELETE</span>
             <svg class="block icon md:hidden">
               <use href="#sprite_delete-all"></use>
             </svg>
@@ -137,10 +137,10 @@
     </section>
 
     <!-- Task section -->
-    <section class="flex flex-col justify-between flex-1 md:flex-row">
+    <section class="flex flex-col justify-between flex-1 md:flex-row ">
 
       <!-- Tasks -->
-      <section class="px-6 py-4 space-y-12 overflow-y-scroll h-4/6 md:h-full md:w-3/4">
+      <section class="px-6 py-4 space-y-12 overflow-y-scroll h-4/6 md:h-full md:w-3/4 scrollbar">
 
         <!-- Each day of tasks -->
         <div class="space-y-2">
@@ -153,8 +153,9 @@
           </div>
 
           <!-- task list -->
-          <ul class="space-y-3 text-white">
-            <li class="flex items-center justify-between px-3 py-1 space-x-8 rounded-lg shadow-task bg-red">
+          <ul class="space-y-3 text-white dark:text-gray-300">
+            <li
+              class="flex items-center justify-between px-3 py-1 space-x-8 rounded-lg dark:shadow-none shadow-task bg-red dark:bg-red-dark">
               <div>
                 <span>Take a picture of an old camera that can't take pictures anymore.</span>
               </div>
@@ -168,7 +169,8 @@
               </div>
             </li>
 
-            <li class="flex items-center justify-between px-3 py-1 ml-6 space-x-8 rounded-lg bg-purple">
+            <li
+              class="flex items-center justify-between px-3 py-1 ml-6 space-x-8 rounded-lg bg-purple dark:bg-purple-dark">
               <div>
                 <span>Do everything in slow motion.</span>
               </div>
@@ -182,7 +184,8 @@
               </div>
             </li>
 
-            <li class="flex items-center justify-between px-3 py-1 ml-6 space-x-8 rounded-lg bg-green">
+            <li
+              class="flex items-center justify-between px-3 py-1 ml-6 space-x-8 rounded-lg bg-green dark:bg-green-dark">
               <div>
                 <span>Plant carrots. Grow carrots. Pick carrots. Wash carrots. Eat carrots.</span>
               </div>
@@ -210,8 +213,9 @@
           </div>
 
           <!-- task list -->
-          <ul class="space-y-3 text-white">
-            <li class="flex items-center justify-between px-3 py-1 ml-6 space-x-8 rounded-lg bg-green">
+          <ul class="space-y-3 text-white dark:text-gray-300">
+            <li
+              class="flex items-center justify-between px-3 py-1 ml-6 space-x-8 rounded-lg bg-green dark:bg-green-dark">
               <div>
                 <span>Translate and Re-Translate your fav songs lyrics using google translate.</span>
               </div>
@@ -224,7 +228,8 @@
                 </svg>
               </div>
             </li>
-            <li class="flex items-center justify-between px-3 py-1 ml-6 space-x-8 rounded-lg bg-green">
+            <li
+              class="flex items-center justify-between px-3 py-1 ml-6 space-x-8 rounded-lg bg-green dark:bg-green-dark">
               <div>
                 <span>Translate and Re-Translate your fav songs lyrics using google translate.</span>
               </div>
@@ -237,7 +242,8 @@
                 </svg>
               </div>
             </li>
-            <li class="flex items-center justify-between px-3 py-1 ml-6 space-x-8 rounded-lg bg-green">
+            <li
+              class="flex items-center justify-between px-3 py-1 ml-6 space-x-8 rounded-lg bg-green dark:bg-green-dark">
               <div>
                 <span>Translate and Re-Translate your fav songs lyrics using google translate.</span>
               </div>
@@ -250,7 +256,8 @@
                 </svg>
               </div>
             </li>
-            <li class="flex items-center justify-between px-3 py-1 ml-6 space-x-8 rounded-lg bg-green">
+            <li
+              class="flex items-center justify-between px-3 py-1 ml-6 space-x-8 rounded-lg bg-green dark:bg-green-dark">
               <div>
                 <span>Translate and Re-Translate your fav songs lyrics using google translate.</span>
               </div>
@@ -263,7 +270,8 @@
                 </svg>
               </div>
             </li>
-            <li class="flex items-center justify-between px-3 py-1 ml-6 space-x-8 rounded-lg bg-green">
+            <li
+              class="flex items-center justify-between px-3 py-1 ml-6 space-x-8 rounded-lg bg-green dark:bg-green-dark">
               <div>
                 <span>Translate and Re-Translate your fav songs lyrics using google translate.</span>
               </div>
@@ -276,7 +284,8 @@
                 </svg>
               </div>
             </li>
-            <li class="flex items-center justify-between px-3 py-1 ml-6 space-x-8 rounded-lg bg-green">
+            <li
+              class="flex items-center justify-between px-3 py-1 ml-6 space-x-8 rounded-lg bg-green dark:bg-green-dark">
               <div>
                 <span>Translate and Re-Translate your fav songs lyrics using google translate.</span>
               </div>
@@ -295,9 +304,11 @@
       </section>
 
       <!-- Details -->
-      <section class="p-4 pb-12 h-2/6 md:h-full shadow-left md:w-1/4">
+      <section
+        class="p-4 pb-12 dark:border-l-2 dark:border-gray-700 h-2/6 md:h-full shadow-detail dark:shadow-none md:w-1/4">
         <p class="font-bold truncate">Take a picture</p>
-        <textarea class="w-full h-full py-2 overflow-y-auto text-xl placeholder-gray-300 resize-none focus:outline-none"
+        <textarea
+          class="w-full h-full py-2 overflow-y-auto text-xl placeholder-gray-300 resize-none scrollbar dark:placeholder-gray-400 dark:bg-gray-800 focus:outline-none"
           placeholder="添加任务详情..."></textarea>
       </section>
     </section>

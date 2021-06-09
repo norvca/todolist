@@ -3,18 +3,27 @@ module.exports = {
     enabled: true,
     content: ["./src/**/*.ejs", "./src/**/*.css"],
   },
-  darkMode: false, // or 'media' or 'class'
+  darkMode: "class", // or 'media' or 'class'
   theme: {
     debugScreens: {
       position: ["top", "right"],
     },
     extend: {
       colors: {
-        green: "#58b4ab",
-        "green-light": "#8fb4aa",
-        purple: "#66638b",
-        red: "#da635d",
-        "red-light": "#da9798",
+        green: {
+          light: "#8fb4aa",
+          DEFAULT: "#58b4ab",
+          dark: "#43968E",
+        },
+        purple: {
+          DEFAULT: "#66638b",
+          dark: "#504E6D",
+        },
+        red: {
+          light: "#da9798",
+          DEFAULT: "#da635d",
+          dark: "#B1534E",
+        },
       },
       width: {
         "2/14": "14.28571%",
@@ -25,15 +34,18 @@ module.exports = {
         3: "3px",
       },
       boxShadow: {
-        left: "0px 2px 11px 0px #ccc",
-        right: "2px 4px 6px 0px #ccc",
-        bottom: "0px 2px 11px 0px #ccc",
+        detail: "0px 2px 11px 0px #ccc",
+        nav: "2px 4px 6px 0px #ccc",
+        header: "0px 2px 11px 0px #ccc",
         task: "2px 2px 6px 0px #888",
       },
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      boxShadow: "dark",
+      borderWidth: "dark",
+    },
   },
   plugins: [require("tailwindcss-debug-screens")],
 };

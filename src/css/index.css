@@ -5,17 +5,33 @@
 
 @import "tailwindcss/utilities";
 
+/* TODO: Something wrong with components import in tailwindcss */
+/* TODO: Currently we put them here */
 /* Your custom tailwind components */
 @layer components {
   .icon {
-    @apply text-gray-500 cursor-pointer fill-current w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9;
+    @apply text-gray-500 cursor-pointer fill-current dark:text-gray-400 w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9;
   }
 
   .icon-white {
-    @apply text-white cursor-pointer fill-current w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9;
+    @apply text-white cursor-pointer fill-current dark:text-gray-300 w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9;
   }
 
   .nav-active {
     @apply inline-block py-2 border-b-3 border-green;
+  }
+}
+
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    @apply bg-gray-100 dark:bg-gray-400;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 dark:bg-gray-500;
   }
 }
