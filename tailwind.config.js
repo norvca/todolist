@@ -27,6 +27,8 @@ module.exports = {
       boxShadow: {
         left: "0px 2px 11px 0px #ccc",
         right: "2px 4px 6px 0px #ccc",
+        bottom: "0px 2px 11px 0px #ccc",
+        task: "2px 2px 6px 0px #888",
       },
     },
   },

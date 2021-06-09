@@ -11,6 +11,10 @@
     @apply text-gray-500 cursor-pointer fill-current w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9;
   }
 
+  .icon-white {
+    @apply text-white cursor-pointer fill-current w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9;
+  }
+
   .nav-active {
     @apply inline-block py-2 border-b-3 border-green;
   }
