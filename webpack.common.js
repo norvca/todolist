@@ -1,14 +1,14 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
-const path = require("path");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const path = require('path');
 
 module.exports = {
-  entry: "./src/index.ts",
+  entry: './src/index.ts',
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.ejs",
-      favicon: "./src/img/favicon.ico",
-      filename: "index.html",
+      template: './src/index.ejs',
+      favicon: './src/img/favicon.ico',
+      filename: 'index.html',
     }),
     new ForkTsCheckerWebpackPlugin(),
   ],
@@ -16,28 +16,28 @@ module.exports = {
     rules: [
       {
         test: /\.ts$/,
-        loader: "ts-loader",
+        loader: 'ts-loader',
         options: {
           // disable type checker, use ForkTsCheckerWebpackPlugin
           transpileOnly: true,
         },
-        include: path.resolve(__dirname, "src"),
+        include: path.resolve(__dirname, 'src'),
       },
       {
         test: /\.ejs$/,
         use: {
-          loader: "ejs-compiled-loader",
+          loader: 'ejs-compiled-loader',
         },
-        include: path.resolve(__dirname, "src"),
+        include: path.resolve(__dirname, 'src'),
       },
       {
         test: /\.svg$/,
-        loader: "svg-sprite-loader",
-        include: path.resolve(__dirname, "src"),
+        loader: 'svg-sprite-loader',
+        include: path.resolve(__dirname, 'src'),
       },
     ],
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".json"],
+    extensions: ['.ts', '.tsx', '.js', '.json'],
   },
 };
